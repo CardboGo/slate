@@ -7,24 +7,26 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
 
 search: true
 
 code_clipboard: true
 ---
 
-# Introduction
+# Cardbo API Document
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+## Current version
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+![v5.5](https://img.shields.io/badge/version-v5.5-blue)
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+## API Environment
+
+Environment | Domain
+----------- | ------
+Production  | `https://prodapi.cardbo.info`
+Beta        | `https://betaapi.cardbo.info`
+Development | `https://devapi.cardbo.info`
 
 # API Responses
 
