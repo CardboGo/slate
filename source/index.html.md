@@ -1,9 +1,8 @@
 ---
-title: API Reference
+title: Cardbo API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
   - python
   - javascript
 
@@ -27,26 +26,40 @@ We have language bindings in Shell, Ruby, Python, and JavaScript! You can view c
 
 This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
+# Response format
+
+Key       | Type   | Description
+--------- | ------ | -----------
+code      | int    | status code
+message   | string | message string
+result    | {}     | result value
+timestamp | int    | current timestamp in 16 digits
+
 # Authentication
 
-> To authorize, use this code:
+## Administrator
 
-```ruby
-require 'kittn'
+> Login administrator:
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+```shell
+curl --request POST \
+  --url https://prodapi.cardbo.info/api/v5/auth/administrator \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "account": "{account}",
+    "password": "{password}"
+  }'
 ```
 
 ```python
-import kittn
+import requests
 
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
+url = 'https://prodapi.cardbo.info/api/v5/auth/administrator'
+data = {
+  'account': '{account}',
+  'password': '{password}'
+}
+resp = requests.post(url, json=data)
 ```
 
 ```javascript
@@ -55,28 +68,63 @@ const kittn = require('kittn');
 let api = kittn.authorize('meowmeowmeow');
 ```
 
+> Example response:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "administrator_id": "5fa79ec32ba2dfe2db67ae2c",
+    "administrator_name": "Harrison Peng",
+    "level": 3,
+    "access_token": "meowmeowmeowaccess",
+    "refresh_token": "meowmeowmeowrefresh"
+  },
+  "timestamp": 1617601542000
+}
+```
+
 > Make sure to replace `meowmeowmeow` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+Administrator authentication is used to login admnistrator and get administrator API token.
 
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
+### HTTP Request
+
+`POST https://prodapi.cardbo.info/api/v5/auth/administrator`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | -------- | -----------
+account   | true     | Administrator account
+password  | true     | Administrator password
+
+### Response
+
+#### Success
+
+Key                | Type   | Description
+------------------ | ------ | -----------
+access_token       | string | access token
+refresh_token      | string | refresh token
+administrator_id   | string | administrator id
+administrator_name | string | administrator name
+level              | int    | administrator level {1: employee, 2: manager, 3: admin}
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
 # Kittens
 
 ## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
 
 ```python
 import kittn
@@ -137,13 +185,6 @@ Remember — a happy kitten is an authenticated kitten!
 
 ## Get a Specific Kitten
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
 ```python
 import kittn
 
@@ -191,13 +232,6 @@ ID | The ID of the kitten to retrieve
 
 ## Delete a Specific Kitten
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
 ```python
 import kittn
 
@@ -238,4 +272,3 @@ This endpoint deletes a specific kitten.
 Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to delete
-
