@@ -130,7 +130,9 @@ Administrator authentication is used to login admnistrator and get administrator
 
 `POST https://prodapi.cardbo.info/api/v5/auth/administrator`
 
-### Query Parameters
+### Request
+
+#### Parameters
 
 Parameter | Required | Description
 --------- | -------- | -----------
@@ -215,7 +217,9 @@ Linebot authentication is used to login linebot and get API auth token.
 
 `POST https://prodapi.cardbo.info/api/v5/auth/linebot`
 
-### Query Parameters
+### Request
+
+#### Parameters
 
 Parameter | Required | Description
 --------- | -------- | -----------
@@ -297,7 +301,9 @@ Line authentication is used to login from LINE and get API auth token.
 
 `POST https://prodapi.cardbo.info/api/v5/auth/line`
 
-### Query Parameters
+### Request
+
+#### Parameters
 
 Parameter    | Required | Description
 ------------ | -------- | -----------
@@ -377,7 +383,9 @@ You must replace <code>meowmeowmeowrefresh</code> with your personal API refresh
 
 `POST https://prodapi.cardbo.info/api/v5/auth/refresh`
 
-### Query Headers
+### Request
+
+#### Headers
 
 Key           | Value        | Description
 ------------- | ------------ | -----------
@@ -445,8 +453,8 @@ axios.get('https://prodapi.cardbo.info/api/v5/user', {
     "line_id": "Udchd7f131dvvhdbe166692206a12335c",
     "username": "Harrison Peng",
     "image": "https://image.com/image.png",
-    "email": "",
-    "phone_number": "",
+    "email": "harrison@cardbo.info",
+    "phone_number": "0987654321",
     "cardbo_point": 0,
     "cards": [
       {
@@ -491,11 +499,162 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 `GET https://prodapi.cardbo.info/api/v5/user`
 
-### Query Headers
+### Request
+
+#### Headers
 
 Key           | Value        | Description
 ------------- | ------------ | -----------
-Authorization | Bearer token | API refresh token
+Authorization | Bearer token | API access token
+
+### Response
+
+#### Success
+
+Key          | Type        | Description
+------------ | ----------- | -----------
+user_id      | string      | User id
+line_id      | string      | LINE id
+username     | string      | Username
+image        | string      | User image
+email        | string      | Email
+phone_number | string      | Phone number
+cardbo_point | int         | Cardbo point (useless)
+cards        | []Card      | User own card array
+mobilepays   | []Mobilepay | User own mobile pay array
+user_level   | int         | User level {1: general, 2: vip, 3: developer}
+created_at   | int         | User create time in 16 digits timestamp
+updated_at   | int         | User update time in 16 digits timestamp
+last_login   | int         | User last login time in 16 digits timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Update user information
+
+> Update user information:
+
+```shell
+curl --request PUT \
+  --url https://betaapi.cardbo.info/api/v5/user \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "username": "Harrison",
+    "email": "harrison@cardbo.info",
+    "phone_number": "0987654321"
+  }'
+
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/user'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  'username': 'Harrison',
+  'email': 'harrison@cardbo.info',
+  'phone_number': '0987654321'
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  username: 'Harrison',
+  email: 'harrison@cardbo.info',
+  phone_number: '0987654321',
+}
+axios.put('https://prodapi.cardbo.info/api/v5/user', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "user_id": "5fa79ec32ba2dfe2db67ae2c",
+    "line_id": "Udchd7f131dvvhdbe166692206a12335c",
+    "username": "Harrison Peng",
+    "image": "https://image.com/image.png",
+    "email": "harrison@cardbo.info",
+    "phone_number": "0987654321",
+    "cardbo_point": 0,
+    "cards": [
+      {
+        "card_id": "5fdb2ff546a97b49dac8a6ad",
+        "name": "永豐幣倍卡",
+        "bank": {
+          "bank_id": "5f756d85c2349d9139648a7d",
+          "name": "永豐銀行",
+          "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/sinopac-bank.png",
+          "image": "https://i.imgur.com/1g5nYEN.png",
+          "code": "807"
+        },
+        "level": 5,
+        "image": "https://storage.googleapis.com/cardbo-images/card/5fdb2ff546a97b49dac8a6ad-1.png",
+        "issuer": "MASTERCARD"
+      }
+    ],
+    "mobilepays": [
+      {
+        "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
+        "name": "Apple Pay",
+        "image": "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png",
+        "user_has": false
+      }
+    ],
+    "user_level": 1,
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "last_login": 1617601542000
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Update user information
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://prodapi.cardbo.info/api/v5/user`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter    | Required | Description
+------------ | -------- | -----------
+username     | false    | username
+email        | false    | email
+phone_number | false    | phone number
 
 ### Response
 
