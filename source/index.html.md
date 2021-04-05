@@ -26,7 +26,7 @@ We have language bindings in Shell, Ruby, Python, and JavaScript! You can view c
 
 This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Response format
+# API Responses
 
 Key       | Type   | Description
 --------- | ------ | -----------
@@ -34,6 +34,36 @@ code      | int    | status code
 message   | string | message string
 result    | {}     | result value
 timestamp | int    | current timestamp in 16 digits
+
+## HTTP status codes
+
+### Successful requests
+
+Status code   | Description
+------------- | -----------
+`200 Ok`      | The request succeeded.
+`201 Created` | A `POST` method successfully created a resource. If the resource was already created by a previous execution of the same method, for example, the server returns the HTTP `200 OK` status code.
+
+### Failed requests
+
+Status code                 | Description
+--------------------------- | -----------
+`400 Bad Request`           | `INVALID_REQUEST`. Request is not well-formed, syntactically incorrect, or violates schema.
+`401 Unauthorized`          | `UNAUTHORIZED_REQUEST`. Request does not authorized, or authorization is timeout.
+`404 Not Found`             | `RESOURCE_NOT_FOUND`. The specified resource does not exist.
+`500 Internal Server Error` | `INTERNAL_SERVER_ERROR`. An internal server error has occurred.
+
+### Response codes
+
+Code    | Description
+------- | -----------
+`200`   | SUCCESS
+`400`   | INVALID_PARAMS
+`500`   | ERROR_INTERNAL
+`40010` | DATA_IN_PENDING
+`10000` | ERROR_AUTH_TOKEN_FAIL
+`10001` | ERROR_AUTH_TOKEN_TIMEOUT
+`10002` | ERROR_AUTH_PERMISSION_DENIED
 
 # Authentication
 
@@ -44,7 +74,7 @@ timestamp | int    | current timestamp in 16 digits
 ```shell
 curl --request POST \
   --url https://prodapi.cardbo.info/api/v5/auth/administrator \
-  --header 'Content-Type: application/json' \
+  -H 'Content-Type: application/json' \
   --data '{
     "account": "{account}",
     "password": "{password}"
@@ -59,16 +89,25 @@ data = {
   'account': '{account}',
   'password': '{password}'
 }
-resp = requests.post(url, json=data)
+response = requests.post(url, json=data)
 ```
 
 ```javascript
-const kittn = require('kittn');
+const axios = require('axios');
 
-let api = kittn.authorize('meowmeowmeow');
+axios.post('https://prodapi.cardbo.info/api/v5/auth/administrator', {
+    account: '{account}',
+    password: '{password}'
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 ```
 
-> Example response:
+> Response example:
 
 ```json
 {
@@ -85,13 +124,7 @@ let api = kittn.authorize('meowmeowmeow');
 }
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
-
 Administrator authentication is used to login admnistrator and get administrator API token.
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
 
 ### HTTP Request
 
@@ -122,153 +155,245 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-# Kittens
+## LineBot
 
-## Get All Kittens
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+> Login linebot:
 
 ```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
+curl --request POST \
+  --url https://prodapi.cardbo.info/api/v5/auth/linebot \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "source": 1,
+    "user_id": "{user_id}"
+  }'
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/auth/linebot'
+data = {
+  'source': 1,
+  'user_id': '{user_id}'
+}
+response = requests.post(url, json=data)
 ```
 
 ```javascript
-const kittn = require('kittn');
+const axios = require('axios');
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+axios.post('https://prodapi.cardbo.info/api/v5/auth/linebot', {
+    source: 1,
+    user_id: '{user_id}'
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 ```
 
-> The above command returns JSON structured like this:
+> Response example:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "access_token": "meowmeowmeowaccess",
+    "refresh_token": "meowmeowmeowrefresh"
   },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+  "timestamp": 1617601542000
+}
 ```
 
-This endpoint retrieves all kittens.
+Linebot authentication is used to login linebot and get API auth token.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`POST https://prodapi.cardbo.info/api/v5/auth/linebot`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Required | Description
+--------- | -------- | -----------
+source    | true     | Request source {1: app, 2: saas, 3: linebot, 4: internal tool}
+user_id   | true     | User line id
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+### Response
+
+#### Success
+
+Key                | Type   | Description
+------------------ | ------ | -----------
+access_token       | string | access token
+refresh_token      | string | refresh token
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Line Login
+
+> Login from LINE:
+
+```shell
+curl --request POST \
+  --url https://prodapi.cardbo.info/api/v5/auth/line \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "source": 1,
+    "access_token": "{access_token}"
+  }'
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/auth/line'
+data = {
+  'source': 1,
+  'access_token': '{access_token}'
+}
+response = requests.post(url, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+axios.post('https://prodapi.cardbo.info/api/v5/auth/line', {
+    source: 1,
+    access_token: '{access_token}'
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "access_token": "meowmeowmeowaccess",
+    "refresh_token": "meowmeowmeowrefresh"
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Line authentication is used to login from LINE and get API auth token.
+
+### HTTP Request
+
+`POST https://prodapi.cardbo.info/api/v5/auth/line`
+
+### Query Parameters
+
+Parameter    | Required | Description
+------------ | -------- | -----------
+source       | true     | Request source {1: app, 2: saas, 3: linebot, 4: internal tool}
+access_token | true     | Access token from LINE Login
+
+### Response
+
+#### Success
+
+Key                | Type   | Description
+------------------ | ------ | -----------
+access_token       | string | access token
+refresh_token      | string | refresh token
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Auth Refresh
+
+> Refresh auth token:
+
+```shell
+curl --request POST \
+  --url https://betaapi.cardbo.info/api/v5/auth/refresh \
+  -H 'Authorization: Bearer meowmeowmeowrefresh' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/auth/refresh'
+headers = {'Authorization': 'Bearer meowmeowmeowrefresh'}
+response = requests.post(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {'Authorization': 'Bearer meowmeowmeowrefresh'}
+axios.post('https://prodapi.cardbo.info/api/v5/auth/refresh', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "access_token": "meowmeowmeowaccess",
+    "refresh_token": "meowmeowmeowrefresh"
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Refresh authentication is used to refresh your API auth token by refresh token.
+
+<aside class="notice">
+You must replace <code>meowmeowmeowrefresh</code> with your personal API refresh token.
 </aside>
 
-## Get a Specific Kitten
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`POST https://prodapi.cardbo.info/api/v5/auth/refresh`
 
-### URL Parameters
+### Query Headers
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API refresh token
 
-## Delete a Specific Kitten
+### Response
 
-```python
-import kittn
+#### Success
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+Key                | Type   | Description
+------------------ | ------ | -----------
+access_token       | string | access token
+refresh_token      | string | refresh token
 
-```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
-```
+#### Error
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
