@@ -16,8 +16,6 @@ code_clipboard: true
 
 # Cardbo API Document
 
-## Current version
-
 ![v5.5](https://img.shields.io/badge/version-v5.5-blue)
 
 ## API Environment
@@ -393,6 +391,131 @@ Key                | Type   | Description
 ------------------ | ------ | -----------
 access_token       | string | access token
 refresh_token      | string | refresh token
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+# User
+
+## Get user profile
+
+> Get user profile:
+
+```shell
+curl --request GET \
+  --url https://betaapi.cardbo.info/api/v5/user \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/user'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+axios.get('https://prodapi.cardbo.info/api/v5/user', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "user_id": "5fa79ec32ba2dfe2db67ae2c",
+    "line_id": "Udchd7f131dvvhdbe166692206a12335c",
+    "username": "Harrison Peng",
+    "image": "https://image.com/image.png",
+    "email": "",
+    "phone_number": "",
+    "cardbo_point": 0,
+    "cards": [
+      {
+        "card_id": "5fdb2ff546a97b49dac8a6ad",
+        "name": "永豐幣倍卡",
+        "bank": {
+          "bank_id": "5f756d85c2349d9139648a7d",
+          "name": "永豐銀行",
+          "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/sinopac-bank.png",
+          "image": "https://i.imgur.com/1g5nYEN.png",
+          "code": "807"
+        },
+        "level": 5,
+        "image": "https://storage.googleapis.com/cardbo-images/card/5fdb2ff546a97b49dac8a6ad-1.png",
+        "issuer": "MASTERCARD"
+      }
+    ],
+    "mobilepays": [
+      {
+        "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
+        "name": "Apple Pay",
+        "image": "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png",
+        "user_has": false
+      }
+    ],
+    "user_level": 1,
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "last_login": 1617601542000
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get user profile by user's API auth token
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://prodapi.cardbo.info/api/v5/user`
+
+### Query Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API refresh token
+
+### Response
+
+#### Success
+
+Key          | Type        | Description
+------------ | ----------- | -----------
+user_id      | string      | User id
+line_id      | string      | LINE id
+username     | string      | Username
+image        | string      | User image
+email        | string      | Email
+phone_number | string      | Phone number
+cardbo_point | int         | Cardbo point (useless)
+cards        | []Card      | User own card array
+mobilepays   | []Mobilepay | User own mobile pay array
+user_level   | int         | User level {1: general, 2: vip, 3: developer}
+created_at   | int         | User create time in 16 digits timestamp
+updated_at   | int         | User update time in 16 digits timestamp
+last_login   | int         | User last login time in 16 digits timestamp
 
 #### Error
 
