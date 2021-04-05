@@ -299,7 +299,7 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo-1e815a84.png" class="logo" alt="" />
+      <img src="images/logo-830ff830.png" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
               <a href="#" data-language-name="python">python</a>
@@ -311,7 +311,15 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+            <a href="#cardbo-api-document" class="toc-h1 toc-link" data-title="Cardbo API Document">Cardbo API Document</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#current-version" class="toc-h2 toc-link" data-title="Current version">Current version</a>
+                  </li>
+                  <li>
+                    <a href="#api-environment" class="toc-h2 toc-link" data-title="API Environment">API Environment</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#api-responses" class="toc-h1 toc-link" data-title="API Responses">API Responses</a>
@@ -338,24 +346,36 @@
                   </li>
               </ul>
           </li>
-          <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
-          </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
             <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/slatedocs/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+        <h1 id='cardbo-api-document'>Cardbo API Document</h1><h2 id='current-version'>Current version</h2>
+<p><img src="https://img.shields.io/badge/version-v5.5-blue" alt="v5.5" /></p>
+<h2 id='api-environment'>API Environment</h2>
+<table><thead>
+<tr>
+<th>Environment</th>
+<th>Domain</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Production</td>
+<td><code>https://prodapi.cardbo.info</code></td>
+</tr>
+<tr>
+<td>Beta</td>
+<td><code>https://betaapi.cardbo.info</code></td>
+</tr>
+<tr>
+<td>Development</td>
+<td><code>https://devapi.cardbo.info</code></td>
+</tr>
+</tbody></table>
 <h1 id='api-responses'>API Responses</h1>
 <table><thead>
 <tr>
@@ -870,64 +890,6 @@ You must replace <code>meowmeowmeowrefresh</code> with your personal API refresh
 <td>error</td>
 <td>string</td>
 <td>error message</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
 
