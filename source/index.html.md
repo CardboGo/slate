@@ -167,7 +167,7 @@ curl --request POST \
   -H 'Content-Type: application/json' \
   --data '{
     "source": 1,
-    "user_id": "{user_id}"
+    "user_id": "5fcd3c76e549avb2805e7fe0"
   }'
 ```
 
@@ -177,7 +177,7 @@ import requests
 url = 'https://prodapi.cardbo.info/api/v5/auth/linebot'
 data = {
   'source': 1,
-  'user_id': '{user_id}'
+  'user_id': '5fcd3c76e549avb2805e7fe0'
 }
 response = requests.post(url, json=data)
 ```
@@ -187,7 +187,7 @@ const axios = require('axios');
 
 axios.post('https://prodapi.cardbo.info/api/v5/auth/linebot', {
     source: 1,
-    user_id: '{user_id}'
+    user_id: '5fcd3c76e549avb2805e7fe0'
   })
   .then(function (response) {
     console.log(response);
@@ -449,7 +449,7 @@ axios.get('https://prodapi.cardbo.info/api/v5/user', {
   "code": 200,
   "message": "Ok",
   "result": {
-    "user_id": "5fa79ec32ba2dfe2db67ae2c",
+    "user_id": "5fcd3c76e549avb2805e7fe0",
     "line_id": "Udchd7f131dvvhdbe166692206a12335c",
     "username": "Harrison Peng",
     "image": "https://image.com/image.png",
@@ -590,7 +590,7 @@ axios.put('https://prodapi.cardbo.info/api/v5/user', data, {
   "code": 200,
   "message": "Ok",
   "result": {
-    "user_id": "5fa79ec32ba2dfe2db67ae2c",
+    "user_id": "5fcd3c76e549avb2805e7fe0",
     "line_id": "Udchd7f131dvvhdbe166692206a12335c",
     "username": "Harrison Peng",
     "image": "https://image.com/image.png",
@@ -688,7 +688,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://betaapi.cardbo.info/api/v5/add_card \
+  --url https://betaapi.cardbo.info/api/v5/user/add_card \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -703,7 +703,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/add_card'
+url = 'https://prodapi.cardbo.info/api/v5/user/add_card'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'card_id': '5fdb2ff846a97b49dac8a6b3',
@@ -724,7 +724,7 @@ data = {
   level: 4,
   issuer: 'JCB'
 }
-axios.put('https://prodapi.cardbo.info/api/v5/add_card', data, {
+axios.put('https://prodapi.cardbo.info/api/v5/user/add_card', data, {
     headers: headers
   })
   .then(function (response) {
@@ -754,7 +754,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/add_card`
+`PUT https://prodapi.cardbo.info/api/v5/user/add_card`
 
 ### Request
 
@@ -793,7 +793,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://betaapi.cardbo.info/api/v5/remove_card \
+  --url https://betaapi.cardbo.info/api/v5/user/remove_card \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -805,7 +805,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/remove_card'
+url = 'https://prodapi.cardbo.info/api/v5/user/remove_card'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'card_id': '5fdb2ff846a97b49dac8a6b3'
@@ -820,7 +820,7 @@ headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   card_id: '5fdb2ff846a97b49dac8a6b3'
 }
-axios.put('https://prodapi.cardbo.info/api/v5/remove_card', data, {
+axios.put('https://prodapi.cardbo.info/api/v5/user/remove_card', data, {
     headers: headers
   })
   .then(function (response) {
@@ -850,7 +850,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/remove_card`
+`PUT https://prodapi.cardbo.info/api/v5/user/remove_card`
 
 ### Request
 
@@ -865,6 +865,208 @@ Authorization | Bearer token | API access token
 Parameter | Required | Description
 --------- | -------- | -----------
 card_id   | true     | card id
+
+### Response
+
+#### Success
+
+Key    | Type   | Description
+------ | ------ | -----------
+result | string | result message
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Updaye user mobile pays
+
+> Update mobile pays:
+
+```shell
+curl --request PUT \
+  --url https://betaapi.cardbo.info/api/v5/user/mobilepays \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '[
+    {
+      "mobilepay_id": "5f9a747f10c24bf3d4a54d4e"
+    }
+  ]'
+
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/user/mobilepays'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = [
+  {
+    'mobilepay_id': '5f9a747f10c24bf3d4a54d4e'
+  }
+]
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = [
+  {
+    mobilepay_id: "5f9a747f10c24bf3d4a54d4e"
+  }
+]
+axios.put('https://prodapi.cardbo.info/api/v5/user/mobilepays', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": "",
+  "timestamp": 1617601542000
+}
+```
+
+Update user's mobile pays
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://prodapi.cardbo.info/api/v5/user/mobilepays`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter    | Required | Description
+------------ | -------- | -----------
+mobilepay_id | true     | mobile pay id
+
+### Response
+
+#### Success
+
+Key    | Type   | Description
+------ | ------ | -----------
+result | string | result message
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Update user level
+
+> Update user level:
+
+```shell
+curl --request PUT \
+  --url https://betaapi.cardbo.info/api/v5/user/user_level \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '[
+    {
+      "user_id": "5fcd3c76e549avb2805e7fe0",
+      "user_level": 2
+    }
+  ]'
+
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/user/user_level'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = [
+  {
+    'user_id': '5fcd3c76e549avb2805e7fe0',
+    'user_level": 2
+  }
+]
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = [
+  {
+    user_id: "5fcd3c76e549avb2805e7fe0",
+    user_level: 2
+  }
+]
+axios.put('https://prodapi.cardbo.info/api/v5/user/user_level', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": "",
+  "timestamp": 1617601542000
+}
+```
+
+Update user's mobile pays
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://prodapi.cardbo.info/api/v5/user/user_level`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter  | Required | Description
+---------- | -------- | -----------
+user_id    | true     | user id
+user_level | true     | user level {1: general, 2: vip, 3: admin}
 
 ### Response
 
