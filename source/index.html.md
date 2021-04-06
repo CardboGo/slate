@@ -681,3 +681,201 @@ last_login   | int         | User last login time in 16 digits timestamp
 Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
+
+## User add card
+
+> Add card:
+
+```shell
+curl --request PUT \
+  --url https://betaapi.cardbo.info/api/v5/add_card \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "card_id": "5fdb2ff846a97b49dac8a6b3",
+    "image": "image_1",
+    "level": 4,
+    "issuer": "JCB"
+  }'
+
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/add_card'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  'card_id': '5fdb2ff846a97b49dac8a6b3',
+  'image': 'image_1',
+  'level': 4,
+  'issuer': 'JCB'
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  card_id: '5fdb2ff846a97b49dac8a6b3',
+  image: 'image_1',
+  level: 4,
+  issuer: 'JCB'
+}
+axios.put('https://prodapi.cardbo.info/api/v5/add_card', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": "Cards added",
+  "timestamp": 1617601542000
+}
+```
+
+Add a card to user's pocket
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://prodapi.cardbo.info/api/v5/add_card`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter | Required | Description
+--------- | -------- | -----------
+card_id   | true     | card id
+image     | true     | card image key (e.g. "image_1")
+level     | true     | card level (1-8)
+issuer    | true     | card issuer [VISA, MASTERCARD, JCB, AMERICAN EXPRESS, UNION PAY]
+
+### Response
+
+#### Success
+
+Key    | Type   | Description
+------ | ------ | -----------
+result | string | result message
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## User remove card
+
+> Remove card:
+
+```shell
+curl --request PUT \
+  --url https://betaapi.cardbo.info/api/v5/remove_card \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "card_id": "5fdb2ff846a97b49dac8a6b3"
+  }'
+
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/remove_card'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  'card_id': '5fdb2ff846a97b49dac8a6b3'
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  card_id: '5fdb2ff846a97b49dac8a6b3'
+}
+axios.put('https://prodapi.cardbo.info/api/v5/remove_card', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": "Card removed",
+  "timestamp": 1617601542000
+}
+```
+
+Remove a card from user's pocket
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://prodapi.cardbo.info/api/v5/remove_card`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter | Required | Description
+--------- | -------- | -----------
+card_id   | true     | card id
+
+### Response
+
+#### Success
+
+Key    | Type   | Description
+------ | ------ | -----------
+result | string | result message
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
