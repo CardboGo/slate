@@ -2028,7 +2028,7 @@ Authorization | Bearer token | API access token
 
 Query   | Required | Muti-values | Enums                                             | Description
 ------- | -------- | ----------- | ------------------------------------------------- | -----------
-options | false    | tru         | `account`, `username`, `level`, `email`, `phone_number`, `facebook_link`, `job_statistics`, `money`, `last_login`, `created_at`, `updated_at` | Administrator account
+options | false    | true        | `account`, `username`, `level`, `email`, `phone_number`, `facebook_link`, `job_statistics`, `money`, `last_login`, `created_at`, `updated_at` | Administrator account
 
 ### Response
 
