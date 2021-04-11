@@ -594,33 +594,39 @@
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>access_token</td>
 <td>string</td>
+<td></td>
 <td>access token</td>
 </tr>
 <tr>
 <td>refresh_token</td>
 <td>string</td>
+<td></td>
 <td>refresh token</td>
 </tr>
 <tr>
 <td>administrator_id</td>
 <td>string</td>
+<td></td>
 <td>administrator id</td>
 </tr>
 <tr>
 <td>administrator_name</td>
 <td>string</td>
+<td></td>
 <td>administrator name</td>
 </tr>
 <tr>
 <td>level</td>
 <td>int</td>
-<td>administrator level {1: employee, 2: manager, 3: admin}</td>
+<td>EMPLOYEE: <code>1</code> <br/> MANAGER: <code>2</code> <br/> ADMIN: <code>3</code></td>
+<td>administrator level</td>
 </tr>
 </tbody></table>
 <h4 id='error'>Error</h4>
@@ -699,7 +705,7 @@
 <td>source</td>
 <td>true</td>
 <td>int</td>
-<td>APP: <code>1</code>; SAAS: <code>2</code>; LINEBOT: <code>3</code>; INTERNAL_TOOL: <code>4</code></td>
+<td>APP: <code>1</code> <br/> SAAS: <code>2</code> <br/> LINEBOT: <code>3</code> <br/> INTERNAL_TOOL: <code>4</code></td>
 <td>Request source</td>
 </tr>
 <tr>
@@ -715,17 +721,20 @@
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>access_token</td>
 <td>string</td>
+<td></td>
 <td>access token</td>
 </tr>
 <tr>
 <td>refresh_token</td>
 <td>string</td>
+<td></td>
 <td>refresh token</td>
 </tr>
 </tbody></table>
@@ -805,8 +814,8 @@
 <td>source</td>
 <td>true</td>
 <td>int</td>
-<td></td>
-<td>Request source {1: app, 2: saas, 3: linebot, 4: internal tool}</td>
+<td>APP: <code>1</code> <br/> SAAS: <code>2</code> <br/> LINEBOT: <code>3</code> <br/> INTERNAL_TOOL: <code>4</code></td>
+<td>Request source</td>
 </tr>
 <tr>
 <td>access_token</td>
@@ -821,17 +830,20 @@
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>access_token</td>
 <td>string</td>
+<td></td>
 <td>access token</td>
 </tr>
 <tr>
 <td>refresh_token</td>
 <td>string</td>
+<td></td>
 <td>refresh token</td>
 </tr>
 </tbody></table>
@@ -914,17 +926,20 @@ You must replace <code>meowmeowmeowrefresh</code> with your personal API refresh
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>access_token</td>
 <td>string</td>
+<td></td>
 <td>access token</td>
 </tr>
 <tr>
 <td>refresh_token</td>
 <td>string</td>
+<td></td>
 <td>refresh token</td>
 </tr>
 </tbody></table>
@@ -1040,72 +1055,86 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>user_id</td>
 <td>string</td>
+<td></td>
 <td>User id</td>
 </tr>
 <tr>
 <td>line_id</td>
 <td>string</td>
+<td></td>
 <td>LINE id</td>
 </tr>
 <tr>
 <td>username</td>
 <td>string</td>
+<td></td>
 <td>Username</td>
 </tr>
 <tr>
 <td>image</td>
 <td>string</td>
+<td></td>
 <td>User image</td>
 </tr>
 <tr>
 <td>email</td>
 <td>string</td>
+<td></td>
 <td>Email</td>
 </tr>
 <tr>
 <td>phone_number</td>
 <td>string</td>
+<td></td>
 <td>Phone number</td>
 </tr>
 <tr>
 <td>cardbo_point</td>
 <td>int</td>
+<td></td>
 <td>Cardbo point (useless)</td>
 </tr>
 <tr>
 <td>cards</td>
 <td>[]Card</td>
+<td></td>
 <td>User own card array</td>
 </tr>
 <tr>
 <td>mobilepays</td>
 <td>[]Mobilepay</td>
+<td></td>
 <td>User own mobile pay array</td>
 </tr>
 <tr>
 <td>user_level</td>
 <td>int</td>
-<td>User level {1: general, 2: vip, 3: developer}</td>
+<td>GENERAL: <code>1</code> <br/> VIP: <code>2</code> <br/> DEVELOPER: <code>3</code></td>
+<td>User level</td>
 </tr>
 <tr>
 <td>created_at</td>
 <td>int</td>
+<td></td>
 <td>User create time in 16 digits timestamp</td>
 </tr>
 <tr>
 <td>updated_at</td>
 <td>int</td>
+<td></td>
 <td>User update time in 16 digits timestamp</td>
 </tr>
 <tr>
 <td>last_login</td>
 <td>int</td>
+<td></td>
 <td>User last login time in 16 digits timestamp</td>
 </tr>
 </tbody></table>
@@ -1269,72 +1298,86 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>user_id</td>
 <td>string</td>
+<td></td>
 <td>User id</td>
 </tr>
 <tr>
 <td>line_id</td>
 <td>string</td>
+<td></td>
 <td>LINE id</td>
 </tr>
 <tr>
 <td>username</td>
 <td>string</td>
+<td></td>
 <td>Username</td>
 </tr>
 <tr>
 <td>image</td>
 <td>string</td>
+<td></td>
 <td>User image</td>
 </tr>
 <tr>
 <td>email</td>
 <td>string</td>
+<td></td>
 <td>Email</td>
 </tr>
 <tr>
 <td>phone_number</td>
 <td>string</td>
+<td></td>
 <td>Phone number</td>
 </tr>
 <tr>
 <td>cardbo_point</td>
 <td>int</td>
+<td></td>
 <td>Cardbo point (useless)</td>
 </tr>
 <tr>
 <td>cards</td>
 <td>[]Card</td>
 <td>User own card array</td>
+<td></td>
 </tr>
 <tr>
 <td>mobilepays</td>
 <td>[]Mobilepay</td>
 <td>User own mobile pay array</td>
+<td></td>
 </tr>
 <tr>
 <td>user_level</td>
 <td>int</td>
-<td>User level {1: general, 2: vip, 3: developer}</td>
+<td>GENERAL: <code>1</code> <br/> VIP: <code>2</code> <br/> DEVELOPER: <code>3</code></td>
+<td>User level</td>
 </tr>
 <tr>
 <td>created_at</td>
 <td>int</td>
+<td></td>
 <td>User create time in 16 digits timestamp</td>
 </tr>
 <tr>
 <td>updated_at</td>
 <td>int</td>
+<td></td>
 <td>User update time in 16 digits timestamp</td>
 </tr>
 <tr>
 <td>last_login</td>
 <td>int</td>
+<td></td>
 <td>User last login time in 16 digits timestamp</td>
 </tr>
 </tbody></table>
@@ -1472,12 +1515,14 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>result</td>
 <td>string</td>
+<td></td>
 <td>result message</td>
 </tr>
 </tbody></table>
@@ -1585,12 +1630,14 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>result</td>
 <td>string</td>
+<td></td>
 <td>result message</td>
 </tr>
 </tbody></table>
@@ -1704,12 +1751,14 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>result</td>
 <td>string</td>
+<td></td>
 <td>result message</td>
 </tr>
 </tbody></table>
@@ -1880,12 +1929,14 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>result</td>
 <td>string</td>
+<td></td>
 <td>result message</td>
 </tr>
 </tbody></table>
@@ -1992,12 +2043,14 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>result</td>
 <td>string</td>
+<td></td>
 <td>result message</td>
 </tr>
 </tbody></table>
@@ -2162,12 +2215,14 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>result</td>
 <td>string</td>
+<td></td>
 <td>result message</td>
 </tr>
 </tbody></table>
@@ -2332,12 +2387,14 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>result</td>
 <td>string</td>
+<td></td>
 <td>result message</td>
 </tr>
 </tbody></table>
@@ -2452,7 +2509,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>user_level</td>
 <td>true</td>
 <td>string</td>
-<td>GENERAL: <code>1</code>, VIP: <code>2</code>, ADMIN: <code>3</code></td>
+<td>GENERAL: <code>1</code> <br/> VIP: <code>2</code> <br/> DEVELOPER: <code>3</code></td>
 <td>user level</td>
 </tr>
 </tbody></table>
@@ -2461,12 +2518,14 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>result</td>
 <td>string</td>
+<td></td>
 <td>result message</td>
 </tr>
 </tbody></table>
