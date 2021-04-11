@@ -880,7 +880,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Updaye user mobile pays
+## Update user mobile pays
 
 > Update mobile pays:
 
@@ -964,6 +964,464 @@ Authorization | Bearer token | API access token
 Parameter    | Required | Description
 ------------ | -------- | -----------
 mobilepay_id | true     | mobile pay id
+
+### Response
+
+#### Success
+
+Key    | Type   | Description
+------ | ------ | -----------
+result | string | result message
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Add user mobile pay
+
+> Add mobile pay:
+
+```shell
+curl --request PUT \
+  --url https://betaapi.cardbo.info/api/v5/user/add_mobilepay \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "mobilepay": {
+      "mobilepay_id": "5f9a747f10c24bf3d4a54d4e"
+    },
+    "cards": [
+      {
+        "card_id": "5fdb2ff846a97b49dac8a6b3"
+      }
+    ]
+  }'
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/user/add_mobilepay'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  'mobilepay': {
+    'mobilepay_id': '5f9a747f10c24bf3d4a54d4e'
+  },
+  'cards': [
+    {
+      'card_id': '5fdb2ff846a97b49dac8a6b3'
+    }
+  ]
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  mobilepay: {
+    mobilepay_id: "5f9a747f10c24bf3d4a54d4e"
+  },
+  cards: [
+    {
+      card_id: "5fdb2ff846a97b49dac8a6b3"
+    }
+  ]
+}
+axios.put('https://prodapi.cardbo.info/api/v5/user/add_mobilepay', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": "",
+  "timestamp": 1617601542000
+}
+```
+
+Add user's mobile pay
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://prodapi.cardbo.info/api/v5/user/add_mobilepay`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter | Required | Nested Object | Description
+--------- | -------- | ------------- | -----------
+mobilepay | true     | MobilePay     | mobile pay object
+cards     | true     | []Card        | array of card object
+
+MobilePay
+
+Parameter    | Required | Nested Object | Description
+------------ | -------- | ------------- | -----------
+mobilepay_id | true     |               | mobile pay id
+
+Card
+
+Parameter | Required | Nested Object | Description
+--------- | -------- | ------------- | -----------
+card_id   | true     |               | card id
+
+### Response
+
+#### Success
+
+Key    | Type   | Description
+------ | ------ | -----------
+result | string | result message
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Remove user mobile pay
+
+> Remove mobile pay:
+
+```shell
+curl --request PUT \
+  --url https://betaapi.cardbo.info/api/v5/user/remove_mobilepay \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "mobilepay_id": "5f9a747f10c24bf3d4a54d4e"
+  }'
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/user/remove_mobilepay'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  'mobilepay_id': '5f9a747f10c24bf3d4a54d4e'
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  mobilepay_id: "5f9a747f10c24bf3d4a54d4e"
+}
+axios.put('https://prodapi.cardbo.info/api/v5/user/remove_mobilepay', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": "",
+  "timestamp": 1617601542000
+}
+```
+
+Remove user's mobile pay
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://prodapi.cardbo.info/api/v5/user/remove_mobilepay`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter    | Required | Nested Object | Description
+------------ | -------- | ------------- | -----------
+mobilepay_id | true     |               | mobile pay id
+
+### Response
+
+#### Success
+
+Key    | Type   | Description
+------ | ------ | -----------
+result | string | result message
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Add card to user mobile pay
+
+> Add card to mobile pay:
+
+```shell
+curl --request PUT \
+  --url https://betaapi.cardbo.info/api/v5/user/mobilepay/add_card \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "mobilepay": {
+      "mobilepay_id": "5f9a747f10c24bf3d4a54d4e"
+    },
+    "card": {
+      "card_id": "5fdb2ff846a97b49dac8a6b3"
+    }
+  }'
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/user/mobilepay/add_card'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  'mobilepay': {
+    'mobilepay_id': '5f9a747f10c24bf3d4a54d4e'
+  },
+  'cards': {
+    'card_id': '5fdb2ff846a97b49dac8a6b3'
+  }
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  mobilepay: {
+    mobilepay_id: "5f9a747f10c24bf3d4a54d4e"
+  },
+  cards: {
+    card_id: "5fdb2ff846a97b49dac8a6b3"
+  }
+}
+axios.put('https://prodapi.cardbo.info/api/v5/user/mobilepay/add_card', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": "",
+  "timestamp": 1617601542000
+}
+```
+
+Add card to user's mobile pay
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://prodapi.cardbo.info/api/v5/user/mobilepay/add_card`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter | Required | Nested Object | Description
+--------- | -------- | ------------- | -----------
+mobilepay | true     | MobilePay     | mobile pay object
+card      | true     | Card          | array of card object
+
+MobilePay
+
+Parameter    | Required | Nested Object | Description
+------------ | -------- | ------------- | -----------
+mobilepay_id | true     |               | mobile pay id
+
+Card
+
+Parameter | Required | Nested Object | Description
+--------- | -------- | ------------- | -----------
+card_id   | true     |               | card id
+
+### Response
+
+#### Success
+
+Key    | Type   | Description
+------ | ------ | -----------
+result | string | result message
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Remove card from user mobile pay
+
+> Remove card from mobile pay:
+
+```shell
+curl --request PUT \
+  --url https://betaapi.cardbo.info/api/v5/user/mobilepay/remove_card \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "mobilepay": {
+      "mobilepay_id": "5f9a747f10c24bf3d4a54d4e"
+    },
+    "card": {
+      "card_id": "5fdb2ff846a97b49dac8a6b3"
+    }
+  }'
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/user/mobilepay/remove_card'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  'mobilepay': {
+    'mobilepay_id': '5f9a747f10c24bf3d4a54d4e'
+  },
+  'cards': {
+    'card_id': '5fdb2ff846a97b49dac8a6b3'
+  }
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  mobilepay: {
+    mobilepay_id: "5f9a747f10c24bf3d4a54d4e"
+  },
+  cards: {
+    card_id: "5fdb2ff846a97b49dac8a6b3"
+  }
+}
+axios.put('https://prodapi.cardbo.info/api/v5/user/mobilepay/remove_card', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": "",
+  "timestamp": 1617601542000
+}
+```
+
+Remove card from user's mobile pay
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://prodapi.cardbo.info/api/v5/user/mobilepay/remove_card`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter | Required | Nested Object | Description
+--------- | -------- | ------------- | -----------
+mobilepay | true     | MobilePay     | mobile pay object
+card      | true     | Card          | array of card object
+
+MobilePay
+
+Parameter    | Required | Nested Object | Description
+------------ | -------- | ------------- | -----------
+mobilepay_id | true     |               | mobile pay id
+
+Card
+
+Parameter | Required | Nested Object | Description
+--------- | -------- | ------------- | -----------
+card_id   | true     |               | card id
 
 ### Response
 
