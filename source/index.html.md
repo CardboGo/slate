@@ -134,10 +134,10 @@ Administrator authentication is used to login admnistrator and get administrator
 
 #### Parameters
 
-Parameter | Required | Description
---------- | -------- | -----------
-account   | true     | Administrator account
-password  | true     | Administrator password
+Parameter | Required | Nested Object | Description
+--------- | -------- | ------------- | -----------
+account   | true     |               | Administrator account
+password  | true     |               | Administrator password
 
 ### Response
 
@@ -221,10 +221,10 @@ Linebot authentication is used to login linebot and get API auth token.
 
 #### Parameters
 
-Parameter | Required | Description
---------- | -------- | -----------
-source    | true     | Request source {1: app, 2: saas, 3: linebot, 4: internal tool}
-user_id   | true     | User line id
+Parameter | Required | Nested Object | Description
+--------- | -------- | ------------- | -----------
+source    | true     |               | Request source {1: app, 2: saas, 3: linebot, 4: internal tool}
+user_id   | true     |               |  User line id
 
 ### Response
 
@@ -305,10 +305,10 @@ Line authentication is used to login from LINE and get API auth token.
 
 #### Parameters
 
-Parameter    | Required | Description
------------- | -------- | -----------
-source       | true     | Request source {1: app, 2: saas, 3: linebot, 4: internal tool}
-access_token | true     | Access token from LINE Login
+Parameter    | Required | Nested Object | Description
+------------ | -------- | ------------- | -----------
+source       | true     |               | Request source {1: app, 2: saas, 3: linebot, 4: internal tool}
+access_token | true     |               | Access token from LINE Login
 
 ### Response
 
@@ -650,11 +650,11 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter    | Required | Description
------------- | -------- | -----------
-username     | false    | username
-email        | false    | email
-phone_number | false    | phone number
+Parameter    | Required | Nested Object | Description
+------------ | -------- | ------------- | -----------
+username     | false    |               | username
+email        | false    |               | email
+phone_number | false    |               | phone number
 
 ### Response
 
@@ -766,12 +766,12 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter | Required | Description
---------- | -------- | -----------
-card_id   | true     | card id
-image     | true     | card image key (e.g. "image_1")
-level     | true     | card level (1-8)
-issuer    | true     | card issuer [VISA, MASTERCARD, JCB, AMERICAN EXPRESS, UNION PAY]
+Parameter | Required | Nested Object | Description
+--------- | -------- | ------------- | -----------
+card_id   | true     |               | card id
+image     | true     |               | card image key (e.g. "image_1")
+level     | true     |               | card level [1, 2, 3, 4, 5, 6, 7, 8]
+issuer    | true     |               | card issuer [VISA, MASTERCARD, JCB, AMERICAN EXPRESS, UNION PAY]
 
 ### Response
 
@@ -862,9 +862,9 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter | Required | Description
---------- | -------- | -----------
-card_id   | true     | card id
+Parameter | Required | Nested Object | Description
+--------- | -------- | ------------- | -----------
+card_id   | true     |               | card id
 
 ### Response
 
@@ -961,9 +961,9 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter    | Required | Description
------------- | -------- | -----------
-mobilepay_id | true     | mobile pay id
+Parameter    | Required | Nested Object | Description
+------------ | -------- | ------------- | -----------
+mobilepay_id | true     |               | mobile pay id
 
 ### Response
 
@@ -1521,10 +1521,10 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter  | Required | Description
----------- | -------- | -----------
-user_id    | true     | user id
-user_level | true     | user level {1: general, 2: vip, 3: admin}
+Parameter  | Required | Nested Object | Description
+---------- | -------- | ------------- | -----------
+user_id    | true     |               | user id
+user_level | true     |               | user level {1: general, 2: vip, 3: admin}
 
 ### Response
 
