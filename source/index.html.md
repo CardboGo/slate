@@ -134,10 +134,10 @@ Administrator authentication is used to login admnistrator and get administrator
 
 #### Parameters
 
-Parameter | Required | Type   | Enums | Description
---------- | -------- | ------ | ----- | -----------
-account   | true     | string |       | Administrator account
-password  | true     | string |       | Administrator password
+Parameter | Required | Type    | Description
+--------- | -------- | ------  | -----------
+account   | true     | string  | Administrator account
+password  | true     | string  | Administrator password
 
 ### Response
 
@@ -230,10 +230,10 @@ user_id   | true     | string |                                                 
 
 #### Success
 
-Key                | Type   | Enums | Description
------------------- | ------ | ----- | -----------
-access_token       | string |       | access token
-refresh_token      | string |       | refresh token
+Key                | Type   | Description
+------------------ | ------ | -----------
+access_token       | string | access token
+refresh_token      | string | refresh token
 
 #### Error
 
@@ -314,10 +314,10 @@ access_token | true     | string |                                              
 
 #### Success
 
-Key                | Type   | Enums | Description
------------------- | ------ | ----- | -----------
-access_token       | string |       | access token
-refresh_token      | string |       | refresh token
+Key                | Type   | Description
+------------------ | ------ | -----------
+access_token       | string | access token
+refresh_token      | string | refresh token
 
 #### Error
 
@@ -395,10 +395,10 @@ Authorization | Bearer token | API refresh token
 
 #### Success
 
-Key                | Type   | Enums | Description
------------------- | ------ | ----- | -----------
-access_token       | string |       | access token
-refresh_token      | string |       | refresh token
+Key                | Type   | Description
+------------------ | ------ | -----------
+access_token       | string | access token
+refresh_token      | string | refresh token
 
 #### Error
 
@@ -650,11 +650,11 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter    | Required | Type   | Enums | Description
------------- | -------- | ------ | ----- | -----------
-username     | false    | string |       | username
-email        | false    | string |       | email
-phone_number | false    | string |       | phone number
+Parameter    | Required | Type   | Description
+------------ | -------- | ------ | -----------
+username     | false    | string | username
+email        | false    | string | email
+phone_number | false    | string | phone number
 
 ### Response
 
@@ -777,9 +777,9 @@ issuer    | true     | string | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`,
 
 #### Success
 
-Key    | Type   | Enums | Description
------- | ------ | ----- | -----------
-result | string |       | result message
+Key    | Type   | Description
+------ | ------ | -----------
+result | string | result message
 
 #### Error
 
@@ -862,17 +862,17 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter | Required | Type   | Enums | Description
---------- | -------- | ------ | ----- | -----------
-card_id   | true     | string |       | card id
+Parameter | Required | Type   | Description
+--------- | -------- | ------ | -----------
+card_id   | true     | string | card id
 
 ### Response
 
 #### Success
 
-Key    | Type   | Enums | Description
------- | ------ | ----- | -----------
-result | string |       | result message
+Key    | Type   | Description
+------ | ------ | -----------
+result | string | result message
 
 #### Error
 
@@ -961,17 +961,17 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter    | Required | Type   | Enums | Description
------------- | -------- | ------ | ----- | -----------
-mobilepay_id | true     | string |       | mobile pay id
+Parameter    | Required | Type   | Description
+------------ | -------- | ------ | -----------
+mobilepay_id | true     | string | mobile pay id
 
 ### Response
 
 #### Success
 
-Key    | Type   | Enums | Description
------- | ------ | ----- | -----------
-result | string |       | result message
+Key    | Type   | Description
+------ | ------ | -----------
+result | string | result message
 
 #### Error
 
@@ -1074,10 +1074,10 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter | Required | Type      | Enums | Description
---------- | -------- | --------- | ----- | -----------
-mobilepay | true     | MobilePay |       | mobile pay object
-cards     | true     | []Card    |       | array of card object
+Parameter | Required | Type      | Description
+--------- | -------- | --------- | -----------
+mobilepay | true     | MobilePay | mobile pay object
+cards     | true     | []Card    | array of card object
 
 MobilePay
 
@@ -1095,9 +1095,9 @@ card_id   | true     |               | card id
 
 #### Success
 
-Key    | Type   | Enums | Description
------- | ------ | ----- | -----------
-result | string |       | result message
+Key    | Type   | Description
+------ | ------ | -----------
+result | string | result message
 
 #### Error
 
@@ -1179,17 +1179,17 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter    | Required | Type   | Enums | Description
------------- | -------- | ------ | ----- | -----------
-mobilepay_id | true     | string |       | mobile pay id
+Parameter    | Required | Type   | Description
+------------ | -------- | ------ | -----------
+mobilepay_id | true     | string | mobile pay id
 
 ### Response
 
 #### Success
 
-Key    | Type   | Enums | Description
------- | ------ | ----- | -----------
-result | string |       | result message
+Key    | Type   | Description
+------ | ------ | -----------
+result | string | result message
 
 #### Error
 
@@ -1286,10 +1286,10 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter | Required | Type      | Enums | Description
---------- | -------- | --------- | ----- | -----------
-mobilepay | true     | MobilePay |       | mobile pay object
-card      | true     | Card      |       | array of card object
+Parameter | Required | Type      | Description
+--------- | -------- | --------- | -----------
+mobilepay | true     | MobilePay | mobile pay object
+card      | true     | Card      | array of card object
 
 MobilePay
 
@@ -1307,9 +1307,9 @@ card_id   | true     |               | card id
 
 #### Success
 
-Key    | Type   | Enums | Description
------- | ------ | ----- | -----------
-result | string |       | result message
+Key    | Type   | Description
+------ | ------ | -----------
+result | string | result message
 
 #### Error
 
@@ -1406,10 +1406,10 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter | Required | Type      | Enums | Description
---------- | -------- | --------- | ----- | -----------
-mobilepay | true     | MobilePay |       | mobile pay object
-card      | true     | Card      |       | array of card object
+Parameter | Required | Type      | Description
+--------- | -------- | --------- | -----------
+mobilepay | true     | MobilePay | mobile pay object
+card      | true     | Card      | array of card object
 
 MobilePay
 
@@ -1427,9 +1427,9 @@ card_id   | true     |               | card id
 
 #### Success
 
-Key    | Type   | Enums | Description
------- | ------ | ----- | -----------
-result | string |       | result message
+Key    | Type   | Description
+------ | ------ | -----------
+result | string | result message
 
 #### Error
 
@@ -1530,9 +1530,9 @@ user_level | true     | string | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3
 
 #### Success
 
-Key    | Type   | Enums | Description
------- | ------ | ----- | -----------
-result | string |       | result message
+Key    | Type   | Description
+------ | ------ | -----------
+result | string | result message
 
 #### Error
 
