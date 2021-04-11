@@ -359,7 +359,19 @@
                     <a href="#user-remove-card" class="toc-h2 toc-link" data-title="User remove card">User remove card</a>
                   </li>
                   <li>
-                    <a href="#updaye-user-mobile-pays" class="toc-h2 toc-link" data-title="Updaye user mobile pays">Updaye user mobile pays</a>
+                    <a href="#update-user-mobile-pays" class="toc-h2 toc-link" data-title="Update user mobile pays">Update user mobile pays</a>
+                  </li>
+                  <li>
+                    <a href="#add-user-mobile-pay" class="toc-h2 toc-link" data-title="Add user mobile pay">Add user mobile pay</a>
+                  </li>
+                  <li>
+                    <a href="#remove-user-mobile-pay" class="toc-h2 toc-link" data-title="Remove user mobile pay">Remove user mobile pay</a>
+                  </li>
+                  <li>
+                    <a href="#add-card-to-user-mobile-pay" class="toc-h2 toc-link" data-title="Add card to user mobile pay">Add card to user mobile pay</a>
+                  </li>
+                  <li>
+                    <a href="#remove-card-from-user-mobile-pay" class="toc-h2 toc-link" data-title="Remove card from user mobile pay">Remove card from user mobile pay</a>
                   </li>
                   <li>
                     <a href="#update-user-level" class="toc-h2 toc-link" data-title="Update user level">Update user level</a>
@@ -1556,7 +1568,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='updaye-user-mobile-pays'>Updaye user mobile pays</h2>
+<h2 id='update-user-mobile-pays'>Update user mobile pays</h2>
 <blockquote>
 <p>Update mobile pays:</p>
 </blockquote>
@@ -1671,6 +1683,623 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>error message</td>
 </tr>
 </tbody></table>
+<h2 id='add-user-mobile-pay'>Add user mobile pay</h2>
+<blockquote>
+<p>Add mobile pay:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
+  <span class="nt">--url</span> https://betaapi.cardbo.info/api/v5/user/add_mobilepay <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "mobilepay": {
+      "mobilepay_id": "5f9a747f10c24bf3d4a54d4e"
+    },
+    "cards": [
+      {
+        "card_id": "5fdb2ff846a97b49dac8a6b3"
+      }
+    ]
+  }'</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://prodapi.cardbo.info/api/v5/user/add_mobilepay'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'mobilepay'</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">'mobilepay_id'</span><span class="p">:</span> <span class="s">'5f9a747f10c24bf3d4a54d4e'</span>
+  <span class="p">},</span>
+  <span class="s">'cards'</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s">'card_id'</span><span class="p">:</span> <span class="s">'5fdb2ff846a97b49dac8a6b3'</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">mobilepay</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">mobilepay_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747f10c24bf3d4a54d4e</span><span class="dl">"</span>
+  <span class="p">},</span>
+  <span class="na">cards</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="na">card_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5fdb2ff846a97b49dac8a6b3</span><span class="dl">"</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/user/add_mobilepay</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Add user&#39;s mobile pay</p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>PUT https://prodapi.cardbo.info/api/v5/user/add_mobilepay</code></p>
+<h3 id='request-10'>Request</h3><h4 id='headers-7'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='parameters-8'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Nested Object</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobilepay</td>
+<td>true</td>
+<td>MobilePay</td>
+<td>mobile pay object</td>
+</tr>
+<tr>
+<td>cards</td>
+<td>true</td>
+<td>[]Card</td>
+<td>array of card object</td>
+</tr>
+</tbody></table>
+
+<p>MobilePay</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Nested Object</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobilepay_id</td>
+<td>true</td>
+<td></td>
+<td>mobile pay id</td>
+</tr>
+</tbody></table>
+
+<p>Card</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Nested Object</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>true</td>
+<td></td>
+<td>card id</td>
+</tr>
+</tbody></table>
+<h3 id='response-10'>Response</h3><h4 id='success-10'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result</td>
+<td>string</td>
+<td>result message</td>
+</tr>
+</tbody></table>
+<h4 id='error-10'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
+<h2 id='remove-user-mobile-pay'>Remove user mobile pay</h2>
+<blockquote>
+<p>Remove mobile pay:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
+  <span class="nt">--url</span> https://betaapi.cardbo.info/api/v5/user/remove_mobilepay <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "mobilepay_id": "5f9a747f10c24bf3d4a54d4e"
+  }'</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://prodapi.cardbo.info/api/v5/user/remove_mobilepay'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'mobilepay_id'</span><span class="p">:</span> <span class="s">'5f9a747f10c24bf3d4a54d4e'</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">mobilepay_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747f10c24bf3d4a54d4e</span><span class="dl">"</span>
+<span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/user/remove_mobilepay</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Remove user&#39;s mobile pay</p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>PUT https://prodapi.cardbo.info/api/v5/user/remove_mobilepay</code></p>
+<h3 id='request-11'>Request</h3><h4 id='headers-8'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='parameters-9'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Nested Object</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobilepay_id</td>
+<td>true</td>
+<td></td>
+<td>mobile pay id</td>
+</tr>
+</tbody></table>
+<h3 id='response-11'>Response</h3><h4 id='success-11'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result</td>
+<td>string</td>
+<td>result message</td>
+</tr>
+</tbody></table>
+<h4 id='error-11'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
+<h2 id='add-card-to-user-mobile-pay'>Add card to user mobile pay</h2>
+<blockquote>
+<p>Add card to mobile pay:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
+  <span class="nt">--url</span> https://betaapi.cardbo.info/api/v5/user/mobilepay/add_card <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "mobilepay": {
+      "mobilepay_id": "5f9a747f10c24bf3d4a54d4e"
+    },
+    "card": {
+      "card_id": "5fdb2ff846a97b49dac8a6b3"
+    }
+  }'</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://prodapi.cardbo.info/api/v5/user/mobilepay/add_card'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'mobilepay'</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">'mobilepay_id'</span><span class="p">:</span> <span class="s">'5f9a747f10c24bf3d4a54d4e'</span>
+  <span class="p">},</span>
+  <span class="s">'cards'</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">'card_id'</span><span class="p">:</span> <span class="s">'5fdb2ff846a97b49dac8a6b3'</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">mobilepay</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">mobilepay_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747f10c24bf3d4a54d4e</span><span class="dl">"</span>
+  <span class="p">},</span>
+  <span class="na">cards</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">card_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5fdb2ff846a97b49dac8a6b3</span><span class="dl">"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/user/mobilepay/add_card</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Add card to user&#39;s mobile pay</p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>PUT https://prodapi.cardbo.info/api/v5/user/mobilepay/add_card</code></p>
+<h3 id='request-12'>Request</h3><h4 id='headers-9'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='parameters-10'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Nested Object</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobilepay</td>
+<td>true</td>
+<td>MobilePay</td>
+<td>mobile pay object</td>
+</tr>
+<tr>
+<td>card</td>
+<td>true</td>
+<td>Card</td>
+<td>array of card object</td>
+</tr>
+</tbody></table>
+
+<p>MobilePay</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Nested Object</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobilepay_id</td>
+<td>true</td>
+<td></td>
+<td>mobile pay id</td>
+</tr>
+</tbody></table>
+
+<p>Card</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Nested Object</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>true</td>
+<td></td>
+<td>card id</td>
+</tr>
+</tbody></table>
+<h3 id='response-12'>Response</h3><h4 id='success-12'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result</td>
+<td>string</td>
+<td>result message</td>
+</tr>
+</tbody></table>
+<h4 id='error-12'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
+<h2 id='remove-card-from-user-mobile-pay'>Remove card from user mobile pay</h2>
+<blockquote>
+<p>Remove card from mobile pay:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
+  <span class="nt">--url</span> https://betaapi.cardbo.info/api/v5/user/mobilepay/remove_card <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "mobilepay": {
+      "mobilepay_id": "5f9a747f10c24bf3d4a54d4e"
+    },
+    "card": {
+      "card_id": "5fdb2ff846a97b49dac8a6b3"
+    }
+  }'</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://prodapi.cardbo.info/api/v5/user/mobilepay/remove_card'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'mobilepay'</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">'mobilepay_id'</span><span class="p">:</span> <span class="s">'5f9a747f10c24bf3d4a54d4e'</span>
+  <span class="p">},</span>
+  <span class="s">'cards'</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">'card_id'</span><span class="p">:</span> <span class="s">'5fdb2ff846a97b49dac8a6b3'</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">mobilepay</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">mobilepay_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747f10c24bf3d4a54d4e</span><span class="dl">"</span>
+  <span class="p">},</span>
+  <span class="na">cards</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">card_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5fdb2ff846a97b49dac8a6b3</span><span class="dl">"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/user/mobilepay/remove_card</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Remove card from user&#39;s mobile pay</p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>PUT https://prodapi.cardbo.info/api/v5/user/mobilepay/remove_card</code></p>
+<h3 id='request-13'>Request</h3><h4 id='headers-10'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='parameters-11'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Nested Object</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobilepay</td>
+<td>true</td>
+<td>MobilePay</td>
+<td>mobile pay object</td>
+</tr>
+<tr>
+<td>card</td>
+<td>true</td>
+<td>Card</td>
+<td>array of card object</td>
+</tr>
+</tbody></table>
+
+<p>MobilePay</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Nested Object</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobilepay_id</td>
+<td>true</td>
+<td></td>
+<td>mobile pay id</td>
+</tr>
+</tbody></table>
+
+<p>Card</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Nested Object</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>true</td>
+<td></td>
+<td>card id</td>
+</tr>
+</tbody></table>
+<h3 id='response-13'>Response</h3><h4 id='success-13'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result</td>
+<td>string</td>
+<td>result message</td>
+</tr>
+</tbody></table>
+<h4 id='error-13'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
 <h2 id='update-user-level'>Update user level</h2>
 <blockquote>
 <p>Update user level:</p>
@@ -1731,9 +2360,9 @@ response = requests.put(url, headers=headers, json=data)
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>PUT https://prodapi.cardbo.info/api/v5/user/user_level</code></p>
-<h3 id='request-10'>Request</h3><h4 id='headers-7'>Headers</h4>
+<h3 id='request-14'>Request</h3><h4 id='headers-11'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -1747,7 +2376,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h4 id='parameters-8'>Parameters</h4>
+<h4 id='parameters-12'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1766,7 +2395,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>user level {1: general, 2: vip, 3: admin}</td>
 </tr>
 </tbody></table>
-<h3 id='response-10'>Response</h3><h4 id='success-10'>Success</h4>
+<h3 id='response-14'>Response</h3><h4 id='success-14'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -1780,7 +2409,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>result message</td>
 </tr>
 </tbody></table>
-<h4 id='error-10'>Error</h4>
+<h4 id='error-14'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
