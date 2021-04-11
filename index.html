@@ -390,6 +390,21 @@
                   <li>
                     <a href="#delete-administrator" class="toc-h2 toc-link" data-title="Delete administrator">Delete administrator</a>
                   </li>
+                  <li>
+                    <a href="#get-employee-list" class="toc-h2 toc-link" data-title="Get employee list">Get employee list</a>
+                  </li>
+                  <li>
+                    <a href="#update-administrator-level" class="toc-h2 toc-link" data-title="Update administrator level">Update administrator level</a>
+                  </li>
+                  <li>
+                    <a href="#update-administrator-password" class="toc-h2 toc-link" data-title="Update administrator password">Update administrator password</a>
+                  </li>
+                  <li>
+                    <a href="#update-administrator-profile" class="toc-h2 toc-link" data-title="Update administrator profile">Update administrator profile</a>
+                  </li>
+                  <li>
+                    <a href="#reset-employee-password" class="toc-h2 toc-link" data-title="Reset employee password">Reset employee password</a>
+                  </li>
               </ul>
           </li>
       </ul>
@@ -3285,6 +3300,1217 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </tr>
 </tbody></table>
 <h4 id='error-17'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
+<h2 id='get-employee-list'>Get employee list</h2>
+<blockquote>
+<p>Get employee list:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
+  <span class="nt">--url</span> https://betaapi.cardbo.info/api/v5/administrator/employees?options<span class="o">=</span>account&amp;options<span class="o">=</span>name <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://prodapi.cardbo.info/api/v5/administrator/employees?options=account&amp;options=name'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/administrator/employees?options=account&amp;options=name</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"administrator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fa79ec32ba2dfe2db67ae2c"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"administrator_account"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harrison"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Delete a administrator</p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+<h3 id='http-request-18'>HTTP Request</h3>
+<p><code>GET https://prodapi.cardbo.info/api/v5/administrator/employees</code></p>
+<h3 id='request-18'>Request</h3><h4 id='headers-15'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='queries'>Queries</h4>
+<table><thead>
+<tr>
+<th>Query</th>
+<th>Required</th>
+<th>Muti-values</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>options</td>
+<td>false</td>
+<td>tru</td>
+<td><code>account</code>, <code>username</code>, <code>level</code>, <code>email</code>, <code>phone_number</code>, <code>facebook_link</code>, <code>job_statistics</code>, <code>money</code>, <code>last_login</code>, <code>created_at</code>, <code>updated_at</code></td>
+<td>Administrator account</td>
+</tr>
+</tbody></table>
+<h3 id='response-18'>Response</h3><h4 id='success-18'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>administrator_id</td>
+<td>string</td>
+<td></td>
+<td>administrator id</td>
+</tr>
+<tr>
+<td>account</td>
+<td>string</td>
+<td></td>
+<td>account</td>
+</tr>
+<tr>
+<td>username</td>
+<td>string</td>
+<td></td>
+<td>username</td>
+</tr>
+<tr>
+<td>level</td>
+<td>int</td>
+<td>EMPLOYEE: <code>1</code> <br/> MANAGER: <code>2</code> <br/> ADMIN: <code>3</code></td>
+<td>administrator level</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td></td>
+<td>email</td>
+</tr>
+<tr>
+<td>phone_number</td>
+<td>string</td>
+<td></td>
+<td>phone number</td>
+</tr>
+<tr>
+<td>facebook_link</td>
+<td>string</td>
+<td></td>
+<td>facebool link</td>
+</tr>
+<tr>
+<td>job_statistics</td>
+<td>JobStatistics</td>
+<td></td>
+<td>job statistics</td>
+</tr>
+<tr>
+<td>money</td>
+<td>Monney</td>
+<td></td>
+<td>money info</td>
+</tr>
+<tr>
+<td>last_login</td>
+<td>int</td>
+<td></td>
+<td>last login time in 16 digits timestamp</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>int</td>
+<td></td>
+<td>User create time in 16 digits timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>int</td>
+<td></td>
+<td>User update time in 16 digits timestamp</td>
+</tr>
+</tbody></table>
+
+<p>JobStatistics</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>store_pending_count</td>
+<td>int</td>
+<td>number of store pending</td>
+</tr>
+<tr>
+<td>store_finished_count</td>
+<td>int</td>
+<td>number of store finished</td>
+</tr>
+<tr>
+<td>card_pending_count</td>
+<td>int</td>
+<td>number of  card pending</td>
+</tr>
+<tr>
+<td>card_finished_count</td>
+<td>int</td>
+<td>number of card finished</td>
+</tr>
+<tr>
+<td>offer_pending_count</td>
+<td>int</td>
+<td>number of offer pending</td>
+</tr>
+<tr>
+<td>offer_finished_count</td>
+<td>int</td>
+<td>number of offer finished</td>
+</tr>
+</tbody></table>
+
+<p>Monney</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pending</td>
+<td>int</td>
+<td>money in review</td>
+</tr>
+<tr>
+<td>earned</td>
+<td>int</td>
+<td>money earned</td>
+</tr>
+<tr>
+<td>unwithdrawn</td>
+<td>int</td>
+<td>money unwithdrawn</td>
+</tr>
+</tbody></table>
+<h4 id='error-18'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
+<h2 id='update-administrator-level'>Update administrator level</h2>
+<blockquote>
+<p>Update administrator level:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
+  <span class="nt">--url</span> https://betaapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/level <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "level": 1
+  }'</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/level'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'level'</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">level</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/level</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"administrator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fa79ec32ba2dfe2db67ae2c"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"administrator_account"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harrison"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"harrison@cardbo.info"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0987654321"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"facebook_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.facebook.com/profile.php?id=0000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"job_statistics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"store_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"store_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"card_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"card_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offer_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offer_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"money"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"pending"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"earned"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"last_login"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Update administrator level</p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+<h3 id='http-request-19'>HTTP Request</h3>
+<p><code>GET https://prodapi.cardbo.info/api/v5/administrator/{administrator_id}/level</code></p>
+<h3 id='request-19'>Request</h3><h4 id='headers-16'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='path-parameters-2'>Path Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>administrator_id</td>
+<td>administrator id</td>
+</tr>
+</tbody></table>
+<h4 id='parameters-14'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>level</td>
+<td>true</td>
+<td>string</td>
+<td>EMPLOYEE: <code>1</code> <br/> MANAGER: <code>2</code> <br/> ADMIN: <code>3</code></td>
+<td>Administrator level</td>
+</tr>
+</tbody></table>
+<h3 id='response-19'>Response</h3><h4 id='success-19'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>administrator_id</td>
+<td>string</td>
+<td></td>
+<td>administrator id</td>
+</tr>
+<tr>
+<td>account</td>
+<td>string</td>
+<td></td>
+<td>account</td>
+</tr>
+<tr>
+<td>username</td>
+<td>string</td>
+<td></td>
+<td>username</td>
+</tr>
+<tr>
+<td>level</td>
+<td>int</td>
+<td>EMPLOYEE: <code>1</code> <br/> MANAGER: <code>2</code> <br/> ADMIN: <code>3</code></td>
+<td>administrator level</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td></td>
+<td>email</td>
+</tr>
+<tr>
+<td>phone_number</td>
+<td>string</td>
+<td></td>
+<td>phone number</td>
+</tr>
+<tr>
+<td>facebook_link</td>
+<td>string</td>
+<td></td>
+<td>facebool link</td>
+</tr>
+<tr>
+<td>job_statistics</td>
+<td>JobStatistics</td>
+<td></td>
+<td>job statistics</td>
+</tr>
+<tr>
+<td>money</td>
+<td>Monney</td>
+<td></td>
+<td>money info</td>
+</tr>
+<tr>
+<td>last_login</td>
+<td>int</td>
+<td></td>
+<td>last login time in 16 digits timestamp</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>int</td>
+<td></td>
+<td>User create time in 16 digits timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>int</td>
+<td></td>
+<td>User update time in 16 digits timestamp</td>
+</tr>
+</tbody></table>
+
+<p>JobStatistics</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>store_pending_count</td>
+<td>int</td>
+<td>number of store pending</td>
+</tr>
+<tr>
+<td>store_finished_count</td>
+<td>int</td>
+<td>number of store finished</td>
+</tr>
+<tr>
+<td>card_pending_count</td>
+<td>int</td>
+<td>number of  card pending</td>
+</tr>
+<tr>
+<td>card_finished_count</td>
+<td>int</td>
+<td>number of card finished</td>
+</tr>
+<tr>
+<td>offer_pending_count</td>
+<td>int</td>
+<td>number of offer pending</td>
+</tr>
+<tr>
+<td>offer_finished_count</td>
+<td>int</td>
+<td>number of offer finished</td>
+</tr>
+</tbody></table>
+
+<p>Monney</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pending</td>
+<td>int</td>
+<td>money in review</td>
+</tr>
+<tr>
+<td>earned</td>
+<td>int</td>
+<td>money earned</td>
+</tr>
+<tr>
+<td>unwithdrawn</td>
+<td>int</td>
+<td>money unwithdrawn</td>
+</tr>
+</tbody></table>
+<h4 id='error-19'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
+<h2 id='update-administrator-password'>Update administrator password</h2>
+<blockquote>
+<p>Update administrator password:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
+  <span class="nt">--url</span> https://betaapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/password <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "password": "old_password",
+    "new_password": "new_password"
+  }'</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/password'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'password'</span><span class="p">:</span> <span class="s">'old_password'</span><span class="p">,</span>
+  <span class="s">'new_password'</span><span class="p">:</span> <span class="s">'new_password'</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">password</span><span class="p">:</span> <span class="dl">'</span><span class="s1">old_password</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">new_password</span><span class="p">:</span> <span class="dl">'</span><span class="s1">new_password</span><span class="dl">'</span>
+<span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/password</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Update administrator password</p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+<h3 id='http-request-20'>HTTP Request</h3>
+<p><code>PUT https://prodapi.cardbo.info/api/v5/administrator/{administrator_id}/password</code></p>
+<h3 id='request-20'>Request</h3><h4 id='headers-17'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='path-parameters-3'>Path Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>administrator_id</td>
+<td>administrator id</td>
+</tr>
+</tbody></table>
+<h4 id='parameters-15'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>password</td>
+<td>true</td>
+<td>string</td>
+<td>old password</td>
+</tr>
+<tr>
+<td>new_password</td>
+<td>true</td>
+<td>string</td>
+<td>new password</td>
+</tr>
+</tbody></table>
+<h3 id='response-20'>Response</h3><h4 id='success-20'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result</td>
+<td>string</td>
+<td>result message</td>
+</tr>
+</tbody></table>
+<h4 id='error-20'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
+<h2 id='update-administrator-profile'>Update administrator profile</h2>
+<blockquote>
+<p>Update administrator profile:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
+  <span class="nt">--url</span> https://betaapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/profile <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "password": "old_password",
+    "new_password": "new_password"
+  }'</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/profile'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'email'</span><span class="p">:</span> <span class="s">'harrison@cardbo.info'</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">email</span><span class="p">:</span> <span class="dl">"</span><span class="s2">harrison@cardbo.info</span><span class="dl">"</span>
+<span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/profile</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"administrator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fa79ec32ba2dfe2db67ae2c"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"administrator_account"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harrison"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"harrison@cardbo.info"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0987654321"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"facebook_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.facebook.com/profile.php?id=0000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"job_statistics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"store_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"store_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"card_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"card_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offer_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offer_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"money"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"pending"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"earned"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"last_login"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Update administrator profile</p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+<h3 id='http-request-21'>HTTP Request</h3>
+<p><code>PUT https://prodapi.cardbo.info/api/v5/administrator/{administrator_id}/profile</code></p>
+<h3 id='request-21'>Request</h3><h4 id='headers-18'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='path-parameters-4'>Path Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>administrator_id</td>
+<td>administrator id</td>
+</tr>
+</tbody></table>
+<h4 id='parameters-16'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username</td>
+<td>false</td>
+<td>string</td>
+<td>username</td>
+</tr>
+<tr>
+<td>email</td>
+<td>false</td>
+<td>string</td>
+<td>email</td>
+</tr>
+<tr>
+<td>phone_number</td>
+<td>false</td>
+<td>string</td>
+<td>phone number</td>
+</tr>
+<tr>
+<td>facebook_link</td>
+<td>false</td>
+<td>string</td>
+<td>facebook profile link</td>
+</tr>
+</tbody></table>
+<h3 id='response-21'>Response</h3><h4 id='success-21'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>administrator_id</td>
+<td>string</td>
+<td></td>
+<td>administrator id</td>
+</tr>
+<tr>
+<td>account</td>
+<td>string</td>
+<td></td>
+<td>account</td>
+</tr>
+<tr>
+<td>username</td>
+<td>string</td>
+<td></td>
+<td>username</td>
+</tr>
+<tr>
+<td>level</td>
+<td>int</td>
+<td>EMPLOYEE: <code>1</code> <br/> MANAGER: <code>2</code> <br/> ADMIN: <code>3</code></td>
+<td>administrator level</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td></td>
+<td>email</td>
+</tr>
+<tr>
+<td>phone_number</td>
+<td>string</td>
+<td></td>
+<td>phone number</td>
+</tr>
+<tr>
+<td>facebook_link</td>
+<td>string</td>
+<td></td>
+<td>facebool link</td>
+</tr>
+<tr>
+<td>job_statistics</td>
+<td>JobStatistics</td>
+<td></td>
+<td>job statistics</td>
+</tr>
+<tr>
+<td>money</td>
+<td>Monney</td>
+<td></td>
+<td>money info</td>
+</tr>
+<tr>
+<td>last_login</td>
+<td>int</td>
+<td></td>
+<td>last login time in 16 digits timestamp</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>int</td>
+<td></td>
+<td>User create time in 16 digits timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>int</td>
+<td></td>
+<td>User update time in 16 digits timestamp</td>
+</tr>
+</tbody></table>
+
+<p>JobStatistics</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>store_pending_count</td>
+<td>int</td>
+<td>number of store pending</td>
+</tr>
+<tr>
+<td>store_finished_count</td>
+<td>int</td>
+<td>number of store finished</td>
+</tr>
+<tr>
+<td>card_pending_count</td>
+<td>int</td>
+<td>number of  card pending</td>
+</tr>
+<tr>
+<td>card_finished_count</td>
+<td>int</td>
+<td>number of card finished</td>
+</tr>
+<tr>
+<td>offer_pending_count</td>
+<td>int</td>
+<td>number of offer pending</td>
+</tr>
+<tr>
+<td>offer_finished_count</td>
+<td>int</td>
+<td>number of offer finished</td>
+</tr>
+</tbody></table>
+
+<p>Monney</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pending</td>
+<td>int</td>
+<td>money in review</td>
+</tr>
+<tr>
+<td>earned</td>
+<td>int</td>
+<td>money earned</td>
+</tr>
+<tr>
+<td>unwithdrawn</td>
+<td>int</td>
+<td>money unwithdrawn</td>
+</tr>
+</tbody></table>
+<h4 id='error-21'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
+<h2 id='reset-employee-password'>Reset employee password</h2>
+<blockquote>
+<p>Update administrator password:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
+  <span class="nt">--url</span> https://betaapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/reset_password <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/reset_password'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/reset_password</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"administrator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fa79ec32ba2dfe2db67ae2c"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"administrator_account"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harrison"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"harrison@cardbo.info"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0987654321"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"facebook_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.facebook.com/profile.php?id=0000000000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"job_statistics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"store_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"store_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"card_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"card_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offer_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offer_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"money"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"pending"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"earned"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"last_login"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Update administrator password</p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+<h3 id='http-request-22'>HTTP Request</h3>
+<p><code>PUT https://prodapi.cardbo.info/api/v5/administrator/{administrator_id}/reset_password</code></p>
+<h3 id='request-22'>Request</h3><h4 id='headers-19'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='path-parameters-5'>Path Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>administrator_id</td>
+<td>administrator id</td>
+</tr>
+</tbody></table>
+<h3 id='response-22'>Response</h3><h4 id='success-22'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>administrator_id</td>
+<td>string</td>
+<td></td>
+<td>administrator id</td>
+</tr>
+<tr>
+<td>account</td>
+<td>string</td>
+<td></td>
+<td>account</td>
+</tr>
+<tr>
+<td>username</td>
+<td>string</td>
+<td></td>
+<td>username</td>
+</tr>
+<tr>
+<td>level</td>
+<td>int</td>
+<td>EMPLOYEE: <code>1</code> <br/> MANAGER: <code>2</code> <br/> ADMIN: <code>3</code></td>
+<td>administrator level</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td></td>
+<td>email</td>
+</tr>
+<tr>
+<td>phone_number</td>
+<td>string</td>
+<td></td>
+<td>phone number</td>
+</tr>
+<tr>
+<td>facebook_link</td>
+<td>string</td>
+<td></td>
+<td>facebool link</td>
+</tr>
+<tr>
+<td>job_statistics</td>
+<td>JobStatistics</td>
+<td></td>
+<td>job statistics</td>
+</tr>
+<tr>
+<td>money</td>
+<td>Monney</td>
+<td></td>
+<td>money info</td>
+</tr>
+<tr>
+<td>last_login</td>
+<td>int</td>
+<td></td>
+<td>last login time in 16 digits timestamp</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>int</td>
+<td></td>
+<td>User create time in 16 digits timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>int</td>
+<td></td>
+<td>User update time in 16 digits timestamp</td>
+</tr>
+</tbody></table>
+
+<p>JobStatistics</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>store_pending_count</td>
+<td>int</td>
+<td>number of store pending</td>
+</tr>
+<tr>
+<td>store_finished_count</td>
+<td>int</td>
+<td>number of store finished</td>
+</tr>
+<tr>
+<td>card_pending_count</td>
+<td>int</td>
+<td>number of  card pending</td>
+</tr>
+<tr>
+<td>card_finished_count</td>
+<td>int</td>
+<td>number of card finished</td>
+</tr>
+<tr>
+<td>offer_pending_count</td>
+<td>int</td>
+<td>number of offer pending</td>
+</tr>
+<tr>
+<td>offer_finished_count</td>
+<td>int</td>
+<td>number of offer finished</td>
+</tr>
+</tbody></table>
+
+<p>Monney</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pending</td>
+<td>int</td>
+<td>money in review</td>
+</tr>
+<tr>
+<td>earned</td>
+<td>int</td>
+<td>money earned</td>
+</tr>
+<tr>
+<td>unwithdrawn</td>
+<td>int</td>
+<td>money unwithdrawn</td>
+</tr>
+</tbody></table>
+<h4 id='error-22'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
