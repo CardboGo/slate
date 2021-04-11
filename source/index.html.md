@@ -143,13 +143,13 @@ password  | true     | string |       | Administrator password
 
 #### Success
 
-Key                | Type   | Description
------------------- | ------ | -----------
-access_token       | string | access token
-refresh_token      | string | refresh token
-administrator_id   | string | administrator id
-administrator_name | string | administrator name
-level              | int    | administrator level {1: employee, 2: manager, 3: admin}
+Key                | Type   | Enums                                             | Description
+------------------ | ------ | ------------------------------------------------- | ------------
+access_token       | string |                                                   | access token
+refresh_token      | string |                                                   | refresh token
+administrator_id   | string |                                                   | administrator id
+administrator_name | string |                                                   | administrator name
+level              | int    | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
 
 #### Error
 
@@ -221,19 +221,19 @@ Linebot authentication is used to login linebot and get API auth token.
 
 #### Parameters
 
-Parameter | Required | Type   | Enums                                                 | Description
---------- | -------- | ------ | ----------------------------------------------------- | -----------
-source    | true     | int    | APP: `1`; SAAS: `2`; LINEBOT: `3`; INTERNAL_TOOL: `4` | Request source
-user_id   | true     | string |                                                       | User line id
+Parameter | Required | Type   | Enums                                                                | Description
+--------- | -------- | ------ | -------------------------------------------------------------------- | -----------
+source    | true     | int    | APP: `1` <br/> SAAS: `2` <br/> LINEBOT: `3` <br/> INTERNAL_TOOL: `4` | Request source
+user_id   | true     | string |                                                                      | User line id
 
 ### Response
 
 #### Success
 
-Key                | Type   | Description
------------------- | ------ | -----------
-access_token       | string | access token
-refresh_token      | string | refresh token
+Key                | Type   | Enums | Description
+------------------ | ------ | ----- | -----------
+access_token       | string |       | access token
+refresh_token      | string |       | refresh token
 
 #### Error
 
@@ -305,19 +305,19 @@ Line authentication is used to login from LINE and get API auth token.
 
 #### Parameters
 
-Parameter    | Required | Type   | Enums | Description
------------- | -------- | ------ | ----- | -----------
-source       | true     | int    |       | Request source {1: app, 2: saas, 3: linebot, 4: internal tool}
-access_token | true     | string |       | Access token from LINE Login
+Parameter    | Required | Type   | Enums                                                                | Description
+------------ | -------- | ------ | -------------------------------------------------------------------- | -----------
+source       | true     | int    | APP: `1` <br/> SAAS: `2` <br/> LINEBOT: `3` <br/> INTERNAL_TOOL: `4` | Request source
+access_token | true     | string |                                                                      | Access token from LINE Login
 
 ### Response
 
 #### Success
 
-Key                | Type   | Description
------------------- | ------ | -----------
-access_token       | string | access token
-refresh_token      | string | refresh token
+Key                | Type   | Enums | Description
+------------------ | ------ | ----- | -----------
+access_token       | string |       | access token
+refresh_token      | string |       | refresh token
 
 #### Error
 
@@ -395,10 +395,10 @@ Authorization | Bearer token | API refresh token
 
 #### Success
 
-Key                | Type   | Description
------------------- | ------ | -----------
-access_token       | string | access token
-refresh_token      | string | refresh token
+Key                | Type   | Enums | Description
+------------------ | ------ | ----- | -----------
+access_token       | string |       | access token
+refresh_token      | string |       | refresh token
 
 #### Error
 
@@ -511,21 +511,21 @@ Authorization | Bearer token | API access token
 
 #### Success
 
-Key          | Type        | Description
------------- | ----------- | -----------
-user_id      | string      | User id
-line_id      | string      | LINE id
-username     | string      | Username
-image        | string      | User image
-email        | string      | Email
-phone_number | string      | Phone number
-cardbo_point | int         | Cardbo point (useless)
-cards        | []Card      | User own card array
-mobilepays   | []Mobilepay | User own mobile pay array
-user_level   | int         | User level {1: general, 2: vip, 3: developer}
-created_at   | int         | User create time in 16 digits timestamp
-updated_at   | int         | User update time in 16 digits timestamp
-last_login   | int         | User last login time in 16 digits timestamp
+Key          | Type        | Enums                                            | Description
+------------ | ----------- | ------------------------------------------------ | -----------
+user_id      | string      |                                                  | User id
+line_id      | string      |                                                  | LINE id
+username     | string      |                                                  | Username
+image        | string      |                                                  | User image
+email        | string      |                                                  | Email
+phone_number | string      |                                                  | Phone number
+cardbo_point | int         |                                                  | Cardbo point (useless)
+cards        | []Card      |                                                  | User own card array
+mobilepays   | []Mobilepay |                                                  | User own mobile pay array
+user_level   | int         | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+created_at   | int         |                                                  | User create time in 16 digits timestamp
+updated_at   | int         |                                                  | User update time in 16 digits timestamp
+last_login   | int         |                                                  | User last login time in 16 digits timestamp
 
 #### Error
 
@@ -660,21 +660,21 @@ phone_number | false    | string |       | phone number
 
 #### Success
 
-Key          | Type        | Description
------------- | ----------- | -----------
-user_id      | string      | User id
-line_id      | string      | LINE id
-username     | string      | Username
-image        | string      | User image
-email        | string      | Email
-phone_number | string      | Phone number
-cardbo_point | int         | Cardbo point (useless)
+Key          | Type        | Enums                                            | Description
+------------ | ----------- | ------------------------------------------------ | -----------
+user_id      | string      |                                                  | User id
+line_id      | string      |                                                  | LINE id
+username     | string      |                                                  | Username
+image        | string      |                                                  | User image
+email        | string      |                                                  | Email
+phone_number | string      |                                                  | Phone number
+cardbo_point | int         |                                                  | Cardbo point (useless)
 cards        | []Card      | User own card array
 mobilepays   | []Mobilepay | User own mobile pay array
-user_level   | int         | User level {1: general, 2: vip, 3: developer}
-created_at   | int         | User create time in 16 digits timestamp
-updated_at   | int         | User update time in 16 digits timestamp
-last_login   | int         | User last login time in 16 digits timestamp
+user_level   | int         | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+created_at   | int         |                                                  | User create time in 16 digits timestamp
+updated_at   | int         |                                                  | User update time in 16 digits timestamp
+last_login   | int         |                                                  | User last login time in 16 digits timestamp
 
 #### Error
 
@@ -777,9 +777,9 @@ issuer    | true     | string | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`,
 
 #### Success
 
-Key    | Type   | Description
------- | ------ | -----------
-result | string | result message
+Key    | Type   | Enums | Description
+------ | ------ | ----- | -----------
+result | string |       | result message
 
 #### Error
 
@@ -870,9 +870,9 @@ card_id   | true     | string |       | card id
 
 #### Success
 
-Key    | Type   | Description
------- | ------ | -----------
-result | string | result message
+Key    | Type   | Enums | Description
+------ | ------ | ----- | -----------
+result | string |       | result message
 
 #### Error
 
@@ -969,9 +969,9 @@ mobilepay_id | true     | string |       | mobile pay id
 
 #### Success
 
-Key    | Type   | Description
------- | ------ | -----------
-result | string | result message
+Key    | Type   | Enums | Description
+------ | ------ | ----- | -----------
+result | string |       | result message
 
 #### Error
 
@@ -1095,9 +1095,9 @@ card_id   | true     |               | card id
 
 #### Success
 
-Key    | Type   | Description
------- | ------ | -----------
-result | string | result message
+Key    | Type   | Enums | Description
+------ | ------ | ----- | -----------
+result | string |       | result message
 
 #### Error
 
@@ -1187,9 +1187,9 @@ mobilepay_id | true     | string |       | mobile pay id
 
 #### Success
 
-Key    | Type   | Description
------- | ------ | -----------
-result | string | result message
+Key    | Type   | Enums | Description
+------ | ------ | ----- | -----------
+result | string |       | result message
 
 #### Error
 
@@ -1307,9 +1307,9 @@ card_id   | true     |               | card id
 
 #### Success
 
-Key    | Type   | Description
------- | ------ | -----------
-result | string | result message
+Key    | Type   | Enums | Description
+------ | ------ | ----- | -----------
+result | string |       | result message
 
 #### Error
 
@@ -1427,9 +1427,9 @@ card_id   | true     |               | card id
 
 #### Success
 
-Key    | Type   | Description
------- | ------ | -----------
-result | string | result message
+Key    | Type   | Enums | Description
+------ | ------ | ----- | -----------
+result | string |       | result message
 
 #### Error
 
@@ -1521,18 +1521,18 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter  | Required | Type   | Enums                              | Description
----------- | -------- | ------ | ---------------------------------- | -----------
-user_id    | true     | string |                                    | user id
-user_level | true     | string | GENERAL: `1`, VIP: `2`, ADMIN: `3` | user level
+Parameter  | Required | Type   | Enums                                            | Description
+---------- | -------- | ------ | ------------------------------------------------ | -----------
+user_id    | true     | string |                                                  | user id
+user_level | true     | string | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | user level
 
 ### Response
 
 #### Success
 
-Key    | Type   | Description
------- | ------ | -----------
-result | string | result message
+Key    | Type   | Enums | Description
+------ | ------ | ----- | -----------
+result | string |       | result message
 
 #### Error
 
