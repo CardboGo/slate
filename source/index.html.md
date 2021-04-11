@@ -134,10 +134,10 @@ Administrator authentication is used to login admnistrator and get administrator
 
 #### Parameters
 
-Parameter | Required | Type    | Description
---------- | -------- | ------  | -----------
-account   | true     | string  | Administrator account
-password  | true     | string  | Administrator password
+Parameter | Required | Type   | Description
+--------- | -------- | ------ | -----------
+account   | true     | string | Administrator account
+password  | true     | string | Administrator password
 
 ### Response
 
@@ -1896,6 +1896,669 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 ### HTTP Request
 
 `DELETE https://prodapi.cardbo.info/api/v5/administrator/{administrator_id}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter        | Description
+---------------- | -----------
+administrator_id | administrator id
+
+### Response
+
+#### Success
+
+Key              | Type          | Enums                                             | Description
+---------------- | ------------- | ------------------------------------------------- | -----------
+administrator_id | string        |                                                   | administrator id
+account          | string        |                                                   | account
+username         | string        |                                                   | username
+level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
+email            | string        |                                                   | email
+phone_number     | string        |                                                   | phone number
+facebook_link    | string        |                                                   | facebool link
+job_statistics   | JobStatistics |                                                   | job statistics
+money            | Monney        |                                                   | money info
+last_login       | int           |                                                   | last login time in 16 digits timestamp
+created_at       | int           |                                                   | User create time in 16 digits timestamp
+updated_at       | int           |                                                   | User update time in 16 digits timestamp
+
+JobStatistics
+
+Key                  | Type | Description
+-------------------- | ---- | -----------
+store_pending_count  | int  | number of store pending
+store_finished_count | int  | number of store finished
+card_pending_count   | int  | number of  card pending
+card_finished_count  | int  | number of card finished
+offer_pending_count  | int  | number of offer pending
+offer_finished_count | int  | number of offer finished
+
+Monney
+
+Key         | Type | Description
+----------- | ---- | -----------
+pending     | int  | money in review
+earned      | int  | money earned
+unwithdrawn | int  | money unwithdrawn
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Get employee list
+
+> Get employee list:
+
+```shell
+curl --request GET \
+  --url https://betaapi.cardbo.info/api/v5/administrator/employees?options=account&options=name \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/administrator/employees?options=account&options=name'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.delete(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.delete('https://prodapi.cardbo.info/api/v5/administrator/employees?options=account&options=name', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": [
+    {
+      "administrator_id": "5fa79ec32ba2dfe2db67ae2c",
+      "account": "administrator_account",
+      "username": "Harrison"
+    }
+  ],
+  "timestamp": 1617601542000
+}
+```
+
+Delete a administrator
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://prodapi.cardbo.info/api/v5/administrator/employees`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Queries
+
+Query   | Required | Muti-values | Enums                                             | Description
+------- | -------- | ----------- | ------------------------------------------------- | -----------
+options | false    | tru         | `account`, `username`, `level`, `email`, `phone_number`, `facebook_link`, `job_statistics`, `money`, `last_login`, `created_at`, `updated_at` | Administrator account
+
+### Response
+
+#### Success
+
+Key              | Type          | Enums                                             | Description
+---------------- | ------------- | ------------------------------------------------- | -----------
+administrator_id | string        |                                                   | administrator id
+account          | string        |                                                   | account
+username         | string        |                                                   | username
+level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
+email            | string        |                                                   | email
+phone_number     | string        |                                                   | phone number
+facebook_link    | string        |                                                   | facebool link
+job_statistics   | JobStatistics |                                                   | job statistics
+money            | Monney        |                                                   | money info
+last_login       | int           |                                                   | last login time in 16 digits timestamp
+created_at       | int           |                                                   | User create time in 16 digits timestamp
+updated_at       | int           |                                                   | User update time in 16 digits timestamp
+
+JobStatistics
+
+Key                  | Type | Description
+-------------------- | ---- | -----------
+store_pending_count  | int  | number of store pending
+store_finished_count | int  | number of store finished
+card_pending_count   | int  | number of  card pending
+card_finished_count  | int  | number of card finished
+offer_pending_count  | int  | number of offer pending
+offer_finished_count | int  | number of offer finished
+
+Monney
+
+Key         | Type | Description
+----------- | ---- | -----------
+pending     | int  | money in review
+earned      | int  | money earned
+unwithdrawn | int  | money unwithdrawn
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Update administrator level
+
+> Update administrator level:
+
+```shell
+curl --request PUT \
+  --url https://betaapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/level \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "level": 1
+  }'
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/level'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  'level': 1
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  level: 2
+}
+axios.delete('https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/level', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "administrator_id": "5fa79ec32ba2dfe2db67ae2c",
+    "account": "administrator_account",
+    "username": "Harrison",
+    "level": 2,
+    "email": "harrison@cardbo.info",
+    "phone_number": "0987654321",
+    "facebook_link": "https://www.facebook.com/profile.php?id=0000000000",
+    "job_statistics": {
+      "store_pending_count": 0,
+      "store_finished_count": 0,
+      "card_pending_count": 0,
+      "card_finished_count": 0,
+      "offer_pending_count": 0,
+      "offer_finished_count": 0
+    },
+    "money": {
+      "pending": 0,
+      "earned": 0
+    },
+    "last_login": 1617601542000,
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Update administrator level
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://prodapi.cardbo.info/api/v5/administrator/{administrator_id}/level`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter        | Description
+---------------- | -----------
+administrator_id | administrator id
+
+#### Parameters
+
+Parameter | Required | Type   | Enums                                             | Description
+--------- | -------- | ------ | ------------------------------------------------- | -----------
+level     | true     | string | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | Administrator level
+
+### Response
+
+#### Success
+
+Key              | Type          | Enums                                             | Description
+---------------- | ------------- | ------------------------------------------------- | -----------
+administrator_id | string        |                                                   | administrator id
+account          | string        |                                                   | account
+username         | string        |                                                   | username
+level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
+email            | string        |                                                   | email
+phone_number     | string        |                                                   | phone number
+facebook_link    | string        |                                                   | facebool link
+job_statistics   | JobStatistics |                                                   | job statistics
+money            | Monney        |                                                   | money info
+last_login       | int           |                                                   | last login time in 16 digits timestamp
+created_at       | int           |                                                   | User create time in 16 digits timestamp
+updated_at       | int           |                                                   | User update time in 16 digits timestamp
+
+JobStatistics
+
+Key                  | Type | Description
+-------------------- | ---- | -----------
+store_pending_count  | int  | number of store pending
+store_finished_count | int  | number of store finished
+card_pending_count   | int  | number of  card pending
+card_finished_count  | int  | number of card finished
+offer_pending_count  | int  | number of offer pending
+offer_finished_count | int  | number of offer finished
+
+Monney
+
+Key         | Type | Description
+----------- | ---- | -----------
+pending     | int  | money in review
+earned      | int  | money earned
+unwithdrawn | int  | money unwithdrawn
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Update administrator password
+
+> Update administrator password:
+
+```shell
+curl --request PUT \
+  --url https://betaapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/password \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "password": "old_password",
+    "new_password": "new_password"
+  }'
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/password'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  'password': 'old_password',
+  'new_password': 'new_password'
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  password: 'old_password',
+  new_password: 'new_password'
+}
+axios.put('https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/password', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": "",
+  "timestamp": 1617601542000
+}
+```
+
+Update administrator password
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://prodapi.cardbo.info/api/v5/administrator/{administrator_id}/password`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter        | Description
+---------------- | -----------
+administrator_id | administrator id
+
+#### Parameters
+
+Parameter    | Required | Type   | Description
+------------ | -------- | ------ | -----------
+password     | true     | string | old password
+new_password | true     | string | new password
+
+### Response
+
+#### Success
+
+Key    | Type   | Description
+------ | ------ | -----------
+result | string | result message
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Update administrator profile
+
+> Update administrator profile:
+
+```shell
+curl --request PUT \
+  --url https://betaapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/profile \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "password": "old_password",
+    "new_password": "new_password"
+  }'
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/profile'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  'email': 'harrison@cardbo.info'
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  email: "harrison@cardbo.info"
+}
+axios.put('https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/profile', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "administrator_id": "5fa79ec32ba2dfe2db67ae2c",
+    "account": "administrator_account",
+    "username": "Harrison",
+    "level": 2,
+    "email": "harrison@cardbo.info",
+    "phone_number": "0987654321",
+    "facebook_link": "https://www.facebook.com/profile.php?id=0000000000",
+    "job_statistics": {
+      "store_pending_count": 0,
+      "store_finished_count": 0,
+      "card_pending_count": 0,
+      "card_finished_count": 0,
+      "offer_pending_count": 0,
+      "offer_finished_count": 0
+    },
+    "money": {
+      "pending": 0,
+      "earned": 0
+    },
+    "last_login": 1617601542000,
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Update administrator profile
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://prodapi.cardbo.info/api/v5/administrator/{administrator_id}/profile`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter        | Description
+---------------- | -----------
+administrator_id | administrator id
+
+#### Parameters
+
+Parameter     | Required | Type   | Description
+------------- | -------- | ------ | -----------
+username      | false    | string | username
+email         | false    | string | email
+phone_number  | false    | string | phone number
+facebook_link | false    | string | facebook profile link
+
+### Response
+
+#### Success
+
+Key              | Type          | Enums                                             | Description
+---------------- | ------------- | ------------------------------------------------- | -----------
+administrator_id | string        |                                                   | administrator id
+account          | string        |                                                   | account
+username         | string        |                                                   | username
+level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
+email            | string        |                                                   | email
+phone_number     | string        |                                                   | phone number
+facebook_link    | string        |                                                   | facebool link
+job_statistics   | JobStatistics |                                                   | job statistics
+money            | Monney        |                                                   | money info
+last_login       | int           |                                                   | last login time in 16 digits timestamp
+created_at       | int           |                                                   | User create time in 16 digits timestamp
+updated_at       | int           |                                                   | User update time in 16 digits timestamp
+
+JobStatistics
+
+Key                  | Type | Description
+-------------------- | ---- | -----------
+store_pending_count  | int  | number of store pending
+store_finished_count | int  | number of store finished
+card_pending_count   | int  | number of  card pending
+card_finished_count  | int  | number of card finished
+offer_pending_count  | int  | number of offer pending
+offer_finished_count | int  | number of offer finished
+
+Monney
+
+Key         | Type | Description
+----------- | ---- | -----------
+pending     | int  | money in review
+earned      | int  | money earned
+unwithdrawn | int  | money unwithdrawn
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Reset employee password
+
+> Update administrator password:
+
+```shell
+curl --request PUT \
+  --url https://betaapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/reset_password \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/reset_password'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.put(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.put('https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/reset_password', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "administrator_id": "5fa79ec32ba2dfe2db67ae2c",
+    "account": "administrator_account",
+    "username": "Harrison",
+    "level": 1,
+    "email": "harrison@cardbo.info",
+    "phone_number": "0987654321",
+    "facebook_link": "https://www.facebook.com/profile.php?id=0000000000",
+    "job_statistics": {
+      "store_pending_count": 0,
+      "store_finished_count": 0,
+      "card_pending_count": 0,
+      "card_finished_count": 0,
+      "offer_pending_count": 0,
+      "offer_finished_count": 0
+    },
+    "money": {
+      "pending": 0,
+      "earned": 0
+    },
+    "last_login": 1617601542000,
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Update administrator password
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://prodapi.cardbo.info/api/v5/administrator/{administrator_id}/reset_password`
 
 ### Request
 
