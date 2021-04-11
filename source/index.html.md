@@ -32,7 +32,7 @@ Key       | Type   | Description
 --------- | ------ | -----------
 code      | int    | status code
 message   | string | message string
-result    | {}     | result value
+result    | Object | result value
 timestamp | int    | current timestamp in 16 digits
 
 ## HTTP status codes
@@ -134,10 +134,10 @@ Administrator authentication is used to login admnistrator and get administrator
 
 #### Parameters
 
-Parameter | Required | Nested Object | Description
---------- | -------- | ------------- | -----------
-account   | true     |               | Administrator account
-password  | true     |               | Administrator password
+Parameter | Required | Type   | Enums | Description
+--------- | -------- | ------ | ----- | -----------
+account   | true     | string |       | Administrator account
+password  | true     | string |       | Administrator password
 
 ### Response
 
@@ -221,10 +221,10 @@ Linebot authentication is used to login linebot and get API auth token.
 
 #### Parameters
 
-Parameter | Required | Nested Object | Description
---------- | -------- | ------------- | -----------
-source    | true     |               | Request source {1: app, 2: saas, 3: linebot, 4: internal tool}
-user_id   | true     |               |  User line id
+Parameter | Required | Type   | Enums                                           | Description
+--------- | -------- | ------ | ----------------------------------------------- | -----------
+source    | true     | int    | {1: app, 2: saas, 3: linebot, 4: internal tool} | Request source
+user_id   | true     | string |                                                 | User line id
 
 ### Response
 
@@ -305,10 +305,10 @@ Line authentication is used to login from LINE and get API auth token.
 
 #### Parameters
 
-Parameter    | Required | Nested Object | Description
------------- | -------- | ------------- | -----------
-source       | true     |               | Request source {1: app, 2: saas, 3: linebot, 4: internal tool}
-access_token | true     |               | Access token from LINE Login
+Parameter    | Required | Type   | Enums | Description
+------------ | -------- | ------ | ----- | -----------
+source       | true     | int    |       | Request source {1: app, 2: saas, 3: linebot, 4: internal tool}
+access_token | true     | string |       | Access token from LINE Login
 
 ### Response
 
@@ -650,11 +650,11 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter    | Required | Nested Object | Description
------------- | -------- | ------------- | -----------
-username     | false    |               | username
-email        | false    |               | email
-phone_number | false    |               | phone number
+Parameter    | Required | Type   | Enums | Description
+------------ | -------- | ------ | ----- | -----------
+username     | false    | string |       | username
+email        | false    | string |       | email
+phone_number | false    | string |       | phone number
 
 ### Response
 
@@ -766,12 +766,12 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter | Required | Nested Object | Description
---------- | -------- | ------------- | -----------
-card_id   | true     |               | card id
-image     | true     |               | card image key (e.g. "image_1")
-level     | true     |               | card level [1, 2, 3, 4, 5, 6, 7, 8]
-issuer    | true     |               | card issuer [VISA, MASTERCARD, JCB, AMERICAN EXPRESS, UNION PAY]
+Parameter | Required | Type   | Enums                                                | Description
+--------- | -------- | ------ | ---------------------------------------------------- | -----------
+card_id   | true     | string |                                                      | card id
+image     | true     | string | [image_1, image_2, image_3, ..., image_10]           | card image key
+level     | true     | int    | [1, 2, 3, 4, 5, 6, 7, 8]                             | card level
+issuer    | true     | string | [VISA, MASTERCARD, JCB, AMERICAN EXPRESS, UNION PAY] | card issuer
 
 ### Response
 
@@ -862,9 +862,9 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter | Required | Nested Object | Description
---------- | -------- | ------------- | -----------
-card_id   | true     |               | card id
+Parameter | Required | Type   | Enums | Description
+--------- | -------- | ------ | ----- | -----------
+card_id   | true     | string |       | card id
 
 ### Response
 
@@ -961,9 +961,9 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter    | Required | Nested Object | Description
------------- | -------- | ------------- | -----------
-mobilepay_id | true     |               | mobile pay id
+Parameter    | Required | Type   | Enums | Description
+------------ | -------- | ------ | ----- | -----------
+mobilepay_id | true     | string |       | mobile pay id
 
 ### Response
 
@@ -1074,20 +1074,20 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter | Required | Nested Object | Description
---------- | -------- | ------------- | -----------
-mobilepay | true     | MobilePay     | mobile pay object
-cards     | true     | []Card        | array of card object
+Parameter | Required | Type      | Enums | Description
+--------- | -------- | --------- | ----- | -----------
+mobilepay | true     | MobilePay |       | mobile pay object
+cards     | true     | []Card    |       | array of card object
 
 MobilePay
 
-Parameter    | Required | Nested Object | Description
+Parameter    | Required | Type | Description
 ------------ | -------- | ------------- | -----------
 mobilepay_id | true     |               | mobile pay id
 
 Card
 
-Parameter | Required | Nested Object | Description
+Parameter | Required | Type | Description
 --------- | -------- | ------------- | -----------
 card_id   | true     |               | card id
 
@@ -1179,9 +1179,9 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter    | Required | Nested Object | Description
------------- | -------- | ------------- | -----------
-mobilepay_id | true     |               | mobile pay id
+Parameter    | Required | Type   | Enums | Description
+------------ | -------- | ------ | ----- | -----------
+mobilepay_id | true     | string |       | mobile pay id
 
 ### Response
 
@@ -1286,20 +1286,20 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter | Required | Nested Object | Description
---------- | -------- | ------------- | -----------
-mobilepay | true     | MobilePay     | mobile pay object
-card      | true     | Card          | array of card object
+Parameter | Required | Type      | Enums | Description
+--------- | -------- | --------- | ----- | -----------
+mobilepay | true     | MobilePay |       | mobile pay object
+card      | true     | Card      |       | array of card object
 
 MobilePay
 
-Parameter    | Required | Nested Object | Description
+Parameter    | Required | Type | Description
 ------------ | -------- | ------------- | -----------
 mobilepay_id | true     |               | mobile pay id
 
 Card
 
-Parameter | Required | Nested Object | Description
+Parameter | Required | Type | Description
 --------- | -------- | ------------- | -----------
 card_id   | true     |               | card id
 
@@ -1406,20 +1406,20 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter | Required | Nested Object | Description
---------- | -------- | ------------- | -----------
-mobilepay | true     | MobilePay     | mobile pay object
-card      | true     | Card          | array of card object
+Parameter | Required | Type      | Enums | Description
+--------- | -------- | --------- | ----- | -----------
+mobilepay | true     | MobilePay |       | mobile pay object
+card      | true     | Card      |       | array of card object
 
 MobilePay
 
-Parameter    | Required | Nested Object | Description
+Parameter    | Required | Type | Description
 ------------ | -------- | ------------- | -----------
 mobilepay_id | true     |               | mobile pay id
 
 Card
 
-Parameter | Required | Nested Object | Description
+Parameter | Required | Type | Description
 --------- | -------- | ------------- | -----------
 card_id   | true     |               | card id
 
@@ -1521,10 +1521,10 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter  | Required | Nested Object | Description
----------- | -------- | ------------- | -----------
-user_id    | true     |               | user id
-user_level | true     |               | user level {1: general, 2: vip, 3: admin}
+Parameter  | Required | Type   | Enums                          | Description
+---------- | -------- | ------ | ------------------------------ | -----------
+user_id    | true     | string |                                | user id
+user_level | true     | string | {1: general, 2: vip, 3: admin} | user level
 
 ### Response
 
