@@ -569,17 +569,20 @@
 <tr>
 <th>Parameter</th>
 <th>Required</th>
+<th>Nested Object</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>account</td>
 <td>true</td>
+<td></td>
 <td>Administrator account</td>
 </tr>
 <tr>
 <td>password</td>
 <td>true</td>
+<td></td>
 <td>Administrator password</td>
 </tr>
 </tbody></table>
@@ -684,17 +687,20 @@
 <tr>
 <th>Parameter</th>
 <th>Required</th>
+<th>Nested Object</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>source</td>
 <td>true</td>
+<td></td>
 <td>Request source {1: app, 2: saas, 3: linebot, 4: internal tool}</td>
 </tr>
 <tr>
 <td>user_id</td>
 <td>true</td>
+<td></td>
 <td>User line id</td>
 </tr>
 </tbody></table>
@@ -784,17 +790,20 @@
 <tr>
 <th>Parameter</th>
 <th>Required</th>
+<th>Nested Object</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>source</td>
 <td>true</td>
+<td></td>
 <td>Request source {1: app, 2: saas, 3: linebot, 4: internal tool}</td>
 </tr>
 <tr>
 <td>access_token</td>
 <td>true</td>
+<td></td>
 <td>Access token from LINE Login</td>
 </tr>
 </tbody></table>
@@ -1219,22 +1228,26 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Parameter</th>
 <th>Required</th>
+<th>Nested Object</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>username</td>
 <td>false</td>
+<td></td>
 <td>username</td>
 </tr>
 <tr>
 <td>email</td>
 <td>false</td>
+<td></td>
 <td>email</td>
 </tr>
 <tr>
 <td>phone_number</td>
 <td>false</td>
+<td></td>
 <td>phone number</td>
 </tr>
 </tbody></table>
@@ -1407,27 +1420,32 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Parameter</th>
 <th>Required</th>
+<th>Nested Object</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>card_id</td>
 <td>true</td>
+<td></td>
 <td>card id</td>
 </tr>
 <tr>
 <td>image</td>
 <td>true</td>
+<td></td>
 <td>card image key (e.g. &quot;image_1&quot;)</td>
 </tr>
 <tr>
 <td>level</td>
 <td>true</td>
-<td>card level (1-8)</td>
+<td></td>
+<td>card level [1, 2, 3, 4, 5, 6, 7, 8]</td>
 </tr>
 <tr>
 <td>issuer</td>
 <td>true</td>
+<td></td>
 <td>card issuer [VISA, MASTERCARD, JCB, AMERICAN EXPRESS, UNION PAY]</td>
 </tr>
 </tbody></table>
@@ -1531,12 +1549,14 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Parameter</th>
 <th>Required</th>
+<th>Nested Object</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>card_id</td>
 <td>true</td>
+<td></td>
 <td>card id</td>
 </tr>
 </tbody></table>
@@ -1646,12 +1666,14 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Parameter</th>
 <th>Required</th>
+<th>Nested Object</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>mobilepay_id</td>
 <td>true</td>
+<td></td>
 <td>mobile pay id</td>
 </tr>
 </tbody></table>
@@ -2381,17 +2403,20 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Parameter</th>
 <th>Required</th>
+<th>Nested Object</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>user_id</td>
 <td>true</td>
+<td></td>
 <td>user id</td>
 </tr>
 <tr>
 <td>user_level</td>
 <td>true</td>
+<td></td>
 <td>user level {1: general, 2: vip, 3: admin}</td>
 </tr>
 </tbody></table>
