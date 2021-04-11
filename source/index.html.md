@@ -221,10 +221,10 @@ Linebot authentication is used to login linebot and get API auth token.
 
 #### Parameters
 
-Parameter | Required | Type   | Enums                                           | Description
---------- | -------- | ------ | ----------------------------------------------- | -----------
-source    | true     | int    | {1: app, 2: saas, 3: linebot, 4: internal tool} | Request source
-user_id   | true     | string |                                                 | User line id
+Parameter | Required | Type   | Enums                                                 | Description
+--------- | -------- | ------ | ----------------------------------------------------- | -----------
+source    | true     | int    | APP: `1`; SAAS: `2`; LINEBOT: `3`; INTERNAL_TOOL: `4` | Request source
+user_id   | true     | string |                                                       | User line id
 
 ### Response
 
@@ -766,12 +766,12 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter | Required | Type   | Enums                                                | Description
---------- | -------- | ------ | ---------------------------------------------------- | -----------
-card_id   | true     | string |                                                      | card id
-image     | true     | string | [image_1, image_2, image_3, ..., image_10]           | card image key
-level     | true     | int    | [1, 2, 3, 4, 5, 6, 7, 8]                             | card level
-issuer    | true     | string | [VISA, MASTERCARD, JCB, AMERICAN EXPRESS, UNION PAY] | card issuer
+Parameter | Required | Type   | Enums                                                        | Description
+--------- | -------- | ------ | ------------------------------------------------------------ | -----------
+card_id   | true     | string |                                                              | card id
+image     | true     | string | `image_1`, `image_2`, `image_3`, `image_4`, `image_5`, `image_6`, `image_7`, `image_8`, `image_9`, `image_10`                                                  | card image key
+level     | true     | int    | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`                       | card level
+issuer    | true     | string | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | card issuer
 
 ### Response
 
@@ -1521,10 +1521,10 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter  | Required | Type   | Enums                          | Description
----------- | -------- | ------ | ------------------------------ | -----------
-user_id    | true     | string |                                | user id
-user_level | true     | string | {1: general, 2: vip, 3: admin} | user level
+Parameter  | Required | Type   | Enums                              | Description
+---------- | -------- | ------ | ---------------------------------- | -----------
+user_id    | true     | string |                                    | user id
+user_level | true     | string | GENERAL: `1`, VIP: `2`, ADMIN: `3` | user level
 
 ### Response
 
