@@ -446,7 +446,13 @@
                     <a href="#remove-formal-card-from-promote" class="toc-h2 toc-link" data-title="Remove formal card from promote">Remove formal card from promote</a>
                   </li>
                   <li>
+                    <a href="#upload-formal-card-image" class="toc-h2 toc-link" data-title="Upload formal card image">Upload formal card image</a>
+                  </li>
+                  <li>
                     <a href="#get-pending-cards" class="toc-h2 toc-link" data-title="Get pending cards">Get pending cards</a>
+                  </li>
+                  <li>
+                    <a href="#insert-pending-card" class="toc-h2 toc-link" data-title="Insert pending card">Insert pending card</a>
                   </li>
                   <li>
                     <a href="#get-pending-card-by-card-id" class="toc-h2 toc-link" data-title="Get pending card by card id">Get pending card by card id</a>
@@ -456,6 +462,15 @@
                   </li>
                   <li>
                     <a href="#delete-pending-card" class="toc-h2 toc-link" data-title="Delete pending card">Delete pending card</a>
+                  </li>
+                  <li>
+                    <a href="#pass-pending-card-to-formal-card" class="toc-h2 toc-link" data-title="Pass pending card to formal card">Pass pending card to formal card</a>
+                  </li>
+                  <li>
+                    <a href="#fail-pending-card" class="toc-h2 toc-link" data-title="Fail pending card">Fail pending card</a>
+                  </li>
+                  <li>
+                    <a href="#upload-pending-card-image" class="toc-h2 toc-link" data-title="Upload pending card image">Upload pending card image</a>
                   </li>
               </ul>
           </li>
@@ -6795,6 +6810,147 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>error message</td>
 </tr>
 </tbody></table>
+<h2 id='upload-formal-card-image'>Upload formal card image</h2>
+<blockquote>
+<p>Upload formal card image:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="se">\</span>
+  <span class="nt">--url</span> https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/image <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "image_key": "image_1",
+    "data": "base64-encoded-string"
+  }'</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/image'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">"image_key"</span><span class="p">:</span> <span class="s">"image_1"</span><span class="p">,</span>
+  <span class="s">"data"</span><span class="p">:</span> <span class="s">"base64-encoded-string"</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">image_key</span><span class="p">:</span> <span class="dl">"</span><span class="s2">image_1</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">data</span><span class="p">:</span> <span class="dl">"</span><span class="s2">base64-encoded-string</span><span class="dl">"</span>
+<span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/image</span><span class="dl">'</span><span class="p">,</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"card_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fc0998715eca4cbca34a1fe"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Upload formal card image</p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+<h3 id='http-request-33'>HTTP Request</h3>
+<p><code>PUT https://prodapi.cardbo.info/api/v5/card/formal/{card_id}/image</code></p>
+<h3 id='request-33'>Request</h3><h4 id='headers-30'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='path-parameters-12'>Path Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>card id</td>
+</tr>
+</tbody></table>
+<h4 id='parameters-18'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>image_key</td>
+<td>true</td>
+<td>string</td>
+<td><code>image_1</code>, <code>image_2</code>, <code>image_3</code>, <code>image_4</code>, <code>image_5</code>, <code>image_6</code>, <code>image_7</code>, <code>image_8</code>, <code>image_9</code>, <code>image_10</code></td>
+<td>key value from <code>Image</code> property</td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>image base64 encoded string</td>
+</tr>
+</tbody></table>
+<h3 id='response-33'>Response</h3><h4 id='success-33'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>string</td>
+<td>card id</td>
+</tr>
+<tr>
+<td>url</td>
+<td>string</td>
+<td>image URL</td>
+</tr>
+</tbody></table>
+<h4 id='error-33'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
 <h2 id='get-pending-cards'>Get pending cards</h2>
 <blockquote>
 <p>Get pending cards data:</p>
@@ -6875,9 +7031,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
-<h3 id='http-request-33'>HTTP Request</h3>
+<h3 id='http-request-34'>HTTP Request</h3>
 <p><code>GET https://prodapi.cardbo.info/api/v5/cards/pending</code></p>
-<h3 id='request-33'>Request</h3><h4 id='headers-30'>Headers</h4>
+<h3 id='request-34'>Request</h3><h4 id='headers-31'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -6937,7 +7093,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>card response options</td>
 </tr>
 </tbody></table>
-<h3 id='response-33'>Response</h3><h4 id='success-33'>Success</h4>
+<h3 id='response-34'>Response</h3><h4 id='success-34'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -7046,213 +7202,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>optional</td>
 </tr>
 </tbody></table>
-<h4 id='error-33'>Error</h4>
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>error</td>
-<td>string</td>
-<td>error message</td>
-</tr>
-</tbody></table>
-<h2 id='get-pending-card-by-card-id'>Get pending card by card id</h2>
-<blockquote>
-<p>Get single pending card data by card id:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
-  <span class="nt">--url</span> https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9 <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
-    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-  <span class="p">});</span>
-</code></pre></div>
-<blockquote>
-<p>Response example:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"card_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fc0998715eca4cbca34a1fe"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"台新@GoGo卡"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"issuer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VISA"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"level_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"御璽卡"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"image_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"image_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"image_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"promote"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"bank"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"bank_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f756d85c2349d9139648a81"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"台新銀行"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/bank/logo/taishin-bank.png"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.imgur.com/zueSUZY.png"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"812"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"administrator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fa78dc32ba6dfe9db675a6d"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harrison"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"examiner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"administrator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fa78dc32ba6dfe9db675a6d"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harrison"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>Get single pending card data by card id</p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-<h3 id='http-request-34'>HTTP Request</h3>
-<p><code>GET https://prodapi.cardbo.info/api/v5/card/pending/{card_id}</code></p>
-<h3 id='request-34'>Request</h3><h4 id='headers-31'>Headers</h4>
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Authorization</td>
-<td>Bearer token</td>
-<td>API access token</td>
-</tr>
-</tbody></table>
-<h4 id='path-parameters-12'>Path Parameters</h4>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>card_id</td>
-<td>card id</td>
-</tr>
-</tbody></table>
-<h3 id='response-34'>Response</h3><h4 id='success-34'>Success</h4>
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Enums</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>card_id</td>
-<td>string</td>
-<td></td>
-<td>card id</td>
-</tr>
-<tr>
-<td>name</td>
-<td>string</td>
-<td></td>
-<td>card name</td>
-</tr>
-<tr>
-<td>bank</td>
-<td>Bank</td>
-<td></td>
-<td>bank information</td>
-</tr>
-<tr>
-<td>options</td>
-<td>string</td>
-<td></td>
-<td>logo url</td>
-</tr>
-<tr>
-<td>images</td>
-<td>string</td>
-<td></td>
-<td>image url</td>
-</tr>
-<tr>
-<td>promote</td>
-<td>bool</td>
-<td></td>
-<td>is the card promoted</td>
-</tr>
-<tr>
-<td>website</td>
-<td>string</td>
-<td></td>
-<td>card official website</td>
-</tr>
-<tr>
-<td>creator</td>
-<td>string</td>
-<td></td>
-<td>creator id</td>
-</tr>
-<tr>
-<td>examiner</td>
-<td>string</td>
-<td></td>
-<td>examiner id</td>
-</tr>
-<tr>
-<td>created_at</td>
-<td>string</td>
-<td></td>
-<td>created timestamp</td>
-</tr>
-<tr>
-<td>updated_at</td>
-<td>string</td>
-<td></td>
-<td>updated timestamp</td>
-</tr>
-<tr>
-<td>status</td>
-<td>int</td>
-<td>PENDING: <code>1</code> <br/> FAILED: <code>2</code> <br/> PASSED: <code>3</code></td>
-<td>status</td>
-</tr>
-<tr>
-<td>comment</td>
-<td>string</td>
-<td></td>
-<td>failure comment</td>
-</tr>
-</tbody></table>
 <h4 id='error-34'>Error</h4>
 <table><thead>
 <tr>
@@ -7267,38 +7216,83 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='update-pending-card'>Update pending card</h2>
+<h2 id='insert-pending-card'>Insert pending card</h2>
 <blockquote>
-<p>Update pending card information:</p>
+<p>Insert pending card:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
-  <span class="nt">--url</span> https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9 <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="se">\</span>
+  <span class="nt">--url</span> https://prodapi.cardbo.info/api/v5/card/pending <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   <span class="nt">--data</span> <span class="s1">'{
     "bank": {
-      "bank_id": "5f756d85c2349d9139648a69"
-    }
+      "Bank_id": "5f756d85c2349d9139648a81"
+    },
+    "name": "台新@GoGo卡",
+    "options": [
+      {
+        "issuer": "VISA",
+        "level": 4,
+        "level_name": "御璽卡"
+      }
+    ],
+    "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
+    "hit_reward": {
+      "max_cashback": 10,
+      "place": "7-11",
+      "cashback_upper_bound": 500
+    },
+    "apply_url": "https://www.google.com"
   }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://prodapi.cardbo.info/api/v5/card/pending'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'bank'</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s">'bank_id'</span><span class="p">:</span> <span class="s">'5f756d85c2349d9139648a69'</span>
-  <span class="p">}</span>
+  <span class="s">"bank"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">"Bank_id"</span><span class="p">:</span> <span class="s">"5f756d85c2349d9139648a81"</span>
+  <span class="p">},</span>
+  <span class="s">"name"</span><span class="p">:</span> <span class="s">"台新@GoGo卡"</span><span class="p">,</span>
+  <span class="s">"options"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s">"issuer"</span><span class="p">:</span> <span class="s">"VISA"</span><span class="p">,</span>
+      <span class="s">"level"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+      <span class="s">"level_name"</span><span class="p">:</span> <span class="s">"御璽卡"</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s">"website"</span><span class="p">:</span> <span class="s">"https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/"</span><span class="p">,</span>
+  <span class="s">"hit_reward"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">"max_cashback"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s">"place"</span><span class="p">:</span> <span class="s">"7-11"</span><span class="p">,</span>
+    <span class="s">"cashback_upper_bound"</span><span class="p">:</span> <span class="mi">500</span>
+  <span class="p">},</span>
+  <span class="s">"apply_url"</span><span class="p">:</span> <span class="s">"https://www.google.com"</span>
 <span class="p">}</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
 <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">bank</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">bank_id</span><span class="p">:</span> <span class="dl">'</span><span class="s1">5f756d85c2349d9139648a69</span><span class="dl">'</span>
+    <span class="na">bank</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">Bank_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f756d85c2349d9139648a81</span><span class="dl">"</span>
+    <span class="p">},</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">台新@GoGo卡</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">options</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">issuer</span><span class="p">:</span> <span class="dl">"</span><span class="s2">VISA</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">level</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="na">level_name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">御璽卡</span><span class="dl">"</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="na">website</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">hit_reward</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">max_cashback</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="na">place</span><span class="p">:</span> <span class="dl">"</span><span class="s2">7-11</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">cashback_upper_bound</span><span class="p">:</span> <span class="mi">500</span>
+    <span class="p">},</span>
+    <span class="na">apply_url</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://www.google.com</span><span class="dl">"</span>
   <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
@@ -7354,13 +7348,13 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Update pending card information</p>
+<p>Insert a new card to pending card</p>
 
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
 <h3 id='http-request-35'>HTTP Request</h3>
-<p><code>PUT https://prodapi.cardbo.info/api/v5/card/pending/{card_id}</code></p>
+<p><code>POST https://prodapi.cardbo.info/api/v5/card/pending</code></p>
 <h3 id='request-35'>Request</h3><h4 id='headers-32'>Headers</h4>
 <table><thead>
 <tr>
@@ -7375,19 +7369,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h4 id='path-parameters-13'>Path Parameters</h4>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>card_id</td>
-<td>card id</td>
-</tr>
-</tbody></table>
-<h4 id='parameters-18'>Parameters</h4>
+<h4 id='parameters-19'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7541,22 +7523,23 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='delete-pending-card'>Delete pending card</h2>
+<h2 id='get-pending-card-by-card-id'>Get pending card by card id</h2>
 <blockquote>
-<p>Delete pending card:</p>
+<p>Get single pending card data by card id:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> DELETE <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
   <span class="nt">--url</span> https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9 <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s">'https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
@@ -7612,13 +7595,13 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Delete pending card</p>
+<p>Get single pending card data by card id</p>
 
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
 <h3 id='http-request-36'>HTTP Request</h3>
-<p><code>DELETE https://prodapi.cardbo.info/api/v5/card/pending/{card_id}</code></p>
+<p><code>GET https://prodapi.cardbo.info/api/v5/card/pending/{card_id}</code></p>
 <h3 id='request-36'>Request</h3><h4 id='headers-33'>Headers</h4>
 <table><thead>
 <tr>
@@ -7633,7 +7616,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h4 id='path-parameters-14'>Path Parameters</h4>
+<h4 id='path-parameters-13'>Path Parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7734,6 +7717,1039 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </tr>
 </tbody></table>
 <h4 id='error-36'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
+<h2 id='update-pending-card'>Update pending card</h2>
+<blockquote>
+<p>Update pending card information:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
+  <span class="nt">--url</span> https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9 <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "bank": {
+      "bank_id": "5f756d85c2349d9139648a69"
+    }
+  }'</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'bank'</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">'bank_id'</span><span class="p">:</span> <span class="s">'5f756d85c2349d9139648a69'</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">bank</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">bank_id</span><span class="p">:</span> <span class="dl">'</span><span class="s1">5f756d85c2349d9139648a69</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"card_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fc0998715eca4cbca34a1fe"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"台新@GoGo卡"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"issuer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VISA"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"level_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"御璽卡"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"image_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"image_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"image_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"promote"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"bank"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"bank_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f756d85c2349d9139648a81"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"台新銀行"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/bank/logo/taishin-bank.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.imgur.com/zueSUZY.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"812"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"administrator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fa78dc32ba6dfe9db675a6d"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harrison"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"examiner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"administrator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fa78dc32ba6dfe9db675a6d"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harrison"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Update pending card information</p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+<h3 id='http-request-37'>HTTP Request</h3>
+<p><code>PUT https://prodapi.cardbo.info/api/v5/card/pending/{card_id}</code></p>
+<h3 id='request-37'>Request</h3><h4 id='headers-34'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='path-parameters-14'>Path Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>card id</td>
+</tr>
+</tbody></table>
+<h4 id='parameters-20'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>false</td>
+<td>string</td>
+<td>card name</td>
+</tr>
+<tr>
+<td>options</td>
+<td>false</td>
+<td>[]Option</td>
+<td>card options</td>
+</tr>
+<tr>
+<td>images</td>
+<td>false</td>
+<td>Image</td>
+<td>card images</td>
+</tr>
+<tr>
+<td>website</td>
+<td>false</td>
+<td>string</td>
+<td>card official website url</td>
+</tr>
+<tr>
+<td>bank</td>
+<td>false</td>
+<td>Bank</td>
+<td>bank information</td>
+</tr>
+<tr>
+<td>hit_reward</td>
+<td>false</td>
+<td>HitReword</td>
+<td>hit reward information</td>
+</tr>
+<tr>
+<td>apply_url</td>
+<td>false</td>
+<td>string</td>
+<td>apply url</td>
+</tr>
+</tbody></table>
+<h3 id='response-37'>Response</h3><h4 id='success-37'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>string</td>
+<td></td>
+<td>card id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>card name</td>
+</tr>
+<tr>
+<td>bank</td>
+<td>Bank</td>
+<td></td>
+<td>bank information</td>
+</tr>
+<tr>
+<td>options</td>
+<td>string</td>
+<td></td>
+<td>logo url</td>
+</tr>
+<tr>
+<td>images</td>
+<td>string</td>
+<td></td>
+<td>image url</td>
+</tr>
+<tr>
+<td>promote</td>
+<td>bool</td>
+<td></td>
+<td>is the card promoted</td>
+</tr>
+<tr>
+<td>website</td>
+<td>string</td>
+<td></td>
+<td>card official website</td>
+</tr>
+<tr>
+<td>creator</td>
+<td>string</td>
+<td></td>
+<td>creator id</td>
+</tr>
+<tr>
+<td>examiner</td>
+<td>string</td>
+<td></td>
+<td>examiner id</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>string</td>
+<td></td>
+<td>created timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>string</td>
+<td></td>
+<td>updated timestamp</td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>PENDING: <code>1</code> <br/> FAILED: <code>2</code> <br/> PASSED: <code>3</code></td>
+<td>status</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>string</td>
+<td></td>
+<td>failure comment</td>
+</tr>
+</tbody></table>
+<h4 id='error-37'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
+<h2 id='delete-pending-card'>Delete pending card</h2>
+<blockquote>
+<p>Delete pending card:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> DELETE <span class="se">\</span>
+  <span class="nt">--url</span> https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9 <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"card_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fc0998715eca4cbca34a1fe"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"台新@GoGo卡"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"issuer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VISA"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"level_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"御璽卡"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"image_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"image_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"image_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"promote"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"bank"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"bank_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f756d85c2349d9139648a81"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"台新銀行"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/bank/logo/taishin-bank.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.imgur.com/zueSUZY.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"812"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"administrator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fa78dc32ba6dfe9db675a6d"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harrison"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"examiner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"administrator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fa78dc32ba6dfe9db675a6d"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harrison"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Delete pending card</p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+<h3 id='http-request-38'>HTTP Request</h3>
+<p><code>DELETE https://prodapi.cardbo.info/api/v5/card/pending/{card_id}</code></p>
+<h3 id='request-38'>Request</h3><h4 id='headers-35'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='path-parameters-15'>Path Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>card id</td>
+</tr>
+</tbody></table>
+<h3 id='response-38'>Response</h3><h4 id='success-38'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>string</td>
+<td></td>
+<td>card id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>card name</td>
+</tr>
+<tr>
+<td>bank</td>
+<td>Bank</td>
+<td></td>
+<td>bank information</td>
+</tr>
+<tr>
+<td>options</td>
+<td>string</td>
+<td></td>
+<td>logo url</td>
+</tr>
+<tr>
+<td>images</td>
+<td>string</td>
+<td></td>
+<td>image url</td>
+</tr>
+<tr>
+<td>promote</td>
+<td>bool</td>
+<td></td>
+<td>is the card promoted</td>
+</tr>
+<tr>
+<td>website</td>
+<td>string</td>
+<td></td>
+<td>card official website</td>
+</tr>
+<tr>
+<td>creator</td>
+<td>string</td>
+<td></td>
+<td>creator id</td>
+</tr>
+<tr>
+<td>examiner</td>
+<td>string</td>
+<td></td>
+<td>examiner id</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>string</td>
+<td></td>
+<td>created timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>string</td>
+<td></td>
+<td>updated timestamp</td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>PENDING: <code>1</code> <br/> FAILED: <code>2</code> <br/> PASSED: <code>3</code></td>
+<td>status</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>string</td>
+<td></td>
+<td>failure comment</td>
+</tr>
+</tbody></table>
+<h4 id='error-38'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
+<h2 id='pass-pending-card-to-formal-card'>Pass pending card to formal card</h2>
+<blockquote>
+<p>Pass pending card to formal card:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
+  <span class="nt">--url</span> https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/passed <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/passed'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/passed</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"card_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fc0998715eca4cbca34a1fe"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"台新@GoGo卡"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"issuer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VISA"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"level_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"御璽卡"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"image_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"image_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"image_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"promote"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"bank"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"bank_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f756d85c2349d9139648a81"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"台新銀行"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/bank/logo/taishin-bank.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.imgur.com/zueSUZY.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"812"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"administrator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fa78dc32ba6dfe9db675a6d"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harrison"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"examiner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"administrator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fa78dc32ba6dfe9db675a6d"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harrison"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Pass pending card to formal card</p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+<h3 id='http-request-39'>HTTP Request</h3>
+<p><code>PUT https://prodapi.cardbo.info/api/v5/card/pending/{card_id}/passed</code></p>
+<h3 id='request-39'>Request</h3><h4 id='headers-36'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='path-parameters-16'>Path Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>card id</td>
+</tr>
+</tbody></table>
+<h3 id='response-39'>Response</h3><h4 id='success-39'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>string</td>
+<td></td>
+<td>card id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>card name</td>
+</tr>
+<tr>
+<td>bank</td>
+<td>Bank</td>
+<td></td>
+<td>bank information</td>
+</tr>
+<tr>
+<td>options</td>
+<td>string</td>
+<td></td>
+<td>logo url</td>
+</tr>
+<tr>
+<td>images</td>
+<td>string</td>
+<td></td>
+<td>image url</td>
+</tr>
+<tr>
+<td>promote</td>
+<td>bool</td>
+<td></td>
+<td>is the card promoted</td>
+</tr>
+<tr>
+<td>website</td>
+<td>string</td>
+<td></td>
+<td>card official website</td>
+</tr>
+<tr>
+<td>creator</td>
+<td>string</td>
+<td></td>
+<td>creator id</td>
+</tr>
+<tr>
+<td>examiner</td>
+<td>string</td>
+<td></td>
+<td>examiner id</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>string</td>
+<td></td>
+<td>created timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>string</td>
+<td></td>
+<td>updated timestamp</td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>PENDING: <code>1</code> <br/> FAILED: <code>2</code> <br/> PASSED: <code>3</code></td>
+<td>status</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>string</td>
+<td></td>
+<td>failure comment</td>
+</tr>
+</tbody></table>
+<h4 id='error-39'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
+<h2 id='fail-pending-card'>Fail pending card</h2>
+<blockquote>
+<p>Fail pending card:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
+  <span class="nt">--url</span> https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/failed <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/failed'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/failed</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"card_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fc0998715eca4cbca34a1fe"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"台新@GoGo卡"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"issuer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VISA"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"level_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"御璽卡"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"image_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"image_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"image_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"promote"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"bank"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"bank_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f756d85c2349d9139648a81"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"台新銀行"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/bank/logo/taishin-bank.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.imgur.com/zueSUZY.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"812"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"administrator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fa78dc32ba6dfe9db675a6d"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harrison"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"examiner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"administrator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fa78dc32ba6dfe9db675a6d"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harrison"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Fail pending card</p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+<h3 id='http-request-40'>HTTP Request</h3>
+<p><code>PUT https://prodapi.cardbo.info/api/v5/card/pending/{card_id}/failed</code></p>
+<h3 id='request-40'>Request</h3><h4 id='headers-37'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='path-parameters-17'>Path Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>card id</td>
+</tr>
+</tbody></table>
+<h3 id='response-40'>Response</h3><h4 id='success-40'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>string</td>
+<td></td>
+<td>card id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>card name</td>
+</tr>
+<tr>
+<td>bank</td>
+<td>Bank</td>
+<td></td>
+<td>bank information</td>
+</tr>
+<tr>
+<td>options</td>
+<td>string</td>
+<td></td>
+<td>logo url</td>
+</tr>
+<tr>
+<td>images</td>
+<td>string</td>
+<td></td>
+<td>image url</td>
+</tr>
+<tr>
+<td>promote</td>
+<td>bool</td>
+<td></td>
+<td>is the card promoted</td>
+</tr>
+<tr>
+<td>website</td>
+<td>string</td>
+<td></td>
+<td>card official website</td>
+</tr>
+<tr>
+<td>creator</td>
+<td>string</td>
+<td></td>
+<td>creator id</td>
+</tr>
+<tr>
+<td>examiner</td>
+<td>string</td>
+<td></td>
+<td>examiner id</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>string</td>
+<td></td>
+<td>created timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>string</td>
+<td></td>
+<td>updated timestamp</td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>PENDING: <code>1</code> <br/> FAILED: <code>2</code> <br/> PASSED: <code>3</code></td>
+<td>status</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>string</td>
+<td></td>
+<td>failure comment</td>
+</tr>
+</tbody></table>
+<h4 id='error-40'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
+<h2 id='upload-pending-card-image'>Upload pending card image</h2>
+<blockquote>
+<p>Upload pending card image:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="se">\</span>
+  <span class="nt">--url</span> https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/image <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "image_key": "image_1",
+    "data": "base64-encoded-string"
+  }'</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/image'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">"image_key"</span><span class="p">:</span> <span class="s">"image_1"</span><span class="p">,</span>
+  <span class="s">"data"</span><span class="p">:</span> <span class="s">"base64-encoded-string"</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">image_key</span><span class="p">:</span> <span class="dl">"</span><span class="s2">image_1</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">data</span><span class="p">:</span> <span class="dl">"</span><span class="s2">base64-encoded-string</span><span class="dl">"</span>
+<span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/image</span><span class="dl">'</span><span class="p">,</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"card_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5fc0998715eca4cbca34a1fe"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Upload pending card image</p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+<h3 id='http-request-41'>HTTP Request</h3>
+<p><code>PUT https://prodapi.cardbo.info/api/v5/card/pending/{card_id}/image</code></p>
+<h3 id='request-41'>Request</h3><h4 id='headers-38'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='path-parameters-18'>Path Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>card id</td>
+</tr>
+</tbody></table>
+<h4 id='parameters-21'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>image_key</td>
+<td>true</td>
+<td>string</td>
+<td><code>image_1</code>, <code>image_2</code>, <code>image_3</code>, <code>image_4</code>, <code>image_5</code>, <code>image_6</code>, <code>image_7</code>, <code>image_8</code>, <code>image_9</code>, <code>image_10</code></td>
+<td>key value from <code>Image</code> property</td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>image base64 encoded string</td>
+</tr>
+</tbody></table>
+<h3 id='response-41'>Response</h3><h4 id='success-41'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>string</td>
+<td>card id</td>
+</tr>
+<tr>
+<td>url</td>
+<td>string</td>
+<td>image URL</td>
+</tr>
+</tbody></table>
+<h4 id='error-41'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
