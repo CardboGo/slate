@@ -3941,6 +3941,111 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
+## Upload formal card image
+
+> Upload formal card image:
+
+```shell
+curl --request POST \
+  --url https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/image \
+  -H 'Authorization: Bearer meowmeowmeowaccess'
+  --data '{
+    "image_key": "image_1",
+    "data": "base64-encoded-string"
+  }'
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/image'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "image_key": "image_1",
+  "data": "base64-encoded-string"
+}
+response = requests.post(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  image_key: "image_1",
+  data: "base64-encoded-string"
+}
+axios.post('https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/image',data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "card_id": "5fc0998715eca4cbca34a1fe",
+    "url": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1"
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Upload formal card image
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://prodapi.cardbo.info/api/v5/card/formal/{card_id}/image`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter | Description
+--------- | -----------
+card_id   | card id
+
+#### Parameters
+
+Parameter | Required | Type   | Enums       | Description
+--------- | -------- | ------ | ----------- | -----------
+image_key | true     | string | `image_1`, `image_2`, `image_3`, `image_4`, `image_5`, `image_6`, `image_7`, `image_8`, `image_9`, `image_10` | key value from `Image` property
+data      | true     | string |             | image base64 encoded string
+
+### Response
+
+#### Success
+
+Key     | Type    | Description
+------- | ------- | -----------
+card_id | string  | card id
+url     | string  | image URL
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
 ## Get pending cards
 
 > Get pending cards data:
@@ -4073,6 +4178,203 @@ updated_at | string  |                                                  |updated
 status     | int     | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status                        | optional
 comment    | string  |                                                  | failure comment               | optional
 user_has   | bool    |                                                  | does user has the card or not | optional
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Insert pending card
+
+> Insert pending card:
+
+```shell
+curl --request POST \
+  --url https://prodapi.cardbo.info/api/v5/card/pending \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "bank": {
+      "Bank_id": "5f756d85c2349d9139648a81"
+    },
+    "name": "台新@GoGo卡",
+    "options": [
+      {
+        "issuer": "VISA",
+        "level": 4,
+        "level_name": "御璽卡"
+      }
+    ],
+    "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
+    "hit_reward": {
+      "max_cashback": 10,
+      "place": "7-11",
+      "cashback_upper_bound": 500
+    },
+    "apply_url": "https://www.google.com"
+  }'
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/card/pending'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "bank": {
+    "Bank_id": "5f756d85c2349d9139648a81"
+  },
+  "name": "台新@GoGo卡",
+  "options": [
+    {
+      "issuer": "VISA",
+      "level": 4,
+      "level_name": "御璽卡"
+    }
+  ],
+  "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
+  "hit_reward": {
+    "max_cashback": 10,
+    "place": "7-11",
+    "cashback_upper_bound": 500
+  },
+  "apply_url": "https://www.google.com"
+}
+response = requests.post(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+    bank: {
+      Bank_id: "5f756d85c2349d9139648a81"
+    },
+    name: "台新@GoGo卡",
+    options: [
+      {
+        issuer: "VISA",
+        level: 4,
+        level_name: "御璽卡"
+      }
+    ],
+    website: "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
+    hit_reward: {
+      max_cashback: 10,
+      place: "7-11",
+      cashback_upper_bound: 500
+    },
+    apply_url: "https://www.google.com"
+  }
+axios.post('https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "card_id": "5fc0998715eca4cbca34a1fe",
+    "name": "台新@GoGo卡",
+    "options": [
+      {
+        "issuer": "VISA",
+        "level": 4,
+        "level_name": "御璽卡"
+      }
+    ],
+    "images": {
+      "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
+      "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
+      "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+    },
+    "promote": false,
+    "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
+    "bank": {
+      "bank_id": "5f756d85c2349d9139648a81",
+      "name": "台新銀行",
+      "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/taishin-bank.png",
+      "image": "https://i.imgur.com/zueSUZY.png",
+      "code": "812"
+    },
+    "creator": {
+      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "username": "Harrison"
+    },
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "examiner": {
+      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "username": "Harrison"
+    },
+    "status": 3,
+    "comment": ""
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Insert a new card to pending card
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`POST https://prodapi.cardbo.info/api/v5/card/pending`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter  | Required | Type      | Description
+---------- | -------- | --------- | -----------
+name       | false    | string    | card name
+options    | false    | []Option  | card options
+images     | false    | Image     | card images
+website    | false    | string    | card official website url
+bank       | false    | Bank      | bank information
+hit_reward | false    | HitReword | hit reward information
+apply_url  | false    | string    | apply url
+
+### Response
+
+#### Success
+
+Key        | Type    | Enums                                            | Description
+---------- | ------- | ------------------------------------------------ | -----------
+card_id    | string  |                                                  | card id
+name       | string  |                                                  | card name
+bank       | Bank    |                                                  | bank information
+options    | string  |                                                  | logo url
+images     | string  |                                                  | image url
+promote    | bool    |                                                  | is the card promoted
+website    | string  |                                                  | card official website
+creator    | string  |                                                  | creator id
+examiner   | string  |                                                  | examiner id
+created_at | string  |                                                  | created timestamp
+updated_at | string  |                                                  |updated timestamp
+status     | int     | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status
+comment    | string  |                                                  | failure comment
 
 #### Error
 
@@ -4492,6 +4794,371 @@ created_at | string  |                                                  | create
 updated_at | string  |                                                  |updated timestamp
 status     | int     | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status
 comment    | string  |                                                  | failure comment
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Pass pending card to formal card
+
+> Pass pending card to formal card:
+
+```shell
+curl --request PUT \
+  --url https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/passed \
+  -H 'Authorization: Bearer meowmeowmeowaccess'
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/passed'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.put(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.put('https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/passed', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "card_id": "5fc0998715eca4cbca34a1fe",
+    "name": "台新@GoGo卡",
+    "options": [
+      {
+        "issuer": "VISA",
+        "level": 4,
+        "level_name": "御璽卡"
+      }
+    ],
+    "images": {
+      "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
+      "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
+      "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+    },
+    "promote": false,
+    "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
+    "bank": {
+      "bank_id": "5f756d85c2349d9139648a81",
+      "name": "台新銀行",
+      "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/taishin-bank.png",
+      "image": "https://i.imgur.com/zueSUZY.png",
+      "code": "812"
+    },
+    "creator": {
+      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "username": "Harrison"
+    },
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "examiner": {
+      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "username": "Harrison"
+    },
+    "status": 3,
+    "comment": ""
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Pass pending card to formal card
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://prodapi.cardbo.info/api/v5/card/pending/{card_id}/passed`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter | Description
+--------- | -----------
+card_id   | card id
+
+### Response
+
+#### Success
+
+Key        | Type    | Enums                                            | Description
+---------- | ------- | ------------------------------------------------ | -----------
+card_id    | string  |                                                  | card id
+name       | string  |                                                  | card name
+bank       | Bank    |                                                  | bank information
+options    | string  |                                                  | logo url
+images     | string  |                                                  | image url
+promote    | bool    |                                                  | is the card promoted
+website    | string  |                                                  | card official website
+creator    | string  |                                                  | creator id
+examiner   | string  |                                                  | examiner id
+created_at | string  |                                                  | created timestamp
+updated_at | string  |                                                  |updated timestamp
+status     | int     | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status
+comment    | string  |                                                  | failure comment
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Fail pending card
+
+> Fail pending card:
+
+```shell
+curl --request PUT \
+  --url https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/failed \
+  -H 'Authorization: Bearer meowmeowmeowaccess'
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/failed'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.put(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.put('https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/failed', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "card_id": "5fc0998715eca4cbca34a1fe",
+    "name": "台新@GoGo卡",
+    "options": [
+      {
+        "issuer": "VISA",
+        "level": 4,
+        "level_name": "御璽卡"
+      }
+    ],
+    "images": {
+      "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
+      "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
+      "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+    },
+    "promote": false,
+    "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
+    "bank": {
+      "bank_id": "5f756d85c2349d9139648a81",
+      "name": "台新銀行",
+      "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/taishin-bank.png",
+      "image": "https://i.imgur.com/zueSUZY.png",
+      "code": "812"
+    },
+    "creator": {
+      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "username": "Harrison"
+    },
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "examiner": {
+      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "username": "Harrison"
+    },
+    "status": 3,
+    "comment": ""
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Fail pending card
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://prodapi.cardbo.info/api/v5/card/pending/{card_id}/failed`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter | Description
+--------- | -----------
+card_id   | card id
+
+### Response
+
+#### Success
+
+Key        | Type    | Enums                                            | Description
+---------- | ------- | ------------------------------------------------ | -----------
+card_id    | string  |                                                  | card id
+name       | string  |                                                  | card name
+bank       | Bank    |                                                  | bank information
+options    | string  |                                                  | logo url
+images     | string  |                                                  | image url
+promote    | bool    |                                                  | is the card promoted
+website    | string  |                                                  | card official website
+creator    | string  |                                                  | creator id
+examiner   | string  |                                                  | examiner id
+created_at | string  |                                                  | created timestamp
+updated_at | string  |                                                  |updated timestamp
+status     | int     | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status
+comment    | string  |                                                  | failure comment
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Upload pending card image
+
+> Upload pending card image:
+
+```shell
+curl --request POST \
+  --url https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/image \
+  -H 'Authorization: Bearer meowmeowmeowaccess'
+  --data '{
+    "image_key": "image_1",
+    "data": "base64-encoded-string"
+  }'
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/image'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "image_key": "image_1",
+  "data": "base64-encoded-string"
+}
+response = requests.post(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  image_key: "image_1",
+  data: "base64-encoded-string"
+}
+axios.post('https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/image',data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "card_id": "5fc0998715eca4cbca34a1fe",
+    "url": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1"
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Upload pending card image
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://prodapi.cardbo.info/api/v5/card/pending/{card_id}/image`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter | Description
+--------- | -----------
+card_id   | card id
+
+#### Parameters
+
+Parameter | Required | Type   | Enums       | Description
+--------- | -------- | ------ | ----------- | -----------
+image_key | true     | string | `image_1`, `image_2`, `image_3`, `image_4`, `image_5`, `image_6`, `image_7`, `image_8`, `image_9`, `image_10` | key value from `Image` property
+data      | true     | string |             | image base64 encoded string
+
+### Response
+
+#### Success
+
+Key     | Type    | Description
+------- | ------- | -----------
+card_id | string  | card id
+url     | string  | image URL
 
 #### Error
 
