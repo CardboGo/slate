@@ -547,7 +547,6 @@ curl --request PUT \
     "email": "harrison@cardbo.info",
     "phone_number": "0987654321"
   }'
-
 ```
 
 ```python
@@ -697,7 +696,6 @@ curl --request PUT \
     "level": 4,
     "issuer": "JCB"
   }'
-
 ```
 
 ```python
@@ -799,7 +797,6 @@ curl --request PUT \
   --data '{
     "card_id": "5fdb2ff846a97b49dac8a6b3"
   }'
-
 ```
 
 ```python
@@ -894,7 +891,6 @@ curl --request PUT \
       "mobilepay_id": "5f9a747f10c24bf3d4a54d4e"
     }
   ]'
-
 ```
 
 ```python
@@ -1452,7 +1448,6 @@ curl --request PUT \
       "user_level": 2
     }
   ]'
-
 ```
 
 ```python
@@ -2840,7 +2835,7 @@ name       | string  |                                                  | card n
 bank       | Bank    |                                                  | bank information              | optional
 options    | string  |                                                  | logo url                      | optional
 images     | string  |                                                  | image url                     | optional
-promote    | bool    |                                                  | is the card   promoted        | optional
+promote    | bool    |                                                  | is the card promoted          | optional
 website    | string  |                                                  | card official website         | optional
 creator    | string  |                                                  | creator id                    | optional
 examiner   | string  |                                                  | examiner id                   | optional
@@ -2981,7 +2976,7 @@ name       | string  |                                                  | card n
 bank       | Bank    |                                                  | bank information              | optional
 options    | string  |                                                  | logo url                      | optional
 images     | string  |                                                  | image url                     | optional
-promote    | bool    |                                                  | is the card   promoted        | optional
+promote    | bool    |                                                  | is the card promoted          | optional
 website    | string  |                                                  | card official website         | optional
 creator    | string  |                                                  | creator id                    | optional
 examiner   | string  |                                                  | examiner id                   | optional
@@ -3116,142 +3111,7 @@ name       | string  |                                                  | card n
 bank       | Bank    |                                                  | bank information              | optional
 options    | string  |                                                  | logo url                      | optional
 images     | string  |                                                  | image url                     | optional
-promote    | bool    |                                                  | is the card   promoted        | optional
-website    | string  |                                                  | card official website         | optional
-creator    | string  |                                                  | creator id                    | optional
-examiner   | string  |                                                  | examiner id                   | optional
-created_at | string  |                                                  | created timestamp             | optional
-updated_at | string  |                                                  |updated timestamp              | optional
-status     | int     | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status                        | optional
-comment    | string  |                                                  | failure comment               | optional
-user_has   | bool    |                                                  | does user has the card or not | optional
-
-#### Error
-
-Key   | Type   | Description
------ | ------ | -----------
-error | string | error message
-
-## Get promoted formal cards
-
-> Get promoted formal cards data:
-
-```shell
-curl --request GET \
-  --url https://prodapi.cardbo.info/api/v5/cards/formal/promote?options=name&options=images \
-  -H 'Authorization: Bearer meowmeowmeowaccess' \
-  -H 'Content-Type: application/json' \
-```
-
-```python
-import requests
-
-url = 'https://prodapi.cardbo.info/api/v5/cards/formal/promote?options=name&options=images'
-headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
-response = requests.get(url, headers=headers)
-```
-
-```javascript
-const axios = require('axios');
-
-headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.get('https://prodapi.cardbo.info/api/v5/cards/formal/promote?options=name&options=images', {
-    headers: headers
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-```
-
-> Response example:
-
-```json
-{
-  "code": 200,
-  "message": "Ok",
-  "result": [
-    {
-      "card_id": "5fc0998715eca4cbca34a1fe",
-      "name": "台新@GoGo卡",
-      "options": [
-        {
-          "issuer": "VISA",
-          "level": 4,
-          "level_name": "御璽卡"
-        }
-      ],
-      "images": {
-        "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
-        "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
-        "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
-      },
-      "promote": true,
-      "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
-      "bank": {
-        "bank_id": "5f756d85c2349d9139648a81",
-        "name": "台新銀行",
-        "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/taishin-bank.png",
-        "image": "https://i.imgur.com/zueSUZY.png",
-        "code": "812"
-      },
-      "creator": {
-        "administrator_id": "5fa78dc32ba6dfe9db675a6d",
-        "username": "Harrison"
-      },
-      "created_at": 1617601542000,
-      "updated_at": 1617601542000,
-      "examiner": {
-        "administrator_id": "5fa78dc32ba6dfe9db675a6d",
-        "username": "Harrison"
-      },
-      "status": 3,
-      "comment": "",
-      "user_has": false
-    }
-  ],
-  "timestamp": 1617601542000
-}
-```
-
-Get promoted formal cards data
-
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
-### HTTP Request
-
-`GET https://prodapi.cardbo.info/api/v5/cards/formal/promote`
-
-### Request
-
-#### Headers
-
-Key           | Value        | Description
-------------- | ------------ | -----------
-Authorization | Bearer token | API access token
-
-#### Queries
-
-Query    | Required | Muti-values | Enums                               | Description
--------- | -------- | ----------- | ----------------------------------- | -----------
-options  | false    | true        | `name`, `bank`, `options`, `images`, `promote`, `website`, `creator`, `created_at`, `updated_at`, `examiner`, `status`, `comment`, `user_has` | card response options
-
-### Response
-
-#### Success
-
-Key        | Type    | Enums                                            | Description                   | Note
----------- | ------- | ------------------------------------------------ | ----------------------------- | ----
-card_id    | string  |                                                  | card id                       |
-name       | string  |                                                  | card name                     | optional
-bank       | Bank    |                                                  | bank information              | optional
-options    | string  |                                                  | logo url                      | optional
-images     | string  |                                                  | image url                     | optional
-promote    | bool    |                                                  | is the card   promoted        | optional
+promote    | bool    |                                                  | is the card promoted          | optional
 website    | string  |                                                  | card official website         | optional
 creator    | string  |                                                  | creator id                    | optional
 examiner   | string  |                                                  | examiner id                   | optional
@@ -3386,7 +3246,7 @@ name       | string  |                                                  | card n
 bank       | Bank    |                                                  | bank information              | optional
 options    | string  |                                                  | logo url                      | optional
 images     | string  |                                                  | image url                     | optional
-promote    | bool    |                                                  | is the card   promoted        | optional
+promote    | bool    |                                                  | is the card promoted          | optional
 website    | string  |                                                  | card official website         | optional
 creator    | string  |                                                  | creator id                    | optional
 examiner   | string  |                                                  | examiner id                   | optional
@@ -3395,6 +3255,295 @@ updated_at | string  |                                                  |updated
 status     | int     | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status                        | optional
 comment    | string  |                                                  | failure comment               | optional
 user_has   | bool    |                                                  | does user has the card or not | optional
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Get formal card by card id
+
+> Get single formal card data by card id:
+
+```shell
+curl --request GET \
+  --url https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9 \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "card_id": "5fc0998715eca4cbca34a1fe",
+    "name": "台新@GoGo卡",
+    "options": [
+      {
+        "issuer": "VISA",
+        "level": 4,
+        "level_name": "御璽卡"
+      }
+    ],
+    "images": {
+      "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
+      "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
+      "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+    },
+    "promote": false,
+    "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
+    "bank": {
+      "bank_id": "5f756d85c2349d9139648a81",
+      "name": "台新銀行",
+      "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/taishin-bank.png",
+      "image": "https://i.imgur.com/zueSUZY.png",
+      "code": "812"
+    },
+    "creator": {
+      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "username": "Harrison"
+    },
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "examiner": {
+      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "username": "Harrison"
+    },
+    "status": 3,
+    "comment": ""
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get single formal card data by card id
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://prodapi.cardbo.info/api/v5/card/formal/{card_id}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter | Description
+--------- | -----------
+card_id   | card id
+
+### Response
+
+#### Success
+
+Key        | Type    | Enums                                            | Description
+---------- | ------- | ------------------------------------------------ | -----------
+card_id    | string  |                                                  | card id
+name       | string  |                                                  | card name
+bank       | Bank    |                                                  | bank information
+options    | string  |                                                  | logo url
+images     | string  |                                                  | image url
+promote    | bool    |                                                  | is the card promoted
+website    | string  |                                                  | card official website
+creator    | string  |                                                  | creator id
+examiner   | string  |                                                  | examiner id
+created_at | string  |                                                  | created timestamp
+updated_at | string  |                                                  |updated timestamp
+status     | int     | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status
+comment    | string  |                                                  | failure comment
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Update formal card
+
+> Update formal card information:
+
+```shell
+curl --request PUT \
+  --url https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9 \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "bank": {
+      "bank_id": "5f756d85c2349d9139648a69"
+    }
+  }'
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  'bank': {
+    'bank_id': '5f756d85c2349d9139648a69'
+  }
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  bank: {
+    bank_id: '5f756d85c2349d9139648a69'
+  }
+}
+axios.put('https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "card_id": "5fc0998715eca4cbca34a1fe",
+    "name": "台新@GoGo卡",
+    "options": [
+      {
+        "issuer": "VISA",
+        "level": 4,
+        "level_name": "御璽卡"
+      }
+    ],
+    "images": {
+      "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
+      "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
+      "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+    },
+    "promote": false,
+    "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
+    "bank": {
+      "bank_id": "5f756d85c2349d9139648a81",
+      "name": "台新銀行",
+      "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/taishin-bank.png",
+      "image": "https://i.imgur.com/zueSUZY.png",
+      "code": "812"
+    },
+    "creator": {
+      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "username": "Harrison"
+    },
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "examiner": {
+      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "username": "Harrison"
+    },
+    "status": 3,
+    "comment": ""
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Update formal card information
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://prodapi.cardbo.info/api/v5/card/formal/{card_id}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter | Description
+--------- | -----------
+card_id   | card id
+
+#### Parameters
+
+Parameter  | Required | Type      | Description
+---------- | -------- | --------- | -----------
+name       | false    | string    | card name
+options    | false    | []Option  | card options
+images     | false    | Image     | card images
+website    | false    | string    | card official website url
+bank       | false    | Bank      | bank information
+hit_reward | false    | HitReword | hit reward information
+apply_url  | false    | string    | apply url
+
+### Response
+
+#### Success
+
+Key        | Type    | Enums                                            | Description
+---------- | ------- | ------------------------------------------------ | -----------
+card_id    | string  |                                                  | card id
+name       | string  |                                                  | card name
+bank       | Bank    |                                                  | bank information
+options    | string  |                                                  | logo url
+images     | string  |                                                  | image url
+promote    | bool    |                                                  | is the card promoted
+website    | string  |                                                  | card official website
+creator    | string  |                                                  | creator id
+examiner   | string  |                                                  | examiner id
+created_at | string  |                                                  | created timestamp
+updated_at | string  |                                                  |updated timestamp
+status     | int     | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status
+comment    | string  |                                                  | failure comment
 
 #### Error
 
@@ -3525,7 +3674,7 @@ name       | string  |                                                  | card n
 bank       | Bank    |                                                  | bank information              | optional
 options    | string  |                                                  | logo url                      | optional
 images     | string  |                                                  | image url                     | optional
-promote    | bool    |                                                  | is the card   promoted        | optional
+promote    | bool    |                                                  | is the card promoted          | optional
 website    | string  |                                                  | card official website         | optional
 creator    | string  |                                                  | creator id                    | optional
 examiner   | string  |                                                  | examiner id                   | optional
@@ -3534,6 +3683,295 @@ updated_at | string  |                                                  |updated
 status     | int     | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status                        | optional
 comment    | string  |                                                  | failure comment               | optional
 user_has   | bool    |                                                  | does user has the card or not | optional
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Get pending card by card id
+
+> Get single pending card data by card id:
+
+```shell
+curl --request GET \
+  --url https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9 \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "card_id": "5fc0998715eca4cbca34a1fe",
+    "name": "台新@GoGo卡",
+    "options": [
+      {
+        "issuer": "VISA",
+        "level": 4,
+        "level_name": "御璽卡"
+      }
+    ],
+    "images": {
+      "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
+      "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
+      "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+    },
+    "promote": false,
+    "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
+    "bank": {
+      "bank_id": "5f756d85c2349d9139648a81",
+      "name": "台新銀行",
+      "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/taishin-bank.png",
+      "image": "https://i.imgur.com/zueSUZY.png",
+      "code": "812"
+    },
+    "creator": {
+      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "username": "Harrison"
+    },
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "examiner": {
+      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "username": "Harrison"
+    },
+    "status": 3,
+    "comment": ""
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get single pending card data by card id
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://prodapi.cardbo.info/api/v5/card/pending/{card_id}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter | Description
+--------- | -----------
+card_id   | card id
+
+### Response
+
+#### Success
+
+Key        | Type    | Enums                                            | Description
+---------- | ------- | ------------------------------------------------ | -----------
+card_id    | string  |                                                  | card id
+name       | string  |                                                  | card name
+bank       | Bank    |                                                  | bank information
+options    | string  |                                                  | logo url
+images     | string  |                                                  | image url
+promote    | bool    |                                                  | is the card promoted
+website    | string  |                                                  | card official website
+creator    | string  |                                                  | creator id
+examiner   | string  |                                                  | examiner id
+created_at | string  |                                                  | created timestamp
+updated_at | string  |                                                  |updated timestamp
+status     | int     | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status
+comment    | string  |                                                  | failure comment
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Update pending card
+
+> Update pending card information:
+
+```shell
+curl --request PUT \
+  --url https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9 \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "bank": {
+      "bank_id": "5f756d85c2349d9139648a69"
+    }
+  }'
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  'bank': {
+    'bank_id': '5f756d85c2349d9139648a69'
+  }
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  bank: {
+    bank_id: '5f756d85c2349d9139648a69'
+  }
+}
+axios.put('https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "card_id": "5fc0998715eca4cbca34a1fe",
+    "name": "台新@GoGo卡",
+    "options": [
+      {
+        "issuer": "VISA",
+        "level": 4,
+        "level_name": "御璽卡"
+      }
+    ],
+    "images": {
+      "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
+      "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
+      "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+    },
+    "promote": false,
+    "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
+    "bank": {
+      "bank_id": "5f756d85c2349d9139648a81",
+      "name": "台新銀行",
+      "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/taishin-bank.png",
+      "image": "https://i.imgur.com/zueSUZY.png",
+      "code": "812"
+    },
+    "creator": {
+      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "username": "Harrison"
+    },
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "examiner": {
+      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "username": "Harrison"
+    },
+    "status": 3,
+    "comment": ""
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Update pending card information
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://prodapi.cardbo.info/api/v5/card/pending/{card_id}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter | Description
+--------- | -----------
+card_id   | card id
+
+#### Parameters
+
+Parameter  | Required | Type      | Description
+---------- | -------- | --------- | -----------
+name       | false    | string    | card name
+options    | false    | []Option  | card options
+images     | false    | Image     | card images
+website    | false    | string    | card official website url
+bank       | false    | Bank      | bank information
+hit_reward | false    | HitReword | hit reward information
+apply_url  | false    | string    | apply url
+
+### Response
+
+#### Success
+
+Key        | Type    | Enums                                            | Description
+---------- | ------- | ------------------------------------------------ | -----------
+card_id    | string  |                                                  | card id
+name       | string  |                                                  | card name
+bank       | Bank    |                                                  | bank information
+options    | string  |                                                  | logo url
+images     | string  |                                                  | image url
+promote    | bool    |                                                  | is the card promoted
+website    | string  |                                                  | card official website
+creator    | string  |                                                  | creator id
+examiner   | string  |                                                  | examiner id
+created_at | string  |                                                  | created timestamp
+updated_at | string  |                                                  |updated timestamp
+status     | int     | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status
+comment    | string  |                                                  | failure comment
 
 #### Error
 
