@@ -331,7 +331,7 @@ error | string | error message
 
 ```shell
 curl --request POST \
-  --url https://betaapi.cardbo.info/api/v5/auth/refresh \
+  --url https://prodapi.cardbo.info/api/v5/auth/refresh \
   -H 'Authorization: Bearer meowmeowmeowrefresh' \
   -H 'Content-Type: application/json' \
 ```
@@ -414,7 +414,7 @@ error | string | error message
 
 ```shell
 curl --request GET \
-  --url https://betaapi.cardbo.info/api/v5/user \
+  --url https://prodapi.cardbo.info/api/v5/user \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -539,7 +539,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://betaapi.cardbo.info/api/v5/user \
+  --url https://prodapi.cardbo.info/api/v5/user \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -688,7 +688,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://betaapi.cardbo.info/api/v5/user/add_card \
+  --url https://prodapi.cardbo.info/api/v5/user/add_card \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -793,7 +793,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://betaapi.cardbo.info/api/v5/user/remove_card \
+  --url https://prodapi.cardbo.info/api/v5/user/remove_card \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -886,7 +886,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://betaapi.cardbo.info/api/v5/user/mobilepays \
+  --url https://prodapi.cardbo.info/api/v5/user/mobilepays \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '[
@@ -985,7 +985,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://betaapi.cardbo.info/api/v5/user/add_mobilepay \
+  --url https://prodapi.cardbo.info/api/v5/user/add_mobilepay \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -1111,7 +1111,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://betaapi.cardbo.info/api/v5/user/remove_mobilepay \
+  --url https://prodapi.cardbo.info/api/v5/user/remove_mobilepay \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -1203,7 +1203,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://betaapi.cardbo.info/api/v5/user/mobilepay/add_card \
+  --url https://prodapi.cardbo.info/api/v5/user/mobilepay/add_card \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -1323,7 +1323,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://betaapi.cardbo.info/api/v5/user/mobilepay/remove_card \
+  --url https://prodapi.cardbo.info/api/v5/user/mobilepay/remove_card \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -1443,7 +1443,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://betaapi.cardbo.info/api/v5/user/user_level \
+  --url https://prodapi.cardbo.info/api/v5/user/user_level \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '[
@@ -1548,7 +1548,7 @@ error | string | error message
 
 ```shell
 curl --request POST \
-  --url https://betaapi.cardbo.info/api/v5/administrator \
+  --url https://prodapi.cardbo.info/api/v5/administrator \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -1695,7 +1695,7 @@ error | string | error message
 
 ```shell
 curl --request GET \
-  --url https://betaapi.cardbo.info/api/v5/administrator \
+  --url https://prodapi.cardbo.info/api/v5/administrator \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -1825,7 +1825,7 @@ error | string | error message
 
 ```shell
 curl --request DELETE \
-  --url https://betaapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c \
+  --url https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -1961,7 +1961,7 @@ error | string | error message
 
 ```shell
 curl --request GET \
-  --url https://betaapi.cardbo.info/api/v5/administrator/employees?options=account&options=name \
+  --url https://prodapi.cardbo.info/api/v5/administrator/employees?options=account&options=name \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -2028,7 +2028,7 @@ Authorization | Bearer token | API access token
 
 Query   | Required | Muti-values | Enums                                             | Description
 ------- | -------- | ----------- | ------------------------------------------------- | -----------
-options | false    | true        | `account`, `username`, `level`, `email`, `phone_number`, `facebook_link`, `job_statistics`, `money`, `last_login`, `created_at`, `updated_at` | Administrator account
+options | false    | true        | `account`, `username`, `level`, `email`, `phone_number`, `facebook_link`, `job_statistics`, `money`, `last_login`, `created_at`, `updated_at` | employee response options
 
 ### Response
 
@@ -2080,7 +2080,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://betaapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/level \
+  --url https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/level \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -2231,7 +2231,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://betaapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/password \
+  --url https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/password \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -2333,7 +2333,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://betaapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/profile \
+  --url https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/profile \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -2488,7 +2488,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://betaapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/reset_password \
+  --url https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/reset_password \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -2611,6 +2611,383 @@ Key         | Type | Description
 pending     | int  | money in review
 earned      | int  | money earned
 unwithdrawn | int  | money unwithdrawn
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+# Bank
+
+## Get banks
+
+> Get banks data:
+
+```shell
+curl --request GET \
+  --url https://prodapi.cardbo.info/api/v5/banks?options=name&options=logo \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/banks?options=name&options=logo'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://prodapi.cardbo.info/api/v5/banks?options=name&options=logo', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": [
+    {
+      "bank_id": "5f756d85c2349d9139648a61",
+      "name": "臺灣銀行",
+      "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/taiwan-bank.png",
+      "image": "https://i.imgur.com/iUbOWfh.png",
+      "code": "004"
+    }
+  ],
+  "timestamp": 1617601542000
+}
+```
+
+Get banks data
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://prodapi.cardbo.info/api/v5/banks`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Queries
+
+Query   | Required | Muti-values | Enums                           | Description
+------- | -------- | ----------- | ------------------------------- | -----------
+options | false    | true        | `name`, `code`, `logo`, `image` | bank response options
+
+### Response
+
+#### Success
+
+Key     | Type    | Description | Note
+------- | ------- | ----------- | ----
+bank_id | string  | bank id     |
+name    | string  | bank name   | optional
+code    | string  | bank code   | optional
+logo    | string  | logo url    | optional
+image   | string  | image url   | optional
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+# Card
+
+## Get formal cards
+
+> Get formal cards data:
+
+```shell
+curl --request GET \
+  --url https://prodapi.cardbo.info/api/v5/cards/formal?size=10&page=1&options=name&options=images \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/cards/formal?size=10&page=1&options=name&options=images'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://prodapi.cardbo.info/api/v5/cards/formal?size=10&page=1&options=name&options=images', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": [
+    {
+      "card_id": "5fc0998715eca4cbca34a1fe",
+      "name": "台新@GoGo卡",
+      "options": [
+        {
+          "issuer": "VISA",
+          "level": 4,
+          "level_name": "御璽卡"
+        }
+      ],
+      "images": {
+        "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
+        "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
+        "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+      },
+      "promote": false,
+      "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
+      "bank": {
+        "bank_id": "5f756d85c2349d9139648a81",
+        "name": "台新銀行",
+        "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/taishin-bank.png",
+        "image": "https://i.imgur.com/zueSUZY.png",
+        "code": "812"
+      },
+      "creator": {
+        "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+        "username": "Harrison"
+      },
+      "created_at": 1617601542000,
+      "updated_at": 1617601542000,
+      "examiner": {
+        "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+        "username": "Harrison"
+      },
+      "status": 3,
+      "comment": "",
+      "user_has": false
+    }
+  ],
+  "timestamp": 1617601542000
+}
+```
+
+Get formal cards data
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://prodapi.cardbo.info/api/v5/cards/formal`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Queries
+
+Query    | Required | Muti-values | Enums                               | Description
+-------- | -------- | ----------- | ----------------------------------- | -----------
+size     | true     | false       |                                     | data size of each page
+page     | true     | flase       |                                     | page number
+creator  | false    | flase       |                                     | filtered creator `administrator_id`
+examiner | false    | flase       |                                     | filtered examiner `administrator_id`
+options  | false    | true        | `name`, `bank`, `options`, `images`, `promote`, `website`, `creator`, `created_at`, `updated_at`, `examiner`, `status`, `comment`, `user_has` | card response options
+
+### Response
+
+#### Success
+
+Key        | Type    | Enums                                            | Description                   | Note
+---------- | ------- | ------------------------------------------------ | ----------------------------- | ----
+card_id    | string  |                                                  | card id                       |
+name       | string  |                                                  | card name                     | optional
+bank       | Bank    |                                                  | bank information              | optional
+options    | string  |                                                  | logo url                      | optional
+images     | string  |                                                  | image url                     | optional
+promote    | bool    |                                                  | is the card   promoted        | optional
+website    | string  |                                                  | card official website         | optional
+creator    | string  |                                                  | creator id                    | optional
+examiner   | string  |                                                  | examiner id                   | optional
+created_at | string  |                                                  | created timestamp             | optional
+updated_at | string  |                                                  |updated timestamp              | optional
+status     | int     | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status                        | optional
+comment    | string  |                                                  | failure comment               | optional
+user_has   | bool    |                                                  | does user has the card or not | optional
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Get pending cards
+
+> Get pending cards data:
+
+```shell
+curl --request GET \
+  --url https://prodapi.cardbo.info/api/v5/cards/pending?size=10&page=1&options=name&options=images \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/cards/pending?size=10&page=1&options=name&options=images'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://prodapi.cardbo.info/api/v5/cards/pending?size=10&page=1&options=name&options=images', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": [
+    {
+      "card_id": "5fc0998715eca4cbca34a1fe",
+      "name": "台新@GoGo卡",
+      "options": [
+        {
+          "issuer": "VISA",
+          "level": 4,
+          "level_name": "御璽卡"
+        }
+      ],
+      "images": {
+        "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
+        "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
+        "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+      },
+      "promote": false,
+      "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
+      "bank": {
+        "bank_id": "5f756d85c2349d9139648a81",
+        "name": "台新銀行",
+        "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/taishin-bank.png",
+        "image": "https://i.imgur.com/zueSUZY.png",
+        "code": "812"
+      },
+      "creator": {
+        "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+        "username": "Harrison"
+      },
+      "created_at": 1617601542000,
+      "updated_at": 1617601542000,
+      "examiner": {
+        "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+        "username": "Harrison"
+      },
+      "status": 3,
+      "comment": "",
+      "user_has": false
+    }
+  ],
+  "timestamp": 1617601542000
+}
+```
+
+Get pending cards data
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://prodapi.cardbo.info/api/v5/cards/pending`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Queries
+
+Query    | Required | Muti-values | Enums                               | Description
+-------- | -------- | ----------- | ----------------------------------- | -----------
+size     | true     | false       |                                     | data size of each page
+page     | true     | flase       |                                     | page number
+creator  | false    | flase       |                                     | filtered creator `administrator_id`
+examiner | false    | flase       |                                     | filtered examiner `administrator_id`
+options  | false    | true        | `name`, `bank`, `options`, `images`, `promote`, `website`, `creator`, `created_at`, `updated_at`, `examiner`, `status`, `comment`, `user_has` | card response options
+
+### Response
+
+#### Success
+
+Key        | Type    | Enums                                            | Description                   | Note
+---------- | ------- | ------------------------------------------------ | ----------------------------- | ----
+card_id    | string  |                                                  | card id                       |
+name       | string  |                                                  | card name                     | optional
+bank       | Bank    |                                                  | bank information              | optional
+options    | string  |                                                  | logo url                      | optional
+images     | string  |                                                  | image url                     | optional
+promote    | bool    |                                                  | is the card   promoted        | optional
+website    | string  |                                                  | card official website         | optional
+creator    | string  |                                                  | creator id                    | optional
+examiner   | string  |                                                  | examiner id                   | optional
+created_at | string  |                                                  | created timestamp             | optional
+updated_at | string  |                                                  |updated timestamp              | optional
+status     | int     | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status                        | optional
+comment    | string  |                                                  | failure comment               | optional
+user_has   | bool    |                                                  | does user has the card or not | optional
 
 #### Error
 
