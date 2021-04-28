@@ -3515,15 +3515,15 @@ card_id   | card id
 
 #### Parameters
 
-Parameter  | Required | Type      | Description
----------- | -------- | --------- | -----------
-name       | false    | string    | card name
-options    | false    | []Option  | card options
-images     | false    | Image     | card images
-website    | false    | string    | card official website url
-bank       | false    | Bank      | bank information
-hit_reward | false    | HitReword | hit reward information
-apply_url  | false    | string    | apply url
+Parameter    | Required | Type      | Description
+------------ | -------- | --------- | -----------
+name         | false    | string    | card name
+options      | false    | []Option  | card options
+images       | false    | Image     | card images
+website      | false    | string    | card official website url
+bank         | false    | Bank      | bank information
+max_cashback | false    | float     | max cashback from official website promotion
+apply_url    | false    | string    | apply url
 
 ### Response
 
@@ -4207,11 +4207,7 @@ curl --request POST \
       }
     ],
     "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
-    "hit_reward": {
-      "max_cashback": 10,
-      "place": "7-11",
-      "cashback_upper_bound": 500
-    },
+    "max_cashback": 10,
     "apply_url": "https://www.google.com"
   }'
 ```
@@ -4234,11 +4230,7 @@ data = {
     }
   ],
   "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
-  "hit_reward": {
-    "max_cashback": 10,
-    "place": "7-11",
-    "cashback_upper_bound": 500
-  },
+  "max_cashback": 10,
   "apply_url": "https://www.google.com"
 }
 response = requests.post(url, headers=headers, json=data)
@@ -4261,14 +4253,10 @@ data = {
       }
     ],
     website: "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
-    hit_reward: {
-      max_cashback: 10,
-      place: "7-11",
-      cashback_upper_bound: 500
-    },
+    max_cashback: 10,
     apply_url: "https://www.google.com"
   }
-axios.post('https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9', data, {
+axios.post('https://prodapi.cardbo.info/api/v5/card/pending', data, {
     headers: headers
   })
   .then(function (response) {
@@ -4346,15 +4334,15 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter  | Required | Type      | Description
----------- | -------- | --------- | -----------
-name       | false    | string    | card name
-options    | false    | []Option  | card options
-images     | false    | Image     | card images
-website    | false    | string    | card official website url
-bank       | false    | Bank      | bank information
-hit_reward | false    | HitReword | hit reward information
-apply_url  | false    | string    | apply url
+Parameter    | Required | Type      | Description
+------------ | -------- | --------- | -----------
+name         | false    | string    | card name
+options      | false    | []Option  | card options
+images       | false    | Image     | card images
+website      | false    | string    | card official website url
+bank         | false    | Bank      | bank information
+max_cashback | false    | float     | max cashback from official website promotion
+apply_url    | false    | string    | apply url
 
 ### Response
 
@@ -4635,15 +4623,15 @@ card_id   | card id
 
 #### Parameters
 
-Parameter  | Required | Type      | Description
----------- | -------- | --------- | -----------
-name       | false    | string    | card name
-options    | false    | []Option  | card options
-images     | false    | Image     | card images
-website    | false    | string    | card official website url
-bank       | false    | Bank      | bank information
-hit_reward | false    | HitReword | hit reward information
-apply_url  | false    | string    | apply url
+Parameter    | Required | Type      | Description
+------------ | -------- | --------- | -----------
+name         | false    | string    | card name
+options      | false    | []Option  | card options
+images       | false    | Image     | card images
+website      | false    | string    | card official website url
+bank         | false    | Bank      | bank information
+max_cashback | false    | float     | max cashback from official website promotion
+apply_url    | false    | string    | apply url
 
 ### Response
 
@@ -5159,6 +5147,203 @@ Key     | Type    | Description
 ------- | ------- | -----------
 card_id | string  | card id
 url     | string  | image URL
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+# MobilePay
+
+## Insert mobile pay
+
+> Insert mobile pay:
+
+```shell
+curl --request POST \
+  --url https://prodapi.cardbo.info/api/v5/mobilepay \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "name": "Apple Pay",
+    "image": "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png",
+  }'
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/mobilepay'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "name": "Apple Pay",
+  "image": "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png",
+}
+response = requests.post(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  name: "Apple Pay",
+  image: "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png",
+}
+axios.post('https://prodapi.cardbo.info/api/v5/mobilepay', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
+    "name": "Apple Pay",
+    "image": "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png"
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Insert a new mobile pay
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`POST https://prodapi.cardbo.info/api/v5/mobilepay`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter | Required | Type      | Description
+--------- | -------- | --------- | -----------
+name      | true     | string    | mobile pay name
+image     | true     | string    | mobile pay image URL
+
+### Response
+
+#### Success
+
+Key          | Type    | Description
+------------ | ------- | -----------
+mobilepay_id | string  | mobilepay id
+name         | string  | mobilepay name
+image        | string  | mobilepay image URL
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## Get mobile pays
+
+> Get mobile pays data:
+
+```shell
+curl --request GET \
+  --url https://prodapi.cardbo.info/api/v5/mobilepays?options=name&options=image \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://prodapi.cardbo.info/api/v5/mobilepays?options=name&options=image'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://prodapi.cardbo.info/api/v5/mobilepays?options=name&options=image', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": [
+    {
+      "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
+      "name": "Apple Pay",
+      "image": "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png",
+      "user_has": false
+    }
+  ],
+  "timestamp": 1617601542000
+}
+```
+
+Get mobile pays data
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://prodapi.cardbo.info/api/v5/mobilepays`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Queries
+
+Query   | Required | Muti-values | Enums                       | Description
+------- | -------- | ----------- | --------------------------- | -----------
+options | false    | true        | `name`, `image`, `user_has` | mobile pay response options
+
+### Response
+
+#### Success
+
+Key          | Type    | Description                      | Note
+------------ | ------- | -------------------------------- | ----
+mobilepay_id | string  | mobilepay id                     |
+name         | string  | mobilepay name                   | optional
+image        | string  | mobilepay image URL              | optional
+user_has     | string  | does the user have the mobilepay | optional
 
 #### Error
 
