@@ -5747,4 +5747,499 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
+## 16-3. Insert an accounting record without invoice
+
+> Insert an accounting record without invoice:
+
+```shell
+curl --request POST \
+  --url https://api.cardbo.info/api/v6/accounting \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "card_id": "5f9a747f10c24bf3d4a54d4e",
+    "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
+    "amount": 1000,
+    "name": "午餐",
+    "store_id": "5f9a747f10c24bf3d4a54d4e",
+    "rewards": [
+      "offer_id": "5f9a747f10c24bf3d4a54d4e"
+    ],
+    "date": 1617601542000,
+    "completed": true
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/accounting'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "card_id": "5f9a747f10c24bf3d4a54d4e",
+  "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
+  "amount": 1000,
+  "name": "午餐",
+  "store_id": "5f9a747f10c24bf3d4a54d4e",
+  "rewards": [
+    "offer_id": "5f9a747f10c24bf3d4a54d4e"
+  ],
+  "date": 1617601542000,
+  "completed": true
+}
+response = requests.post(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  card_id: "5f9a747f10c24bf3d4a54d4e",
+  mobilepay_id: "5f9a747f10c24bf3d4a54d4e",
+  amount: 1000,
+  name: "午餐",
+  store_id: "5f9a747f10c24bf3d4a54d4e",
+  rewards: [
+    "5f9a747f10c24bf3d4a54d4e"
+  ],
+  date: 1617601542000,
+  completed: true
+}
+axios.post('https://api.cardbo.info/api/v6/accounting', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "_id": "5f9a747f10c24bf3d4a54d4e",
+  "user": {
+    "user_info": "..."
+  },
+  "card": {
+    "card_info": "...",
+  },
+  "mobilepay": {
+    "mobilepay_info": "...",
+  },
+  "amount": 1000,
+  "name": "午餐",
+  "store": {
+    "store_info": "...",
+  },
+  "store_name": "",
+  "invoice": "AB99999999",
+  "date": 1617601542000,
+  "rewards": [
+    {
+      "offer_id": "5f9a747f10c24bf3d4a54d4e",
+      "reward_name": "現金",
+      "reward_value": 28.83
+    }
+  ]
+}
+```
+
+Insert an accounting record without invoice
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`POST https://api.cardbo.info/api/v6/accounting`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter     | Required | Type     | Description
+------------- | -------- | -------- | -----------
+card_id       | true     | string   | card id
+mobilepay_id  | true     | string   | mobilepay id
+amount        | true     | int      | the amount of the money
+name          | true     | string   | name of the record
+store_id      | false(*1) | string   | store id
+store_name    | false(*1) | string   | store name when the store not in our database
+date          | true     | int      | the datetime of the expense in timestamp
+rewards       | false    | []string | array of offer id that can get from the expense
+completed     | true     | bool     | is the record completed
+
+*1: on of `store_id` and `store_name` is required
+
+### Response
+
+#### Success
+
+Key           | Type               | Description
+------------- | ------------------ | -----------
+accounting_id | string             | accotungin id
+user          | User               | User object
+card          | Card               | Card object
+mobilepay     | MobilePay          | MobilePay object
+invoice       | Invoice            | Invoice object
+amount        | int                | how much money of the record
+name          | string             | description of the record
+store         | Store              | Store object
+store_name    | string             | store name when the store is not in our database
+date          | int                | date of the expese in timestamp
+rewards       | []AccountingReward | array of AccountingReward object
+pending       | string             | is the record in pending or not
+created_at    | int                | User create time in timestamp
+updated_at    | int                | User update time in timestamp
+
+## 16-4. Insert an accounting record with QR code invoice
+
+> Insert an accounting record with QR code invoice:
+
+```shell
+curl --request POST \
+  --url https://api.cardbo.info/api/v6/accounting/qr_code \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "card_id": "5f9a747f10c24bf3d4a54d4e",
+    "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
+    "amount": 1000,
+    "name": "午餐",
+    "store_id": "5f9a747f10c24bf3d4a54d4e",
+    "qr_code_left": "INVOICE_QR_CODE_LEFT",
+    "qr_code_right": "INVOICE_QR_CODE_RIGHT",
+    "rewards": [
+      "offer_id": "5f9a747f10c24bf3d4a54d4e"
+    ],
+    "date": 1617601542000,
+    "completed": true
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/accounting/qr_code'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "card_id": "5f9a747f10c24bf3d4a54d4e",
+  "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
+  "amount": 1000,
+  "name": "午餐",
+  "store_id": "5f9a747f10c24bf3d4a54d4e",
+  "qr_code_left": "INVOICE_QR_CODE_LEFT",
+  "qr_code_right": "INVOICE_QR_CODE_RIGHT",
+  "rewards": [
+    "offer_id": "5f9a747f10c24bf3d4a54d4e"
+  ],
+  "date": 1617601542000,
+  "completed": true
+}
+response = requests.post(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  card_id: "5f9a747f10c24bf3d4a54d4e",
+  mobilepay_id: "5f9a747f10c24bf3d4a54d4e",
+  amount: 1000,
+  name: "午餐",
+  store_id: "5f9a747f10c24bf3d4a54d4e",
+  qr_code_left: "INVOICE_QR_CODE_LEFT",
+  qr_code_right: "INVOICE_QR_CODE_RIGHT",
+  rewards: [
+    "5f9a747f10c24bf3d4a54d4e"
+  ],
+  date: 1617601542000,
+  completed: true
+}
+axios.post('https://api.cardbo.info/api/v6/accounting/qr_code', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "_id": "5f9a747f10c24bf3d4a54d4e",
+  "user": {
+    "user_info": "..."
+  },
+  "card": {
+    "card_info": "...",
+  },
+  "mobilepay": {
+    "mobilepay_info": "...",
+  },
+  "amount": 1000,
+  "name": "午餐",
+  "store": {
+    "store_info": "...",
+  },
+  "store_name": "",
+  "invoice": "AB99999999",
+  "date": 1617601542000,
+  "rewards": [
+    {
+      "offer_id": "5f9a747f10c24bf3d4a54d4e",
+      "reward_name": "現金",
+      "reward_value": 28.83
+    }
+  ]
+}
+```
+
+Insert an accounting record with QR code invoice
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`POST https://api.cardbo.info/api/v6/accounting/qr_code`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter     | Required  | Type     | Description
+------------- | --------- | -------- | -----------
+card_id       | true      | string   | card id
+mobilepay_id  | true      | string   | mobilepay id
+amount        | true      | int      | the amount of the money
+name          | true      | string   | name of the record
+store_id      | false(*1) | string   | store id
+store_name    | false(*1) | string   | store name when the store not in our database
+qr_code_left  | true      | string   | the left QR code on the invcoie
+qr_code_right | true      | string   | the right QR code on the invcoie
+date          | true      | int      | the datetime of the expense in timestamp
+rewards       | false     | []string | array of offer id that can get from the expense
+completed     | true      | bool     | is the record completed
+
+*1: on of `store_id` and `store_name` is required
+
+### Response
+
+#### Success
+
+Key           | Type               | Description
+------------- | ------------------ | -----------
+accounting_id | string             | accotungin id
+user          | User               | User object
+card          | Card               | Card object
+mobilepay     | MobilePay          | MobilePay object
+invoice       | Invoice            | Invoice object
+amount        | int                | how much money of the record
+name          | string             | description of the record
+store         | Store              | Store object
+store_name    | string             | store name when the store is not in our database
+date          | int                | date of the expese in timestamp
+rewards       | []AccountingReward | array of AccountingReward object
+pending       | string             | is the record in pending or not
+created_at    | int                | User create time in timestamp
+updated_at    | int                | User update time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 16-5. Insert an accounting record with carrier invoice
+
+> Insert an accounting record with carrier invoice:
+
+```shell
+curl --request POST \
+  --url https://api.cardbo.info/api/v6/accounting/qr_code \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "card_id": "5f9a747f10c24bf3d4a54d4e",
+    "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
+    "amount": 1000,
+    "name": "午餐",
+    "store_id": "5f9a747f10c24bf3d4a54d4e",
+    "invoice_id": "5f9a747f10c24bf3d4a54d4e",
+    "rewards": [
+      "offer_id": "5f9a747f10c24bf3d4a54d4e"
+    ],
+    "date": 1617601542000,
+    "completed": true
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/accounting/qr_code'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "card_id": "5f9a747f10c24bf3d4a54d4e",
+  "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
+  "amount": 1000,
+  "name": "午餐",
+  "store_id": "5f9a747f10c24bf3d4a54d4e",
+  "invoice_id": "5f9a747f10c24bf3d4a54d4e",
+  "rewards": [
+    "offer_id": "5f9a747f10c24bf3d4a54d4e"
+  ],
+  "date": 1617601542000,
+  "completed": true
+}
+response = requests.post(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  card_id: "5f9a747f10c24bf3d4a54d4e",
+  mobilepay_id: "5f9a747f10c24bf3d4a54d4e",
+  amount: 1000,
+  name: "午餐",
+  store_id: "5f9a747f10c24bf3d4a54d4e",
+  invoice_id: "5f9a747f10c24bf3d4a54d4e",
+  rewards: [
+    "5f9a747f10c24bf3d4a54d4e"
+  ],
+  date: 1617601542000,
+  completed: true
+}
+axios.post('https://api.cardbo.info/api/v6/accounting/qr_code', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "_id": "5f9a747f10c24bf3d4a54d4e",
+  "user": {
+    "user_info": "..."
+  },
+  "card": {
+    "card_info": "...",
+  },
+  "mobilepay": {
+    "mobilepay_info": "...",
+  },
+  "amount": 1000,
+  "name": "午餐",
+  "store": {
+    "store_info": "...",
+  },
+  "store_name": "",
+  "invoice": "AB99999999",
+  "date": 1617601542000,
+  "rewards": [
+    {
+      "offer_id": "5f9a747f10c24bf3d4a54d4e",
+      "reward_name": "現金",
+      "reward_value": 28.83
+    }
+  ]
+}
+```
+
+Insert an accounting record with carrier invoice
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`POST https://api.cardbo.info/api/v6/accounting/qr_code`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter     | Required  | Type     | Description
+------------- | --------- | -------- | -----------
+card_id       | true      | string   | card id
+mobilepay_id  | true      | string   | mobilepay id
+amount        | true      | int      | the amount of the money
+name          | true      | string   | name of the record
+store_id      | false(*1) | string   | store id
+store_name    | false(*1) | string   | store name when the store not in our database
+invoice_id    | true      | string   | invoice id
+date          | true      | int      | the datetime of the expense in timestamp
+rewards       | false     | []string | array of offer id that can get from the expense
+completed     | true      | bool     | is the record completed
+
+*1: on of `store_id` and `store_name` is required
+
+### Response
+
+#### Success
+
+Key           | Type               | Description
+------------- | ------------------ | -----------
+accounting_id | string             | accotungin id
+user          | User               | User object
+card          | Card               | Card object
+mobilepay     | MobilePay          | MobilePay object
+invoice       | Invoice            | Invoice object
+amount        | int                | how much money of the record
+name          | string             | description of the record
+store         | Store              | Store object
+store_name    | string             | store name when the store is not in our database
+date          | int                | date of the expese in timestamp
+rewards       | []AccountingReward | array of AccountingReward object
+pending       | string             | is the record in pending or not
+created_at    | int                | User create time in timestamp
+updated_at    | int                | User update time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
 # 17. Invoice
