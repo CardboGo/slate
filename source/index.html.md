@@ -65,15 +65,15 @@ Code    | Description
 `10001` | ERROR_AUTH_TOKEN_TIMEOUT
 `10002` | ERROR_AUTH_PERMISSION_DENIED
 
-# Authentication
+# 1. Authentication
 
-## Administrator
+## 1-1. Administrator
 
 > Login administrator:
 
 ```shell
 curl --request POST \
-  --url https://prodapi.cardbo.info/api/v5/auth/administrator \
+  --url https://api.cardbo.info/api/v5/auth/administrator \
   -H 'Content-Type: application/json' \
   --data '{
     "account": "{account}",
@@ -84,7 +84,7 @@ curl --request POST \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/auth/administrator'
+url = 'https://api.cardbo.info/api/v5/auth/administrator'
 data = {
   'account': '{account}',
   'password': '{password}'
@@ -95,7 +95,7 @@ response = requests.post(url, json=data)
 ```javascript
 const axios = require('axios');
 
-axios.post('https://prodapi.cardbo.info/api/v5/auth/administrator', {
+axios.post('https://api.cardbo.info/api/v5/auth/administrator', {
     account: '{account}',
     password: '{password}'
   })
@@ -128,7 +128,7 @@ Administrator authentication is used to login admnistrator and get administrator
 
 ### HTTP Request
 
-`POST https://prodapi.cardbo.info/api/v5/auth/administrator`
+`POST https://api.cardbo.info/api/v5/auth/administrator`
 
 ### Request
 
@@ -157,13 +157,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## LineBot
+## 1-2. LineBot
 
 > Login linebot:
 
 ```shell
 curl --request POST \
-  --url https://prodapi.cardbo.info/api/v5/auth/linebot \
+  --url https://api.cardbo.info/api/v5/auth/linebot \
   -H 'Content-Type: application/json' \
   --data '{
     "source": 1,
@@ -174,7 +174,7 @@ curl --request POST \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/auth/linebot'
+url = 'https://api.cardbo.info/api/v5/auth/linebot'
 data = {
   'source': 1,
   'user_id': '5fcd3c76e549avb2805e7fe0'
@@ -185,7 +185,7 @@ response = requests.post(url, json=data)
 ```javascript
 const axios = require('axios');
 
-axios.post('https://prodapi.cardbo.info/api/v5/auth/linebot', {
+axios.post('https://api.cardbo.info/api/v5/auth/linebot', {
     source: 1,
     user_id: '5fcd3c76e549avb2805e7fe0'
   })
@@ -215,7 +215,7 @@ Linebot authentication is used to login linebot and get API auth token.
 
 ### HTTP Request
 
-`POST https://prodapi.cardbo.info/api/v5/auth/linebot`
+`POST https://api.cardbo.info/api/v5/auth/linebot`
 
 ### Request
 
@@ -241,13 +241,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Line Login
+## 1-3. Line Login
 
 > Login from LINE:
 
 ```shell
 curl --request POST \
-  --url https://prodapi.cardbo.info/api/v5/auth/line \
+  --url https://api.cardbo.info/api/v5/auth/line \
   -H 'Content-Type: application/json' \
   --data '{
     "source": 1,
@@ -258,7 +258,7 @@ curl --request POST \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/auth/line'
+url = 'https://api.cardbo.info/api/v5/auth/line'
 data = {
   'source': 1,
   'access_token': '{access_token}'
@@ -269,7 +269,7 @@ response = requests.post(url, json=data)
 ```javascript
 const axios = require('axios');
 
-axios.post('https://prodapi.cardbo.info/api/v5/auth/line', {
+axios.post('https://api.cardbo.info/api/v5/auth/line', {
     source: 1,
     access_token: '{access_token}'
   })
@@ -299,7 +299,7 @@ Line authentication is used to login from LINE and get API auth token.
 
 ### HTTP Request
 
-`POST https://prodapi.cardbo.info/api/v5/auth/line`
+`POST https://api.cardbo.info/api/v5/auth/line`
 
 ### Request
 
@@ -325,13 +325,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Auth Refresh
+## 1-4. Auth Refresh
 
 > Refresh auth token:
 
 ```shell
 curl --request POST \
-  --url https://prodapi.cardbo.info/api/v5/auth/refresh \
+  --url https://api.cardbo.info/api/v5/auth/refresh \
   -H 'Authorization: Bearer meowmeowmeowrefresh' \
   -H 'Content-Type: application/json' \
 ```
@@ -339,7 +339,7 @@ curl --request POST \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/auth/refresh'
+url = 'https://api.cardbo.info/api/v5/auth/refresh'
 headers = {'Authorization': 'Bearer meowmeowmeowrefresh'}
 response = requests.post(url, headers=headers)
 ```
@@ -348,7 +348,7 @@ response = requests.post(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowrefresh'}
-axios.post('https://prodapi.cardbo.info/api/v5/auth/refresh', {
+axios.post('https://api.cardbo.info/api/v5/auth/refresh', {
     headers: headers
   })
   .then(function (response) {
@@ -381,7 +381,7 @@ You must replace <code>meowmeowmeowrefresh</code> with your personal API refresh
 
 ### HTTP Request
 
-`POST https://prodapi.cardbo.info/api/v5/auth/refresh`
+`POST https://api.cardbo.info/api/v5/auth/refresh`
 
 ### Request
 
@@ -406,15 +406,15 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-# User
+# 2. User
 
-## Get user profile
+## 2-1. Get user profile
 
 > Get user profile:
 
 ```shell
 curl --request GET \
-  --url https://prodapi.cardbo.info/api/v5/user \
+  --url https://api.cardbo.info/api/v5/user \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -422,7 +422,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/user'
+url = 'https://api.cardbo.info/api/v5/user'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.get(url, headers=headers)
 ```
@@ -431,7 +431,7 @@ response = requests.get(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.get('https://prodapi.cardbo.info/api/v5/user', {
+axios.get('https://api.cardbo.info/api/v5/user', {
     headers: headers
   })
   .then(function (response) {
@@ -497,7 +497,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`GET https://prodapi.cardbo.info/api/v5/user`
+`GET https://api.cardbo.info/api/v5/user`
 
 ### Request
 
@@ -533,13 +533,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Update user information
+## 2-2. Update user information
 
 > Update user information:
 
 ```shell
 curl --request PUT \
-  --url https://prodapi.cardbo.info/api/v5/user \
+  --url https://api.cardbo.info/api/v5/user \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -552,7 +552,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/user'
+url = 'https://api.cardbo.info/api/v5/user'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'username': 'Harrison',
@@ -571,7 +571,7 @@ data = {
   email: 'harrison@cardbo.info',
   phone_number: '0987654321',
 }
-axios.put('https://prodapi.cardbo.info/api/v5/user', data, {
+axios.put('https://api.cardbo.info/api/v5/user', data, {
     headers: headers
   })
   .then(function (response) {
@@ -637,7 +637,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/user`
+`PUT https://api.cardbo.info/api/v5/user`
 
 ### Request
 
@@ -681,13 +681,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Add user card
+## 2-3. Add user card
 
 > Add card:
 
 ```shell
 curl --request PUT \
-  --url https://prodapi.cardbo.info/api/v5/user/add_card \
+  --url https://api.cardbo.info/api/v5/user/add_card \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -701,7 +701,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/user/add_card'
+url = 'https://api.cardbo.info/api/v5/user/add_card'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'card_id': '5fdb2ff846a97b49dac8a6b3',
@@ -722,7 +722,7 @@ data = {
   level: 4,
   issuer: 'JCB'
 }
-axios.put('https://prodapi.cardbo.info/api/v5/user/add_card', data, {
+axios.put('https://api.cardbo.info/api/v5/user/add_card', data, {
     headers: headers
   })
   .then(function (response) {
@@ -752,7 +752,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/user/add_card`
+`PUT https://api.cardbo.info/api/v5/user/add_card`
 
 ### Request
 
@@ -785,13 +785,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Remove user card
+## 2-4. Remove user card
 
 > Remove card:
 
 ```shell
 curl --request PUT \
-  --url https://prodapi.cardbo.info/api/v5/user/remove_card \
+  --url https://api.cardbo.info/api/v5/user/remove_card \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -802,7 +802,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/user/remove_card'
+url = 'https://api.cardbo.info/api/v5/user/remove_card'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'card_id': '5fdb2ff846a97b49dac8a6b3'
@@ -817,7 +817,7 @@ headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
   card_id: '5fdb2ff846a97b49dac8a6b3'
 }
-axios.put('https://prodapi.cardbo.info/api/v5/user/remove_card', data, {
+axios.put('https://api.cardbo.info/api/v5/user/remove_card', data, {
     headers: headers
   })
   .then(function (response) {
@@ -847,7 +847,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/user/remove_card`
+`PUT https://api.cardbo.info/api/v5/user/remove_card`
 
 ### Request
 
@@ -877,13 +877,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Update user mobile pays
+## 2-5. Update user mobile pays
 
 > Update mobile pays:
 
 ```shell
 curl --request PUT \
-  --url https://prodapi.cardbo.info/api/v5/user/mobilepays \
+  --url https://api.cardbo.info/api/v5/user/mobilepays \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '[
@@ -896,7 +896,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/user/mobilepays'
+url = 'https://api.cardbo.info/api/v5/user/mobilepays'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = [
   {
@@ -915,7 +915,7 @@ data = [
     mobilepay_id: "5f9a747f10c24bf3d4a54d4e"
   }
 ]
-axios.put('https://prodapi.cardbo.info/api/v5/user/mobilepays', data, {
+axios.put('https://api.cardbo.info/api/v5/user/mobilepays', data, {
     headers: headers
   })
   .then(function (response) {
@@ -945,7 +945,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/user/mobilepays`
+`PUT https://api.cardbo.info/api/v5/user/mobilepays`
 
 ### Request
 
@@ -975,13 +975,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Add user mobile pay
+## 2-6. Add user mobile pay
 
 > Add mobile pay:
 
 ```shell
 curl --request PUT \
-  --url https://prodapi.cardbo.info/api/v5/user/add_mobilepay \
+  --url https://api.cardbo.info/api/v5/user/add_mobilepay \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -999,7 +999,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/user/add_mobilepay'
+url = 'https://api.cardbo.info/api/v5/user/add_mobilepay'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'mobilepay': {
@@ -1028,7 +1028,7 @@ data = {
     }
   ]
 }
-axios.put('https://prodapi.cardbo.info/api/v5/user/add_mobilepay', data, {
+axios.put('https://api.cardbo.info/api/v5/user/add_mobilepay', data, {
     headers: headers
   })
   .then(function (response) {
@@ -1058,7 +1058,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/user/add_mobilepay`
+`PUT https://api.cardbo.info/api/v5/user/add_mobilepay`
 
 ### Request
 
@@ -1101,13 +1101,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Remove user mobile pay
+## 2-7. Remove user mobile pay
 
 > Remove mobile pay:
 
 ```shell
 curl --request PUT \
-  --url https://prodapi.cardbo.info/api/v5/user/remove_mobilepay \
+  --url https://api.cardbo.info/api/v5/user/remove_mobilepay \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -1118,7 +1118,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/user/remove_mobilepay'
+url = 'https://api.cardbo.info/api/v5/user/remove_mobilepay'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'mobilepay_id': '5f9a747f10c24bf3d4a54d4e'
@@ -1133,7 +1133,7 @@ headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
   mobilepay_id: "5f9a747f10c24bf3d4a54d4e"
 }
-axios.put('https://prodapi.cardbo.info/api/v5/user/remove_mobilepay', data, {
+axios.put('https://api.cardbo.info/api/v5/user/remove_mobilepay', data, {
     headers: headers
   })
   .then(function (response) {
@@ -1163,7 +1163,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/user/remove_mobilepay`
+`PUT https://api.cardbo.info/api/v5/user/remove_mobilepay`
 
 ### Request
 
@@ -1193,13 +1193,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Add card to user mobile pay
+## 2-8. Add card to user mobile pay
 
 > Add card to mobile pay:
 
 ```shell
 curl --request PUT \
-  --url https://prodapi.cardbo.info/api/v5/user/mobilepay/add_card \
+  --url https://api.cardbo.info/api/v5/user/mobilepay/add_card \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -1215,7 +1215,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/user/mobilepay/add_card'
+url = 'https://api.cardbo.info/api/v5/user/mobilepay/add_card'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'mobilepay': {
@@ -1240,7 +1240,7 @@ data = {
     card_id: "5fdb2ff846a97b49dac8a6b3"
   }
 }
-axios.put('https://prodapi.cardbo.info/api/v5/user/mobilepay/add_card', data, {
+axios.put('https://api.cardbo.info/api/v5/user/mobilepay/add_card', data, {
     headers: headers
   })
   .then(function (response) {
@@ -1270,7 +1270,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/user/mobilepay/add_card`
+`PUT https://api.cardbo.info/api/v5/user/mobilepay/add_card`
 
 ### Request
 
@@ -1313,13 +1313,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Remove card from user mobile pay
+## 2-9. Remove card from user mobile pay
 
 > Remove card from mobile pay:
 
 ```shell
 curl --request PUT \
-  --url https://prodapi.cardbo.info/api/v5/user/mobilepay/remove_card \
+  --url https://api.cardbo.info/api/v5/user/mobilepay/remove_card \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -1335,7 +1335,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/user/mobilepay/remove_card'
+url = 'https://api.cardbo.info/api/v5/user/mobilepay/remove_card'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'mobilepay': {
@@ -1360,7 +1360,7 @@ data = {
     card_id: "5fdb2ff846a97b49dac8a6b3"
   }
 }
-axios.put('https://prodapi.cardbo.info/api/v5/user/mobilepay/remove_card', data, {
+axios.put('https://api.cardbo.info/api/v5/user/mobilepay/remove_card', data, {
     headers: headers
   })
   .then(function (response) {
@@ -1390,7 +1390,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/user/mobilepay/remove_card`
+`PUT https://api.cardbo.info/api/v5/user/mobilepay/remove_card`
 
 ### Request
 
@@ -1433,13 +1433,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Update user level
+## 2-10. Update user level
 
 > Update user level:
 
 ```shell
 curl --request PUT \
-  --url https://prodapi.cardbo.info/api/v5/user/user_level \
+  --url https://api.cardbo.info/api/v5/user/user_level \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '[
@@ -1453,7 +1453,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/user/user_level'
+url = 'https://api.cardbo.info/api/v5/user/user_level'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = [
   {
@@ -1474,7 +1474,7 @@ data = [
     user_level: 2
   }
 ]
-axios.put('https://prodapi.cardbo.info/api/v5/user/user_level', data, {
+axios.put('https://api.cardbo.info/api/v5/user/user_level', data, {
     headers: headers
   })
   .then(function (response) {
@@ -1504,7 +1504,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/user/user_level`
+`PUT https://api.cardbo.info/api/v5/user/user_level`
 
 ### Request
 
@@ -1535,15 +1535,132 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-# Administrator
+## 2-11. Get user accounting summary
 
-## Create administrator
+> Get user accounting summary:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/user/accounting \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v5/user/accounting'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v5/user/accounting', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "user": {
+      "user_info": "..."
+    },
+    "total_expense": 0,
+    "total_reward": 0,
+    "card_user_rewards": [
+      {
+        "card": {
+          "card_info": "..."
+        },
+        "user_reward": {
+          "reward_id": "5fcd3c76e549avb2805e7fe0",
+          "offer": {
+            "offer_id": "5fcd3c76e549avb2805e7fe0"
+          },
+          "reward_value": 1.5,
+          "reward_name": "現金",
+          "reward_upper_bound": 500,
+          "year": 2021,
+          "month": 1,
+          "expense": 1000,
+          "reward": 15.0,
+          "created_at": 1617601542000,
+          "updated_at": 1617601542000
+        }
+      }
+    ],
+    "mobilepay_expenses": [
+      {
+        "mobilepay": {
+          "mobilepay_info": "..."
+        },
+        "expense": 1000
+      }
+    ]
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get user profile by user's API auth token
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v5/user/accounting`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+### Response
+
+#### Success
+
+Key                | Type             | Description
+------------------ | ---------------- | -----------
+user               | User             | User object
+total_expense      | int              | monthly total expense
+total_reward       | int              | monthly total reward
+card_user_rewards  | CardUserReward   | CardUserReward object
+mobilepay_expenses | MobilePayExpense | MobilePayExpense object
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+# 3. Administrator
+
+## 3-1. Create administrator
 
 > Create administrator:
 
 ```shell
 curl --request POST \
-  --url https://prodapi.cardbo.info/api/v5/administrator \
+  --url https://api.cardbo.info/api/v5/administrator \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -1557,7 +1674,7 @@ curl --request POST \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/administrator'
+url = 'https://api.cardbo.info/api/v5/administrator'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'account': 'administrator_account',
@@ -1578,7 +1695,7 @@ data = {
   username: "Harrison",
   password: "password"
 }
-axios.post('https://prodapi.cardbo.info/api/v5/administrator', data, {
+axios.post('https://api.cardbo.info/api/v5/administrator', data, {
     headers: headers
   })
   .then(function (response) {
@@ -1621,7 +1738,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`POST https://prodapi.cardbo.info/api/v5/administrator`
+`POST https://api.cardbo.info/api/v5/administrator`
 
 ### Request
 
@@ -1684,13 +1801,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Get administrator
+## 3-2. Get administrator
 
 > Get administrator:
 
 ```shell
 curl --request GET \
-  --url https://prodapi.cardbo.info/api/v5/administrator \
+  --url https://api.cardbo.info/api/v5/administrator \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -1698,7 +1815,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/administrator'
+url = 'https://api.cardbo.info/api/v5/administrator'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.post(url, headers=headers)
 ```
@@ -1707,7 +1824,7 @@ response = requests.post(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.post('https://prodapi.cardbo.info/api/v5/administrator', {
+axios.post('https://api.cardbo.info/api/v5/administrator', {
     headers: headers
   })
   .then(function (response) {
@@ -1760,7 +1877,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`GET https://prodapi.cardbo.info/api/v5/administrator`
+`GET https://api.cardbo.info/api/v5/administrator`
 
 ### Request
 
@@ -1814,13 +1931,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Delete administrator
+## 3-3. Delete administrator
 
 > Delete administrator:
 
 ```shell
 curl --request DELETE \
-  --url https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c \
+  --url https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -1828,7 +1945,7 @@ curl --request DELETE \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c'
+url = 'https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.delete(url, headers=headers)
 ```
@@ -1837,7 +1954,7 @@ response = requests.delete(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.delete('https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c', {
+axios.delete('https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c', {
     headers: headers
   })
   .then(function (response) {
@@ -1890,7 +2007,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`DELETE https://prodapi.cardbo.info/api/v5/administrator/{administrator_id}`
+`DELETE https://api.cardbo.info/api/v5/administrator/{administrator_id}`
 
 ### Request
 
@@ -1950,13 +2067,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Get employee list
+## 3-4. Get employee list
 
 > Get employee list:
 
 ```shell
 curl --request GET \
-  --url https://prodapi.cardbo.info/api/v5/administrator/employees?options=account&options=name \
+  --url https://api.cardbo.info/api/v5/administrator/employees?options=account&options=name \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -1964,7 +2081,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/administrator/employees?options=account&options=name'
+url = 'https://api.cardbo.info/api/v5/administrator/employees?options=account&options=name'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.delete(url, headers=headers)
 ```
@@ -1973,7 +2090,7 @@ response = requests.delete(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.delete('https://prodapi.cardbo.info/api/v5/administrator/employees?options=account&options=name', {
+axios.delete('https://api.cardbo.info/api/v5/administrator/employees?options=account&options=name', {
     headers: headers
   })
   .then(function (response) {
@@ -2009,7 +2126,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`GET https://prodapi.cardbo.info/api/v5/administrator/employees`
+`GET https://api.cardbo.info/api/v5/administrator/employees`
 
 ### Request
 
@@ -2069,13 +2186,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Update administrator level
+## 3-5. Update administrator level
 
 > Update administrator level:
 
 ```shell
 curl --request PUT \
-  --url https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/level \
+  --url https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/level \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -2086,7 +2203,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/level'
+url = 'https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/level'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'level': 1
@@ -2101,7 +2218,7 @@ headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
   level: 2
 }
-axios.delete('https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/level', data, {
+axios.delete('https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/level', data, {
     headers: headers
   })
   .then(function (response) {
@@ -2154,7 +2271,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`GET https://prodapi.cardbo.info/api/v5/administrator/{administrator_id}/level`
+`GET https://api.cardbo.info/api/v5/administrator/{administrator_id}/level`
 
 ### Request
 
@@ -2226,7 +2343,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/password \
+  --url https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/password \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -2238,7 +2355,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/password'
+url = 'https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/password'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'password': 'old_password',
@@ -2255,7 +2372,7 @@ data = {
   password: 'old_password',
   new_password: 'new_password'
 }
-axios.put('https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/password', data, {
+axios.put('https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/password', data, {
     headers: headers
   })
   .then(function (response) {
@@ -2285,7 +2402,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/administrator/{administrator_id}/password`
+`PUT https://api.cardbo.info/api/v5/administrator/{administrator_id}/password`
 
 ### Request
 
@@ -2322,13 +2439,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Update administrator profile
+## 3-6. Update administrator profile
 
 > Update administrator profile:
 
 ```shell
 curl --request PUT \
-  --url https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/profile \
+  --url https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/profile \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -2340,7 +2457,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/profile'
+url = 'https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/profile'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'email': 'harrison@cardbo.info'
@@ -2355,7 +2472,7 @@ headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
   email: "harrison@cardbo.info"
 }
-axios.put('https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/profile', data, {
+axios.put('https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/profile', data, {
     headers: headers
   })
   .then(function (response) {
@@ -2408,7 +2525,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/administrator/{administrator_id}/profile`
+`PUT https://api.cardbo.info/api/v5/administrator/{administrator_id}/profile`
 
 ### Request
 
@@ -2477,13 +2594,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Reset employee password
+## 3-7. Reset employee password
 
 > Update administrator password:
 
 ```shell
 curl --request PUT \
-  --url https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/reset_password \
+  --url https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/reset_password \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -2491,7 +2608,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/reset_password'
+url = 'https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/reset_password'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.put(url, headers=headers)
 ```
@@ -2500,7 +2617,7 @@ response = requests.put(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.put('https://prodapi.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/reset_password', {
+axios.put('https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/reset_password', {
     headers: headers
   })
   .then(function (response) {
@@ -2553,7 +2670,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/administrator/{administrator_id}/reset_password`
+`PUT https://api.cardbo.info/api/v5/administrator/{administrator_id}/reset_password`
 
 ### Request
 
@@ -2613,15 +2730,15 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-# Bank
+# 4. Bank
 
-## Get banks
+## 4-1. Get banks
 
 > Get banks data:
 
 ```shell
 curl --request GET \
-  --url https://prodapi.cardbo.info/api/v5/banks?options=name&options=logo \
+  --url https://api.cardbo.info/api/v5/banks?options=name&options=logo \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -2629,7 +2746,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/banks?options=name&options=logo'
+url = 'https://api.cardbo.info/api/v5/banks?options=name&options=logo'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.get(url, headers=headers)
 ```
@@ -2638,7 +2755,7 @@ response = requests.get(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.get('https://prodapi.cardbo.info/api/v5/banks?options=name&options=logo', {
+axios.get('https://api.cardbo.info/api/v5/banks?options=name&options=logo', {
     headers: headers
   })
   .then(function (response) {
@@ -2676,7 +2793,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`GET https://prodapi.cardbo.info/api/v5/banks`
+`GET https://api.cardbo.info/api/v5/banks`
 
 ### Request
 
@@ -2710,15 +2827,15 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-# Card
+# 5. Card
 
-## Get formal cards
+## 5-1. Get formal cards
 
 > Get formal cards data:
 
 ```shell
 curl --request GET \
-  --url https://prodapi.cardbo.info/api/v5/cards/formal?size=10&page=1&options=name&options=images \
+  --url https://api.cardbo.info/api/v5/cards/formal?size=10&page=1&options=name&options=images \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -2726,7 +2843,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/cards/formal?size=10&page=1&options=name&options=images'
+url = 'https://api.cardbo.info/api/v5/cards/formal?size=10&page=1&options=name&options=images'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.get(url, headers=headers)
 ```
@@ -2735,7 +2852,7 @@ response = requests.get(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.get('https://prodapi.cardbo.info/api/v5/cards/formal?size=10&page=1&options=name&options=images', {
+axios.get('https://api.cardbo.info/api/v5/cards/formal?size=10&page=1&options=name&options=images', {
     headers: headers
   })
   .then(function (response) {
@@ -2804,7 +2921,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`GET https://prodapi.cardbo.info/api/v5/cards/formal`
+`GET https://api.cardbo.info/api/v5/cards/formal`
 
 ### Request
 
@@ -2851,13 +2968,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Get formal cards by bank id
+## 5-2. Get formal cards by bank id
 
 > Get formal cards data by bank id:
 
 ```shell
 curl --request GET \
-  --url https://prodapi.cardbo.info/api/v5/cards/formal/bank/5f756d85c2349d9139648a68?options=name&options=images \
+  --url https://api.cardbo.info/api/v5/cards/formal/bank/5f756d85c2349d9139648a68?options=name&options=images \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -2865,7 +2982,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/cards/formal/bank/5f756d85c2349d9139648a68?options=name&options=images'
+url = 'https://api.cardbo.info/api/v5/cards/formal/bank/5f756d85c2349d9139648a68?options=name&options=images'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.get(url, headers=headers)
 ```
@@ -2874,7 +2991,7 @@ response = requests.get(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.get('https://prodapi.cardbo.info/api/v5/cards/formal/bank/5f756d85c2349d9139648a68?options=name&options=images', {
+axios.get('https://api.cardbo.info/api/v5/cards/formal/bank/5f756d85c2349d9139648a68?options=name&options=images', {
     headers: headers
   })
   .then(function (response) {
@@ -2943,7 +3060,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`GET https://prodapi.cardbo.info/api/v5/cards/formal/bank/{bank_id}`
+`GET https://api.cardbo.info/api/v5/cards/formal/bank/{bank_id}`
 
 ### Request
 
@@ -2992,13 +3109,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Get promoted formal cards
+## 5-3. Get promoted formal cards
 
 > Get promoted formal cards data:
 
 ```shell
 curl --request GET \
-  --url https://prodapi.cardbo.info/api/v5/cards/formal/promote?options=name&options=images \
+  --url https://api.cardbo.info/api/v5/cards/formal/promote?options=name&options=images \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -3006,7 +3123,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/cards/formal/promote?options=name&options=images'
+url = 'https://api.cardbo.info/api/v5/cards/formal/promote?options=name&options=images'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.get(url, headers=headers)
 ```
@@ -3015,7 +3132,7 @@ response = requests.get(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.get('https://prodapi.cardbo.info/api/v5/cards/formal/promote?options=name&options=images', {
+axios.get('https://api.cardbo.info/api/v5/cards/formal/promote?options=name&options=images', {
     headers: headers
   })
   .then(function (response) {
@@ -3084,7 +3201,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`GET https://prodapi.cardbo.info/api/v5/cards/formal/promote`
+`GET https://api.cardbo.info/api/v5/cards/formal/promote`
 
 ### Request
 
@@ -3127,13 +3244,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Get formal cards with user has property
+## 5-4. Get formal cards with user has property
 
 > Get formal cards data with user has property:
 
 ```shell
 curl --request GET \
-  --url https://prodapi.cardbo.info/api/v5/cards/formal/user_has?options=name&options=images \
+  --url https://api.cardbo.info/api/v5/cards/formal/user_has?options=name&options=images \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -3141,7 +3258,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/cards/formal/user_has?options=name&options=images'
+url = 'https://api.cardbo.info/api/v5/cards/formal/user_has?options=name&options=images'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.get(url, headers=headers)
 ```
@@ -3150,7 +3267,7 @@ response = requests.get(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.get('https://prodapi.cardbo.info/api/v5/cards/formal/user_has?options=name&options=images', {
+axios.get('https://api.cardbo.info/api/v5/cards/formal/user_has?options=name&options=images', {
     headers: headers
   })
   .then(function (response) {
@@ -3219,7 +3336,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`GET https://prodapi.cardbo.info/api/v5/cards/formal/user_has`
+`GET https://api.cardbo.info/api/v5/cards/formal/user_has`
 
 ### Request
 
@@ -3262,13 +3379,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Get formal card by card id
+## 5-5. Get formal card by card id
 
 > Get single formal card data by card id:
 
 ```shell
 curl --request GET \
-  --url https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9 \
+  --url https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9 \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -3276,7 +3393,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9'
+url = 'https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.get(url, headers=headers)
 ```
@@ -3285,7 +3402,7 @@ response = requests.get(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.get('https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9', {
+axios.get('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9', {
     headers: headers
   })
   .then(function (response) {
@@ -3351,7 +3468,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`GET https://prodapi.cardbo.info/api/v5/card/formal/{card_id}`
+`GET https://api.cardbo.info/api/v5/card/formal/{card_id}`
 
 ### Request
 
@@ -3393,13 +3510,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Update formal card
+## 5-6. Update formal card
 
 > Update formal card information:
 
 ```shell
 curl --request PUT \
-  --url https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9 \
+  --url https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9 \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -3412,7 +3529,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9'
+url = 'https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'bank': {
@@ -3431,7 +3548,7 @@ data = {
     bank_id: '5f756d85c2349d9139648a69'
   }
 }
-axios.put('https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9', data, {
+axios.put('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9', data, {
     headers: headers
   })
   .then(function (response) {
@@ -3497,7 +3614,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/card/formal/{card_id}`
+`PUT https://api.cardbo.info/api/v5/card/formal/{card_id}`
 
 ### Request
 
@@ -3551,20 +3668,20 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Delete formal card
+## 5-7. Delete formal card
 
 > Delete formal card:
 
 ```shell
 curl --request DELETE \
-  --url https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9 \
+  --url https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9 \
   -H 'Authorization: Bearer meowmeowmeowaccess'
 ```
 
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9'
+url = 'https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.delete(url, headers=headers)
 ```
@@ -3573,7 +3690,7 @@ response = requests.delete(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.delete('https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9', {
+axios.delete('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9', {
     headers: headers
   })
   .then(function (response) {
@@ -3639,7 +3756,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`DELETE https://prodapi.cardbo.info/api/v5/card/formal/{card_id}`
+`DELETE https://api.cardbo.info/api/v5/card/formal/{card_id}`
 
 ### Request
 
@@ -3681,20 +3798,20 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Add formal card to promote
+## 5-8. Add formal card to promote
 
 > Add formal card to promote:
 
 ```shell
 curl --request PUT \
-  --url https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/add_promote \
+  --url https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/add_promote \
   -H 'Authorization: Bearer meowmeowmeowaccess'
 ```
 
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/add_promote'
+url = 'https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/add_promote'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.put(url, headers=headers)
 ```
@@ -3703,7 +3820,7 @@ response = requests.put(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.put('https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/add_promote', {
+axios.put('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/add_promote', {
     headers: headers
   })
   .then(function (response) {
@@ -3769,7 +3886,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/card/formal/{card_id}/add_promote`
+`PUT https://api.cardbo.info/api/v5/card/formal/{card_id}/add_promote`
 
 ### Request
 
@@ -3811,20 +3928,20 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Remove formal card from promote
+## 5-9. Remove formal card from promote
 
 > Remove formal card from promote:
 
 ```shell
 curl --request PUT \
-  --url https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/remove_promote \
+  --url https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/remove_promote \
   -H 'Authorization: Bearer meowmeowmeowaccess'
 ```
 
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/remove_promote'
+url = 'https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/remove_promote'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.put(url, headers=headers)
 ```
@@ -3833,7 +3950,7 @@ response = requests.put(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.put('https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/remove_promote', {
+axios.put('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/remove_promote', {
     headers: headers
   })
   .then(function (response) {
@@ -3899,7 +4016,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/card/formal/{card_id}/remove_promote`
+`PUT https://api.cardbo.info/api/v5/card/formal/{card_id}/remove_promote`
 
 ### Request
 
@@ -3941,13 +4058,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Upload formal card image
+## 5-10. Upload formal card image
 
 > Upload formal card image:
 
 ```shell
 curl --request POST \
-  --url https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/image \
+  --url https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/image \
   -H 'Authorization: Bearer meowmeowmeowaccess'
   --data '{
     "image_key": "image_1",
@@ -3958,7 +4075,7 @@ curl --request POST \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/image'
+url = 'https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/image'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   "image_key": "image_1",
@@ -3975,7 +4092,7 @@ data = {
   image_key: "image_1",
   data: "base64-encoded-string"
 }
-axios.post('https://prodapi.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/image',data, {
+axios.post('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/image',data, {
     headers: headers
   })
   .then(function (response) {
@@ -4008,7 +4125,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/card/formal/{card_id}/image`
+`PUT https://api.cardbo.info/api/v5/card/formal/{card_id}/image`
 
 ### Request
 
@@ -4046,13 +4163,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Get pending cards
+## 5-11. Get pending cards
 
 > Get pending cards data:
 
 ```shell
 curl --request GET \
-  --url https://prodapi.cardbo.info/api/v5/cards/pending?size=10&page=1&options=name&options=images \
+  --url https://api.cardbo.info/api/v5/cards/pending?size=10&page=1&options=name&options=images \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -4060,7 +4177,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/cards/pending?size=10&page=1&options=name&options=images'
+url = 'https://api.cardbo.info/api/v5/cards/pending?size=10&page=1&options=name&options=images'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.get(url, headers=headers)
 ```
@@ -4069,7 +4186,7 @@ response = requests.get(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.get('https://prodapi.cardbo.info/api/v5/cards/pending?size=10&page=1&options=name&options=images', {
+axios.get('https://api.cardbo.info/api/v5/cards/pending?size=10&page=1&options=name&options=images', {
     headers: headers
   })
   .then(function (response) {
@@ -4138,7 +4255,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`GET https://prodapi.cardbo.info/api/v5/cards/pending`
+`GET https://api.cardbo.info/api/v5/cards/pending`
 
 ### Request
 
@@ -4185,13 +4302,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Insert pending card
+## 5-12. Insert pending card
 
 > Insert pending card:
 
 ```shell
 curl --request POST \
-  --url https://prodapi.cardbo.info/api/v5/card/pending \
+  --url https://api.cardbo.info/api/v5/card/pending \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -4215,7 +4332,7 @@ curl --request POST \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/card/pending'
+url = 'https://api.cardbo.info/api/v5/card/pending'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   "bank": {
@@ -4256,7 +4373,7 @@ data = {
     max_cashback: 10,
     apply_url: "https://www.google.com"
   }
-axios.post('https://prodapi.cardbo.info/api/v5/card/pending', data, {
+axios.post('https://api.cardbo.info/api/v5/card/pending', data, {
     headers: headers
   })
   .then(function (response) {
@@ -4322,7 +4439,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`POST https://prodapi.cardbo.info/api/v5/card/pending`
+`POST https://api.cardbo.info/api/v5/card/pending`
 
 ### Request
 
@@ -4370,13 +4487,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Get pending card by card id
+## 5-13. Get pending card by card id
 
 > Get single pending card data by card id:
 
 ```shell
 curl --request GET \
-  --url https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9 \
+  --url https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9 \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -4384,7 +4501,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'
+url = 'https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.get(url, headers=headers)
 ```
@@ -4393,7 +4510,7 @@ response = requests.get(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.get('https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9', {
+axios.get('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9', {
     headers: headers
   })
   .then(function (response) {
@@ -4459,7 +4576,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`GET https://prodapi.cardbo.info/api/v5/card/pending/{card_id}`
+`GET https://api.cardbo.info/api/v5/card/pending/{card_id}`
 
 ### Request
 
@@ -4501,13 +4618,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Update pending card
+## 5-14. Update pending card
 
 > Update pending card information:
 
 ```shell
 curl --request PUT \
-  --url https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9 \
+  --url https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9 \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -4520,7 +4637,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'
+url = 'https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'bank': {
@@ -4539,7 +4656,7 @@ data = {
     bank_id: '5f756d85c2349d9139648a69'
   }
 }
-axios.put('https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9', data, {
+axios.put('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9', data, {
     headers: headers
   })
   .then(function (response) {
@@ -4605,7 +4722,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/card/pending/{card_id}`
+`PUT https://api.cardbo.info/api/v5/card/pending/{card_id}`
 
 ### Request
 
@@ -4659,20 +4776,20 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Delete pending card
+## 5-15. Delete pending card
 
 > Delete pending card:
 
 ```shell
 curl --request DELETE \
-  --url https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9 \
+  --url https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9 \
   -H 'Authorization: Bearer meowmeowmeowaccess'
 ```
 
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'
+url = 'https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.delete(url, headers=headers)
 ```
@@ -4681,7 +4798,7 @@ response = requests.delete(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.delete('https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9', {
+axios.delete('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9', {
     headers: headers
   })
   .then(function (response) {
@@ -4747,7 +4864,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`DELETE https://prodapi.cardbo.info/api/v5/card/pending/{card_id}`
+`DELETE https://api.cardbo.info/api/v5/card/pending/{card_id}`
 
 ### Request
 
@@ -4789,20 +4906,20 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Pass pending card to formal card
+## 5-16. Pass pending card to formal card
 
 > Pass pending card to formal card:
 
 ```shell
 curl --request PUT \
-  --url https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/passed \
+  --url https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/passed \
   -H 'Authorization: Bearer meowmeowmeowaccess'
 ```
 
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/passed'
+url = 'https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/passed'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.put(url, headers=headers)
 ```
@@ -4811,7 +4928,7 @@ response = requests.put(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.put('https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/passed', {
+axios.put('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/passed', {
     headers: headers
   })
   .then(function (response) {
@@ -4877,7 +4994,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/card/pending/{card_id}/passed`
+`PUT https://api.cardbo.info/api/v5/card/pending/{card_id}/passed`
 
 ### Request
 
@@ -4919,20 +5036,20 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Fail pending card
+## 5-17. Fail pending card
 
 > Fail pending card:
 
 ```shell
 curl --request PUT \
-  --url https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/failed \
+  --url https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/failed \
   -H 'Authorization: Bearer meowmeowmeowaccess'
 ```
 
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/failed'
+url = 'https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/failed'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.put(url, headers=headers)
 ```
@@ -4941,7 +5058,7 @@ response = requests.put(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.put('https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/failed', {
+axios.put('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/failed', {
     headers: headers
   })
   .then(function (response) {
@@ -5007,7 +5124,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/card/pending/{card_id}/failed`
+`PUT https://api.cardbo.info/api/v5/card/pending/{card_id}/failed`
 
 ### Request
 
@@ -5049,13 +5166,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Upload pending card image
+## 5-18. Upload pending card image
 
 > Upload pending card image:
 
 ```shell
 curl --request POST \
-  --url https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/image \
+  --url https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/image \
   -H 'Authorization: Bearer meowmeowmeowaccess'
   --data '{
     "image_key": "image_1",
@@ -5066,7 +5183,7 @@ curl --request POST \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/image'
+url = 'https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/image'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   "image_key": "image_1",
@@ -5083,7 +5200,7 @@ data = {
   image_key: "image_1",
   data: "base64-encoded-string"
 }
-axios.post('https://prodapi.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/image',data, {
+axios.post('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/image',data, {
     headers: headers
   })
   .then(function (response) {
@@ -5116,7 +5233,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://prodapi.cardbo.info/api/v5/card/pending/{card_id}/image`
+`PUT https://api.cardbo.info/api/v5/card/pending/{card_id}/image`
 
 ### Request
 
@@ -5154,15 +5271,15 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-# MobilePay
+# 6. MobilePay
 
-## Insert mobile pay
+## 6-1. Insert mobile pay
 
 > Insert mobile pay:
 
 ```shell
 curl --request POST \
-  --url https://prodapi.cardbo.info/api/v5/mobilepay \
+  --url https://api.cardbo.info/api/v5/mobilepay \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -5174,7 +5291,7 @@ curl --request POST \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/mobilepay'
+url = 'https://api.cardbo.info/api/v5/mobilepay'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   "name": "Apple Pay",
@@ -5191,7 +5308,7 @@ data = {
   name: "Apple Pay",
   image: "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png",
 }
-axios.post('https://prodapi.cardbo.info/api/v5/mobilepay', data, {
+axios.post('https://api.cardbo.info/api/v5/mobilepay', data, {
     headers: headers
   })
   .then(function (response) {
@@ -5225,7 +5342,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`POST https://prodapi.cardbo.info/api/v5/mobilepay`
+`POST https://api.cardbo.info/api/v5/mobilepay`
 
 ### Request
 
@@ -5258,13 +5375,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## Get mobile pays
+## 6-2. Get mobile pays
 
 > Get mobile pays data:
 
 ```shell
 curl --request GET \
-  --url https://prodapi.cardbo.info/api/v5/mobilepays?options=name&options=image \
+  --url https://api.cardbo.info/api/v5/mobilepays?options=name&options=image \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -5272,7 +5389,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://prodapi.cardbo.info/api/v5/mobilepays?options=name&options=image'
+url = 'https://api.cardbo.info/api/v5/mobilepays?options=name&options=image'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.get(url, headers=headers)
 ```
@@ -5281,7 +5398,7 @@ response = requests.get(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.get('https://prodapi.cardbo.info/api/v5/mobilepays?options=name&options=image', {
+axios.get('https://api.cardbo.info/api/v5/mobilepays?options=name&options=image', {
     headers: headers
   })
   .then(function (response) {
@@ -5318,7 +5435,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`GET https://prodapi.cardbo.info/api/v5/mobilepays`
+`GET https://api.cardbo.info/api/v5/mobilepays`
 
 ### Request
 
