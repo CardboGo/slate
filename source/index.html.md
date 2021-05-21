@@ -69,41 +69,140 @@ Code    | Description
 
 ## User
 
-Key          | Type        | Enums                                            | Description
------------- | ----------- | ------------------------------------------------ | -----------
-user_id      | string      |                                                  | User id
-line_id      | string      |                                                  | LINE id
-username     | string      |                                                  | Username
-image        | string      |                                                  | User image
-email        | string      |                                                  | Email
-phone_number | string      |                                                  | Phone number
-cardbo_point | int         |                                                  | Cardbo point (useless)
-cards        | []Card      |                                                  | User own card array
-mobilepays   | []Mobilepay |                                                  | User own mobile pay array
-user_level   | int         | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
-created_at   | int         |                                                  | User create time in 16 digits timestamp
-updated_at   | int         |                                                  | User update time in 16 digits timestamp
-last_login   | int         |                                                  | User last login time in 16 digits timestamp
+Key          | Type          | Enums                                            | Description
+------------ | ------------- | ------------------------------------------------ | -----------
+user_id      | string        |                                                  | User id
+line_id      | string        |                                                  | LINE id
+username     | string        |                                                  | Username
+image        | string        |                                                  | User image
+email        | string        |                                                  | Email
+phone_number | string        |                                                  | Phone number
+cardbo_point | int           |                                                  | Cardbo point (useless)
+cards        | []CardDisplay |                                                  | User own card array
+mobilepays   | []Mobilepay   |                                                  | User own mobile pay array
+user_level   | int           | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+created_at   | int           |                                                  | User create time in 16 digits timestamp
+updated_at   | int           |                                                  | User update time in 16 digits timestamp
+last_login   | int           |                                                  | User last login time in 16 digits timestamp
+
+## CardUserReward
+
+Key         | Type        | Description
+----------- | ----------- | -----------
+card        | CardDisplay | CardDisplay object
+user_reward | UserReward  | UserReward object
+
+## MobilePayExpense
+
+Key       | Type      | Description
+--------- | --------- | -----------
+mobilepay | MobilePay | MobilePay object
+expense   | int       | expense value
+
+## UserReward
+
+Key                | Type        | Enums      | Description
+------------------ | ----------- | ---------- | -----------
+reward_id          | string      |            | reward id
+user               | User        |            | User object
+card               | CardDisplay |            | CardDisplay object
+offer              | Offer       |            | Offer object
+reward_value       | float       |            | offer reward value per unit
+reward_name        | string      |            | offer cashback reward name
+reward_upper_bound | int         |            | offer cashback upper bound
+pinned             | bool        |            | is the reward pinned to the summary page
+year               | int         |            | year of the reward
+month              | int         | [`1`-`12`] | month of the reward
+expense            | int         |            | expense of the month
+reward             | float       |            | total reward which user get of the month
+created_at         | int         |            | User create time in 16 digits timestamp
+updated_at         | int         |            | User update time in 16 digits timestamp
 
 ## Administrator
 
-Key              | Type          | Enums                                             | Description
----------------- | ------------- | ------------------------------------------------- | -----------
-administrator_id | string        |                                                   | administrator id
-account          | string        |                                                   | account
-username         | string        |                                                   | username
-level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
-email            | string        |                                                   | email
-phone_number     | string        |                                                   | phone number
-last_login       | int           |                                                   | last login time in 16 digits timestamp
-created_at       | int           |                                                   | User create time in 16 digits timestamp
-updated_at       | int           |                                                   | User update time in 16 digits timestamp
+Key              | Type   | Enums                                             | Description
+---------------- | ------ | ------------------------------------------------- | -----------
+administrator_id | string |                                                   | administrator id
+account          | string |                                                   | account
+username         | string |                                                   | username
+level            | int    | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
+email            | string |                                                   | email
+phone_number     | string |                                                   | phone number
+last_login       | int    |                                                   | last login time in 16 digits timestamp
+created_at       | int    |                                                   | User create time in 16 digits timestamp
+updated_at       | int    |                                                   | User update time in 16 digits timestamp
 
 ## Bank
 
+Key     | Type    | Description
+------- | ------- | -----------
+bank_id | string  | bank id
+name    | string  | bank name
+code    | string  | bank code  
+logo    | string  | logo url
+image   | string  | image url
+
 ## Card
 
+Key        | Type         | Enums                                            | Description
+---------- | ------------ | ------------------------------------------------ | -----------
+card_id    | string       |                                                  | card id
+name       | string       |                                                  | card name
+bank       | Bank         |                                                  | Bank object
+options    | []CardOption |                                                  | CardOption object
+images     | CardImage    |                                                  | CardImage object
+promote    | bool         |                                                  | is the card promoted
+website    | string       |                                                  | card official website
+creator    | string       |                                                  | creator id
+examiner   | string       |                                                  | examiner id
+created_at | string       |                                                  | created timestamp
+updated_at | string       |                                                  |updated timestamp
+status     | int          | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status
+comment    | string       |                                                  | failure comment
+user_has   | bool         |                                                  | does user has the card or not
+
+## CardOption
+
+Key        | Type    | Enums                                                        | Description
+---------- | ------- | ------------------------------------------------------------ | -----------
+issuer     | string  | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
+level      | int     | [`1`-`8`]                                                    | level of the card
+level_name | string  |                                                              | level name of the card
+
+## CardImage
+
+Key      | Type   | Description
+-------- | ------ | -----------
+image_1  | string | image URL
+image_2  | string | image URL
+image_3  | string | image URL
+image_4  | string | image URL
+image_5  | string | image URL
+image_6  | string | image URL
+image_7  | string | image URL
+image_8  | string | image URL
+image_9  | string | image URL
+image_10 | string | image URL
+
+## CardDisplay
+
+Key        | Type    | Enums                                                        | Description
+---------- | ------- | ------------------------------------------------------------ | -----------
+card_id    | string  |                                                              | card id
+name       | string  |                                                              | card name
+bank       | Bank    |                                                              | bank information
+image      | string  |                                                              | image URL
+issuer     | string  | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
+level      | int     | [`1`-`8`]                                                    | level of the card
+level_name | string  |                                                              | level name of the card
+
 ## MobilePay
+
+Key          | Type    | Description
+------------ | ------- | -----------
+mobilepay_id | string  | mobilepay id
+name         | string  | mobilepay name
+image        | string  | mobilepay image URL
 
 # 1. Authentication
 
@@ -1759,9 +1858,6 @@ axios.post('https://api.cardbo.info/api/v5/administrator', data, {
     "level": 2,
     "email": "",
     "phone_number": "",
-    "facebook_link": "",
-    "job_statistics": {},
-    "money": {},
     "last_login": 0,
     "created_at": 1617601542000,
     "updated_at": 0
@@ -1866,19 +1962,6 @@ axios.post('https://api.cardbo.info/api/v5/administrator', {
     "level": 2,
     "email": "harrison@cardbo.info",
     "phone_number": "0987654321",
-    "facebook_link": "https://www.facebook.com/profile.php?id=0000000000",
-    "job_statistics": {
-      "store_pending_count": 0,
-      "store_finished_count": 0,
-      "card_pending_count": 0,
-      "card_finished_count": 0,
-      "offer_pending_count": 0,
-      "offer_finished_count": 0
-    },
-    "money": {
-      "pending": 0,
-      "earned": 0
-    },
     "last_login": 1617601542000,
     "created_at": 1617601542000,
     "updated_at": 1617601542000
@@ -1917,31 +2000,9 @@ username         | string        |                                              
 level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
-facebook_link    | string        |                                                   | facebool link
-job_statistics   | JobStatistics |                                                   | job statistics
-money            | Monney        |                                                   | money info
 last_login       | int           |                                                   | last login time in 16 digits timestamp
 created_at       | int           |                                                   | User create time in 16 digits timestamp
 updated_at       | int           |                                                   | User update time in 16 digits timestamp
-
-JobStatistics
-
-Key                  | Type | Description
--------------------- | ---- | -----------
-store_pending_count  | int  | number of store pending
-store_finished_count | int  | number of store finished
-card_pending_count   | int  | number of  card pending
-card_finished_count  | int  | number of card finished
-offer_pending_count  | int  | number of offer pending
-offer_finished_count | int  | number of offer finished
-
-Monney
-
-Key         | Type | Description
------------ | ---- | -----------
-pending     | int  | money in review
-earned      | int  | money earned
-unwithdrawn | int  | money unwithdrawn
 
 #### Error
 
@@ -1996,19 +2057,6 @@ axios.delete('https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67a
     "level": 2,
     "email": "harrison@cardbo.info",
     "phone_number": "0987654321",
-    "facebook_link": "https://www.facebook.com/profile.php?id=0000000000",
-    "job_statistics": {
-      "store_pending_count": 0,
-      "store_finished_count": 0,
-      "card_pending_count": 0,
-      "card_finished_count": 0,
-      "offer_pending_count": 0,
-      "offer_finished_count": 0
-    },
-    "money": {
-      "pending": 0,
-      "earned": 0
-    },
     "last_login": 1617601542000,
     "created_at": 1617601542000,
     "updated_at": 1617601542000
@@ -2053,31 +2101,9 @@ username         | string        |                                              
 level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
-facebook_link    | string        |                                                   | facebool link
-job_statistics   | JobStatistics |                                                   | job statistics
-money            | Monney        |                                                   | money info
 last_login       | int           |                                                   | last login time in 16 digits timestamp
 created_at       | int           |                                                   | User create time in 16 digits timestamp
 updated_at       | int           |                                                   | User update time in 16 digits timestamp
-
-JobStatistics
-
-Key                  | Type | Description
--------------------- | ---- | -----------
-store_pending_count  | int  | number of store pending
-store_finished_count | int  | number of store finished
-card_pending_count   | int  | number of  card pending
-card_finished_count  | int  | number of card finished
-offer_pending_count  | int  | number of offer pending
-offer_finished_count | int  | number of offer finished
-
-Monney
-
-Key         | Type | Description
------------ | ---- | -----------
-pending     | int  | money in review
-earned      | int  | money earned
-unwithdrawn | int  | money unwithdrawn
 
 #### Error
 
@@ -2158,7 +2184,7 @@ Authorization | Bearer token | API access token
 
 Query   | Required | Muti-values | Enums                                             | Description
 ------- | -------- | ----------- | ------------------------------------------------- | -----------
-options | false    | true        | `account`, `username`, `level`, `email`, `phone_number`, `facebook_link`, `job_statistics`, `money`, `last_login`, `created_at`, `updated_at` | employee response options
+options | false    | true        | `account`, `username`, `level`, `email`, `phone_number`, `last_login`, `created_at`, `updated_at` | employee response options
 
 ### Response
 
@@ -2172,31 +2198,9 @@ username         | string        |                                              
 level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
-facebook_link    | string        |                                                   | facebool link
-job_statistics   | JobStatistics |                                                   | job statistics
-money            | Monney        |                                                   | money info
 last_login       | int           |                                                   | last login time in 16 digits timestamp
 created_at       | int           |                                                   | User create time in 16 digits timestamp
 updated_at       | int           |                                                   | User update time in 16 digits timestamp
-
-JobStatistics
-
-Key                  | Type | Description
--------------------- | ---- | -----------
-store_pending_count  | int  | number of store pending
-store_finished_count | int  | number of store finished
-card_pending_count   | int  | number of  card pending
-card_finished_count  | int  | number of card finished
-offer_pending_count  | int  | number of offer pending
-offer_finished_count | int  | number of offer finished
-
-Monney
-
-Key         | Type | Description
------------ | ---- | -----------
-pending     | int  | money in review
-earned      | int  | money earned
-unwithdrawn | int  | money unwithdrawn
 
 #### Error
 
@@ -2260,19 +2264,6 @@ axios.delete('https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67a
     "level": 2,
     "email": "harrison@cardbo.info",
     "phone_number": "0987654321",
-    "facebook_link": "https://www.facebook.com/profile.php?id=0000000000",
-    "job_statistics": {
-      "store_pending_count": 0,
-      "store_finished_count": 0,
-      "card_pending_count": 0,
-      "card_finished_count": 0,
-      "offer_pending_count": 0,
-      "offer_finished_count": 0
-    },
-    "money": {
-      "pending": 0,
-      "earned": 0
-    },
     "last_login": 1617601542000,
     "created_at": 1617601542000,
     "updated_at": 1617601542000
@@ -2323,31 +2314,9 @@ username         | string        |                                              
 level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
-facebook_link    | string        |                                                   | facebool link
-job_statistics   | JobStatistics |                                                   | job statistics
-money            | Monney        |                                                   | money info
 last_login       | int           |                                                   | last login time in 16 digits timestamp
 created_at       | int           |                                                   | User create time in 16 digits timestamp
 updated_at       | int           |                                                   | User update time in 16 digits timestamp
-
-JobStatistics
-
-Key                  | Type | Description
--------------------- | ---- | -----------
-store_pending_count  | int  | number of store pending
-store_finished_count | int  | number of store finished
-card_pending_count   | int  | number of  card pending
-card_finished_count  | int  | number of card finished
-offer_pending_count  | int  | number of offer pending
-offer_finished_count | int  | number of offer finished
-
-Monney
-
-Key         | Type | Description
------------ | ---- | -----------
-pending     | int  | money in review
-earned      | int  | money earned
-unwithdrawn | int  | money unwithdrawn
 
 #### Error
 
@@ -2514,19 +2483,6 @@ axios.put('https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c
     "level": 2,
     "email": "harrison@cardbo.info",
     "phone_number": "0987654321",
-    "facebook_link": "https://www.facebook.com/profile.php?id=0000000000",
-    "job_statistics": {
-      "store_pending_count": 0,
-      "store_finished_count": 0,
-      "card_pending_count": 0,
-      "card_finished_count": 0,
-      "offer_pending_count": 0,
-      "offer_finished_count": 0
-    },
-    "money": {
-      "pending": 0,
-      "earned": 0
-    },
     "last_login": 1617601542000,
     "created_at": 1617601542000,
     "updated_at": 1617601542000
@@ -2580,31 +2536,9 @@ username         | string        |                                              
 level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
-facebook_link    | string        |                                                   | facebool link
-job_statistics   | JobStatistics |                                                   | job statistics
-money            | Monney        |                                                   | money info
 last_login       | int           |                                                   | last login time in 16 digits timestamp
 created_at       | int           |                                                   | User create time in 16 digits timestamp
 updated_at       | int           |                                                   | User update time in 16 digits timestamp
-
-JobStatistics
-
-Key                  | Type | Description
--------------------- | ---- | -----------
-store_pending_count  | int  | number of store pending
-store_finished_count | int  | number of store finished
-card_pending_count   | int  | number of  card pending
-card_finished_count  | int  | number of card finished
-offer_pending_count  | int  | number of offer pending
-offer_finished_count | int  | number of offer finished
-
-Monney
-
-Key         | Type | Description
------------ | ---- | -----------
-pending     | int  | money in review
-earned      | int  | money earned
-unwithdrawn | int  | money unwithdrawn
 
 #### Error
 
@@ -2659,19 +2593,6 @@ axios.put('https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c
     "level": 1,
     "email": "harrison@cardbo.info",
     "phone_number": "0987654321",
-    "facebook_link": "https://www.facebook.com/profile.php?id=0000000000",
-    "job_statistics": {
-      "store_pending_count": 0,
-      "store_finished_count": 0,
-      "card_pending_count": 0,
-      "card_finished_count": 0,
-      "offer_pending_count": 0,
-      "offer_finished_count": 0
-    },
-    "money": {
-      "pending": 0,
-      "earned": 0
-    },
     "last_login": 1617601542000,
     "created_at": 1617601542000,
     "updated_at": 1617601542000
@@ -2716,31 +2637,9 @@ username         | string        |                                              
 level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
-facebook_link    | string        |                                                   | facebool link
-job_statistics   | JobStatistics |                                                   | job statistics
-money            | Monney        |                                                   | money info
 last_login       | int           |                                                   | last login time in 16 digits timestamp
 created_at       | int           |                                                   | User create time in 16 digits timestamp
 updated_at       | int           |                                                   | User update time in 16 digits timestamp
-
-JobStatistics
-
-Key                  | Type | Description
--------------------- | ---- | -----------
-store_pending_count  | int  | number of store pending
-store_finished_count | int  | number of store finished
-card_pending_count   | int  | number of  card pending
-card_finished_count  | int  | number of card finished
-offer_pending_count  | int  | number of offer pending
-offer_finished_count | int  | number of offer finished
-
-Monney
-
-Key         | Type | Description
------------ | ---- | -----------
-pending     | int  | money in review
-earned      | int  | money earned
-unwithdrawn | int  | money unwithdrawn
 
 #### Error
 
