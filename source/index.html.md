@@ -81,8 +81,8 @@ cardbo_point | int           |                                                  
 cards        | []CardDisplay |                                                  | User own card array
 mobilepays   | []Mobilepay   |                                                  | User own mobile pay array
 user_level   | int           | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
-created_at   | int           |                                                  | User create time in timestamp
-updated_at   | int           |                                                  | User update time in timestamp
+created_at   | int           |                                                  | create time in timestamp
+updated_at   | int           |                                                  | update time in timestamp
 last_login   | int           |                                                  | User last login time in timestamp
 
 ## CardUserReward
@@ -115,8 +115,8 @@ year               | int         |            | year of the reward
 month              | int         | [`1`-`12`] | month of the reward
 expense            | int         |            | expense of the month
 reward             | float       |            | total reward which user get of the month
-created_at         | int         |            | User create time in timestamp
-updated_at         | int         |            | User update time in timestamp
+created_at         | int         |            | create time in timestamp
+updated_at         | int         |            | update time in timestamp
 
 ## Administrator
 
@@ -129,8 +129,8 @@ level            | int    | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | 
 email            | string |                                                   | email
 phone_number     | string |                                                   | phone number
 last_login       | int    |                                                   | last login time in timestamp
-created_at       | int    |                                                   | User create time in timestamp
-updated_at       | int    |                                                   | User update time in timestamp
+created_at       | int    |                                                   | create time in timestamp
+updated_at       | int    |                                                   | update time in timestamp
 
 ## Bank
 
@@ -220,8 +220,8 @@ store_name    | string             | store name when the store is not in our dat
 date          | int                | date of the expese in timestamp
 rewards       | []AccountingReward | array of AccountingReward object
 pending       | string             | is the record in pending or not
-created_at    | int                | User create time in timestamp
-updated_at    | int                | User update time in timestamp
+created_at    | int                | create time in timestamp
+updated_at    | int                | update time in timestamp
 
 ## AccountingReward
 
@@ -689,8 +689,8 @@ cardbo_point | int         |                                                  | 
 cards        | []Card      |                                                  | User own card array
 mobilepays   | []Mobilepay |                                                  | User own mobile pay array
 user_level   | int         | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
-created_at   | int         |                                                  | User create time in timestamp
-updated_at   | int         |                                                  | User update time in timestamp
+created_at   | int         |                                                  | create time in timestamp
+updated_at   | int         |                                                  | update time in timestamp
 last_login   | int         |                                                  | User last login time in timestamp
 
 #### Error
@@ -837,8 +837,8 @@ cardbo_point | int         |                                                  | 
 cards        | []Card      | User own card array
 mobilepays   | []Mobilepay | User own mobile pay array
 user_level   | int         | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
-created_at   | int         |                                                  | User create time in timestamp
-updated_at   | int         |                                                  | User update time in timestamp
+created_at   | int         |                                                  | create time in timestamp
+updated_at   | int         |                                                  | update time in timestamp
 last_login   | int         |                                                  | User last login time in timestamp
 
 #### Error
@@ -2031,8 +2031,8 @@ level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN:
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
 last_login       | int           |                                                   | last login time in timestamp
-created_at       | int           |                                                   | User create time in timestamp
-updated_at       | int           |                                                   | User update time in timestamp
+created_at       | int           |                                                   | create time in timestamp
+updated_at       | int           |                                                   | update time in timestamp
 
 #### Error
 
@@ -2126,8 +2126,8 @@ level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN:
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
 last_login       | int           |                                                   | last login time in timestamp
-created_at       | int           |                                                   | User create time in timestamp
-updated_at       | int           |                                                   | User update time in timestamp
+created_at       | int           |                                                   | create time in timestamp
+updated_at       | int           |                                                   | update time in timestamp
 
 #### Error
 
@@ -2227,8 +2227,8 @@ level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN:
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
 last_login       | int           |                                                   | last login time in timestamp
-created_at       | int           |                                                   | User create time in timestamp
-updated_at       | int           |                                                   | User update time in timestamp
+created_at       | int           |                                                   | create time in timestamp
+updated_at       | int           |                                                   | update time in timestamp
 
 #### Error
 
@@ -2324,8 +2324,8 @@ level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN:
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
 last_login       | int           |                                                   | last login time in timestamp
-created_at       | int           |                                                   | User create time in timestamp
-updated_at       | int           |                                                   | User update time in timestamp
+created_at       | int           |                                                   | create time in timestamp
+updated_at       | int           |                                                   | update time in timestamp
 
 #### Error
 
@@ -2440,8 +2440,8 @@ level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN:
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
 last_login       | int           |                                                   | last login time in timestamp
-created_at       | int           |                                                   | User create time in timestamp
-updated_at       | int           |                                                   | User update time in timestamp
+created_at       | int           |                                                   | create time in timestamp
+updated_at       | int           |                                                   | update time in timestamp
 
 #### Error
 
@@ -2662,8 +2662,8 @@ level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN:
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
 last_login       | int           |                                                   | last login time in timestamp
-created_at       | int           |                                                   | User create time in timestamp
-updated_at       | int           |                                                   | User update time in timestamp
+created_at       | int           |                                                   | create time in timestamp
+updated_at       | int           |                                                   | update time in timestamp
 
 #### Error
 
@@ -2763,8 +2763,8 @@ level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN:
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
 last_login       | int           |                                                   | last login time in timestamp
-created_at       | int           |                                                   | User create time in timestamp
-updated_at       | int           |                                                   | User update time in timestamp
+created_at       | int           |                                                   | create time in timestamp
+updated_at       | int           |                                                   | update time in timestamp
 
 #### Error
 
@@ -5639,8 +5639,8 @@ store_name    | string             | store name when the store is not in our dat
 date          | int                | date of the expese in timestamp
 rewards       | []AccountingReward | array of AccountingReward object
 pending       | string             | is the record in pending or not
-created_at    | int                | User create time in timestamp
-updated_at    | int                | User update time in timestamp
+created_at    | int                | create time in timestamp
+updated_at    | int                | update time in timestamp
 
 #### Error
 
@@ -5881,7 +5881,7 @@ date          | true     | int      | the datetime of the expense in timestamp
 rewards       | false    | []string | array of offer id that can get from the expense
 completed     | true     | bool     | is the record completed
 
-*1: on of `store_id` and `store_name` is required
+*1: one of `store_id` and `store_name` is required
 
 ### Response
 
@@ -5901,8 +5901,8 @@ store_name    | string             | store name when the store is not in our dat
 date          | int                | date of the expese in timestamp
 rewards       | []AccountingReward | array of AccountingReward object
 pending       | string             | is the record in pending or not
-created_at    | int                | User create time in timestamp
-updated_at    | int                | User update time in timestamp
+created_at    | int                | create time in timestamp
+updated_at    | int                | update time in timestamp
 
 ## 16-4. Insert an accounting record with QR code invoice
 
@@ -6046,7 +6046,7 @@ date          | true      | int      | the datetime of the expense in timestamp
 rewards       | false     | []string | array of offer id that can get from the expense
 completed     | true      | bool     | is the record completed
 
-*1: on of `store_id` and `store_name` is required
+*1: one of `store_id` and `store_name` is required
 
 ### Response
 
@@ -6066,8 +6066,8 @@ store_name    | string             | store name when the store is not in our dat
 date          | int                | date of the expese in timestamp
 rewards       | []AccountingReward | array of AccountingReward object
 pending       | string             | is the record in pending or not
-created_at    | int                | User create time in timestamp
-updated_at    | int                | User update time in timestamp
+created_at    | int                | create time in timestamp
+updated_at    | int                | update time in timestamp
 
 #### Error
 
@@ -6213,7 +6213,7 @@ date          | true      | int      | the datetime of the expense in timestamp
 rewards       | false     | []string | array of offer id that can get from the expense
 completed     | true      | bool     | is the record completed
 
-*1: on of `store_id` and `store_name` is required
+*1: one of `store_id` and `store_name` is required
 
 ### Response
 
@@ -6233,8 +6233,8 @@ store_name    | string             | store name when the store is not in our dat
 date          | int                | date of the expese in timestamp
 rewards       | []AccountingReward | array of AccountingReward object
 pending       | string             | is the record in pending or not
-created_at    | int                | User create time in timestamp
-updated_at    | int                | User update time in timestamp
+created_at    | int                | create time in timestamp
+updated_at    | int                | update time in timestamp
 
 #### Error
 
@@ -6243,3 +6243,113 @@ Key   | Type   | Description
 error | string | error message
 
 # 17. Invoice
+
+## 17-1. Get unrecorded invoices
+
+> Get unrecorded invoices:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/invoices/unrecorded \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/invoices/unrecorded'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/invoices/unrecorded', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": [
+    {
+      "invoice_id": "5f9a747f10c24bf3d4a54d4e",
+      "UserID": "5f9a747f10c24bf3d4a54d4e",
+      "invoice_no": "AB99999999",
+      "status": "已確認",
+      "period": "11006",
+      "seller_name": "Store A",
+      "seller_tax_id": "12345678",
+      "seller_address": "",
+      "invoice_time": 1617601542000,
+      "buyer_tax_id": "12345678",
+      "currency": "TWD",
+      "price": 1000,
+      "details": null,
+      "unrecorded": true,
+      "created_at": 1617601542000
+    }
+  ],
+  "timestamp": 1617601542000
+}
+```
+
+Get unrecorded invoices
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/invoices/unrecorded`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+### Response
+
+#### Success
+
+Key            | Type            | Description
+-------------- | --------------- | -----------
+invoice_id     | string          | invoice id
+user_id        | string          | user id
+invoice_no     | string          | invoice number
+status         | string          | the status of the invoice
+period         | string          | invoice period
+seller_name    | string          | seller name
+seller_tax_id  | string          | seller tax id
+seller_address | string          | seller address
+invoice_time   | string          | time of the invoice in timestamp
+buyer_tax_id   | string          | date of the expese in timestamp
+currency       | string          | money currency
+price          | int             | the price of the expense
+details        | []InvoiceDetail | array of InvoiceDetail object
+qr_code_items  | []QRCodeItem    | array of QRCodeItem object
+unrecorded     | bool            | is invoice is recorded or not
+created_at     | int             | create time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
