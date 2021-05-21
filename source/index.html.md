@@ -65,6 +65,46 @@ Code    | Description
 `10001` | ERROR_AUTH_TOKEN_TIMEOUT
 `10002` | ERROR_AUTH_PERMISSION_DENIED
 
+# Schema
+
+## User
+
+Key          | Type        | Enums                                            | Description
+------------ | ----------- | ------------------------------------------------ | -----------
+user_id      | string      |                                                  | User id
+line_id      | string      |                                                  | LINE id
+username     | string      |                                                  | Username
+image        | string      |                                                  | User image
+email        | string      |                                                  | Email
+phone_number | string      |                                                  | Phone number
+cardbo_point | int         |                                                  | Cardbo point (useless)
+cards        | []Card      |                                                  | User own card array
+mobilepays   | []Mobilepay |                                                  | User own mobile pay array
+user_level   | int         | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+created_at   | int         |                                                  | User create time in 16 digits timestamp
+updated_at   | int         |                                                  | User update time in 16 digits timestamp
+last_login   | int         |                                                  | User last login time in 16 digits timestamp
+
+## Administrator
+
+Key              | Type          | Enums                                             | Description
+---------------- | ------------- | ------------------------------------------------- | -----------
+administrator_id | string        |                                                   | administrator id
+account          | string        |                                                   | account
+username         | string        |                                                   | username
+level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
+email            | string        |                                                   | email
+phone_number     | string        |                                                   | phone number
+last_login       | int           |                                                   | last login time in 16 digits timestamp
+created_at       | int           |                                                   | User create time in 16 digits timestamp
+updated_at       | int           |                                                   | User update time in 16 digits timestamp
+
+## Bank
+
+## Card
+
+## MobilePay
+
 # 1. Authentication
 
 ## 1-1. Administrator
@@ -1769,31 +1809,9 @@ username         | string        |                                              
 level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
-facebook_link    | string        |                                                   | facebool link
-job_statistics   | JobStatistics |                                                   | job statistics
-money            | Monney        |                                                   | money info
 last_login       | int           |                                                   | last login time in 16 digits timestamp
 created_at       | int           |                                                   | User create time in 16 digits timestamp
 updated_at       | int           |                                                   | User update time in 16 digits timestamp
-
-JobStatistics
-
-Key                  | Type | Description
--------------------- | ---- | -----------
-store_pending_count  | int  | number of store pending
-store_finished_count | int  | number of store finished
-card_pending_count   | int  | number of  card pending
-card_finished_count  | int  | number of card finished
-offer_pending_count  | int  | number of offer pending
-offer_finished_count | int  | number of offer finished
-
-Monney
-
-Key         | Type | Description
------------ | ---- | -----------
-pending     | int  | money in review
-earned      | int  | money earned
-unwithdrawn | int  | money unwithdrawn
 
 #### Error
 
