@@ -81,9 +81,9 @@ cardbo_point | int           |                                                  
 cards        | []CardDisplay |                                                  | User own card array
 mobilepays   | []Mobilepay   |                                                  | User own mobile pay array
 user_level   | int           | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
-created_at   | int           |                                                  | User create time in 16 digits timestamp
-updated_at   | int           |                                                  | User update time in 16 digits timestamp
-last_login   | int           |                                                  | User last login time in 16 digits timestamp
+created_at   | int           |                                                  | User create time in timestamp
+updated_at   | int           |                                                  | User update time in timestamp
+last_login   | int           |                                                  | User last login time in timestamp
 
 ## CardUserReward
 
@@ -115,8 +115,8 @@ year               | int         |            | year of the reward
 month              | int         | [`1`-`12`] | month of the reward
 expense            | int         |            | expense of the month
 reward             | float       |            | total reward which user get of the month
-created_at         | int         |            | User create time in 16 digits timestamp
-updated_at         | int         |            | User update time in 16 digits timestamp
+created_at         | int         |            | User create time in timestamp
+updated_at         | int         |            | User update time in timestamp
 
 ## Administrator
 
@@ -128,9 +128,9 @@ username         | string |                                                   | 
 level            | int    | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
 email            | string |                                                   | email
 phone_number     | string |                                                   | phone number
-last_login       | int    |                                                   | last login time in 16 digits timestamp
-created_at       | int    |                                                   | User create time in 16 digits timestamp
-updated_at       | int    |                                                   | User update time in 16 digits timestamp
+last_login       | int    |                                                   | last login time in timestamp
+created_at       | int    |                                                   | User create time in timestamp
+updated_at       | int    |                                                   | User update time in timestamp
 
 ## Bank
 
@@ -203,6 +203,33 @@ Key          | Type    | Description
 mobilepay_id | string  | mobilepay id
 name         | string  | mobilepay name
 image        | string  | mobilepay image URL
+
+## AccountingRecord
+
+Key           | Type               | Description
+------------- | ------------------ | -----------
+accounting_id | string             | accotungin id
+user          | User               | User object
+card          | Card               | Card object
+mobilepay     | MobilePay          | MobilePay object
+invoice       | Invoice            | Invoice object
+amount        | int                | how much money of the record
+name          | string             | description of the record
+store         | Store              | Store object
+store_name    | string             | store name when the store is not in our database
+date          | int                | date of the expese in timestamp
+rewards       | []AccountingReward | array of AccountingReward object
+pending       | string             | is the record in pending or not
+created_at    | int                | User create time in timestamp
+updated_at    | int                | User update time in timestamp
+
+## AccountingReward
+
+Key          | Type   | Description
+------------ | ------ | -----------
+offer_id     | string | offer id
+reward_name  | string | offer cashback reward name
+reward_value | float  | reward value get from the expense
 
 # 1. Authentication
 
@@ -662,9 +689,9 @@ cardbo_point | int         |                                                  | 
 cards        | []Card      |                                                  | User own card array
 mobilepays   | []Mobilepay |                                                  | User own mobile pay array
 user_level   | int         | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
-created_at   | int         |                                                  | User create time in 16 digits timestamp
-updated_at   | int         |                                                  | User update time in 16 digits timestamp
-last_login   | int         |                                                  | User last login time in 16 digits timestamp
+created_at   | int         |                                                  | User create time in timestamp
+updated_at   | int         |                                                  | User update time in timestamp
+last_login   | int         |                                                  | User last login time in timestamp
 
 #### Error
 
@@ -810,9 +837,9 @@ cardbo_point | int         |                                                  | 
 cards        | []Card      | User own card array
 mobilepays   | []Mobilepay | User own mobile pay array
 user_level   | int         | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
-created_at   | int         |                                                  | User create time in 16 digits timestamp
-updated_at   | int         |                                                  | User update time in 16 digits timestamp
-last_login   | int         |                                                  | User last login time in 16 digits timestamp
+created_at   | int         |                                                  | User create time in timestamp
+updated_at   | int         |                                                  | User update time in timestamp
+last_login   | int         |                                                  | User last login time in timestamp
 
 #### Error
 
@@ -1755,7 +1782,7 @@ axios.get('https://api.cardbo.info/api/v5/user/accounting', {
 }
 ```
 
-Get user profile by user's API auth token
+Get user accounting summary
 
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
@@ -1784,6 +1811,104 @@ total_expense      | int              | monthly total expense
 total_reward       | int              | monthly total reward
 card_user_rewards  | CardUserReward   | CardUserReward object
 mobilepay_expenses | MobilePayExpense | MobilePayExpense object
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 2-2. Set user carrier invoice
+
+> Set user carrier invoice:
+
+```shell
+curl --request PUT \
+  --url https://api.cardbo.info/api/v5/user/invoice \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "carrier": "/ABCD-F1",
+    "verification_code": "AES_CFB_ENCODED_STRING"
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v5/user/invoice'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "carrier": "/ABCD-F1",
+  "verification_code": "AES_CFB_ENCODED_STRING"
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  carrier: "/ABCD-F1",
+  verification_code: "AES_CFB_ENCODED_STRING"
+}
+axios.put('https://api.cardbo.info/api/v5/user/invoice', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "status": true
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Set user carrier invoice
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://api.cardbo.info/api/v5/user/invoice`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter         | Required | Type  | Description
+----------------- | -------- | ----- | -----------
+carrier           | true    | string | mobile pay carrier code
+verification_code | true    | string | verification code in AES CFB encryption
+
+### Response
+
+#### Success
+
+Key    | Type | Description
+------ | ---- | -----------
+status | bool | mobile pay carrier status
 
 #### Error
 
@@ -1905,9 +2030,9 @@ username         | string        |                                              
 level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
-last_login       | int           |                                                   | last login time in 16 digits timestamp
-created_at       | int           |                                                   | User create time in 16 digits timestamp
-updated_at       | int           |                                                   | User update time in 16 digits timestamp
+last_login       | int           |                                                   | last login time in timestamp
+created_at       | int           |                                                   | User create time in timestamp
+updated_at       | int           |                                                   | User update time in timestamp
 
 #### Error
 
@@ -2000,9 +2125,9 @@ username         | string        |                                              
 level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
-last_login       | int           |                                                   | last login time in 16 digits timestamp
-created_at       | int           |                                                   | User create time in 16 digits timestamp
-updated_at       | int           |                                                   | User update time in 16 digits timestamp
+last_login       | int           |                                                   | last login time in timestamp
+created_at       | int           |                                                   | User create time in timestamp
+updated_at       | int           |                                                   | User update time in timestamp
 
 #### Error
 
@@ -2101,9 +2226,9 @@ username         | string        |                                              
 level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
-last_login       | int           |                                                   | last login time in 16 digits timestamp
-created_at       | int           |                                                   | User create time in 16 digits timestamp
-updated_at       | int           |                                                   | User update time in 16 digits timestamp
+last_login       | int           |                                                   | last login time in timestamp
+created_at       | int           |                                                   | User create time in timestamp
+updated_at       | int           |                                                   | User update time in timestamp
 
 #### Error
 
@@ -2198,9 +2323,9 @@ username         | string        |                                              
 level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
-last_login       | int           |                                                   | last login time in 16 digits timestamp
-created_at       | int           |                                                   | User create time in 16 digits timestamp
-updated_at       | int           |                                                   | User update time in 16 digits timestamp
+last_login       | int           |                                                   | last login time in timestamp
+created_at       | int           |                                                   | User create time in timestamp
+updated_at       | int           |                                                   | User update time in timestamp
 
 #### Error
 
@@ -2314,9 +2439,9 @@ username         | string        |                                              
 level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
-last_login       | int           |                                                   | last login time in 16 digits timestamp
-created_at       | int           |                                                   | User create time in 16 digits timestamp
-updated_at       | int           |                                                   | User update time in 16 digits timestamp
+last_login       | int           |                                                   | last login time in timestamp
+created_at       | int           |                                                   | User create time in timestamp
+updated_at       | int           |                                                   | User update time in timestamp
 
 #### Error
 
@@ -2536,9 +2661,9 @@ username         | string        |                                              
 level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
-last_login       | int           |                                                   | last login time in 16 digits timestamp
-created_at       | int           |                                                   | User create time in 16 digits timestamp
-updated_at       | int           |                                                   | User update time in 16 digits timestamp
+last_login       | int           |                                                   | last login time in timestamp
+created_at       | int           |                                                   | User create time in timestamp
+updated_at       | int           |                                                   | User update time in timestamp
 
 #### Error
 
@@ -2637,9 +2762,9 @@ username         | string        |                                              
 level            | int           | EMPLOYEE: `1` <br/> MANAGER: `2` <br/> ADMIN: `3` | administrator level
 email            | string        |                                                   | email
 phone_number     | string        |                                                   | phone number
-last_login       | int           |                                                   | last login time in 16 digits timestamp
-created_at       | int           |                                                   | User create time in 16 digits timestamp
-updated_at       | int           |                                                   | User update time in 16 digits timestamp
+last_login       | int           |                                                   | last login time in timestamp
+created_at       | int           |                                                   | User create time in timestamp
+updated_at       | int           |                                                   | User update time in timestamp
 
 #### Error
 
@@ -5384,3 +5509,242 @@ user_has     | string  | does the user have the mobilepay | optional
 Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
+
+# 7. Offer
+
+# 8. Store
+
+# 9. Tag
+
+# 10. Permission
+
+# 11. UserAction
+
+# 12. ErrorReport
+
+# 13. LimitedTimeOffer
+
+# 14. NewUserOffer
+
+# 15. DataMigration
+
+# 16. AccountingRecord
+
+## 16-1. Get pending accounting records
+
+> Get pending accounting records:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/accountings/pending \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/accountings/pending'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/accountings/pending', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": [
+    {
+      "_id": "5f9a747f10c24bf3d4a54d4e",
+      "user": {
+        "user_info": "..."
+      },
+      "card": {
+        "card_info": "...",
+      },
+      "mobilepay": {
+        "mobilepay_info": "...",
+      },
+      "amount": 1000,
+      "name": "午餐",
+      "store": {
+        "store_info": "...",
+      },
+      "store_name": "",
+      "invoice": "AB99999999",
+      "date": 1617601542000,
+      "rewards": [
+        {
+          "offer_id": "5f9a747f10c24bf3d4a54d4e",
+          "reward_name": "現金",
+          "reward_value": 28.83
+        }
+      ]
+    }
+  ],
+  "timestamp": 1617601542000
+}
+```
+
+Get pending accounting records
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/accountings/pending`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+### Response
+
+#### Success
+
+Key           | Type               | Description
+------------- | ------------------ | -----------
+accounting_id | string             | accotungin id
+user          | User               | User object
+card          | Card               | Card object
+mobilepay     | MobilePay          | MobilePay object
+invoice       | Invoice            | Invoice object
+amount        | int                | how much money of the record
+name          | string             | description of the record
+store         | Store              | Store object
+store_name    | string             | store name when the store is not in our database
+date          | int                | date of the expese in timestamp
+rewards       | []AccountingReward | array of AccountingReward object
+pending       | string             | is the record in pending or not
+created_at    | int                | User create time in timestamp
+updated_at    | int                | User update time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 16-2. Get accounting records of a card
+
+> Get accounting records of a card:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/accountings/5f9a747f10c24bf3d4a54d4e/2021 \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/accountings/5f9a747f10c24bf3d4a54d4e/2021'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/accountings/5f9a747f10c24bf3d4a54d4e/2021', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "card": {
+      "card_info": "..."
+    },
+    "details": [
+      {
+        "expense": 0,
+        "cashback": 0,
+        "start_date": 1617601542000,
+        "end_date": 1617601542000,
+        "accounting_records": [],
+        "user_rewards": [
+          {
+            "reward_info": "..."
+          }
+        ]
+      }
+    ],
+  "timestamp": 1617601542000
+}
+```
+
+Get accounting records of a card
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/accountings/{card_id}/{year}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+### Response
+
+#### Success
+
+Key                | Type               | Description
+------------------ | ------------------ | -----------
+expense            | int                | total expend of the month
+cashback           | int                | total cashback of the month
+start_date         | int                | start date of the month in timestamp
+end_date           | int                | end date of the month in timestamp
+accounting_records | []AccountingRecord | array of AccountingRecord object
+user_rewards       | []UserReward       | array of UserReward object
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+# 17. Invoice
