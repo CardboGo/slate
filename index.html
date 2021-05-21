@@ -333,6 +333,15 @@
                     <a href="#user" class="toc-h2 toc-link" data-title="User">User</a>
                   </li>
                   <li>
+                    <a href="#carduserreward" class="toc-h2 toc-link" data-title="CardUserReward">CardUserReward</a>
+                  </li>
+                  <li>
+                    <a href="#mobilepayexpense" class="toc-h2 toc-link" data-title="MobilePayExpense">MobilePayExpense</a>
+                  </li>
+                  <li>
+                    <a href="#userreward" class="toc-h2 toc-link" data-title="UserReward">UserReward</a>
+                  </li>
+                  <li>
                     <a href="#administrator" class="toc-h2 toc-link" data-title="Administrator">Administrator</a>
                   </li>
                   <li>
@@ -340,6 +349,15 @@
                   </li>
                   <li>
                     <a href="#card" class="toc-h2 toc-link" data-title="Card">Card</a>
+                  </li>
+                  <li>
+                    <a href="#cardoption" class="toc-h2 toc-link" data-title="CardOption">CardOption</a>
+                  </li>
+                  <li>
+                    <a href="#cardimage" class="toc-h2 toc-link" data-title="CardImage">CardImage</a>
+                  </li>
+                  <li>
+                    <a href="#carddisplay" class="toc-h2 toc-link" data-title="CardDisplay">CardDisplay</a>
                   </li>
                   <li>
                     <a href="#mobilepay" class="toc-h2 toc-link" data-title="MobilePay">MobilePay</a>
@@ -696,7 +714,7 @@
 </tr>
 <tr>
 <td>cards</td>
-<td>[]Card</td>
+<td>[]CardDisplay</td>
 <td></td>
 <td>User own card array</td>
 </tr>
@@ -729,6 +747,138 @@
 <td>int</td>
 <td></td>
 <td>User last login time in 16 digits timestamp</td>
+</tr>
+</tbody></table>
+<h2 id='carduserreward'>CardUserReward</h2>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card</td>
+<td>CardDisplay</td>
+<td>CardDisplay object</td>
+</tr>
+<tr>
+<td>user_reward</td>
+<td>UserReward</td>
+<td>UserReward object</td>
+</tr>
+</tbody></table>
+<h2 id='mobilepayexpense'>MobilePayExpense</h2>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobilepay</td>
+<td>MobilePay</td>
+<td>MobilePay object</td>
+</tr>
+<tr>
+<td>expense</td>
+<td>int</td>
+<td>expense value</td>
+</tr>
+</tbody></table>
+<h2 id='userreward'>UserReward</h2>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>reward_id</td>
+<td>string</td>
+<td></td>
+<td>reward id</td>
+</tr>
+<tr>
+<td>user</td>
+<td>User</td>
+<td></td>
+<td>User object</td>
+</tr>
+<tr>
+<td>card</td>
+<td>CardDisplay</td>
+<td></td>
+<td>CardDisplay object</td>
+</tr>
+<tr>
+<td>offer</td>
+<td>Offer</td>
+<td></td>
+<td>Offer object</td>
+</tr>
+<tr>
+<td>reward_value</td>
+<td>float</td>
+<td></td>
+<td>offer reward value per unit</td>
+</tr>
+<tr>
+<td>reward_name</td>
+<td>string</td>
+<td></td>
+<td>offer cashback reward name</td>
+</tr>
+<tr>
+<td>reward_upper_bound</td>
+<td>int</td>
+<td></td>
+<td>offer cashback upper bound</td>
+</tr>
+<tr>
+<td>pinned</td>
+<td>bool</td>
+<td></td>
+<td>is the reward pinned to the summary page</td>
+</tr>
+<tr>
+<td>year</td>
+<td>int</td>
+<td></td>
+<td>year of the reward</td>
+</tr>
+<tr>
+<td>month</td>
+<td>int</td>
+<td>[<code>1</code>-<code>12</code>]</td>
+<td>month of the reward</td>
+</tr>
+<tr>
+<td>expense</td>
+<td>int</td>
+<td></td>
+<td>expense of the month</td>
+</tr>
+<tr>
+<td>reward</td>
+<td>float</td>
+<td></td>
+<td>total reward which user get of the month</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>int</td>
+<td></td>
+<td>User create time in 16 digits timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>int</td>
+<td></td>
+<td>User update time in 16 digits timestamp</td>
 </tr>
 </tbody></table>
 <h2 id='administrator'>Administrator</h2>
@@ -795,7 +945,298 @@
 <td>User update time in 16 digits timestamp</td>
 </tr>
 </tbody></table>
-<h2 id='bank'>Bank</h2><h2 id='card'>Card</h2><h2 id='mobilepay'>MobilePay</h2><h1 id='1-authentication'>1. Authentication</h1><h2 id='1-1-administrator'>1-1. Administrator</h2>
+<h2 id='bank'>Bank</h2>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bank_id</td>
+<td>string</td>
+<td>bank id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>bank name</td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td>bank code</td>
+</tr>
+<tr>
+<td>logo</td>
+<td>string</td>
+<td>logo url</td>
+</tr>
+<tr>
+<td>image</td>
+<td>string</td>
+<td>image url</td>
+</tr>
+</tbody></table>
+<h2 id='card'>Card</h2>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>string</td>
+<td></td>
+<td>card id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>card name</td>
+</tr>
+<tr>
+<td>bank</td>
+<td>Bank</td>
+<td></td>
+<td>Bank object</td>
+</tr>
+<tr>
+<td>options</td>
+<td>[]CardOption</td>
+<td></td>
+<td>CardOption object</td>
+</tr>
+<tr>
+<td>images</td>
+<td>CardImage</td>
+<td></td>
+<td>CardImage object</td>
+</tr>
+<tr>
+<td>promote</td>
+<td>bool</td>
+<td></td>
+<td>is the card promoted</td>
+</tr>
+<tr>
+<td>website</td>
+<td>string</td>
+<td></td>
+<td>card official website</td>
+</tr>
+<tr>
+<td>creator</td>
+<td>string</td>
+<td></td>
+<td>creator id</td>
+</tr>
+<tr>
+<td>examiner</td>
+<td>string</td>
+<td></td>
+<td>examiner id</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>string</td>
+<td></td>
+<td>created timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>string</td>
+<td></td>
+<td>updated timestamp</td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>PENDING: <code>1</code> <br/> FAILED: <code>2</code> <br/> PASSED: <code>3</code></td>
+<td>status</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>string</td>
+<td></td>
+<td>failure comment</td>
+</tr>
+<tr>
+<td>user_has</td>
+<td>bool</td>
+<td></td>
+<td>does user has the card or not</td>
+</tr>
+</tbody></table>
+<h2 id='cardoption'>CardOption</h2>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>issuer</td>
+<td>string</td>
+<td><code>VISA</code>, <code>MASTERCARD</code>, <code>JCB</code>, <code>AMERICAN EXPRESS</code>, <code>UNION PAY</code></td>
+<td>issuer of the card</td>
+</tr>
+<tr>
+<td>level</td>
+<td>int</td>
+<td>[<code>1</code>-<code>8</code>]</td>
+<td>level of the card</td>
+</tr>
+<tr>
+<td>level_name</td>
+<td>string</td>
+<td></td>
+<td>level name of the card</td>
+</tr>
+</tbody></table>
+<h2 id='cardimage'>CardImage</h2>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>image_1</td>
+<td>string</td>
+<td>image URL</td>
+</tr>
+<tr>
+<td>image_2</td>
+<td>string</td>
+<td>image URL</td>
+</tr>
+<tr>
+<td>image_3</td>
+<td>string</td>
+<td>image URL</td>
+</tr>
+<tr>
+<td>image_4</td>
+<td>string</td>
+<td>image URL</td>
+</tr>
+<tr>
+<td>image_5</td>
+<td>string</td>
+<td>image URL</td>
+</tr>
+<tr>
+<td>image_6</td>
+<td>string</td>
+<td>image URL</td>
+</tr>
+<tr>
+<td>image_7</td>
+<td>string</td>
+<td>image URL</td>
+</tr>
+<tr>
+<td>image_8</td>
+<td>string</td>
+<td>image URL</td>
+</tr>
+<tr>
+<td>image_9</td>
+<td>string</td>
+<td>image URL</td>
+</tr>
+<tr>
+<td>image_10</td>
+<td>string</td>
+<td>image URL</td>
+</tr>
+</tbody></table>
+<h2 id='carddisplay'>CardDisplay</h2>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>string</td>
+<td></td>
+<td>card id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>card name</td>
+</tr>
+<tr>
+<td>bank</td>
+<td>Bank</td>
+<td></td>
+<td>bank information</td>
+</tr>
+<tr>
+<td>image</td>
+<td>string</td>
+<td></td>
+<td>image URL</td>
+</tr>
+<tr>
+<td>issuer</td>
+<td>string</td>
+<td><code>VISA</code>, <code>MASTERCARD</code>, <code>JCB</code>, <code>AMERICAN EXPRESS</code>, <code>UNION PAY</code></td>
+<td>issuer of the card</td>
+</tr>
+<tr>
+<td>level</td>
+<td>int</td>
+<td>[<code>1</code>-<code>8</code>]</td>
+<td>level of the card</td>
+</tr>
+<tr>
+<td>level_name</td>
+<td>string</td>
+<td></td>
+<td>level name of the card</td>
+</tr>
+</tbody></table>
+<h2 id='mobilepay'>MobilePay</h2>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobilepay_id</td>
+<td>string</td>
+<td>mobilepay id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>mobilepay name</td>
+</tr>
+<tr>
+<td>image</td>
+<td>string</td>
+<td>mobilepay image URL</td>
+</tr>
+</tbody></table>
+<h1 id='1-authentication'>1. Authentication</h1><h2 id='1-1-administrator'>1-1. Administrator</h2>
 <blockquote>
 <p>Login administrator:</p>
 </blockquote>
@@ -2971,9 +3412,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
     </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"facebook_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"job_statistics"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-    </span><span class="nl">"money"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
     </span><span class="nl">"last_login"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
     </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
@@ -3158,19 +3596,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
     </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"harrison@cardbo.info"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0987654321"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"facebook_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.facebook.com/profile.php?id=0000000000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"job_statistics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"store_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"store_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"card_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"card_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"offer_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"offer_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"money"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"pending"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"earned"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">},</span><span class="w">
     </span><span class="nl">"last_login"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
     </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
     </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
@@ -3245,24 +3670,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>phone number</td>
 </tr>
 <tr>
-<td>facebook_link</td>
-<td>string</td>
-<td></td>
-<td>facebool link</td>
-</tr>
-<tr>
-<td>job_statistics</td>
-<td>JobStatistics</td>
-<td></td>
-<td>job statistics</td>
-</tr>
-<tr>
-<td>money</td>
-<td>Monney</td>
-<td></td>
-<td>money info</td>
-</tr>
-<tr>
 <td>last_login</td>
 <td>int</td>
 <td></td>
@@ -3279,73 +3686,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>int</td>
 <td></td>
 <td>User update time in 16 digits timestamp</td>
-</tr>
-</tbody></table>
-
-<p>JobStatistics</p>
-
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>store_pending_count</td>
-<td>int</td>
-<td>number of store pending</td>
-</tr>
-<tr>
-<td>store_finished_count</td>
-<td>int</td>
-<td>number of store finished</td>
-</tr>
-<tr>
-<td>card_pending_count</td>
-<td>int</td>
-<td>number of  card pending</td>
-</tr>
-<tr>
-<td>card_finished_count</td>
-<td>int</td>
-<td>number of card finished</td>
-</tr>
-<tr>
-<td>offer_pending_count</td>
-<td>int</td>
-<td>number of offer pending</td>
-</tr>
-<tr>
-<td>offer_finished_count</td>
-<td>int</td>
-<td>number of offer finished</td>
-</tr>
-</tbody></table>
-
-<p>Monney</p>
-
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>pending</td>
-<td>int</td>
-<td>money in review</td>
-</tr>
-<tr>
-<td>earned</td>
-<td>int</td>
-<td>money earned</td>
-</tr>
-<tr>
-<td>unwithdrawn</td>
-<td>int</td>
-<td>money unwithdrawn</td>
 </tr>
 </tbody></table>
 <h4 id='error-17'>Error</h4>
@@ -3401,19 +3741,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
     </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"harrison@cardbo.info"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0987654321"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"facebook_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.facebook.com/profile.php?id=0000000000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"job_statistics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"store_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"store_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"card_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"card_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"offer_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"offer_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"money"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"pending"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"earned"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">},</span><span class="w">
     </span><span class="nl">"last_login"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
     </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
     </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
@@ -3500,24 +3827,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>phone number</td>
 </tr>
 <tr>
-<td>facebook_link</td>
-<td>string</td>
-<td></td>
-<td>facebool link</td>
-</tr>
-<tr>
-<td>job_statistics</td>
-<td>JobStatistics</td>
-<td></td>
-<td>job statistics</td>
-</tr>
-<tr>
-<td>money</td>
-<td>Monney</td>
-<td></td>
-<td>money info</td>
-</tr>
-<tr>
 <td>last_login</td>
 <td>int</td>
 <td></td>
@@ -3534,73 +3843,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>int</td>
 <td></td>
 <td>User update time in 16 digits timestamp</td>
-</tr>
-</tbody></table>
-
-<p>JobStatistics</p>
-
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>store_pending_count</td>
-<td>int</td>
-<td>number of store pending</td>
-</tr>
-<tr>
-<td>store_finished_count</td>
-<td>int</td>
-<td>number of store finished</td>
-</tr>
-<tr>
-<td>card_pending_count</td>
-<td>int</td>
-<td>number of  card pending</td>
-</tr>
-<tr>
-<td>card_finished_count</td>
-<td>int</td>
-<td>number of card finished</td>
-</tr>
-<tr>
-<td>offer_pending_count</td>
-<td>int</td>
-<td>number of offer pending</td>
-</tr>
-<tr>
-<td>offer_finished_count</td>
-<td>int</td>
-<td>number of offer finished</td>
-</tr>
-</tbody></table>
-
-<p>Monney</p>
-
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>pending</td>
-<td>int</td>
-<td>money in review</td>
-</tr>
-<tr>
-<td>earned</td>
-<td>int</td>
-<td>money earned</td>
-</tr>
-<tr>
-<td>unwithdrawn</td>
-<td>int</td>
-<td>money unwithdrawn</td>
 </tr>
 </tbody></table>
 <h4 id='error-18'>Error</h4>
@@ -3694,7 +3936,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>options</td>
 <td>false</td>
 <td>true</td>
-<td><code>account</code>, <code>username</code>, <code>level</code>, <code>email</code>, <code>phone_number</code>, <code>facebook_link</code>, <code>job_statistics</code>, <code>money</code>, <code>last_login</code>, <code>created_at</code>, <code>updated_at</code></td>
+<td><code>account</code>, <code>username</code>, <code>level</code>, <code>email</code>, <code>phone_number</code>, <code>last_login</code>, <code>created_at</code>, <code>updated_at</code></td>
 <td>employee response options</td>
 </tr>
 </tbody></table>
@@ -3744,24 +3986,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>phone number</td>
 </tr>
 <tr>
-<td>facebook_link</td>
-<td>string</td>
-<td></td>
-<td>facebool link</td>
-</tr>
-<tr>
-<td>job_statistics</td>
-<td>JobStatistics</td>
-<td></td>
-<td>job statistics</td>
-</tr>
-<tr>
-<td>money</td>
-<td>Monney</td>
-<td></td>
-<td>money info</td>
-</tr>
-<tr>
 <td>last_login</td>
 <td>int</td>
 <td></td>
@@ -3778,73 +4002,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>int</td>
 <td></td>
 <td>User update time in 16 digits timestamp</td>
-</tr>
-</tbody></table>
-
-<p>JobStatistics</p>
-
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>store_pending_count</td>
-<td>int</td>
-<td>number of store pending</td>
-</tr>
-<tr>
-<td>store_finished_count</td>
-<td>int</td>
-<td>number of store finished</td>
-</tr>
-<tr>
-<td>card_pending_count</td>
-<td>int</td>
-<td>number of  card pending</td>
-</tr>
-<tr>
-<td>card_finished_count</td>
-<td>int</td>
-<td>number of card finished</td>
-</tr>
-<tr>
-<td>offer_pending_count</td>
-<td>int</td>
-<td>number of offer pending</td>
-</tr>
-<tr>
-<td>offer_finished_count</td>
-<td>int</td>
-<td>number of offer finished</td>
-</tr>
-</tbody></table>
-
-<p>Monney</p>
-
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>pending</td>
-<td>int</td>
-<td>money in review</td>
-</tr>
-<tr>
-<td>earned</td>
-<td>int</td>
-<td>money earned</td>
-</tr>
-<tr>
-<td>unwithdrawn</td>
-<td>int</td>
-<td>money unwithdrawn</td>
 </tr>
 </tbody></table>
 <h4 id='error-19'>Error</h4>
@@ -3909,19 +4066,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
     </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"harrison@cardbo.info"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0987654321"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"facebook_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.facebook.com/profile.php?id=0000000000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"job_statistics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"store_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"store_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"card_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"card_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"offer_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"offer_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"money"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"pending"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"earned"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">},</span><span class="w">
     </span><span class="nl">"last_login"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
     </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
     </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
@@ -4026,24 +4170,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>phone number</td>
 </tr>
 <tr>
-<td>facebook_link</td>
-<td>string</td>
-<td></td>
-<td>facebool link</td>
-</tr>
-<tr>
-<td>job_statistics</td>
-<td>JobStatistics</td>
-<td></td>
-<td>job statistics</td>
-</tr>
-<tr>
-<td>money</td>
-<td>Monney</td>
-<td></td>
-<td>money info</td>
-</tr>
-<tr>
 <td>last_login</td>
 <td>int</td>
 <td></td>
@@ -4060,73 +4186,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>int</td>
 <td></td>
 <td>User update time in 16 digits timestamp</td>
-</tr>
-</tbody></table>
-
-<p>JobStatistics</p>
-
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>store_pending_count</td>
-<td>int</td>
-<td>number of store pending</td>
-</tr>
-<tr>
-<td>store_finished_count</td>
-<td>int</td>
-<td>number of store finished</td>
-</tr>
-<tr>
-<td>card_pending_count</td>
-<td>int</td>
-<td>number of  card pending</td>
-</tr>
-<tr>
-<td>card_finished_count</td>
-<td>int</td>
-<td>number of card finished</td>
-</tr>
-<tr>
-<td>offer_pending_count</td>
-<td>int</td>
-<td>number of offer pending</td>
-</tr>
-<tr>
-<td>offer_finished_count</td>
-<td>int</td>
-<td>number of offer finished</td>
-</tr>
-</tbody></table>
-
-<p>Monney</p>
-
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>pending</td>
-<td>int</td>
-<td>money in review</td>
-</tr>
-<tr>
-<td>earned</td>
-<td>int</td>
-<td>money earned</td>
-</tr>
-<tr>
-<td>unwithdrawn</td>
-<td>int</td>
-<td>money unwithdrawn</td>
 </tr>
 </tbody></table>
 <h4 id='error-20'>Error</h4>
@@ -4323,19 +4382,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
     </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"harrison@cardbo.info"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0987654321"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"facebook_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.facebook.com/profile.php?id=0000000000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"job_statistics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"store_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"store_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"card_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"card_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"offer_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"offer_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"money"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"pending"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"earned"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">},</span><span class="w">
     </span><span class="nl">"last_login"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
     </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
     </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
@@ -4456,24 +4502,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>phone number</td>
 </tr>
 <tr>
-<td>facebook_link</td>
-<td>string</td>
-<td></td>
-<td>facebool link</td>
-</tr>
-<tr>
-<td>job_statistics</td>
-<td>JobStatistics</td>
-<td></td>
-<td>job statistics</td>
-</tr>
-<tr>
-<td>money</td>
-<td>Monney</td>
-<td></td>
-<td>money info</td>
-</tr>
-<tr>
 <td>last_login</td>
 <td>int</td>
 <td></td>
@@ -4490,73 +4518,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>int</td>
 <td></td>
 <td>User update time in 16 digits timestamp</td>
-</tr>
-</tbody></table>
-
-<p>JobStatistics</p>
-
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>store_pending_count</td>
-<td>int</td>
-<td>number of store pending</td>
-</tr>
-<tr>
-<td>store_finished_count</td>
-<td>int</td>
-<td>number of store finished</td>
-</tr>
-<tr>
-<td>card_pending_count</td>
-<td>int</td>
-<td>number of  card pending</td>
-</tr>
-<tr>
-<td>card_finished_count</td>
-<td>int</td>
-<td>number of card finished</td>
-</tr>
-<tr>
-<td>offer_pending_count</td>
-<td>int</td>
-<td>number of offer pending</td>
-</tr>
-<tr>
-<td>offer_finished_count</td>
-<td>int</td>
-<td>number of offer finished</td>
-</tr>
-</tbody></table>
-
-<p>Monney</p>
-
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>pending</td>
-<td>int</td>
-<td>money in review</td>
-</tr>
-<tr>
-<td>earned</td>
-<td>int</td>
-<td>money earned</td>
-</tr>
-<tr>
-<td>unwithdrawn</td>
-<td>int</td>
-<td>money unwithdrawn</td>
 </tr>
 </tbody></table>
 <h4 id='error-22'>Error</h4>
@@ -4612,19 +4573,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
     </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"harrison@cardbo.info"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0987654321"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"facebook_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.facebook.com/profile.php?id=0000000000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"job_statistics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"store_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"store_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"card_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"card_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"offer_pending_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"offer_finished_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"money"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"pending"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"earned"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">},</span><span class="w">
     </span><span class="nl">"last_login"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
     </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
     </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
@@ -4711,24 +4659,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>phone number</td>
 </tr>
 <tr>
-<td>facebook_link</td>
-<td>string</td>
-<td></td>
-<td>facebool link</td>
-</tr>
-<tr>
-<td>job_statistics</td>
-<td>JobStatistics</td>
-<td></td>
-<td>job statistics</td>
-</tr>
-<tr>
-<td>money</td>
-<td>Monney</td>
-<td></td>
-<td>money info</td>
-</tr>
-<tr>
 <td>last_login</td>
 <td>int</td>
 <td></td>
@@ -4745,73 +4675,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>int</td>
 <td></td>
 <td>User update time in 16 digits timestamp</td>
-</tr>
-</tbody></table>
-
-<p>JobStatistics</p>
-
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>store_pending_count</td>
-<td>int</td>
-<td>number of store pending</td>
-</tr>
-<tr>
-<td>store_finished_count</td>
-<td>int</td>
-<td>number of store finished</td>
-</tr>
-<tr>
-<td>card_pending_count</td>
-<td>int</td>
-<td>number of  card pending</td>
-</tr>
-<tr>
-<td>card_finished_count</td>
-<td>int</td>
-<td>number of card finished</td>
-</tr>
-<tr>
-<td>offer_pending_count</td>
-<td>int</td>
-<td>number of offer pending</td>
-</tr>
-<tr>
-<td>offer_finished_count</td>
-<td>int</td>
-<td>number of offer finished</td>
-</tr>
-</tbody></table>
-
-<p>Monney</p>
-
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>pending</td>
-<td>int</td>
-<td>money in review</td>
-</tr>
-<tr>
-<td>earned</td>
-<td>int</td>
-<td>money earned</td>
-</tr>
-<tr>
-<td>unwithdrawn</td>
-<td>int</td>
-<td>money unwithdrawn</td>
 </tr>
 </tbody></table>
 <h4 id='error-23'>Error</h4>
