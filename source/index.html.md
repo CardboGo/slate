@@ -204,6 +204,93 @@ mobilepay_id | string  | mobilepay id
 name         | string  | mobilepay name
 image        | string  | mobilepay image URL
 
+## Offer
+
+Key                     | Type         | Enums | Description
+----------------------- | ------------ | ----- | -----------
+offer_id                | string       | | offer id
+option                  | string       | | option name of the offer
+option_binding          | []string     | | array of offer id that binding the option
+bank                    | Bank         | | Bank object
+cards                   | []OfferCard  | | cards having the offer
+mobilepays              | []MobilePay  | | mobilepays having the offer
+independent_to_card     | bool         | | is the mobilepay offer independent to card (only for mobilepay offer)
+places                  | []Store      | | stores that can get the offer
+included_places         | []Store      | | stores that can get the offer
+excluded_places         | []Store      | | stores that ar excluded from the offer
+categories              | []string     | | offer categories
+url                     | string       | | offer source URL
+start_date              | int          | | offer start date in timestamp
+end_date                | int          | | offer end date in timestamp
+tags                    | []Tag        | | offer tags
+is_independent_reward   | bool         | | if offer is independent rewards (cannot be accumulated with non independent offers)
+reward_type             | int          | CASHBACK_PERCENTAGE: `1` <br/> CASHBACK_FIXED: `2` | reward type
+condition               | string       | | offer condition
+mobile_pay_binding      | []MobilePay  | | mobilepay needed to binding
+weekday                 | []int        | [`1`-`7`] | weekday that can get the offer
+time                    | string       | | time that can get the offer
+channel                 | string       | | channel to get the offer
+pay_method              | []MobilePay  | | mobilepay needed to use to get the offer
+register_needed         | bool         | | is offer need to register
+coupon_needed           | bool         | | is offer need to use the coupon
+min_cost                | OfferMinCost | | min cost to get the offer
+account_binding_needed  | bool         | | is needed to bind account to get the offer
+installment_required    | bool         | | is needed to have installment to get the offer
+installment_acceptable  | bool         | | can installment to get the offer
+installment_reward_type | int          | `依分期回饋`, `統一回饋` | the type of installment reward
+prior_event             | string       | | prior event condition to get the offer
+user_type               | string       | | user type to get the offer
+other_condition         | string       | | other condition to get the offer
+upper_bound_description | string       | | the deccription of all the upper bounds
+cash_upper_bound        | int          | | cashback upper bound value
+cash_upper_bound_unit   | string       | `筆`, `日`, `期`, `週`, `月`, `季`, `年`, `半年`, `檔期`, `總共` | cashback upper bound unit
+time_upper_bound        | int          | | time upper bound value
+time_upper_bound_unit   | string       | `筆`, `日`, `期`, `週`, `月`, `季`, `年`, `半年`, `檔期`, `總共` | time upper bound unit
+frequency_upper_bound   | int          | | frequency upper bound value
+sharing_upper_bound     | []string     | | array of offer id that share the cashback upper bound
+reward_content          | string       | | the content of the reward
+reward_description      | string       | | product description of the offer
+reward_name             | string       | | reward name of the offer
+reward_value            | float        | | reward value of the offer
+creator                 | string       | | creator administrator id
+created_at              | int          | | create time in timestamp
+updated_at              | int          | | update time in timestamp
+examiner                | string       | | examiner  administrator id
+examined_at             | int          | | examine time in timestamp
+status                  | int          | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status
+comment                 | string       | | comment for administrator
+
+## OfferCard
+
+Key        | Type    | Enums                                                        | Description
+---------- | ------- | ------------------------------------------------------------ | -----------
+card_id    | string  |                                                              | card id
+issuer     | string  | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
+level      | int     | [`1`-`8`]                                                    | level of the card
+
+## OfferMinCost
+
+Key         | Type   | Enums | Description
+----------- | ------ | ----- | -----------
+unit_number | int    | | unit numner of the min cost
+unit        | string | `筆`, `日`, `期`, `週`, `月`, `季`, `年`, `半年`, `檔期`, `總共` | unit of the min cost
+restriction | string | `個別滿`, `總共滿`, `每滿` | min cost restriction
+amount      | int    | | amount of the min cost
+
+## OfferRecommendation
+
+Key                  | Type      | Enums     | Description
+-------------------- | --------- | --------- | -----------
+card                 | Card      |           | Card object
+mobilepay            | MobilePay |           | MobilePay object
+offers               | []Offer   |           | array of Offer object
+rating               | float     |           | card rating from 0 to 1
+star                 | int       | [`1`-`5`] | number of star convert from rating from 1 to 5
+max_cashback         | float     |           | max cashback value accumulated from all offers
+max_cashback_offers  | []string  |           | array of offer id which is including in max cashback
+cashback_upper_bound | int       |           | min cashback upper bound from all offers
+cashback_amount      | int       |           | amount getting from max cashback
+
 ## AccountingRecord
 
 Key           | Type               | Description
@@ -5511,6 +5598,167 @@ Key   | Type   | Description
 error | string | error message
 
 # 7. Offer
+
+## 7-1. Insert pending offer
+
+## 7-2. Get pending offer by offer id
+
+## 7-3. Update pending offer
+
+## 7-4. Remove pending offer
+
+## 7-5. Pass pending offer to formal offer
+
+## 7-6. Fail pending offer
+
+## 7-7. Get pending offers
+
+## 7-8. Link pending offers sharing upper bound
+
+## 7-9. Remove pending offer sharing upper bound
+
+## 7-10. Link pending offers options bindong
+
+## 7-11. Remove pending offer options binding
+
+## 7-12. Get formal offer by offer id
+
+## 7-13. Update formal offer
+
+## 7-14. Remove formal offer
+
+## 7-15. Get formal offers
+
+## 7-16. Get formal offers by offer id list
+
+## 7-17. Search offers of user's cards
+
+## 7-18. Search offers of all cards
+
+## 7-19. Get recommended offers of user's cards
+
+## 7-20. Search google maps offers
+
+## 7-21. Get google maps top search keywords
+
+## 7-22. Get all offers of a card
+
+## 7-23. Get expired offers
+
+## 7-24. Search offers for accounting record
+
+> Search offers for accounting record:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5f9a747f10c24bf3d4a54d4e&card_id=5f9a747f10c24bf3d4a54d4e&mobilepay_id=5f9a747f10c24bf3d4a54d4e \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5f9a747f10c24bf3d4a54d4e&card_id=5f9a747f10c24bf3d4a54d4e&mobilepay_id=5f9a747f10c24bf3d4a54d4e'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.delete(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.delete('https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5f9a747f10c24bf3d4a54d4e&card_id=5f9a747f10c24bf3d4a54d4e&mobilepay_id=5f9a747f10c24bf3d4a54d4e', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": [
+    {
+      "card": {
+        "card_info": "..."
+      },
+      "mobilepay": {
+        "mobilepay_info": "..."
+      },
+      "offers": [
+        {
+          "offer_info": "..."
+        }
+      ],
+      "rating": 0.878,
+      "star": 5,
+      "max_cashback": 4.5,
+      "max_cashback_offers": [
+        "5f9a747f10c24bf3d4a54d4e"
+      ],
+      "cashback_upper_bound": 500,
+      "cashback_amount": 200
+    }
+  ],
+  "timestamp": 1617601542000
+}
+```
+
+Search offers for accounting record
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/offers/formal/accounting`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Queries
+
+Query        | Required | Muti-values | Description
+------------ | -------- | ----------- | -----------
+store_id     | true     | false       | store id
+card_id      | true     | false       | card id
+mobilepay_id | false    | false       |mobilepay id
+
+### Response
+
+#### Success
+
+Key                  | Type      | Enums     | Description
+-------------------- | --------- | --------- | -----------
+card                 | Card      |           | Card object
+mobilepay            | MobilePay |           | MobilePay object
+offers               | []Offer   |           | array of Offer object
+rating               | float     |           | card rating from 0 to 1
+star                 | int       | [`1`-`5`] | number of star convert from rating from 1 to 5
+max_cashback         | float     |           | max cashback value accumulated from all offers
+max_cashback_offers  | []string  |           | array of offer id which is including in max cashback
+cashback_upper_bound | int       |           | min cashback upper bound from all offers
+cashback_amount      | int       |           | amount getting from max cashback
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
 
 # 8. Store
 
