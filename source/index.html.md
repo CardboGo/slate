@@ -69,21 +69,28 @@ Code    | Description
 
 ## User
 
-Key          | Type          | Enums                                            | Description
------------- | ------------- | ------------------------------------------------ | -----------
-user_id      | string        |                                                  | User id
-line_id      | string        |                                                  | LINE id
-username     | string        |                                                  | Username
-image        | string        |                                                  | User image
-email        | string        |                                                  | Email
-phone_number | string        |                                                  | Phone number
-cardbo_point | int           |                                                  | Cardbo point (useless)
-cards        | []CardDisplay |                                                  | User own card array
-mobilepays   | []Mobilepay   |                                                  | User own mobile pay array
-user_level   | int           | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
-created_at   | int           |                                                  | create time in timestamp
-updated_at   | int           |                                                  | update time in timestamp
-last_login   | int           |                                                  | User last login time in timestamp
+Key             | Type             | Enums | Description
+--------------- | ---------------- | ----- | -----------
+user_id         | string           |       | User id
+line_id         | string           |       | LINE id
+username        | string           |       | Username
+image           | string           |       | User image
+email           | string           |       | Email
+phone_number    | string           |       | Phone number
+cardbo_point    | int              |       | Cardbo point (useless)
+cards           | []Card           |       | User own card array
+user_mobilepays | []UserMobilepay  |       | User own mobile pay array
+user_level      | int              | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+created_at      | int              |       | create time in timestamp
+updated_at      | int              |       | update time in timestamp
+last_login      | int              |       | User last login time in timestamp
+
+## UserMobilepay
+
+Key       | Type          | Description
+--------- | ------------- | -----------
+mobilepay | MobilePay     | MobilePay object
+cards     | []CardDisplay | array of CardDisplay object
 
 ## CardUserReward
 
@@ -367,7 +374,7 @@ axios.post('https://api.cardbo.info/api/v5/auth/administrator', {
   "code": 200,
   "message": "Ok",
   "result": {
-    "administrator_id": "5fa79ec32ba2dfe2db67ae2c",
+    "administrator_id": "5f9a747p00c2abf3d4a54d4q",
     "administrator_name": "Harrison Peng",
     "level": 3,
     "access_token": "meowmeowmeowaccess",
@@ -420,7 +427,7 @@ curl --request POST \
   -H 'Content-Type: application/json' \
   --data '{
     "source": 1,
-    "user_id": "5fcd3c76e549avb2805e7fe0"
+    "user_id": "5f9a747p00c2abf3d4a54d4q"
   }'
 ```
 
@@ -430,7 +437,7 @@ import requests
 url = 'https://api.cardbo.info/api/v5/auth/linebot'
 data = {
   'source': 1,
-  'user_id': '5fcd3c76e549avb2805e7fe0'
+  'user_id': '5f9a747p00c2abf3d4a54d4q'
 }
 response = requests.post(url, json=data)
 ```
@@ -440,7 +447,7 @@ const axios = require('axios');
 
 axios.post('https://api.cardbo.info/api/v5/auth/linebot', {
     source: 1,
-    user_id: '5fcd3c76e549avb2805e7fe0'
+    user_id: '5f9a747p00c2abf3d4a54d4q'
   })
   .then(function (response) {
     console.log(response);
@@ -702,7 +709,7 @@ axios.get('https://api.cardbo.info/api/v5/user', {
   "code": 200,
   "message": "Ok",
   "result": {
-    "user_id": "5fcd3c76e549avb2805e7fe0",
+    "user_id": "5f9a747p00c2abf3d4a54d4q",
     "line_id": "Udchd7f131dvvhdbe166692206a12335c",
     "username": "Harrison Peng",
     "image": "https://image.com/image.png",
@@ -725,12 +732,30 @@ axios.get('https://api.cardbo.info/api/v5/user', {
         "issuer": "MASTERCARD"
       }
     ],
-    "mobilepays": [
+    "user_mobilepays": [
       {
-        "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
-        "name": "Apple Pay",
-        "image": "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png",
-        "user_has": false
+        "mobilepay": {
+          "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+          "name": "Apple Pay",
+          "image": "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png",
+          "user_has": false
+        },
+        "cards": [
+          {
+            "card_id": "5fdb2ff546a97b49dac8a6ad",
+            "name": "永豐幣倍卡",
+            "bank": {
+              "bank_id": "5f756d85c2349d9139648a7d",
+              "name": "永豐銀行",
+              "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/sinopac-bank.png",
+              "image": "https://i.imgur.com/1g5nYEN.png",
+              "code": "807"
+            },
+            "level": 5,
+            "image": "https://storage.googleapis.com/cardbo-images/card/5fdb2ff546a97b49dac8a6ad-1.png",
+            "issuer": "MASTERCARD"
+          }
+        ]
       }
     ],
     "user_level": 1,
@@ -764,21 +789,21 @@ Authorization | Bearer token | API access token
 
 #### Success
 
-Key          | Type        | Enums                                            | Description
------------- | ----------- | ------------------------------------------------ | -----------
-user_id      | string      |                                                  | User id
-line_id      | string      |                                                  | LINE id
-username     | string      |                                                  | Username
-image        | string      |                                                  | User image
-email        | string      |                                                  | Email
-phone_number | string      |                                                  | Phone number
-cardbo_point | int         |                                                  | Cardbo point (useless)
-cards        | []Card      |                                                  | User own card array
-mobilepays   | []Mobilepay |                                                  | User own mobile pay array
-user_level   | int         | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
-created_at   | int         |                                                  | create time in timestamp
-updated_at   | int         |                                                  | update time in timestamp
-last_login   | int         |                                                  | User last login time in timestamp
+Key             | Type             | Enums | Description
+--------------- | ---------------- | ----- | -----------
+user_id         | string           |       | User id
+line_id         | string           |       | LINE id
+username        | string           |       | Username
+image           | string           |       | User image
+email           | string           |       | Email
+phone_number    | string           |       | Phone number
+cardbo_point    | int              |       | Cardbo point (useless)
+cards           | []Card           |       | User own card array
+user_mobilepays | []UserMobilepay  |       | User own mobile pay array
+user_level      | int              | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+created_at      | int              |       | create time in timestamp
+updated_at      | int              |       | update time in timestamp
+last_login      | int              |       | User last login time in timestamp
 
 #### Error
 
@@ -842,7 +867,7 @@ axios.put('https://api.cardbo.info/api/v5/user', data, {
   "code": 200,
   "message": "Ok",
   "result": {
-    "user_id": "5fcd3c76e549avb2805e7fe0",
+    "user_id": "5f9a747p00c2abf3d4a54d4q",
     "line_id": "Udchd7f131dvvhdbe166692206a12335c",
     "username": "Harrison Peng",
     "image": "https://image.com/image.png",
@@ -865,12 +890,30 @@ axios.put('https://api.cardbo.info/api/v5/user', data, {
         "issuer": "MASTERCARD"
       }
     ],
-    "mobilepays": [
+    "user_mobilepays": [
       {
-        "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
-        "name": "Apple Pay",
-        "image": "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png",
-        "user_has": false
+        "mobilepay": {
+          "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+          "name": "Apple Pay",
+          "image": "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png",
+          "user_has": false
+        },
+        "cards": [
+          {
+            "card_id": "5fdb2ff546a97b49dac8a6ad",
+            "name": "永豐幣倍卡",
+            "bank": {
+              "bank_id": "5f756d85c2349d9139648a7d",
+              "name": "永豐銀行",
+              "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/sinopac-bank.png",
+              "image": "https://i.imgur.com/1g5nYEN.png",
+              "code": "807"
+            },
+            "level": 5,
+            "image": "https://storage.googleapis.com/cardbo-images/card/5fdb2ff546a97b49dac8a6ad-1.png",
+            "issuer": "MASTERCARD"
+          }
+        ]
       }
     ],
     "user_level": 1,
@@ -912,21 +955,21 @@ phone_number | false    | string | phone number
 
 #### Success
 
-Key          | Type        | Enums                                            | Description
------------- | ----------- | ------------------------------------------------ | -----------
-user_id      | string      |                                                  | User id
-line_id      | string      |                                                  | LINE id
-username     | string      |                                                  | Username
-image        | string      |                                                  | User image
-email        | string      |                                                  | Email
-phone_number | string      |                                                  | Phone number
-cardbo_point | int         |                                                  | Cardbo point (useless)
-cards        | []Card      | User own card array
-mobilepays   | []Mobilepay | User own mobile pay array
-user_level   | int         | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
-created_at   | int         |                                                  | create time in timestamp
-updated_at   | int         |                                                  | update time in timestamp
-last_login   | int         |                                                  | User last login time in timestamp
+Key             | Type             | Enums | Description
+--------------- | ---------------- | ----- | -----------
+user_id         | string           |       | User id
+line_id         | string           |       | LINE id
+username        | string           |       | Username
+image           | string           |       | User image
+email           | string           |       | Email
+phone_number    | string           |       | Phone number
+cardbo_point    | int              |       | Cardbo point (useless)
+cards           | []Card           |       | User own card array
+user_mobilepays | []UserMobilepay  |       | User own mobile pay array
+user_level      | int              | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+created_at      | int              |       | create time in timestamp
+updated_at      | int              |       | update time in timestamp
+last_login      | int              |       | User last login time in timestamp
 
 #### Error
 
@@ -944,7 +987,7 @@ curl --request PUT \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
-    "card_id": "5fdb2ff846a97b49dac8a6b3",
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
     "image": "image_1",
     "level": 4,
     "issuer": "JCB"
@@ -957,7 +1000,7 @@ import requests
 url = 'https://api.cardbo.info/api/v5/user/add_card'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
-  'card_id': '5fdb2ff846a97b49dac8a6b3',
+  'card_id': '5f9a747p00c2abf3d4a54d4q',
   'image': 'image_1',
   'level': 4,
   'issuer': 'JCB'
@@ -970,7 +1013,7 @@ const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
-  card_id: '5fdb2ff846a97b49dac8a6b3',
+  card_id: '5f9a747p00c2abf3d4a54d4q',
   image: 'image_1',
   level: 4,
   issuer: 'JCB'
@@ -1048,7 +1091,7 @@ curl --request PUT \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
-    "card_id": "5fdb2ff846a97b49dac8a6b3"
+    "card_id": "5f9a747p00c2abf3d4a54d4q"
   }'
 ```
 
@@ -1058,7 +1101,7 @@ import requests
 url = 'https://api.cardbo.info/api/v5/user/remove_card'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
-  'card_id': '5fdb2ff846a97b49dac8a6b3'
+  'card_id': '5f9a747p00c2abf3d4a54d4q'
 }
 response = requests.put(url, headers=headers, json=data)
 ```
@@ -1068,7 +1111,7 @@ const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
-  card_id: '5fdb2ff846a97b49dac8a6b3'
+  card_id: '5f9a747p00c2abf3d4a54d4q'
 }
 axios.put('https://api.cardbo.info/api/v5/user/remove_card', data, {
     headers: headers
@@ -1141,7 +1184,7 @@ curl --request PUT \
   -H 'Content-Type: application/json' \
   --data '[
     {
-      "mobilepay_id": "5f9a747f10c24bf3d4a54d4e"
+      "mobilepay_id": "5f9a747p00c2abf3d4a54d4q"
     }
   ]'
 ```
@@ -1153,7 +1196,7 @@ url = 'https://api.cardbo.info/api/v5/user/mobilepays'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = [
   {
-    'mobilepay_id': '5f9a747f10c24bf3d4a54d4e'
+    'mobilepay_id': '5f9a747p00c2abf3d4a54d4q'
   }
 ]
 response = requests.put(url, headers=headers, json=data)
@@ -1165,7 +1208,7 @@ const axios = require('axios');
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = [
   {
-    mobilepay_id: "5f9a747f10c24bf3d4a54d4e"
+    mobilepay_id: "5f9a747p00c2abf3d4a54d4q"
   }
 ]
 axios.put('https://api.cardbo.info/api/v5/user/mobilepays', data, {
@@ -1239,11 +1282,11 @@ curl --request PUT \
   -H 'Content-Type: application/json' \
   --data '{
     "mobilepay": {
-      "mobilepay_id": "5f9a747f10c24bf3d4a54d4e"
+      "mobilepay_id": "5f9a747p00c2abf3d4a54d4q"
     },
     "cards": [
       {
-        "card_id": "5fdb2ff846a97b49dac8a6b3"
+        "card_id": "5f9a747p00c2abf3d4a54d4q"
       }
     ]
   }'
@@ -1256,11 +1299,11 @@ url = 'https://api.cardbo.info/api/v5/user/add_mobilepay'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'mobilepay': {
-    'mobilepay_id': '5f9a747f10c24bf3d4a54d4e'
+    'mobilepay_id': '5f9a747p00c2abf3d4a54d4q'
   },
   'cards': [
     {
-      'card_id': '5fdb2ff846a97b49dac8a6b3'
+      'card_id': '5f9a747p00c2abf3d4a54d4q'
     }
   ]
 }
@@ -1273,11 +1316,11 @@ const axios = require('axios');
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
   mobilepay: {
-    mobilepay_id: "5f9a747f10c24bf3d4a54d4e"
+    mobilepay_id: "5f9a747p00c2abf3d4a54d4q"
   },
   cards: [
     {
-      card_id: "5fdb2ff846a97b49dac8a6b3"
+      card_id: "5f9a747p00c2abf3d4a54d4q"
     }
   ]
 }
@@ -1364,7 +1407,7 @@ curl --request PUT \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
-    "mobilepay_id": "5f9a747f10c24bf3d4a54d4e"
+    "mobilepay_id": "5f9a747p00c2abf3d4a54d4q"
   }'
 ```
 
@@ -1374,7 +1417,7 @@ import requests
 url = 'https://api.cardbo.info/api/v5/user/remove_mobilepay'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
-  'mobilepay_id': '5f9a747f10c24bf3d4a54d4e'
+  'mobilepay_id': '5f9a747p00c2abf3d4a54d4q'
 }
 response = requests.put(url, headers=headers, json=data)
 ```
@@ -1384,7 +1427,7 @@ const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
-  mobilepay_id: "5f9a747f10c24bf3d4a54d4e"
+  mobilepay_id: "5f9a747p00c2abf3d4a54d4q"
 }
 axios.put('https://api.cardbo.info/api/v5/user/remove_mobilepay', data, {
     headers: headers
@@ -1457,10 +1500,10 @@ curl --request PUT \
   -H 'Content-Type: application/json' \
   --data '{
     "mobilepay": {
-      "mobilepay_id": "5f9a747f10c24bf3d4a54d4e"
+      "mobilepay_id": "5f9a747p00c2abf3d4a54d4q"
     },
     "card": {
-      "card_id": "5fdb2ff846a97b49dac8a6b3"
+      "card_id": "5f9a747p00c2abf3d4a54d4q"
     }
   }'
 ```
@@ -1472,10 +1515,10 @@ url = 'https://api.cardbo.info/api/v5/user/mobilepay/add_card'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'mobilepay': {
-    'mobilepay_id': '5f9a747f10c24bf3d4a54d4e'
+    'mobilepay_id': '5f9a747p00c2abf3d4a54d4q'
   },
   'cards': {
-    'card_id': '5fdb2ff846a97b49dac8a6b3'
+    'card_id': '5f9a747p00c2abf3d4a54d4q'
   }
 }
 response = requests.put(url, headers=headers, json=data)
@@ -1487,10 +1530,10 @@ const axios = require('axios');
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
   mobilepay: {
-    mobilepay_id: "5f9a747f10c24bf3d4a54d4e"
+    mobilepay_id: "5f9a747p00c2abf3d4a54d4q"
   },
   cards: {
-    card_id: "5fdb2ff846a97b49dac8a6b3"
+    card_id: "5f9a747p00c2abf3d4a54d4q"
   }
 }
 axios.put('https://api.cardbo.info/api/v5/user/mobilepay/add_card', data, {
@@ -1577,10 +1620,10 @@ curl --request PUT \
   -H 'Content-Type: application/json' \
   --data '{
     "mobilepay": {
-      "mobilepay_id": "5f9a747f10c24bf3d4a54d4e"
+      "mobilepay_id": "5f9a747p00c2abf3d4a54d4q"
     },
     "card": {
-      "card_id": "5fdb2ff846a97b49dac8a6b3"
+      "card_id": "5f9a747p00c2abf3d4a54d4q"
     }
   }'
 ```
@@ -1592,10 +1635,10 @@ url = 'https://api.cardbo.info/api/v5/user/mobilepay/remove_card'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'mobilepay': {
-    'mobilepay_id': '5f9a747f10c24bf3d4a54d4e'
+    'mobilepay_id': '5f9a747p00c2abf3d4a54d4q'
   },
   'cards': {
-    'card_id': '5fdb2ff846a97b49dac8a6b3'
+    'card_id': '5f9a747p00c2abf3d4a54d4q'
   }
 }
 response = requests.put(url, headers=headers, json=data)
@@ -1607,10 +1650,10 @@ const axios = require('axios');
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
   mobilepay: {
-    mobilepay_id: "5f9a747f10c24bf3d4a54d4e"
+    mobilepay_id: "5f9a747p00c2abf3d4a54d4q"
   },
   cards: {
-    card_id: "5fdb2ff846a97b49dac8a6b3"
+    card_id: "5f9a747p00c2abf3d4a54d4q"
   }
 }
 axios.put('https://api.cardbo.info/api/v5/user/mobilepay/remove_card', data, {
@@ -1697,7 +1740,7 @@ curl --request PUT \
   -H 'Content-Type: application/json' \
   --data '[
     {
-      "user_id": "5fcd3c76e549avb2805e7fe0",
+      "user_id": "5f9a747p00c2abf3d4a54d4q",
       "user_level": 2
     }
   ]'
@@ -1710,7 +1753,7 @@ url = 'https://api.cardbo.info/api/v5/user/user_level'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = [
   {
-    'user_id': '5fcd3c76e549avb2805e7fe0',
+    'user_id': '5f9a747p00c2abf3d4a54d4q',
     'user_level": 2
   }
 ]
@@ -1723,7 +1766,7 @@ const axios = require('axios');
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = [
   {
-    user_id: "5fcd3c76e549avb2805e7fe0",
+    user_id: "5f9a747p00c2abf3d4a54d4q",
     user_level: 2
   }
 ]
@@ -1840,9 +1883,9 @@ axios.get('https://api.cardbo.info/api/v5/user/accounting', {
           "card_info": "..."
         },
         "user_reward": {
-          "reward_id": "5fcd3c76e549avb2805e7fe0",
+          "reward_id": "5f9a747p00c2abf3d4a54d4q",
           "offer": {
-            "offer_id": "5fcd3c76e549avb2805e7fe0"
+            "offer_id": "5f9a747p00c2abf3d4a54d4q"
           },
           "reward_value": 1.5,
           "reward_name": "現金",
@@ -1905,7 +1948,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 2-2. Set user carrier invoice
+## 2-12. Set user carrier invoice
 
 > Set user carrier invoice:
 
@@ -2003,6 +2046,168 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
+## 2-13. Set user card payment date
+
+> Set user card payment date:
+
+```shell
+curl --request PUT \
+  --url https://api.cardbo.info/api/v5/user/card_payment_date \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
+    "payment_date": 1
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v5/user/card_payment_date'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "card_id": "5f9a747p00c2abf3d4a54d4q",
+  "payment_date": 1
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  card_id: "5f9a747p00c2abf3d4a54d4q",
+  payment_date: 1
+}
+axios.put('https://api.cardbo.info/api/v5/user/card_payment_date', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "user_id": "5f9a747p00c2abf3d4a54d4q",
+    "line_id": "Udchd7f131dvvhdbe166692206a12335c",
+    "username": "Harrison Peng",
+    "image": "https://image.com/image.png",
+    "email": "harrison@cardbo.info",
+    "phone_number": "0987654321",
+    "cardbo_point": 0,
+    "cards": [
+      {
+        "card_id": "5fdb2ff546a97b49dac8a6ad",
+        "name": "永豐幣倍卡",
+        "bank": {
+          "bank_id": "5f756d85c2349d9139648a7d",
+          "name": "永豐銀行",
+          "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/sinopac-bank.png",
+          "image": "https://i.imgur.com/1g5nYEN.png",
+          "code": "807"
+        },
+        "level": 5,
+        "image": "https://storage.googleapis.com/cardbo-images/card/5fdb2ff546a97b49dac8a6ad-1.png",
+        "issuer": "MASTERCARD"
+      }
+    ],
+    "user_mobilepays": [
+      {
+        "mobilepay": {
+          "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+          "name": "Apple Pay",
+          "image": "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png",
+          "user_has": false
+        },
+        "cards": [
+          {
+            "card_id": "5fdb2ff546a97b49dac8a6ad",
+            "name": "永豐幣倍卡",
+            "bank": {
+              "bank_id": "5f756d85c2349d9139648a7d",
+              "name": "永豐銀行",
+              "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/sinopac-bank.png",
+              "image": "https://i.imgur.com/1g5nYEN.png",
+              "code": "807"
+            },
+            "level": 5,
+            "image": "https://storage.googleapis.com/cardbo-images/card/5fdb2ff546a97b49dac8a6ad-1.png",
+            "issuer": "MASTERCARD"
+          }
+        ]
+      }
+    ],
+    "user_level": 1,
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "last_login": 1617601542000
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Set user card payment date
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://api.cardbo.info/api/v5/user/card_payment_date`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter    | Required | Type   | Description
+------------ | -------- | ------ | -----------
+card_id      | true     | string | card id
+payment_date | true     | int    | payment date
+
+### Response
+
+#### Success
+
+Key             | Type             | Enums | Description
+--------------- | ---------------- | ----- | -----------
+user_id         | string           |       | User id
+line_id         | string           |       | LINE id
+username        | string           |       | Username
+image           | string           |       | User image
+email           | string           |       | Email
+phone_number    | string           |       | Phone number
+cardbo_point    | int              |       | Cardbo point (useless)
+cards           | []Card           |       | User own card array
+user_mobilepays | []UserMobilepay  |       | User own mobile pay array
+user_level      | int              | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+created_at      | int              |       | create time in timestamp
+updated_at      | int              |       | update time in timestamp
+last_login      | int              |       | User last login time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
 # 3. Administrator
 
 ## 3-1. Create administrator
@@ -2064,7 +2269,7 @@ axios.post('https://api.cardbo.info/api/v5/administrator', data, {
   "code": 200,
   "message": "Ok",
   "result": {
-    "administrator_id": "5fa79ec32ba2dfe2db67ae2c",
+    "administrator_id": "5f9a747p00c2abf3d4a54d4q",
     "account": "administrator_account",
     "username": "Harrison",
     "level": 2,
@@ -2168,7 +2373,7 @@ axios.post('https://api.cardbo.info/api/v5/administrator', {
   "code": 200,
   "message": "Ok",
   "result": {
-    "administrator_id": "5fa79ec32ba2dfe2db67ae2c",
+    "administrator_id": "5f9a747p00c2abf3d4a54d4q",
     "account": "administrator_account",
     "username": "Harrison",
     "level": 2,
@@ -2228,7 +2433,7 @@ error | string | error message
 
 ```shell
 curl --request DELETE \
-  --url https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c \
+  --url https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54d4q \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -2236,7 +2441,7 @@ curl --request DELETE \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c'
+url = 'https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54d4q'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.delete(url, headers=headers)
 ```
@@ -2245,7 +2450,7 @@ response = requests.delete(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.delete('https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c', {
+axios.delete('https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54d4q', {
     headers: headers
   })
   .then(function (response) {
@@ -2263,7 +2468,7 @@ axios.delete('https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67a
   "code": 200,
   "message": "Ok",
   "result": {
-    "administrator_id": "5fa79ec32ba2dfe2db67ae2c",
+    "administrator_id": "5f9a747p00c2abf3d4a54d4q",
     "account": "administrator_account",
     "username": "Harrison",
     "level": 2,
@@ -2365,7 +2570,7 @@ axios.delete('https://api.cardbo.info/api/v5/administrator/employees?options=acc
   "message": "Ok",
   "result": [
     {
-      "administrator_id": "5fa79ec32ba2dfe2db67ae2c",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "account": "administrator_account",
       "username": "Harrison"
     }
@@ -2426,7 +2631,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/level \
+  --url https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54d4q/level \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -2437,7 +2642,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/level'
+url = 'https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54d4q/level'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'level': 1
@@ -2452,7 +2657,7 @@ headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
   level: 2
 }
-axios.delete('https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/level', data, {
+axios.delete('https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54d4q/level', data, {
     headers: headers
   })
   .then(function (response) {
@@ -2470,7 +2675,7 @@ axios.delete('https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67a
   "code": 200,
   "message": "Ok",
   "result": {
-    "administrator_id": "5fa79ec32ba2dfe2db67ae2c",
+    "administrator_id": "5f9a747p00c2abf3d4a54d4q",
     "account": "administrator_account",
     "username": "Harrison",
     "level": 2,
@@ -2542,7 +2747,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/password \
+  --url https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54d4q/password \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -2554,7 +2759,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/password'
+url = 'https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54d4q/password'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'password': 'old_password',
@@ -2571,7 +2776,7 @@ data = {
   password: 'old_password',
   new_password: 'new_password'
 }
-axios.put('https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/password', data, {
+axios.put('https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54d4q/password', data, {
     headers: headers
   })
   .then(function (response) {
@@ -2644,7 +2849,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/profile \
+  --url https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54d4q/profile \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -2656,7 +2861,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/profile'
+url = 'https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54d4q/profile'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'email': 'harrison@cardbo.info'
@@ -2671,7 +2876,7 @@ headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
   email: "harrison@cardbo.info"
 }
-axios.put('https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/profile', data, {
+axios.put('https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54d4q/profile', data, {
     headers: headers
   })
   .then(function (response) {
@@ -2689,7 +2894,7 @@ axios.put('https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c
   "code": 200,
   "message": "Ok",
   "result": {
-    "administrator_id": "5fa79ec32ba2dfe2db67ae2c",
+    "administrator_id": "5f9a747p00c2abf3d4a54d4q",
     "account": "administrator_account",
     "username": "Harrison",
     "level": 2,
@@ -2734,7 +2939,6 @@ Parameter     | Required | Type   | Description
 username      | false    | string | username
 email         | false    | string | email
 phone_number  | false    | string | phone number
-facebook_link | false    | string | facebook profile link
 
 ### Response
 
@@ -2764,7 +2968,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/reset_password \
+  --url https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54d4q/reset_password \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -2772,7 +2976,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/reset_password'
+url = 'https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54d4q/reset_password'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.put(url, headers=headers)
 ```
@@ -2781,7 +2985,7 @@ response = requests.put(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.put('https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c/reset_password', {
+axios.put('https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54d4q/reset_password', {
     headers: headers
   })
   .then(function (response) {
@@ -2799,7 +3003,7 @@ axios.put('https://api.cardbo.info/api/v5/administrator/5fa79ec32ba2dfe2db67ae2c
   "code": 200,
   "message": "Ok",
   "result": {
-    "administrator_id": "5fa79ec32ba2dfe2db67ae2c",
+    "administrator_id": "5f9a747p00c2abf3d4a54d4q",
     "account": "administrator_account",
     "username": "Harrison",
     "level": 1,
@@ -3000,7 +3204,7 @@ axios.get('https://api.cardbo.info/api/v5/cards/formal?size=10&page=1&options=na
   "message": "Ok",
   "result": [
     {
-      "card_id": "5fc0998715eca4cbca34a1fe",
+      "card_id": "5f9a747p00c2abf3d4a54d4q",
       "name": "台新@GoGo卡",
       "options": [
         {
@@ -3010,9 +3214,9 @@ axios.get('https://api.cardbo.info/api/v5/cards/formal?size=10&page=1&options=na
         }
       ],
       "images": {
-        "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
-        "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
-        "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+        "image_1": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+        "image_2": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-2.png",
+        "image_3": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-3.png"
       },
       "promote": false,
       "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
@@ -3024,13 +3228,13 @@ axios.get('https://api.cardbo.info/api/v5/cards/formal?size=10&page=1&options=na
         "code": "812"
       },
       "creator": {
-        "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+        "administrator_id": "5f9a747p00c2abf3d4a54d4q",
         "username": "Harrison"
       },
       "created_at": 1617601542000,
       "updated_at": 1617601542000,
       "examiner": {
-        "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+        "administrator_id": "5f9a747p00c2abf3d4a54d4q",
         "username": "Harrison"
       },
       "status": 3,
@@ -3139,7 +3343,7 @@ axios.get('https://api.cardbo.info/api/v5/cards/formal/bank/5f756d85c2349d913964
   "message": "Ok",
   "result": [
     {
-      "card_id": "5fc0998715eca4cbca34a1fe",
+      "card_id": "5f9a747p00c2abf3d4a54d4q",
       "name": "台新@GoGo卡",
       "options": [
         {
@@ -3149,9 +3353,9 @@ axios.get('https://api.cardbo.info/api/v5/cards/formal/bank/5f756d85c2349d913964
         }
       ],
       "images": {
-        "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
-        "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
-        "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+        "image_1": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+        "image_2": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-2.png",
+        "image_3": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-3.png"
       },
       "promote": false,
       "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
@@ -3163,13 +3367,13 @@ axios.get('https://api.cardbo.info/api/v5/cards/formal/bank/5f756d85c2349d913964
         "code": "812"
       },
       "creator": {
-        "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+        "administrator_id": "5f9a747p00c2abf3d4a54d4q",
         "username": "Harrison"
       },
       "created_at": 1617601542000,
       "updated_at": 1617601542000,
       "examiner": {
-        "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+        "administrator_id": "5f9a747p00c2abf3d4a54d4q",
         "username": "Harrison"
       },
       "status": 3,
@@ -3280,7 +3484,7 @@ axios.get('https://api.cardbo.info/api/v5/cards/formal/promote?options=name&opti
   "message": "Ok",
   "result": [
     {
-      "card_id": "5fc0998715eca4cbca34a1fe",
+      "card_id": "5f9a747p00c2abf3d4a54d4q",
       "name": "台新@GoGo卡",
       "options": [
         {
@@ -3290,9 +3494,9 @@ axios.get('https://api.cardbo.info/api/v5/cards/formal/promote?options=name&opti
         }
       ],
       "images": {
-        "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
-        "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
-        "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+        "image_1": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+        "image_2": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-2.png",
+        "image_3": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-3.png"
       },
       "promote": true,
       "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
@@ -3304,13 +3508,13 @@ axios.get('https://api.cardbo.info/api/v5/cards/formal/promote?options=name&opti
         "code": "812"
       },
       "creator": {
-        "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+        "administrator_id": "5f9a747p00c2abf3d4a54d4q",
         "username": "Harrison"
       },
       "created_at": 1617601542000,
       "updated_at": 1617601542000,
       "examiner": {
-        "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+        "administrator_id": "5f9a747p00c2abf3d4a54d4q",
         "username": "Harrison"
       },
       "status": 3,
@@ -3415,7 +3619,7 @@ axios.get('https://api.cardbo.info/api/v5/cards/formal/user_has?options=name&opt
   "message": "Ok",
   "result": [
     {
-      "card_id": "5fc0998715eca4cbca34a1fe",
+      "card_id": "5f9a747p00c2abf3d4a54d4q",
       "name": "台新@GoGo卡",
       "options": [
         {
@@ -3425,9 +3629,9 @@ axios.get('https://api.cardbo.info/api/v5/cards/formal/user_has?options=name&opt
         }
       ],
       "images": {
-        "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
-        "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
-        "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+        "image_1": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+        "image_2": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-2.png",
+        "image_3": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-3.png"
       },
       "promote": true,
       "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
@@ -3439,13 +3643,13 @@ axios.get('https://api.cardbo.info/api/v5/cards/formal/user_has?options=name&opt
         "code": "812"
       },
       "creator": {
-        "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+        "administrator_id": "5f9a747p00c2abf3d4a54d4q",
         "username": "Harrison"
       },
       "created_at": 1617601542000,
       "updated_at": 1617601542000,
       "examiner": {
-        "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+        "administrator_id": "5f9a747p00c2abf3d4a54d4q",
         "username": "Harrison"
       },
       "status": 3,
@@ -3514,7 +3718,7 @@ error | string | error message
 
 ```shell
 curl --request GET \
-  --url https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9 \
+  --url https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -3522,7 +3726,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9'
+url = 'https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.get(url, headers=headers)
 ```
@@ -3531,7 +3735,7 @@ response = requests.get(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.get('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9', {
+axios.get('https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q', {
     headers: headers
   })
   .then(function (response) {
@@ -3549,7 +3753,7 @@ axios.get('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9',
   "code": 200,
   "message": "Ok",
   "result": {
-    "card_id": "5fc0998715eca4cbca34a1fe",
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
     "name": "台新@GoGo卡",
     "options": [
       {
@@ -3559,9 +3763,9 @@ axios.get('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9',
       }
     ],
     "images": {
-      "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
-      "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
-      "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+      "image_1": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+      "image_2": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-2.png",
+      "image_3": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-3.png"
     },
     "promote": false,
     "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
@@ -3573,13 +3777,13 @@ axios.get('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9',
       "code": "812"
     },
     "creator": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "created_at": 1617601542000,
     "updated_at": 1617601542000,
     "examiner": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "status": 3,
@@ -3645,7 +3849,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9 \
+  --url https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -3658,7 +3862,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9'
+url = 'https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'bank': {
@@ -3677,7 +3881,7 @@ data = {
     bank_id: '5f756d85c2349d9139648a69'
   }
 }
-axios.put('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9', data, {
+axios.put('https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q', data, {
     headers: headers
   })
   .then(function (response) {
@@ -3695,7 +3899,7 @@ axios.put('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9',
   "code": 200,
   "message": "Ok",
   "result": {
-    "card_id": "5fc0998715eca4cbca34a1fe",
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
     "name": "台新@GoGo卡",
     "options": [
       {
@@ -3705,9 +3909,9 @@ axios.put('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9',
       }
     ],
     "images": {
-      "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
-      "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
-      "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+      "image_1": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+      "image_2": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-2.png",
+      "image_3": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-3.png"
     },
     "promote": false,
     "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
@@ -3719,13 +3923,13 @@ axios.put('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9',
       "code": "812"
     },
     "creator": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "created_at": 1617601542000,
     "updated_at": 1617601542000,
     "examiner": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "status": 3,
@@ -3803,14 +4007,14 @@ error | string | error message
 
 ```shell
 curl --request DELETE \
-  --url https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9 \
+  --url https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q \
   -H 'Authorization: Bearer meowmeowmeowaccess'
 ```
 
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9'
+url = 'https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.delete(url, headers=headers)
 ```
@@ -3819,7 +4023,7 @@ response = requests.delete(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.delete('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9', {
+axios.delete('https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q', {
     headers: headers
   })
   .then(function (response) {
@@ -3837,7 +4041,7 @@ axios.delete('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a
   "code": 200,
   "message": "Ok",
   "result": {
-    "card_id": "5fc0998715eca4cbca34a1fe",
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
     "name": "台新@GoGo卡",
     "options": [
       {
@@ -3847,9 +4051,9 @@ axios.delete('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a
       }
     ],
     "images": {
-      "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
-      "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
-      "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+      "image_1": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+      "image_2": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-2.png",
+      "image_3": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-3.png"
     },
     "promote": false,
     "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
@@ -3861,13 +4065,13 @@ axios.delete('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a
       "code": "812"
     },
     "creator": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "created_at": 1617601542000,
     "updated_at": 1617601542000,
     "examiner": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "status": 3,
@@ -3933,14 +4137,14 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/add_promote \
+  --url https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q/add_promote \
   -H 'Authorization: Bearer meowmeowmeowaccess'
 ```
 
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/add_promote'
+url = 'https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q/add_promote'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.put(url, headers=headers)
 ```
@@ -3949,7 +4153,7 @@ response = requests.put(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.put('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/add_promote', {
+axios.put('https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q/add_promote', {
     headers: headers
   })
   .then(function (response) {
@@ -3967,7 +4171,7 @@ axios.put('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/a
   "code": 200,
   "message": "Ok",
   "result": {
-    "card_id": "5fc0998715eca4cbca34a1fe",
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
     "name": "台新@GoGo卡",
     "options": [
       {
@@ -3977,9 +4181,9 @@ axios.put('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/a
       }
     ],
     "images": {
-      "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
-      "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
-      "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+      "image_1": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+      "image_2": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-2.png",
+      "image_3": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-3.png"
     },
     "promote": false,
     "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
@@ -3991,13 +4195,13 @@ axios.put('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/a
       "code": "812"
     },
     "creator": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "created_at": 1617601542000,
     "updated_at": 1617601542000,
     "examiner": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "status": 3,
@@ -4063,14 +4267,14 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/remove_promote \
+  --url https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q/remove_promote \
   -H 'Authorization: Bearer meowmeowmeowaccess'
 ```
 
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/remove_promote'
+url = 'https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q/remove_promote'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.put(url, headers=headers)
 ```
@@ -4079,7 +4283,7 @@ response = requests.put(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.put('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/remove_promote', {
+axios.put('https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q/remove_promote', {
     headers: headers
   })
   .then(function (response) {
@@ -4097,7 +4301,7 @@ axios.put('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/r
   "code": 200,
   "message": "Ok",
   "result": {
-    "card_id": "5fc0998715eca4cbca34a1fe",
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
     "name": "台新@GoGo卡",
     "options": [
       {
@@ -4107,9 +4311,9 @@ axios.put('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/r
       }
     ],
     "images": {
-      "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
-      "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
-      "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+      "image_1": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+      "image_2": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-2.png",
+      "image_3": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-3.png"
     },
     "promote": false,
     "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
@@ -4121,13 +4325,13 @@ axios.put('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/r
       "code": "812"
     },
     "creator": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "created_at": 1617601542000,
     "updated_at": 1617601542000,
     "examiner": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "status": 3,
@@ -4193,7 +4397,7 @@ error | string | error message
 
 ```shell
 curl --request POST \
-  --url https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/image \
+  --url https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q/image \
   -H 'Authorization: Bearer meowmeowmeowaccess'
   --data '{
     "image_key": "image_1",
@@ -4204,7 +4408,7 @@ curl --request POST \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/image'
+url = 'https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q/image'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   "image_key": "image_1",
@@ -4221,7 +4425,7 @@ data = {
   image_key: "image_1",
   data: "base64-encoded-string"
 }
-axios.post('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/image',data, {
+axios.post('https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q/image',data, {
     headers: headers
   })
   .then(function (response) {
@@ -4239,8 +4443,8 @@ axios.post('https://api.cardbo.info/api/v5/card/formal/5fdb2ff346a97b49dac8a6a9/
   "code": 200,
   "message": "Ok",
   "result": {
-    "card_id": "5fc0998715eca4cbca34a1fe",
-    "url": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1"
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
+    "url": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1"
   },
   "timestamp": 1617601542000
 }
@@ -4334,7 +4538,7 @@ axios.get('https://api.cardbo.info/api/v5/cards/pending?size=10&page=1&options=n
   "message": "Ok",
   "result": [
     {
-      "card_id": "5fc0998715eca4cbca34a1fe",
+      "card_id": "5f9a747p00c2abf3d4a54d4q",
       "name": "台新@GoGo卡",
       "options": [
         {
@@ -4344,9 +4548,9 @@ axios.get('https://api.cardbo.info/api/v5/cards/pending?size=10&page=1&options=n
         }
       ],
       "images": {
-        "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
-        "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
-        "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+        "image_1": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+        "image_2": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-2.png",
+        "image_3": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-3.png"
       },
       "promote": false,
       "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
@@ -4358,13 +4562,13 @@ axios.get('https://api.cardbo.info/api/v5/cards/pending?size=10&page=1&options=n
         "code": "812"
       },
       "creator": {
-        "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+        "administrator_id": "5f9a747p00c2abf3d4a54d4q",
         "username": "Harrison"
       },
       "created_at": 1617601542000,
       "updated_at": 1617601542000,
       "examiner": {
-        "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+        "administrator_id": "5f9a747p00c2abf3d4a54d4q",
         "username": "Harrison"
       },
       "status": 3,
@@ -4520,7 +4724,7 @@ axios.post('https://api.cardbo.info/api/v5/card/pending', data, {
   "code": 200,
   "message": "Ok",
   "result": {
-    "card_id": "5fc0998715eca4cbca34a1fe",
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
     "name": "台新@GoGo卡",
     "options": [
       {
@@ -4530,9 +4734,9 @@ axios.post('https://api.cardbo.info/api/v5/card/pending', data, {
       }
     ],
     "images": {
-      "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
-      "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
-      "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+      "image_1": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+      "image_2": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-2.png",
+      "image_3": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-3.png"
     },
     "promote": false,
     "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
@@ -4544,13 +4748,13 @@ axios.post('https://api.cardbo.info/api/v5/card/pending', data, {
       "code": "812"
     },
     "creator": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "created_at": 1617601542000,
     "updated_at": 1617601542000,
     "examiner": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "status": 3,
@@ -4622,7 +4826,7 @@ error | string | error message
 
 ```shell
 curl --request GET \
-  --url https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9 \
+  --url https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -4630,7 +4834,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'
+url = 'https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.get(url, headers=headers)
 ```
@@ -4639,7 +4843,7 @@ response = requests.get(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.get('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9', {
+axios.get('https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q', {
     headers: headers
   })
   .then(function (response) {
@@ -4657,7 +4861,7 @@ axios.get('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'
   "code": 200,
   "message": "Ok",
   "result": {
-    "card_id": "5fc0998715eca4cbca34a1fe",
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
     "name": "台新@GoGo卡",
     "options": [
       {
@@ -4667,9 +4871,9 @@ axios.get('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'
       }
     ],
     "images": {
-      "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
-      "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
-      "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+      "image_1": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+      "image_2": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-2.png",
+      "image_3": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-3.png"
     },
     "promote": false,
     "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
@@ -4681,13 +4885,13 @@ axios.get('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'
       "code": "812"
     },
     "creator": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "created_at": 1617601542000,
     "updated_at": 1617601542000,
     "examiner": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "status": 3,
@@ -4753,7 +4957,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9 \
+  --url https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -4766,7 +4970,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'
+url = 'https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'bank': {
@@ -4785,7 +4989,7 @@ data = {
     bank_id: '5f756d85c2349d9139648a69'
   }
 }
-axios.put('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9', data, {
+axios.put('https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q', data, {
     headers: headers
   })
   .then(function (response) {
@@ -4803,7 +5007,7 @@ axios.put('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'
   "code": 200,
   "message": "Ok",
   "result": {
-    "card_id": "5fc0998715eca4cbca34a1fe",
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
     "name": "台新@GoGo卡",
     "options": [
       {
@@ -4813,9 +5017,9 @@ axios.put('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'
       }
     ],
     "images": {
-      "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
-      "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
-      "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+      "image_1": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+      "image_2": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-2.png",
+      "image_3": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-3.png"
     },
     "promote": false,
     "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
@@ -4827,13 +5031,13 @@ axios.put('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'
       "code": "812"
     },
     "creator": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "created_at": 1617601542000,
     "updated_at": 1617601542000,
     "examiner": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "status": 3,
@@ -4911,14 +5115,14 @@ error | string | error message
 
 ```shell
 curl --request DELETE \
-  --url https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9 \
+  --url https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q \
   -H 'Authorization: Bearer meowmeowmeowaccess'
 ```
 
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9'
+url = 'https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.delete(url, headers=headers)
 ```
@@ -4927,7 +5131,7 @@ response = requests.delete(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.delete('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9', {
+axios.delete('https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q', {
     headers: headers
   })
   .then(function (response) {
@@ -4945,7 +5149,7 @@ axios.delete('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6
   "code": 200,
   "message": "Ok",
   "result": {
-    "card_id": "5fc0998715eca4cbca34a1fe",
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
     "name": "台新@GoGo卡",
     "options": [
       {
@@ -4955,9 +5159,9 @@ axios.delete('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6
       }
     ],
     "images": {
-      "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
-      "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
-      "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+      "image_1": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+      "image_2": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-2.png",
+      "image_3": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-3.png"
     },
     "promote": false,
     "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
@@ -4969,13 +5173,13 @@ axios.delete('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6
       "code": "812"
     },
     "creator": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "created_at": 1617601542000,
     "updated_at": 1617601542000,
     "examiner": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "status": 3,
@@ -5041,14 +5245,14 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/passed \
+  --url https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q/passed \
   -H 'Authorization: Bearer meowmeowmeowaccess'
 ```
 
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/passed'
+url = 'https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q/passed'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.put(url, headers=headers)
 ```
@@ -5057,7 +5261,7 @@ response = requests.put(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.put('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/passed', {
+axios.put('https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q/passed', {
     headers: headers
   })
   .then(function (response) {
@@ -5075,7 +5279,7 @@ axios.put('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/
   "code": 200,
   "message": "Ok",
   "result": {
-    "card_id": "5fc0998715eca4cbca34a1fe",
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
     "name": "台新@GoGo卡",
     "options": [
       {
@@ -5085,9 +5289,9 @@ axios.put('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/
       }
     ],
     "images": {
-      "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
-      "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
-      "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+      "image_1": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+      "image_2": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-2.png",
+      "image_3": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-3.png"
     },
     "promote": false,
     "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
@@ -5099,13 +5303,13 @@ axios.put('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/
       "code": "812"
     },
     "creator": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "created_at": 1617601542000,
     "updated_at": 1617601542000,
     "examiner": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "status": 3,
@@ -5171,14 +5375,14 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/failed \
+  --url https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q/failed \
   -H 'Authorization: Bearer meowmeowmeowaccess'
 ```
 
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/failed'
+url = 'https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q/failed'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.put(url, headers=headers)
 ```
@@ -5187,7 +5391,7 @@ response = requests.put(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.put('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/failed', {
+axios.put('https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q/failed', {
     headers: headers
   })
   .then(function (response) {
@@ -5205,7 +5409,7 @@ axios.put('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/
   "code": 200,
   "message": "Ok",
   "result": {
-    "card_id": "5fc0998715eca4cbca34a1fe",
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
     "name": "台新@GoGo卡",
     "options": [
       {
@@ -5215,9 +5419,9 @@ axios.put('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/
       }
     ],
     "images": {
-      "image_1": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1.png",
-      "image_2": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-2.png",
-      "image_3": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-3.png"
+      "image_1": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+      "image_2": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-2.png",
+      "image_3": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-3.png"
     },
     "promote": false,
     "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
@@ -5229,13 +5433,13 @@ axios.put('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/
       "code": "812"
     },
     "creator": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "created_at": 1617601542000,
     "updated_at": 1617601542000,
     "examiner": {
-      "administrator_id": "5fa78dc32ba6dfe9db675a6d",
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
       "username": "Harrison"
     },
     "status": 3,
@@ -5301,7 +5505,7 @@ error | string | error message
 
 ```shell
 curl --request POST \
-  --url https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/image \
+  --url https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q/image \
   -H 'Authorization: Bearer meowmeowmeowaccess'
   --data '{
     "image_key": "image_1",
@@ -5312,7 +5516,7 @@ curl --request POST \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/image'
+url = 'https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q/image'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   "image_key": "image_1",
@@ -5329,7 +5533,7 @@ data = {
   image_key: "image_1",
   data: "base64-encoded-string"
 }
-axios.post('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9/image',data, {
+axios.post('https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q/image',data, {
     headers: headers
   })
   .then(function (response) {
@@ -5347,8 +5551,8 @@ axios.post('https://api.cardbo.info/api/v5/card/pending/5fdb2ff346a97b49dac8a6a9
   "code": 200,
   "message": "Ok",
   "result": {
-    "card_id": "5fc0998715eca4cbca34a1fe",
-    "url": "https://storage.googleapis.com/cardbo-images/card/5fc0998715eca4cbca34a1fe-1"
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
+    "url": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1"
   },
   "timestamp": 1617601542000
 }
@@ -5455,7 +5659,7 @@ axios.post('https://api.cardbo.info/api/v5/mobilepay', data, {
   "code": 200,
   "message": "Ok",
   "result": {
-    "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
+    "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
     "name": "Apple Pay",
     "image": "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png"
   },
@@ -5546,7 +5750,7 @@ axios.get('https://api.cardbo.info/api/v5/mobilepays?options=name&options=image'
   "message": "Ok",
   "result": [
     {
-      "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
+      "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
       "name": "Apple Pay",
       "image": "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png",
       "user_has": false
@@ -5651,7 +5855,7 @@ error | string | error message
 
 ```shell
 curl --request GET \
-  --url https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5f9a747f10c24bf3d4a54d4e&card_id=5f9a747f10c24bf3d4a54d4e&mobilepay_id=5f9a747f10c24bf3d4a54d4e \
+  --url https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5f9a747p00c2abf3d4a54d4q&card_id=5f9a747p00c2abf3d4a54d4q&mobilepay_id=5f9a747p00c2abf3d4a54d4q \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -5659,7 +5863,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5f9a747f10c24bf3d4a54d4e&card_id=5f9a747f10c24bf3d4a54d4e&mobilepay_id=5f9a747f10c24bf3d4a54d4e'
+url = 'https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5f9a747p00c2abf3d4a54d4q&card_id=5f9a747p00c2abf3d4a54d4q&mobilepay_id=5f9a747p00c2abf3d4a54d4q'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.delete(url, headers=headers)
 ```
@@ -5668,7 +5872,7 @@ response = requests.delete(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.delete('https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5f9a747f10c24bf3d4a54d4e&card_id=5f9a747f10c24bf3d4a54d4e&mobilepay_id=5f9a747f10c24bf3d4a54d4e', {
+axios.delete('https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5f9a747p00c2abf3d4a54d4q&card_id=5f9a747p00c2abf3d4a54d4q&mobilepay_id=5f9a747p00c2abf3d4a54d4q', {
     headers: headers
   })
   .then(function (response) {
@@ -5702,7 +5906,7 @@ axios.delete('https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5
       "star": 5,
       "max_cashback": 4.5,
       "max_cashback_offers": [
-        "5f9a747f10c24bf3d4a54d4e"
+        "5f9a747p00c2abf3d4a54d4q"
       ],
       "cashback_upper_bound": 500,
       "cashback_amount": 200
@@ -5820,7 +6024,7 @@ axios.get('https://api.cardbo.info/api/v6/accountings/pending', {
   "message": "Ok",
   "result": [
     {
-      "_id": "5f9a747f10c24bf3d4a54d4e",
+      "_id": "5f9a747p00c2abf3d4a54d4q",
       "user": {
         "user_info": "..."
       },
@@ -5840,7 +6044,7 @@ axios.get('https://api.cardbo.info/api/v6/accountings/pending', {
       "date": 1617601542000,
       "rewards": [
         {
-          "offer_id": "5f9a747f10c24bf3d4a54d4e",
+          "offer_id": "5f9a747p00c2abf3d4a54d4q",
           "reward_name": "現金",
           "reward_value": 28.83
         }
@@ -5902,7 +6106,7 @@ error | string | error message
 
 ```shell
 curl --request GET \
-  --url https://api.cardbo.info/api/v6/accountings/5f9a747f10c24bf3d4a54d4e/2021 \
+  --url https://api.cardbo.info/api/v6/accountings/5f9a747p00c2abf3d4a54d4q/2021 \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -5910,7 +6114,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v6/accountings/5f9a747f10c24bf3d4a54d4e/2021'
+url = 'https://api.cardbo.info/api/v6/accountings/5f9a747p00c2abf3d4a54d4q/2021'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.get(url, headers=headers)
 ```
@@ -5919,7 +6123,7 @@ response = requests.get(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.get('https://api.cardbo.info/api/v6/accountings/5f9a747f10c24bf3d4a54d4e/2021', {
+axios.get('https://api.cardbo.info/api/v6/accountings/5f9a747p00c2abf3d4a54d4q/2021', {
     headers: headers
   })
   .then(function (response) {
@@ -6005,13 +6209,13 @@ curl --request POST \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
-    "card_id": "5f9a747f10c24bf3d4a54d4e",
-    "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
+    "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
     "amount": 1000,
     "name": "午餐",
-    "store_id": "5f9a747f10c24bf3d4a54d4e",
+    "store_id": "5f9a747p00c2abf3d4a54d4q",
     "rewards": [
-      "offer_id": "5f9a747f10c24bf3d4a54d4e"
+      "offer_id": "5f9a747p00c2abf3d4a54d4q"
     ],
     "date": 1617601542000,
     "completed": true
@@ -6024,13 +6228,13 @@ import requests
 url = 'https://api.cardbo.info/api/v6/accounting'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
-  "card_id": "5f9a747f10c24bf3d4a54d4e",
-  "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
+  "card_id": "5f9a747p00c2abf3d4a54d4q",
+  "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
   "amount": 1000,
   "name": "午餐",
-  "store_id": "5f9a747f10c24bf3d4a54d4e",
+  "store_id": "5f9a747p00c2abf3d4a54d4q",
   "rewards": [
-    "offer_id": "5f9a747f10c24bf3d4a54d4e"
+    "offer_id": "5f9a747p00c2abf3d4a54d4q"
   ],
   "date": 1617601542000,
   "completed": true
@@ -6043,13 +6247,13 @@ const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
-  card_id: "5f9a747f10c24bf3d4a54d4e",
-  mobilepay_id: "5f9a747f10c24bf3d4a54d4e",
+  card_id: "5f9a747p00c2abf3d4a54d4q",
+  mobilepay_id: "5f9a747p00c2abf3d4a54d4q",
   amount: 1000,
   name: "午餐",
-  store_id: "5f9a747f10c24bf3d4a54d4e",
+  store_id: "5f9a747p00c2abf3d4a54d4q",
   rewards: [
-    "5f9a747f10c24bf3d4a54d4e"
+    "5f9a747p00c2abf3d4a54d4q"
   ],
   date: 1617601542000,
   completed: true
@@ -6069,7 +6273,7 @@ axios.post('https://api.cardbo.info/api/v6/accounting', data, {
 
 ```json
 {
-  "_id": "5f9a747f10c24bf3d4a54d4e",
+  "_id": "5f9a747p00c2abf3d4a54d4q",
   "user": {
     "user_info": "..."
   },
@@ -6089,7 +6293,7 @@ axios.post('https://api.cardbo.info/api/v6/accounting', data, {
   "date": 1617601542000,
   "rewards": [
     {
-      "offer_id": "5f9a747f10c24bf3d4a54d4e",
+      "offer_id": "5f9a747p00c2abf3d4a54d4q",
       "reward_name": "現金",
       "reward_value": 28.83
     }
@@ -6162,15 +6366,15 @@ curl --request POST \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
-    "card_id": "5f9a747f10c24bf3d4a54d4e",
-    "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
+    "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
     "amount": 1000,
     "name": "午餐",
-    "store_id": "5f9a747f10c24bf3d4a54d4e",
+    "store_id": "5f9a747p00c2abf3d4a54d4q",
     "qr_code_left": "INVOICE_QR_CODE_LEFT",
     "qr_code_right": "INVOICE_QR_CODE_RIGHT",
     "rewards": [
-      "offer_id": "5f9a747f10c24bf3d4a54d4e"
+      "offer_id": "5f9a747p00c2abf3d4a54d4q"
     ],
     "date": 1617601542000,
     "completed": true
@@ -6183,15 +6387,15 @@ import requests
 url = 'https://api.cardbo.info/api/v6/accounting/qr_code'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
-  "card_id": "5f9a747f10c24bf3d4a54d4e",
-  "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
+  "card_id": "5f9a747p00c2abf3d4a54d4q",
+  "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
   "amount": 1000,
   "name": "午餐",
-  "store_id": "5f9a747f10c24bf3d4a54d4e",
+  "store_id": "5f9a747p00c2abf3d4a54d4q",
   "qr_code_left": "INVOICE_QR_CODE_LEFT",
   "qr_code_right": "INVOICE_QR_CODE_RIGHT",
   "rewards": [
-    "offer_id": "5f9a747f10c24bf3d4a54d4e"
+    "offer_id": "5f9a747p00c2abf3d4a54d4q"
   ],
   "date": 1617601542000,
   "completed": true
@@ -6204,15 +6408,15 @@ const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
-  card_id: "5f9a747f10c24bf3d4a54d4e",
-  mobilepay_id: "5f9a747f10c24bf3d4a54d4e",
+  card_id: "5f9a747p00c2abf3d4a54d4q",
+  mobilepay_id: "5f9a747p00c2abf3d4a54d4q",
   amount: 1000,
   name: "午餐",
-  store_id: "5f9a747f10c24bf3d4a54d4e",
+  store_id: "5f9a747p00c2abf3d4a54d4q",
   qr_code_left: "INVOICE_QR_CODE_LEFT",
   qr_code_right: "INVOICE_QR_CODE_RIGHT",
   rewards: [
-    "5f9a747f10c24bf3d4a54d4e"
+    "5f9a747p00c2abf3d4a54d4q"
   ],
   date: 1617601542000,
   completed: true
@@ -6232,7 +6436,7 @@ axios.post('https://api.cardbo.info/api/v6/accounting/qr_code', data, {
 
 ```json
 {
-  "_id": "5f9a747f10c24bf3d4a54d4e",
+  "_id": "5f9a747p00c2abf3d4a54d4q",
   "user": {
     "user_info": "..."
   },
@@ -6252,7 +6456,7 @@ axios.post('https://api.cardbo.info/api/v6/accounting/qr_code', data, {
   "date": 1617601542000,
   "rewards": [
     {
-      "offer_id": "5f9a747f10c24bf3d4a54d4e",
+      "offer_id": "5f9a747p00c2abf3d4a54d4q",
       "reward_name": "現金",
       "reward_value": 28.83
     }
@@ -6333,14 +6537,14 @@ curl --request POST \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
-    "card_id": "5f9a747f10c24bf3d4a54d4e",
-    "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
+    "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
     "amount": 1000,
     "name": "午餐",
-    "store_id": "5f9a747f10c24bf3d4a54d4e",
-    "invoice_id": "5f9a747f10c24bf3d4a54d4e",
+    "store_id": "5f9a747p00c2abf3d4a54d4q",
+    "invoice_id": "5f9a747p00c2abf3d4a54d4q",
     "rewards": [
-      "offer_id": "5f9a747f10c24bf3d4a54d4e"
+      "offer_id": "5f9a747p00c2abf3d4a54d4q"
     ],
     "date": 1617601542000,
     "completed": true
@@ -6353,14 +6557,14 @@ import requests
 url = 'https://api.cardbo.info/api/v6/accounting/qr_code'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
-  "card_id": "5f9a747f10c24bf3d4a54d4e",
-  "mobilepay_id": "5f9a747f10c24bf3d4a54d4e",
+  "card_id": "5f9a747p00c2abf3d4a54d4q",
+  "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
   "amount": 1000,
   "name": "午餐",
-  "store_id": "5f9a747f10c24bf3d4a54d4e",
-  "invoice_id": "5f9a747f10c24bf3d4a54d4e",
+  "store_id": "5f9a747p00c2abf3d4a54d4q",
+  "invoice_id": "5f9a747p00c2abf3d4a54d4q",
   "rewards": [
-    "offer_id": "5f9a747f10c24bf3d4a54d4e"
+    "offer_id": "5f9a747p00c2abf3d4a54d4q"
   ],
   "date": 1617601542000,
   "completed": true
@@ -6373,14 +6577,14 @@ const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
-  card_id: "5f9a747f10c24bf3d4a54d4e",
-  mobilepay_id: "5f9a747f10c24bf3d4a54d4e",
+  card_id: "5f9a747p00c2abf3d4a54d4q",
+  mobilepay_id: "5f9a747p00c2abf3d4a54d4q",
   amount: 1000,
   name: "午餐",
-  store_id: "5f9a747f10c24bf3d4a54d4e",
-  invoice_id: "5f9a747f10c24bf3d4a54d4e",
+  store_id: "5f9a747p00c2abf3d4a54d4q",
+  invoice_id: "5f9a747p00c2abf3d4a54d4q",
   rewards: [
-    "5f9a747f10c24bf3d4a54d4e"
+    "5f9a747p00c2abf3d4a54d4q"
   ],
   date: 1617601542000,
   completed: true
@@ -6400,7 +6604,7 @@ axios.post('https://api.cardbo.info/api/v6/accounting/qr_code', data, {
 
 ```json
 {
-  "_id": "5f9a747f10c24bf3d4a54d4e",
+  "_id": "5f9a747p00c2abf3d4a54d4q",
   "user": {
     "user_info": "..."
   },
@@ -6420,7 +6624,7 @@ axios.post('https://api.cardbo.info/api/v6/accounting/qr_code', data, {
   "date": 1617601542000,
   "rewards": [
     {
-      "offer_id": "5f9a747f10c24bf3d4a54d4e",
+      "offer_id": "5f9a747p00c2abf3d4a54d4q",
       "reward_name": "現金",
       "reward_value": 28.83
     }
@@ -6462,6 +6666,182 @@ rewards       | false     | []string | array of offer id that can get from the e
 completed     | true      | bool     | is the record completed
 
 *1: one of `store_id` and `store_name` is required
+
+### Response
+
+#### Success
+
+Key           | Type               | Description
+------------- | ------------------ | -----------
+accounting_id | string             | accotungin id
+user          | User               | User object
+card          | Card               | Card object
+mobilepay     | MobilePay          | MobilePay object
+invoice       | Invoice            | Invoice object
+amount        | int                | how much money of the record
+name          | string             | description of the record
+store         | Store              | Store object
+store_name    | string             | store name when the store is not in our database
+date          | int                | date of the expese in timestamp
+rewards       | []AccountingReward | array of AccountingReward object
+pending       | string             | is the record in pending or not
+created_at    | int                | create time in timestamp
+updated_at    | int                | update time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 16-6 Update accounting record
+
+> Update administrator profile:
+
+```shell
+curl --request PUT \
+  --url https://api.cardbo.info/api/v6/accounting/5f9a747p00c2abf3d4a54d4q \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
+    "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+    "amount": 100,
+    "name": "sample_expense",
+    "store_id": "5f9a747p00c2abf3d4a54d4q",
+    "date": 1617601542000,
+    "qr_code_right": "INVOICE_QR_CODE_RIGHT",
+    "qr_code_left": "INVOICE_QR_CODE_LEFT",
+    "rewards": [
+      "5f9a747p00c2abf3d4a54d4q"
+    ]
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/accounting/5f9a747p00c2abf3d4a54d4q'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "card_id": "5f9a747p00c2abf3d4a54d4q",
+  "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+  "amount": 100,
+  "name": "sample_expense",
+  "store_id": "5f9a747p00c2abf3d4a54d4q",
+  "date": 1617601542000,
+  "qr_code_right": "INVOICE_QR_CODE_RIGHT",
+  "qr_code_left": "INVOICE_QR_CODE_LEFT",
+  "rewards": [
+    "5f9a747p00c2abf3d4a54d4q"
+  ]
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  card_id: "5f9a747p00c2abf3d4a54d4q",
+  mobilepay_id: "5f9a747p00c2abf3d4a54d4q",
+  amount: 100,
+  name: "sample_expense",
+  store_id: "5f9a747p00c2abf3d4a54d4q",
+  date: 1617601542000,
+  qr_code_right: "INVOICE_QR_CODE_RIGHT",
+  qr_code_left: "INVOICE_QR_CODE_LEFT",
+  rewards: [
+    "5f9a747p00c2abf3d4a54d4q"
+  ]
+}
+axios.put('https://api.cardbo.info/api/v6/accounting/5f9a747p00c2abf3d4a54d4q', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "_id": "5f9a747p00c2abf3d4a54d4q",
+  "user": {
+    "user_info": "..."
+  },
+  "card": {
+    "card_info": "...",
+  },
+  "mobilepay": {
+    "mobilepay_info": "...",
+  },
+  "amount": 100,
+  "name": "sample_expense",
+  "store": {
+    "store_info": "...",
+  },
+  "store_name": "",
+  "invoice": "AB99999999",
+  "date": 1617601542000,
+  "rewards": [
+    {
+      "offer_id": "5f9a747p00c2abf3d4a54d4q",
+      "reward_name": "現金",
+      "reward_value": 28.83
+    }
+  ]
+}
+```
+
+Update administrator profile
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://api.cardbo.info/api/v6/accounting/{accounting_id}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter        | Description
+---------------- | -----------
+administrator_id | administrator id
+
+#### Parameters
+
+Parameter     | Required  | Type     | Description
+------------- | --------- | -------- | -----------
+card_id       | false(*1) | string   | card id
+mobilepay_id  | false(*1) | string   | mobilepay id
+amount        | true      | string   | amount of the expense
+store_id      | false(*2) | string   | store id
+store_name    | false(*2) | string   | stroe name if the stroe is not in our database
+date          | true      | int      | date of the expense in timestamp
+qr_code_right | false     | string   | right part of the invoice QR Code when updating QR Code invoice record
+qr_code_left  | false     | string   | left part of the invoice QR Code when updating QR Code invoice record
+invoice_id    | false     | string   | invoice id when updating carrier invoice record
+rewards       | false(*3) | []string | array of offer id that can get from the expense
+completed     | false     | bool     | is the record completed
+
+*1: Must set at least one of `card_id` and `mobilepay_id`
+*2: Must set one of `store_id` and `store_name`
+*3: if `card_id` is set, `rewards` is required
 
 ### Response
 
@@ -6534,8 +6914,8 @@ axios.get('https://api.cardbo.info/api/v6/invoices/unrecorded', {
   "message": "Ok",
   "result": [
     {
-      "invoice_id": "5f9a747f10c24bf3d4a54d4e",
-      "UserID": "5f9a747f10c24bf3d4a54d4e",
+      "invoice_id": "5f9a747p00c2abf3d4a54d4q",
+      "UserID": "5f9a747p00c2abf3d4a54d4q",
       "invoice_no": "AB99999999",
       "status": "已確認",
       "period": "11006",
@@ -6614,9 +6994,9 @@ curl --request PUT \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
-    "card_id": "5f9a747f10c24bf3d4a54d4e",
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
     "offers": [
-      "5f9a747f10c24bf3d4a54d4e"
+      "5f9a747p00c2abf3d4a54d4q"
     ]
   }'
 ```
@@ -6627,9 +7007,9 @@ import requests
 url = 'https://api.cardbo.info/api/v6/reward/order'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
-  'card_id': '5f9a747f10c24bf3d4a54d4e',
+  'card_id': '5f9a747p00c2abf3d4a54d4q',
   'offers': [
-    '5f9a747f10c24bf3d4a54d4e'
+    '5f9a747p00c2abf3d4a54d4q'
   ]
 }
 response = requests.put(url, headers=headers, json=data)
@@ -6640,9 +7020,9 @@ const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
-  card_id: "5f9a747f10c24bf3d4a54d4e",
+  card_id: "5f9a747p00c2abf3d4a54d4q",
   offers: [
-    "5f9a747f10c24bf3d4a54d4e"
+    "5f9a747p00c2abf3d4a54d4q"
   ]
 }
 axios.put('https://api.cardbo.info/api/v6/reward/order', data, {
