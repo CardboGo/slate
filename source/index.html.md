@@ -6601,3 +6601,107 @@ created_at     | int             | create time in timestamp
 Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
+
+# UserReward
+
+## Set user reward order
+
+> Set user reward order:
+
+```shell
+curl --request PUT \
+  --url https://api.cardbo.info/api/v6/reward/order \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "card_id": "5f9a747f10c24bf3d4a54d4e",
+    "offers": [
+      "5f9a747f10c24bf3d4a54d4e"
+    ]
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/reward/order'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  'card_id': '5f9a747f10c24bf3d4a54d4e',
+  'offers': [
+    '5f9a747f10c24bf3d4a54d4e'
+  ]
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  card_id: "5f9a747f10c24bf3d4a54d4e",
+  offers: [
+    "5f9a747f10c24bf3d4a54d4e"
+  ]
+}
+axios.put('https://api.cardbo.info/api/v6/reward/order', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": "",
+  "timestamp": 1617601542000
+}
+```
+
+Update user information
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://api.cardbo.info/api/v6/reward/order`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter | Required | Type     | Description
+--------- | -------- | -------- | -----------
+card_id   | true     | string   | card id
+offers    | true     | []string | order array of offer id
+
+### Response
+
+#### Success
+
+Key | Type | Description
+--- | ---- | -----------
+NA  | NA   | NA
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
