@@ -114,14 +114,14 @@ reward_id          | string      |            | reward id
 user               | User        |            | User object
 card               | CardDisplay |            | CardDisplay object
 offer              | Offer       |            | Offer object
-reward_value       | float       |            | offer reward value per unit
+reward_unit_value  | float       |            | offer reward value per unit
 reward_name        | string      |            | offer cashback reward name
 reward_upper_bound | int         |            | offer cashback upper bound
 pinned             | bool        |            | is the reward pinned to the summary page
 year               | int         |            | year of the reward
 month              | int         | [`1`-`12`] | month of the reward
 expense            | int         |            | expense of the month
-reward             | float       |            | total reward which user get of the month
+reward_value       | float       |            | total reward value which user get of the month
 created_at         | int         |            | create time in timestamp
 updated_at         | int         |            | update time in timestamp
 
@@ -316,6 +316,17 @@ rewards       | []AccountingReward | array of AccountingReward object
 pending       | string             | is the record in pending or not
 created_at    | int                | create time in timestamp
 updated_at    | int                | update time in timestamp
+
+## MonthAccountingRecord
+
+Key                | Type               | Description
+------------------ | ------------------ | -----------
+expense            | int                | expense of the month
+cashback           | int                | total cashback of a month
+start_date         | int                | month start date in timestamp
+end_date           | int                | month end date in timestamp
+accounting_records | []AccountingRecord | accounting records of a month
+user_rewards       | []UserReward       | user rewards of a month
 
 ## AccountingReward
 
@@ -1887,13 +1898,13 @@ axios.get('https://api.cardbo.info/api/v5/user/accounting', {
           "offer": {
             "offer_id": "5f9a747p00c2abf3d4a54d4q"
           },
-          "reward_value": 1.5,
+          "reward_unit_value": 1.5,
           "reward_name": "現金",
           "reward_upper_bound": 500,
           "year": 2021,
           "month": 1,
           "expense": 1000,
-          "reward": 15.0,
+          "reward_value": 15.0,
           "created_at": 1617601542000,
           "updated_at": 1617601542000
         }
@@ -6144,7 +6155,7 @@ axios.get('https://api.cardbo.info/api/v6/accountings/5f9a747p00c2abf3d4a54d4q/2
     "card": {
       "card_info": "..."
     },
-    "details": [
+    "month_accountings_records": [
       {
         "expense": 0,
         "cashback": 0,
@@ -6184,14 +6195,10 @@ Authorization | Bearer token | API access token
 
 #### Success
 
-Key                | Type               | Description
------------------- | ------------------ | -----------
-expense            | int                | total expend of the month
-cashback           | int                | total cashback of the month
-start_date         | int                | start date of the month in timestamp
-end_date           | int                | end date of the month in timestamp
-accounting_records | []AccountingRecord | array of AccountingRecord object
-user_rewards       | []UserReward       | array of UserReward object
+Key                       | Type                    | Description
+------------------------- | ----------------------- | -----------
+card                      | CardDisplay             | CardDisplay object
+month_accountings_records | []MonthAccountingRecord | monthly accounting record info
 
 #### Error
 
