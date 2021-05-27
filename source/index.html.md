@@ -300,22 +300,23 @@ cashback_amount      | int       |           | amount getting from max cashback
 
 ## AccountingRecord
 
-Key           | Type               | Description
-------------- | ------------------ | -----------
-accounting_id | string             | accotungin id
-user          | User               | User object
-card          | Card               | Card object
-mobilepay     | MobilePay          | MobilePay object
-invoice       | Invoice            | Invoice object
-amount        | int                | how much money of the record
-name          | string             | description of the record
-store         | Store              | Store object
-store_name    | string             | store name when the store is not in our database
-date          | int                | date of the expese in timestamp
-rewards       | []AccountingReward | array of AccountingReward object
-pending       | string             | is the record in pending or not
-created_at    | int                | create time in timestamp
-updated_at    | int                | update time in timestamp
+Key           | Type               | Enums | Description
+------------- | ------------------ | ----- | -----------
+accounting_id | string             |       | accotungin id
+user          | User               |       | User object
+card          | Card               |       | Card object
+mobilepay     | MobilePay          |       | MobilePay object
+invoice       | Invoice            |       | Invoice object
+amount        | int                |       | how much money of the record
+name          | string             |       | description of the record
+store         | Store              |       | Store object
+store_name    | string             |       | store name when the store is not in our database
+date          | int                |       | date of the expese in timestamp
+rewards       | []AccountingReward |       | array of AccountingReward object
+invoice_type  | int                | QRCode: `1` <br/> Carrier: `2` <br/> NoInvoice: `3` | invoice tpye of the record
+pending       | string             |       | is the record in pending or not
+created_at    | int                |       | create time in timestamp
+updated_at    | int                |       | update time in timestamp
 
 ## MonthAccountingRecord
 
@@ -335,6 +336,29 @@ Key          | Type   | Description
 offer_id     | string | offer id
 reward_name  | string | offer cashback reward name
 reward_value | float  | reward value get from the expense
+
+## Invoice
+
+Key             | Type            | Enums | Description
+--------------- | --------------- | ----- | -----------
+invoice_id      | string          |       | invoice id
+user_id         | string          |       | user id
+invoice_no      | string          |       | invoice number
+einvoice_status | string          |       | the status from the E-invcoie API
+period          | string          |       | invoice period
+seller_name     | string          |       | seller name
+seller_tax_id   | string          |       | seller tax id
+seller_address  | string          |       | seller address
+invoice_time    | string          |       | time of the invoice in timestamp
+buyer_tax_id    | string          |       | date of the expese in timestamp
+currency        | string          |       | money currency
+price           | int             |       | the price of the expense
+details         | []InvoiceDetail |       | array of InvoiceDetail object
+qr_code_items   | []QRCodeItem    |       | array of QRCodeItem object
+unrecorded      | bool            |       | is invoice is recorded or not
+status          | int             | UNRECORDED: `1` <br/> PENDING: `2` <br/> RECORDED: `3` <br/> ARCHIVED: `4` | status of the invoice
+created_at      | int             |       | create time in timestamp
+updated_at      | int             |       | update time in timestamp
 
 # 1. Authentication
 
@@ -434,7 +458,7 @@ error | string | error message
 
 ```shell
 curl --request POST \
-  --url https://api.cardbo.info/api/v5/auth/linebot \
+  --url https://api.cardbo.info/api/v5/auth/cardbo/linebot \
   -H 'Content-Type: application/json' \
   --data '{
     "source": 1,
@@ -445,7 +469,7 @@ curl --request POST \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/auth/linebot'
+url = 'https://api.cardbo.info/api/v5/auth/cardbo/linebot'
 data = {
   'source': 1,
   'user_id': '5f9a747p00c2abf3d4a54d4q'
@@ -456,7 +480,7 @@ response = requests.post(url, json=data)
 ```javascript
 const axios = require('axios');
 
-axios.post('https://api.cardbo.info/api/v5/auth/linebot', {
+axios.post('https://api.cardbo.info/api/v5/auth/cardbo/linebot', {
     source: 1,
     user_id: '5f9a747p00c2abf3d4a54d4q'
   })
@@ -486,7 +510,7 @@ Linebot authentication is used to login linebot and get API auth token.
 
 ### HTTP Request
 
-`POST https://api.cardbo.info/api/v5/auth/linebot`
+`POST https://api.cardbo.info/api/v5/auth/cardbo/linebot`
 
 ### Request
 
@@ -6088,22 +6112,23 @@ Authorization | Bearer token | API access token
 
 #### Success
 
-Key           | Type               | Description
-------------- | ------------------ | -----------
-accounting_id | string             | accotungin id
-user          | User               | User object
-card          | Card               | Card object
-mobilepay     | MobilePay          | MobilePay object
-invoice       | Invoice            | Invoice object
-amount        | int                | how much money of the record
-name          | string             | description of the record
-store         | Store              | Store object
-store_name    | string             | store name when the store is not in our database
-date          | int                | date of the expese in timestamp
-rewards       | []AccountingReward | array of AccountingReward object
-pending       | string             | is the record in pending or not
-created_at    | int                | create time in timestamp
-updated_at    | int                | update time in timestamp
+Key           | Type               | Enums | Description
+------------- | ------------------ | ----- | -----------
+accounting_id | string             |       | accotungin id
+user          | User               |       | User object
+card          | Card               |       | Card object
+mobilepay     | MobilePay          |       | MobilePay object
+invoice       | Invoice            |       | Invoice object
+amount        | int                |       | how much money of the record
+name          | string             |       | description of the record
+store         | Store              |       | Store object
+store_name    | string             |       | store name when the store is not in our database
+date          | int                |       | date of the expese in timestamp
+rewards       | []AccountingReward |       | array of AccountingReward object
+invoice_type  | int                | QRCode: `1` <br/> Carrier: `2` <br/> NoInvoice: `3` | invoice tpye of the record
+pending       | string             |       | is the record in pending or not
+created_at    | int                |       | create time in timestamp
+updated_at    | int                |       | update time in timestamp
 
 #### Error
 
@@ -6346,22 +6371,23 @@ completed     | true     | bool     | is the record completed
 
 #### Success
 
-Key           | Type               | Description
-------------- | ------------------ | -----------
-accounting_id | string             | accotungin id
-user          | User               | User object
-card          | Card               | Card object
-mobilepay     | MobilePay          | MobilePay object
-invoice       | Invoice            | Invoice object
-amount        | int                | how much money of the record
-name          | string             | description of the record
-store         | Store              | Store object
-store_name    | string             | store name when the store is not in our database
-date          | int                | date of the expese in timestamp
-rewards       | []AccountingReward | array of AccountingReward object
-pending       | string             | is the record in pending or not
-created_at    | int                | create time in timestamp
-updated_at    | int                | update time in timestamp
+Key           | Type               | Enums | Description
+------------- | ------------------ | ----- | -----------
+accounting_id | string             |       | accotungin id
+user          | User               |       | User object
+card          | Card               |       | Card object
+mobilepay     | MobilePay          |       | MobilePay object
+invoice       | Invoice            |       | Invoice object
+amount        | int                |       | how much money of the record
+name          | string             |       | description of the record
+store         | Store              |       | Store object
+store_name    | string             |       | store name when the store is not in our database
+date          | int                |       | date of the expese in timestamp
+rewards       | []AccountingReward |       | array of AccountingReward object
+invoice_type  | int                | QRCode: `1` <br/> Carrier: `2` <br/> NoInvoice: `3` | invoice tpye of the record
+pending       | string             |       | is the record in pending or not
+created_at    | int                |       | create time in timestamp
+updated_at    | int                |       | update time in timestamp
 
 ## 16-4. Insert an accounting record with QR code invoice
 
@@ -6511,22 +6537,23 @@ completed     | true      | bool     | is the record completed
 
 #### Success
 
-Key           | Type               | Description
-------------- | ------------------ | -----------
-accounting_id | string             | accotungin id
-user          | User               | User object
-card          | Card               | Card object
-mobilepay     | MobilePay          | MobilePay object
-invoice       | Invoice            | Invoice object
-amount        | int                | how much money of the record
-name          | string             | description of the record
-store         | Store              | Store object
-store_name    | string             | store name when the store is not in our database
-date          | int                | date of the expese in timestamp
-rewards       | []AccountingReward | array of AccountingReward object
-pending       | string             | is the record in pending or not
-created_at    | int                | create time in timestamp
-updated_at    | int                | update time in timestamp
+Key           | Type               | Enums | Description
+------------- | ------------------ | ----- | -----------
+accounting_id | string             |       | accotungin id
+user          | User               |       | User object
+card          | Card               |       | Card object
+mobilepay     | MobilePay          |       | MobilePay object
+invoice       | Invoice            |       | Invoice object
+amount        | int                |       | how much money of the record
+name          | string             |       | description of the record
+store         | Store              |       | Store object
+store_name    | string             |       | store name when the store is not in our database
+date          | int                |       | date of the expese in timestamp
+rewards       | []AccountingReward |       | array of AccountingReward object
+invoice_type  | int                | QRCode: `1` <br/> Carrier: `2` <br/> NoInvoice: `3` | invoice tpye of the record
+pending       | string             |       | is the record in pending or not
+created_at    | int                |       | create time in timestamp
+updated_at    | int                |       | update time in timestamp
 
 #### Error
 
@@ -6678,22 +6705,23 @@ completed     | true      | bool     | is the record completed
 
 #### Success
 
-Key           | Type               | Description
-------------- | ------------------ | -----------
-accounting_id | string             | accotungin id
-user          | User               | User object
-card          | Card               | Card object
-mobilepay     | MobilePay          | MobilePay object
-invoice       | Invoice            | Invoice object
-amount        | int                | how much money of the record
-name          | string             | description of the record
-store         | Store              | Store object
-store_name    | string             | store name when the store is not in our database
-date          | int                | date of the expese in timestamp
-rewards       | []AccountingReward | array of AccountingReward object
-pending       | string             | is the record in pending or not
-created_at    | int                | create time in timestamp
-updated_at    | int                | update time in timestamp
+Key           | Type               | Enums | Description
+------------- | ------------------ | ----- | -----------
+accounting_id | string             |       | accotungin id
+user          | User               |       | User object
+card          | Card               |       | Card object
+mobilepay     | MobilePay          |       | MobilePay object
+invoice       | Invoice            |       | Invoice object
+amount        | int                |       | how much money of the record
+name          | string             |       | description of the record
+store         | Store              |       | Store object
+store_name    | string             |       | store name when the store is not in our database
+date          | int                |       | date of the expese in timestamp
+rewards       | []AccountingReward |       | array of AccountingReward object
+invoice_type  | int                | QRCode: `1` <br/> Carrier: `2` <br/> NoInvoice: `3` | invoice tpye of the record
+pending       | string             |       | is the record in pending or not
+created_at    | int                |       | create time in timestamp
+updated_at    | int                |       | update time in timestamp
 
 #### Error
 
@@ -6854,22 +6882,23 @@ completed     | false     | bool     | is the record completed
 
 #### Success
 
-Key           | Type               | Description
-------------- | ------------------ | -----------
-accounting_id | string             | accotungin id
-user          | User               | User object
-card          | Card               | Card object
-mobilepay     | MobilePay          | MobilePay object
-invoice       | Invoice            | Invoice object
-amount        | int                | how much money of the record
-name          | string             | description of the record
-store         | Store              | Store object
-store_name    | string             | store name when the store is not in our database
-date          | int                | date of the expese in timestamp
-rewards       | []AccountingReward | array of AccountingReward object
-pending       | string             | is the record in pending or not
-created_at    | int                | create time in timestamp
-updated_at    | int                | update time in timestamp
+Key           | Type               | Enums | Description
+------------- | ------------------ | ----- | -----------
+accounting_id | string             |       | accotungin id
+user          | User               |       | User object
+card          | Card               |       | Card object
+mobilepay     | MobilePay          |       | MobilePay object
+invoice       | Invoice            |       | Invoice object
+amount        | int                |       | how much money of the record
+name          | string             |       | description of the record
+store         | Store              |       | Store object
+store_name    | string             |       | store name when the store is not in our database
+date          | int                |       | date of the expese in timestamp
+rewards       | []AccountingReward |       | array of AccountingReward object
+invoice_type  | int                | QRCode: `1` <br/> Carrier: `2` <br/> NoInvoice: `3` | invoice tpye of the record
+pending       | string             |       | is the record in pending or not
+created_at    | int                |       | create time in timestamp
+updated_at    | int                |       | update time in timestamp
 
 #### Error
 
@@ -6964,24 +6993,26 @@ Authorization | Bearer token | API access token
 
 #### Success
 
-Key            | Type            | Description
--------------- | --------------- | -----------
-invoice_id     | string          | invoice id
-user_id        | string          | user id
-invoice_no     | string          | invoice number
-status         | string          | the status of the invoice
-period         | string          | invoice period
-seller_name    | string          | seller name
-seller_tax_id  | string          | seller tax id
-seller_address | string          | seller address
-invoice_time   | string          | time of the invoice in timestamp
-buyer_tax_id   | string          | date of the expese in timestamp
-currency       | string          | money currency
-price          | int             | the price of the expense
-details        | []InvoiceDetail | array of InvoiceDetail object
-qr_code_items  | []QRCodeItem    | array of QRCodeItem object
-unrecorded     | bool            | is invoice is recorded or not
-created_at     | int             | create time in timestamp
+Key             | Type            | Enums | Description
+--------------- | --------------- | ----- | -----------
+invoice_id      | string          |       | invoice id
+user_id         | string          |       | user id
+invoice_no      | string          |       | invoice number
+einvoice_status | string          |       | the status from the E-invcoie API
+period          | string          |       | invoice period
+seller_name     | string          |       | seller name
+seller_tax_id   | string          |       | seller tax id
+seller_address  | string          |       | seller address
+invoice_time    | string          |       | time of the invoice in timestamp
+buyer_tax_id    | string          |       | date of the expese in timestamp
+currency        | string          |       | money currency
+price           | int             |       | the price of the expense
+details         | []InvoiceDetail |       | array of InvoiceDetail object
+qr_code_items   | []QRCodeItem    |       | array of QRCodeItem object
+unrecorded      | bool            |       | is invoice is recorded or not
+status          | int             | UNRECORDED: `1` <br/> PENDING: `2` <br/> RECORDED: `3` <br/> ARCHIVED: `4` | status of the invoice
+created_at      | int             |       | create time in timestamp
+updated_at      | int             |       | update time in timestamp
 
 #### Error
 
