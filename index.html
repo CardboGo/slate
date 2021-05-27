@@ -386,6 +386,9 @@
                   <li>
                     <a href="#accountingreward" class="toc-h2 toc-link" data-title="AccountingReward">AccountingReward</a>
                   </li>
+                  <li>
+                    <a href="#invoice" class="toc-h2 toc-link" data-title="Invoice">Invoice</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1872,77 +1875,98 @@
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>accounting_id</td>
 <td>string</td>
+<td></td>
 <td>accotungin id</td>
 </tr>
 <tr>
 <td>user</td>
 <td>User</td>
+<td></td>
 <td>User object</td>
 </tr>
 <tr>
 <td>card</td>
 <td>Card</td>
+<td></td>
 <td>Card object</td>
 </tr>
 <tr>
 <td>mobilepay</td>
 <td>MobilePay</td>
+<td></td>
 <td>MobilePay object</td>
 </tr>
 <tr>
 <td>invoice</td>
 <td>Invoice</td>
+<td></td>
 <td>Invoice object</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>int</td>
+<td></td>
 <td>how much money of the record</td>
 </tr>
 <tr>
 <td>name</td>
 <td>string</td>
+<td></td>
 <td>description of the record</td>
 </tr>
 <tr>
 <td>store</td>
 <td>Store</td>
+<td></td>
 <td>Store object</td>
 </tr>
 <tr>
 <td>store_name</td>
 <td>string</td>
+<td></td>
 <td>store name when the store is not in our database</td>
 </tr>
 <tr>
 <td>date</td>
 <td>int</td>
+<td></td>
 <td>date of the expese in timestamp</td>
 </tr>
 <tr>
 <td>rewards</td>
 <td>[]AccountingReward</td>
+<td></td>
 <td>array of AccountingReward object</td>
+</tr>
+<tr>
+<td>invoice_type</td>
+<td>int</td>
+<td>QRCode: <code>1</code> <br/> Carrier: <code>2</code> <br/> NoInvoice: <code>3</code></td>
+<td>invoice tpye of the record</td>
 </tr>
 <tr>
 <td>pending</td>
 <td>string</td>
+<td></td>
 <td>is the record in pending or not</td>
 </tr>
 <tr>
 <td>created_at</td>
 <td>int</td>
+<td></td>
 <td>create time in timestamp</td>
 </tr>
 <tr>
 <td>updated_at</td>
 <td>int</td>
+<td></td>
 <td>update time in timestamp</td>
 </tr>
 </tbody></table>
@@ -2007,6 +2031,124 @@
 <td>reward_value</td>
 <td>float</td>
 <td>reward value get from the expense</td>
+</tr>
+</tbody></table>
+<h2 id='invoice'>Invoice</h2>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>invoice_id</td>
+<td>string</td>
+<td></td>
+<td>invoice id</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>string</td>
+<td></td>
+<td>user id</td>
+</tr>
+<tr>
+<td>invoice_no</td>
+<td>string</td>
+<td></td>
+<td>invoice number</td>
+</tr>
+<tr>
+<td>einvoice_status</td>
+<td>string</td>
+<td></td>
+<td>the status from the E-invcoie API</td>
+</tr>
+<tr>
+<td>period</td>
+<td>string</td>
+<td></td>
+<td>invoice period</td>
+</tr>
+<tr>
+<td>seller_name</td>
+<td>string</td>
+<td></td>
+<td>seller name</td>
+</tr>
+<tr>
+<td>seller_tax_id</td>
+<td>string</td>
+<td></td>
+<td>seller tax id</td>
+</tr>
+<tr>
+<td>seller_address</td>
+<td>string</td>
+<td></td>
+<td>seller address</td>
+</tr>
+<tr>
+<td>invoice_time</td>
+<td>string</td>
+<td></td>
+<td>time of the invoice in timestamp</td>
+</tr>
+<tr>
+<td>buyer_tax_id</td>
+<td>string</td>
+<td></td>
+<td>date of the expese in timestamp</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td></td>
+<td>money currency</td>
+</tr>
+<tr>
+<td>price</td>
+<td>int</td>
+<td></td>
+<td>the price of the expense</td>
+</tr>
+<tr>
+<td>details</td>
+<td>[]InvoiceDetail</td>
+<td></td>
+<td>array of InvoiceDetail object</td>
+</tr>
+<tr>
+<td>qr_code_items</td>
+<td>[]QRCodeItem</td>
+<td></td>
+<td>array of QRCodeItem object</td>
+</tr>
+<tr>
+<td>unrecorded</td>
+<td>bool</td>
+<td></td>
+<td>is invoice is recorded or not</td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>UNRECORDED: <code>1</code> <br/> PENDING: <code>2</code> <br/> RECORDED: <code>3</code> <br/> ARCHIVED: <code>4</code></td>
+<td>status of the invoice</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>int</td>
+<td></td>
+<td>create time in timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>int</td>
+<td></td>
+<td>update time in timestamp</td>
 </tr>
 </tbody></table>
 <h1 id='1-authentication'>1. Authentication</h1><h2 id='1-1-administrator'>1-1. Administrator</h2>
@@ -2141,7 +2283,7 @@
 <p>Login linebot:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v5/auth/linebot <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v5/auth/cardbo/linebot <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   <span class="nt">--data</span> <span class="s1">'{
     "source": 1,
@@ -2149,7 +2291,7 @@
   }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v5/auth/linebot'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v5/auth/cardbo/linebot'</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'source'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
   <span class="s">'user_id'</span><span class="p">:</span> <span class="s">'5f9a747p00c2abf3d4a54d4q'</span>
@@ -2157,7 +2299,7 @@
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v5/auth/linebot</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v5/auth/cardbo/linebot</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">source</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
     <span class="na">user_id</span><span class="p">:</span> <span class="dl">'</span><span class="s1">5f9a747p00c2abf3d4a54d4q</span><span class="dl">'</span>
   <span class="p">})</span>
@@ -2183,7 +2325,7 @@
 </span></code></pre></div>
 <p>Linebot authentication is used to login linebot and get API auth token.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST https://api.cardbo.info/api/v5/auth/linebot</code></p>
+<p><code>POST https://api.cardbo.info/api/v5/auth/cardbo/linebot</code></p>
 <h3 id='request-2'>Request</h3><h4 id='parameters-2'>Parameters</h4>
 <table><thead>
 <tr>
@@ -10565,77 +10707,98 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>accounting_id</td>
 <td>string</td>
+<td></td>
 <td>accotungin id</td>
 </tr>
 <tr>
 <td>user</td>
 <td>User</td>
+<td></td>
 <td>User object</td>
 </tr>
 <tr>
 <td>card</td>
 <td>Card</td>
+<td></td>
 <td>Card object</td>
 </tr>
 <tr>
 <td>mobilepay</td>
 <td>MobilePay</td>
+<td></td>
 <td>MobilePay object</td>
 </tr>
 <tr>
 <td>invoice</td>
 <td>Invoice</td>
+<td></td>
 <td>Invoice object</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>int</td>
+<td></td>
 <td>how much money of the record</td>
 </tr>
 <tr>
 <td>name</td>
 <td>string</td>
+<td></td>
 <td>description of the record</td>
 </tr>
 <tr>
 <td>store</td>
 <td>Store</td>
+<td></td>
 <td>Store object</td>
 </tr>
 <tr>
 <td>store_name</td>
 <td>string</td>
+<td></td>
 <td>store name when the store is not in our database</td>
 </tr>
 <tr>
 <td>date</td>
 <td>int</td>
+<td></td>
 <td>date of the expese in timestamp</td>
 </tr>
 <tr>
 <td>rewards</td>
 <td>[]AccountingReward</td>
+<td></td>
 <td>array of AccountingReward object</td>
+</tr>
+<tr>
+<td>invoice_type</td>
+<td>int</td>
+<td>QRCode: <code>1</code> <br/> Carrier: <code>2</code> <br/> NoInvoice: <code>3</code></td>
+<td>invoice tpye of the record</td>
 </tr>
 <tr>
 <td>pending</td>
 <td>string</td>
+<td></td>
 <td>is the record in pending or not</td>
 </tr>
 <tr>
 <td>created_at</td>
 <td>int</td>
+<td></td>
 <td>create time in timestamp</td>
 </tr>
 <tr>
 <td>updated_at</td>
 <td>int</td>
+<td></td>
 <td>update time in timestamp</td>
 </tr>
 </tbody></table>
@@ -10945,77 +11108,98 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>accounting_id</td>
 <td>string</td>
+<td></td>
 <td>accotungin id</td>
 </tr>
 <tr>
 <td>user</td>
 <td>User</td>
+<td></td>
 <td>User object</td>
 </tr>
 <tr>
 <td>card</td>
 <td>Card</td>
+<td></td>
 <td>Card object</td>
 </tr>
 <tr>
 <td>mobilepay</td>
 <td>MobilePay</td>
+<td></td>
 <td>MobilePay object</td>
 </tr>
 <tr>
 <td>invoice</td>
 <td>Invoice</td>
+<td></td>
 <td>Invoice object</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>int</td>
+<td></td>
 <td>how much money of the record</td>
 </tr>
 <tr>
 <td>name</td>
 <td>string</td>
+<td></td>
 <td>description of the record</td>
 </tr>
 <tr>
 <td>store</td>
 <td>Store</td>
+<td></td>
 <td>Store object</td>
 </tr>
 <tr>
 <td>store_name</td>
 <td>string</td>
+<td></td>
 <td>store name when the store is not in our database</td>
 </tr>
 <tr>
 <td>date</td>
 <td>int</td>
+<td></td>
 <td>date of the expese in timestamp</td>
 </tr>
 <tr>
 <td>rewards</td>
 <td>[]AccountingReward</td>
+<td></td>
 <td>array of AccountingReward object</td>
+</tr>
+<tr>
+<td>invoice_type</td>
+<td>int</td>
+<td>QRCode: <code>1</code> <br/> Carrier: <code>2</code> <br/> NoInvoice: <code>3</code></td>
+<td>invoice tpye of the record</td>
 </tr>
 <tr>
 <td>pending</td>
 <td>string</td>
+<td></td>
 <td>is the record in pending or not</td>
 </tr>
 <tr>
 <td>created_at</td>
 <td>int</td>
+<td></td>
 <td>create time in timestamp</td>
 </tr>
 <tr>
 <td>updated_at</td>
 <td>int</td>
+<td></td>
 <td>update time in timestamp</td>
 </tr>
 </tbody></table>
@@ -11222,77 +11406,98 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>accounting_id</td>
 <td>string</td>
+<td></td>
 <td>accotungin id</td>
 </tr>
 <tr>
 <td>user</td>
 <td>User</td>
+<td></td>
 <td>User object</td>
 </tr>
 <tr>
 <td>card</td>
 <td>Card</td>
+<td></td>
 <td>Card object</td>
 </tr>
 <tr>
 <td>mobilepay</td>
 <td>MobilePay</td>
+<td></td>
 <td>MobilePay object</td>
 </tr>
 <tr>
 <td>invoice</td>
 <td>Invoice</td>
+<td></td>
 <td>Invoice object</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>int</td>
+<td></td>
 <td>how much money of the record</td>
 </tr>
 <tr>
 <td>name</td>
 <td>string</td>
+<td></td>
 <td>description of the record</td>
 </tr>
 <tr>
 <td>store</td>
 <td>Store</td>
+<td></td>
 <td>Store object</td>
 </tr>
 <tr>
 <td>store_name</td>
 <td>string</td>
+<td></td>
 <td>store name when the store is not in our database</td>
 </tr>
 <tr>
 <td>date</td>
 <td>int</td>
+<td></td>
 <td>date of the expese in timestamp</td>
 </tr>
 <tr>
 <td>rewards</td>
 <td>[]AccountingReward</td>
+<td></td>
 <td>array of AccountingReward object</td>
+</tr>
+<tr>
+<td>invoice_type</td>
+<td>int</td>
+<td>QRCode: <code>1</code> <br/> Carrier: <code>2</code> <br/> NoInvoice: <code>3</code></td>
+<td>invoice tpye of the record</td>
 </tr>
 <tr>
 <td>pending</td>
 <td>string</td>
+<td></td>
 <td>is the record in pending or not</td>
 </tr>
 <tr>
 <td>created_at</td>
 <td>int</td>
+<td></td>
 <td>create time in timestamp</td>
 </tr>
 <tr>
 <td>updated_at</td>
 <td>int</td>
+<td></td>
 <td>update time in timestamp</td>
 </tr>
 </tbody></table>
@@ -11504,77 +11709,98 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>accounting_id</td>
 <td>string</td>
+<td></td>
 <td>accotungin id</td>
 </tr>
 <tr>
 <td>user</td>
 <td>User</td>
+<td></td>
 <td>User object</td>
 </tr>
 <tr>
 <td>card</td>
 <td>Card</td>
+<td></td>
 <td>Card object</td>
 </tr>
 <tr>
 <td>mobilepay</td>
 <td>MobilePay</td>
+<td></td>
 <td>MobilePay object</td>
 </tr>
 <tr>
 <td>invoice</td>
 <td>Invoice</td>
+<td></td>
 <td>Invoice object</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>int</td>
+<td></td>
 <td>how much money of the record</td>
 </tr>
 <tr>
 <td>name</td>
 <td>string</td>
+<td></td>
 <td>description of the record</td>
 </tr>
 <tr>
 <td>store</td>
 <td>Store</td>
+<td></td>
 <td>Store object</td>
 </tr>
 <tr>
 <td>store_name</td>
 <td>string</td>
+<td></td>
 <td>store name when the store is not in our database</td>
 </tr>
 <tr>
 <td>date</td>
 <td>int</td>
+<td></td>
 <td>date of the expese in timestamp</td>
 </tr>
 <tr>
 <td>rewards</td>
 <td>[]AccountingReward</td>
+<td></td>
 <td>array of AccountingReward object</td>
+</tr>
+<tr>
+<td>invoice_type</td>
+<td>int</td>
+<td>QRCode: <code>1</code> <br/> Carrier: <code>2</code> <br/> NoInvoice: <code>3</code></td>
+<td>invoice tpye of the record</td>
 </tr>
 <tr>
 <td>pending</td>
 <td>string</td>
+<td></td>
 <td>is the record in pending or not</td>
 </tr>
 <tr>
 <td>created_at</td>
 <td>int</td>
+<td></td>
 <td>create time in timestamp</td>
 </tr>
 <tr>
 <td>updated_at</td>
 <td>int</td>
+<td></td>
 <td>update time in timestamp</td>
 </tr>
 </tbody></table>
@@ -11806,77 +12032,98 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>accounting_id</td>
 <td>string</td>
+<td></td>
 <td>accotungin id</td>
 </tr>
 <tr>
 <td>user</td>
 <td>User</td>
+<td></td>
 <td>User object</td>
 </tr>
 <tr>
 <td>card</td>
 <td>Card</td>
+<td></td>
 <td>Card object</td>
 </tr>
 <tr>
 <td>mobilepay</td>
 <td>MobilePay</td>
+<td></td>
 <td>MobilePay object</td>
 </tr>
 <tr>
 <td>invoice</td>
 <td>Invoice</td>
+<td></td>
 <td>Invoice object</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>int</td>
+<td></td>
 <td>how much money of the record</td>
 </tr>
 <tr>
 <td>name</td>
 <td>string</td>
+<td></td>
 <td>description of the record</td>
 </tr>
 <tr>
 <td>store</td>
 <td>Store</td>
+<td></td>
 <td>Store object</td>
 </tr>
 <tr>
 <td>store_name</td>
 <td>string</td>
+<td></td>
 <td>store name when the store is not in our database</td>
 </tr>
 <tr>
 <td>date</td>
 <td>int</td>
+<td></td>
 <td>date of the expese in timestamp</td>
 </tr>
 <tr>
 <td>rewards</td>
 <td>[]AccountingReward</td>
+<td></td>
 <td>array of AccountingReward object</td>
+</tr>
+<tr>
+<td>invoice_type</td>
+<td>int</td>
+<td>QRCode: <code>1</code> <br/> Carrier: <code>2</code> <br/> NoInvoice: <code>3</code></td>
+<td>invoice tpye of the record</td>
 </tr>
 <tr>
 <td>pending</td>
 <td>string</td>
+<td></td>
 <td>is the record in pending or not</td>
 </tr>
 <tr>
 <td>created_at</td>
 <td>int</td>
+<td></td>
 <td>create time in timestamp</td>
 </tr>
 <tr>
 <td>updated_at</td>
 <td>int</td>
+<td></td>
 <td>update time in timestamp</td>
 </tr>
 </tbody></table>
@@ -11974,88 +12221,117 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>invoice_id</td>
 <td>string</td>
+<td></td>
 <td>invoice id</td>
 </tr>
 <tr>
 <td>user_id</td>
 <td>string</td>
+<td></td>
 <td>user id</td>
 </tr>
 <tr>
 <td>invoice_no</td>
 <td>string</td>
+<td></td>
 <td>invoice number</td>
 </tr>
 <tr>
-<td>status</td>
+<td>einvoice_status</td>
 <td>string</td>
-<td>the status of the invoice</td>
+<td></td>
+<td>the status from the E-invcoie API</td>
 </tr>
 <tr>
 <td>period</td>
 <td>string</td>
+<td></td>
 <td>invoice period</td>
 </tr>
 <tr>
 <td>seller_name</td>
 <td>string</td>
+<td></td>
 <td>seller name</td>
 </tr>
 <tr>
 <td>seller_tax_id</td>
 <td>string</td>
+<td></td>
 <td>seller tax id</td>
 </tr>
 <tr>
 <td>seller_address</td>
 <td>string</td>
+<td></td>
 <td>seller address</td>
 </tr>
 <tr>
 <td>invoice_time</td>
 <td>string</td>
+<td></td>
 <td>time of the invoice in timestamp</td>
 </tr>
 <tr>
 <td>buyer_tax_id</td>
 <td>string</td>
+<td></td>
 <td>date of the expese in timestamp</td>
 </tr>
 <tr>
 <td>currency</td>
 <td>string</td>
+<td></td>
 <td>money currency</td>
 </tr>
 <tr>
 <td>price</td>
 <td>int</td>
+<td></td>
 <td>the price of the expense</td>
 </tr>
 <tr>
 <td>details</td>
 <td>[]InvoiceDetail</td>
+<td></td>
 <td>array of InvoiceDetail object</td>
 </tr>
 <tr>
 <td>qr_code_items</td>
 <td>[]QRCodeItem</td>
+<td></td>
 <td>array of QRCodeItem object</td>
 </tr>
 <tr>
 <td>unrecorded</td>
 <td>bool</td>
+<td></td>
 <td>is invoice is recorded or not</td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>UNRECORDED: <code>1</code> <br/> PENDING: <code>2</code> <br/> RECORDED: <code>3</code> <br/> ARCHIVED: <code>4</code></td>
+<td>status of the invoice</td>
 </tr>
 <tr>
 <td>created_at</td>
 <td>int</td>
+<td></td>
 <td>create time in timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>int</td>
+<td></td>
+<td>update time in timestamp</td>
 </tr>
 </tbody></table>
 <h4 id='error-53'>Error</h4>
