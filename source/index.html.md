@@ -69,21 +69,25 @@ Code    | Description
 
 ## User
 
-Key             | Type             | Enums | Description
---------------- | ---------------- | ----- | -----------
-user_id         | string           |       | User id
-line_id         | string           |       | LINE id
-username        | string           |       | Username
-image           | string           |       | User image
-email           | string           |       | Email
-phone_number    | string           |       | Phone number
-cardbo_point    | int              |       | Cardbo point (useless)
-cards           | []Card           |       | User own card array
-user_mobilepays | []UserMobilepay  |       | User own mobile pay array
-user_level      | int              | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
-created_at      | int              |       | create time in timestamp
-updated_at      | int              |       | update time in timestamp
-last_login      | int              |       | User last login time in timestamp
+Key                   | Type                 | Enums | Description
+--------------------- | -------------------- | ----- | -----------
+user_id               | string               |       | User id
+line_id               | string               |       | LINE id
+username              | string               |       | Username
+image                 | string               |       | User image
+email                 | string               |       | Email
+phone_number          | string               |       | Phone number
+cardbo_point          | int                  |       | Cardbo point (useless)
+cards                 | []Card               |       | User own card array
+user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
+user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+invoice               | UserInvoice          |       | user invcoie info
+subscription          | int                  | UNSUBSCRIBED: `1` <br/> SUBSCRIBED: `2` | is user subscribe the user reward
+update_message        | bool                 |       | does the user need to get the update message
+interested_categories | []InterestedCategory |       | user interest categories data
+created_at            | int                  |       | create time in timestamp
+updated_at            | int                  |       | update time in timestamp
+last_login            | int                  |       | User last login time in timestamp
 
 ## UserMobilepay
 
@@ -91,6 +95,22 @@ Key       | Type          | Description
 --------- | ------------- | -----------
 mobilepay | MobilePay     | MobilePay object
 cards     | []CardDisplay | array of CardDisplay object
+
+## UserInvoice
+
+Key               | Type   | Description
+----------------- | ------ | -----------
+carrier           | string | mobile carrier
+verification_code | string | carrier verification code
+status            | bool   | status of the carrier
+
+## InterestedCategory
+
+Key         | Type   | Description
+----------- | ------ | -----------
+category_id | string | category id
+category    | string | category name
+score       | float  | the score of the catogory
 
 ## CardUserReward
 
@@ -193,15 +213,17 @@ image_10 | string | image URL
 
 ## CardDisplay
 
-Key        | Type    | Enums                                                        | Description
----------- | ------- | ------------------------------------------------------------ | -----------
-card_id    | string  |                                                              | card id
-name       | string  |                                                              | card name
-bank       | Bank    |                                                              | bank information
-image      | string  |                                                              | image URL
-issuer     | string  | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
-level      | int     | [`1`-`8`]                                                    | level of the card
-level_name | string  |                                                              | level name of the card
+Key           | Type    | Enums  | Description
+------------- | ------- | ------ | -----------
+card_id       | string  |        | card id
+name          | string  |        | card name
+bank          | Bank    |        | bank information
+image         | string  |        | image URL
+issuer        | string  | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
+level         | int     | [`1`-`8`] | level of the card
+level_name    | string  |        | level name of the card
+payment_date  | int     | [`1`-`31`] | the payment of the card
+enable_reward | bool    |        | is the card enable reward
 
 ## MobilePay
 
@@ -210,6 +232,7 @@ Key          | Type    | Description
 mobilepay_id | string  | mobilepay id
 name         | string  | mobilepay name
 image        | string  | mobilepay image URL
+deep_link    | string  | deep link of the mobile pay
 
 ## Offer
 
@@ -824,21 +847,25 @@ Authorization | Bearer token | API access token
 
 #### Success
 
-Key             | Type             | Enums | Description
---------------- | ---------------- | ----- | -----------
-user_id         | string           |       | User id
-line_id         | string           |       | LINE id
-username        | string           |       | Username
-image           | string           |       | User image
-email           | string           |       | Email
-phone_number    | string           |       | Phone number
-cardbo_point    | int              |       | Cardbo point (useless)
-cards           | []Card           |       | User own card array
-user_mobilepays | []UserMobilepay  |       | User own mobile pay array
-user_level      | int              | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
-created_at      | int              |       | create time in timestamp
-updated_at      | int              |       | update time in timestamp
-last_login      | int              |       | User last login time in timestamp
+Key                   | Type                 | Enums | Description
+--------------------- | -------------------- | ----- | -----------
+user_id               | string               |       | User id
+line_id               | string               |       | LINE id
+username              | string               |       | Username
+image                 | string               |       | User image
+email                 | string               |       | Email
+phone_number          | string               |       | Phone number
+cardbo_point          | int                  |       | Cardbo point (useless)
+cards                 | []Card               |       | User own card array
+user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
+user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+invoice               | UserInvoice          |       | user invcoie info
+subscription          | int                  | UNSUBSCRIBED: `1` <br/> SUBSCRIBED: `2` | is user subscribe the user reward
+update_message        | bool                 |       | does the user need to get the update message
+interested_categories | []InterestedCategory |       | user interest categories data
+created_at            | int                  |       | create time in timestamp
+updated_at            | int                  |       | update time in timestamp
+last_login            | int                  |       | User last login time in timestamp
 
 #### Error
 
@@ -990,21 +1017,25 @@ phone_number | false    | string | phone number
 
 #### Success
 
-Key             | Type             | Enums | Description
---------------- | ---------------- | ----- | -----------
-user_id         | string           |       | User id
-line_id         | string           |       | LINE id
-username        | string           |       | Username
-image           | string           |       | User image
-email           | string           |       | Email
-phone_number    | string           |       | Phone number
-cardbo_point    | int              |       | Cardbo point (useless)
-cards           | []Card           |       | User own card array
-user_mobilepays | []UserMobilepay  |       | User own mobile pay array
-user_level      | int              | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
-created_at      | int              |       | create time in timestamp
-updated_at      | int              |       | update time in timestamp
-last_login      | int              |       | User last login time in timestamp
+Key                   | Type                 | Enums | Description
+--------------------- | -------------------- | ----- | -----------
+user_id               | string               |       | User id
+line_id               | string               |       | LINE id
+username              | string               |       | Username
+image                 | string               |       | User image
+email                 | string               |       | Email
+phone_number          | string               |       | Phone number
+cardbo_point          | int                  |       | Cardbo point (useless)
+cards                 | []Card               |       | User own card array
+user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
+user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+invoice               | UserInvoice          |       | user invcoie info
+subscription          | int                  | UNSUBSCRIBED: `1` <br/> SUBSCRIBED: `2` | is user subscribe the user reward
+update_message        | bool                 |       | does the user need to get the update message
+interested_categories | []InterestedCategory |       | user interest categories data
+created_at            | int                  |       | create time in timestamp
+updated_at            | int                  |       | update time in timestamp
+last_login            | int                  |       | User last login time in timestamp
 
 #### Error
 
@@ -1989,7 +2020,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://api.cardbo.info/api/v5/user/invoice \
+  --url https://api.cardbo.info/api/v6/user/invoice \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -2001,7 +2032,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/user/invoice'
+url = 'https://api.cardbo.info/api/v6/user/invoice'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   "carrier": "/ABCD-F1",
@@ -2018,7 +2049,7 @@ data = {
   carrier: "/ABCD-F1",
   verification_code: "AES_CFB_ENCODED_STRING"
 }
-axios.put('https://api.cardbo.info/api/v5/user/invoice', data, {
+axios.put('https://api.cardbo.info/api/v6/user/invoice', data, {
     headers: headers
   })
   .then(function (response) {
@@ -2050,7 +2081,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://api.cardbo.info/api/v5/user/invoice`
+`PUT https://api.cardbo.info/api/v6/user/invoice`
 
 ### Request
 
@@ -2087,7 +2118,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://api.cardbo.info/api/v5/user/card_payment_date \
+  --url https://api.cardbo.info/api/v6/user/card_payment_date \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -2099,7 +2130,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/user/card_payment_date'
+url = 'https://api.cardbo.info/api/v6/user/card_payment_date'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   "card_id": "5f9a747p00c2abf3d4a54d4q",
@@ -2116,7 +2147,7 @@ data = {
   card_id: "5f9a747p00c2abf3d4a54d4q",
   payment_date: 1
 }
-axios.put('https://api.cardbo.info/api/v5/user/card_payment_date', data, {
+axios.put('https://api.cardbo.info/api/v6/user/card_payment_date', data, {
     headers: headers
   })
   .then(function (response) {
@@ -2200,7 +2231,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`PUT https://api.cardbo.info/api/v5/user/card_payment_date`
+`PUT https://api.cardbo.info/api/v6/user/card_payment_date`
 
 ### Request
 
@@ -2221,21 +2252,188 @@ payment_date | true     | int    | payment date
 
 #### Success
 
-Key             | Type             | Enums | Description
---------------- | ---------------- | ----- | -----------
-user_id         | string           |       | User id
-line_id         | string           |       | LINE id
-username        | string           |       | Username
-image           | string           |       | User image
-email           | string           |       | Email
-phone_number    | string           |       | Phone number
-cardbo_point    | int              |       | Cardbo point (useless)
-cards           | []Card           |       | User own card array
-user_mobilepays | []UserMobilepay  |       | User own mobile pay array
-user_level      | int              | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
-created_at      | int              |       | create time in timestamp
-updated_at      | int              |       | update time in timestamp
-last_login      | int              |       | User last login time in timestamp
+Key                   | Type                 | Enums | Description
+--------------------- | -------------------- | ----- | -----------
+user_id               | string               |       | User id
+line_id               | string               |       | LINE id
+username              | string               |       | Username
+image                 | string               |       | User image
+email                 | string               |       | Email
+phone_number          | string               |       | Phone number
+cardbo_point          | int                  |       | Cardbo point (useless)
+cards                 | []Card               |       | User own card array
+user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
+user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+invoice               | UserInvoice          |       | user invcoie info
+subscription          | int                  | UNSUBSCRIBED: `1` <br/> SUBSCRIBED: `2` | is user subscribe the user reward
+update_message        | bool                 |       | does the user need to get the update message
+interested_categories | []InterestedCategory |       | user interest categories data
+created_at            | int                  |       | create time in timestamp
+updated_at            | int                  |       | update time in timestamp
+last_login            | int                  |       | User last login time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 2-14. Unset user card payment date
+
+> Unset user card payment date:
+
+```shell
+curl --request PUT \
+  --url https://api.cardbo.info/api/v6/user/card_payment_date/unset \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/user/card_payment_date/unset'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "card_id": "5f9a747p00c2abf3d4a54d4q",
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  card_id: "5f9a747p00c2abf3d4a54d4q",
+}
+axios.put('https://api.cardbo.info/api/v6/user/card_payment_date/unset', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "user_id": "5f9a747p00c2abf3d4a54d4q",
+    "line_id": "Udchd7f131dvvhdbe166692206a12335c",
+    "username": "Harrison Peng",
+    "image": "https://image.com/image.png",
+    "email": "harrison@cardbo.info",
+    "phone_number": "0987654321",
+    "cardbo_point": 0,
+    "cards": [
+      {
+        "card_id": "5fdb2ff546a97b49dac8a6ad",
+        "name": "永豐幣倍卡",
+        "bank": {
+          "bank_id": "5f756d85c2349d9139648a7d",
+          "name": "永豐銀行",
+          "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/sinopac-bank.png",
+          "image": "https://i.imgur.com/1g5nYEN.png",
+          "code": "807"
+        },
+        "level": 5,
+        "image": "https://storage.googleapis.com/cardbo-images/card/5fdb2ff546a97b49dac8a6ad-1.png",
+        "issuer": "MASTERCARD"
+      }
+    ],
+    "user_mobilepays": [
+      {
+        "mobilepay": {
+          "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+          "name": "Apple Pay",
+          "image": "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png",
+          "user_has": false
+        },
+        "cards": [
+          {
+            "card_id": "5fdb2ff546a97b49dac8a6ad",
+            "name": "永豐幣倍卡",
+            "bank": {
+              "bank_id": "5f756d85c2349d9139648a7d",
+              "name": "永豐銀行",
+              "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/sinopac-bank.png",
+              "image": "https://i.imgur.com/1g5nYEN.png",
+              "code": "807"
+            },
+            "level": 5,
+            "image": "https://storage.googleapis.com/cardbo-images/card/5fdb2ff546a97b49dac8a6ad-1.png",
+            "issuer": "MASTERCARD"
+          }
+        ]
+      }
+    ],
+    "user_level": 1,
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "last_login": 1617601542000
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Unset user card payment date
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://api.cardbo.info/api/v6/user/card_payment_date/unset`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter    | Required | Type   | Description
+------------ | -------- | ------ | -----------
+card_id      | true     | string | card id
+payment_date | true     | int    | payment date
+
+### Response
+
+#### Success
+
+Key                   | Type                 | Enums | Description
+--------------------- | -------------------- | ----- | -----------
+user_id               | string               |       | User id
+line_id               | string               |       | LINE id
+username              | string               |       | Username
+image                 | string               |       | User image
+email                 | string               |       | Email
+phone_number          | string               |       | Phone number
+cardbo_point          | int                  |       | Cardbo point (useless)
+cards                 | []Card               |       | User own card array
+user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
+user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+invoice               | UserInvoice          |       | user invcoie info
+subscription          | int                  | UNSUBSCRIBED: `1` <br/> SUBSCRIBED: `2` | is user subscribe the user reward
+update_message        | bool                 |       | does the user need to get the update message
+interested_categories | []InterestedCategory |       | user interest categories data
+created_at            | int                  |       | create time in timestamp
+updated_at            | int                  |       | update time in timestamp
+last_login            | int                  |       | User last login time in timestamp
 
 #### Error
 
@@ -6001,6 +6199,135 @@ error | string | error message
 
 # 8. Store
 
+## 8-1. Insert pending store
+
+## 8-2. Get pending store by store_id
+
+## 8-3. Update pending store
+
+## 8-4. Upload pending store image
+
+## 8-5. Pass pending store to formal
+
+## 8-6. Fail pending store
+
+## 8-7. Add pending store combo options
+
+## 8-8. Remove pending store combo options
+
+## 8-9. Delete pending store
+
+## 8-10. Get pending stores
+
+## 8-11. Get formal store by store_id
+
+## 8-12. Update formal store
+
+## 8-13. Upload formal store image
+
+## 8-14. Add formal store combo options
+
+## 8-15. Remove formal store combo options
+
+## 8-16. Get formal stores
+
+## 8-17. Get popular stores
+
+## 8-18. Find similar stores
+
+## 8-19. Search stores by keyword
+
+> Search stores by keyword:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/stores/formal/search?keyword=pc \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/stores/formal/search?keyword=pc'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.delete(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.delete('https://api.cardbo.info/api/v6/stores/formal/search?keyword=pc', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": [
+    {
+      "store_id": "5f9a747p00c2abf3d4a54d4q",
+      "name": "BeingFit",
+      "alias": [
+        "Being Fit"
+      ]
+    }
+  ],
+  "timestamp": 1617601542000
+}
+```
+
+Search stores by keyword
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/stores/formal/search`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Queries
+
+Query   | Required | Muti-values | Description
+------- | -------- | ----------- | -----------
+keyword | true     | false       | keyword
+
+### Response
+
+#### Success
+
+Key      | Type     | Description
+-------- | -------- | -----------
+store_id | string   | store id
+name     | string   | store name
+alias    | []string | store alias
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
 # 9. Tag
 
 # 10. Permission
@@ -6906,6 +7233,371 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
+## 16-7 Get accounting record by accounting_id
+
+> Get accounting record by accounting_id:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/accounting/{accounting_id} \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/accounting/{accounting_id}'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/accounting/{accounting_id}', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "_id": "5f9a747p00c2abf3d4a54d4q",
+    "user": {
+      "user_info": "..."
+    },
+    "card": {
+      "card_info": "...",
+    },
+    "mobilepay": {
+      "mobilepay_info": "...",
+    },
+    "amount": 1000,
+    "name": "午餐",
+    "store": {
+      "store_info": "...",
+    },
+    "store_name": "",
+    "invoice": "AB99999999",
+    "date": 1617601542000,
+    "rewards": [
+      {
+        "offer_id": "5f9a747p00c2abf3d4a54d4q",
+        "reward_name": "現金",
+        "reward_value": 28.83
+      }
+    ]
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get accounting record by accounting_id
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/accounting/{accounting_id}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter     | Description
+------------- | -----------
+accounting_id | accounting id
+
+### Response
+
+#### Success
+
+Key           | Type               | Enums | Description
+------------- | ------------------ | ----- | -----------
+accounting_id | string             |       | accotungin id
+user          | User               |       | User object
+card          | Card               |       | Card object
+mobilepay     | MobilePay          |       | MobilePay object
+invoice       | Invoice            |       | Invoice object
+amount        | int                |       | how much money of the record
+name          | string             |       | description of the record
+store         | Store              |       | Store object
+store_name    | string             |       | store name when the store is not in our database
+date          | int                |       | date of the expese in timestamp
+rewards       | []AccountingReward |       | array of AccountingReward object
+invoice_type  | int                | QRCode: `1` <br/> Carrier: `2` <br/> NoInvoice: `3` | invoice tpye of the record
+pending       | string             |       | is the record in pending or not
+created_at    | int                |       | create time in timestamp
+updated_at    | int                |       | update time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 16-8 Delete an accounting record
+
+> Delete an accounting record:
+
+```shell
+curl --request DELETE \
+  --url https://api.cardbo.info/api/v6/accounting/{accounting_id} \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/accounting/{accounting_id}'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.delete(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.delete('https://api.cardbo.info/api/v6/accounting/{accounting_id}', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "_id": "5f9a747p00c2abf3d4a54d4q",
+    "user": {
+      "user_info": "..."
+    },
+    "card": {
+      "card_info": "...",
+    },
+    "mobilepay": {
+      "mobilepay_info": "...",
+    },
+    "amount": 1000,
+    "name": "午餐",
+    "store": {
+      "store_info": "...",
+    },
+    "store_name": "",
+    "invoice": "AB99999999",
+    "date": 1617601542000,
+    "rewards": [
+      {
+        "offer_id": "5f9a747p00c2abf3d4a54d4q",
+        "reward_name": "現金",
+        "reward_value": 28.83
+      }
+    ]
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Delete an accounting record
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`DELETE https://api.cardbo.info/api/v6/accounting/{accounting_id}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter     | Description
+------------- | -----------
+accounting_id | accounting id
+
+### Response
+
+#### Success
+
+Key           | Type               | Enums | Description
+------------- | ------------------ | ----- | -----------
+accounting_id | string             |       | accotungin id
+user          | User               |       | User object
+card          | Card               |       | Card object
+mobilepay     | MobilePay          |       | MobilePay object
+invoice       | Invoice            |       | Invoice object
+amount        | int                |       | how much money of the record
+name          | string             |       | description of the record
+store         | Store              |       | Store object
+store_name    | string             |       | store name when the store is not in our database
+date          | int                |       | date of the expese in timestamp
+rewards       | []AccountingReward |       | array of AccountingReward object
+invoice_type  | int                | QRCode: `1` <br/> Carrier: `2` <br/> NoInvoice: `3` | invoice tpye of the record
+pending       | string             |       | is the record in pending or not
+created_at    | int                |       | create time in timestamp
+updated_at    | int                |       | update time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 16-9 Get monthly accounting records
+
+> Get monthly accounting records:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/accountings/year/{year} \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/accountings/year/{year}'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/accountings/year/{year}', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": [
+    {
+      "year": 2021,
+      "month": 1,
+      "accounting_records": [
+        {
+          "accounting_id": "5f9a747p00c2abf3d4a54d4q",
+          "card": {
+            "card_id": "5f9a747p00c2abf3d4a54d4q",
+            "name": "台新@GoGo卡",
+            "bank": {
+              "bank_id": "5f9a747p00c2abf3d4a54d4q",
+              "name": "台新銀行",
+              "logo": "https://aishin-bank.png",
+              "image": "https://aishin-bank.png",
+              "code": "812"
+            },
+            "level": 4,
+            "image": "https://card/5f9a747p00c2abf3d4a54d4q-1.png",
+            "issuer": "VISA",
+            "payment_date": 15
+          },
+          "mobilepay": {
+            "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+            "name": "Line Pay",
+            "image": "https://line-pay.png",
+            "user_has": false
+          },
+          "amount": 100,
+          "name": "便利商店",
+          "date": 1617601542000
+        }
+      ]
+    }
+  ],
+  "timestamp": 1617601542000
+}
+```
+
+Get monthly accounting records
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/accountings/year/{year}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter | Description
+--------- | -----------
+year      | year
+
+### Response
+
+#### Success
+
+Key                | Type               | Enums      | Description
+------------------ | ------------------ | ---------- | -----------
+year               | int                |            | year
+month              | int                | [`1`-`12`] | month
+accounting_records | []AccountingRecord |            | array of AccountingRecord
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
 # 17. Invoice
 
 ## 17-1. Get unrecorded invoices
@@ -7020,9 +7712,9 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-# UserReward
+# 18. UserReward
 
-## Set user reward order
+## 18-1. Set user reward order
 
 > Set user reward order:
 
