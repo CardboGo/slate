@@ -335,6 +335,8 @@ name          | string             |       | description of the record
 store         | Store              |       | Store object
 store_name    | string             |       | store name when the store is not in our database
 date          | int                |       | date of the expese in timestamp
+reward_value  | float              |       | total reward value from `rewards`
+coin_image    | string             |       | the image URL of the reward coin
 rewards       | []AccountingReward |       | array of AccountingReward object
 invoice_type  | int                | QRCode: `1` <br/> Carrier: `2` <br/> NoInvoice: `3` | invoice tpye of the record
 pending       | string             |       | is the record in pending or not
@@ -7705,6 +7707,97 @@ unrecorded      | bool            |       | is invoice is recorded or not
 status          | int             | UNRECORDED: `1` <br/> PENDING: `2` <br/> RECORDED: `3` <br/> ARCHIVED: `4` | status of the invoice
 created_at      | int             |       | create time in timestamp
 updated_at      | int             |       | update time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 17-2. Archive invoices
+
+> Archive invoices:
+
+```shell
+curl --request PUT \
+  --url https://api.cardbo.info/api/v6/invoices/archive \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "invoice_id_list": [
+      "5f9a747p00c2abf3d4a54d4q"
+    ]
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/invoices/archive'
+data = {
+  'invoice_id_list': [
+    '5f9a747p00c2abf3d4a54d4q'
+  ]
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  invoice_id_list: [
+    "5f9a747p00c2abf3d4a54d4q"
+  ]
+}
+axios.put('https://api.cardbo.info/api/v6/invoices/archive', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": "",
+  "timestamp": 1617601542000
+}
+```
+
+Archive invoices
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://api.cardbo.info/api/v6/invoices/archive`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+### Response
+
+#### Success
+
+Key    | Type   | Description
+------ | ------ | -----------
+result | string | no result
 
 #### Error
 
