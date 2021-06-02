@@ -6178,7 +6178,7 @@ card_id      | false    | false       | card id
 mobilepay_id | false    | false       | mobilepay id
 
 <aside class="notice">
-At least one of `card_id` and `mobilepay_id` is required.
+At least one of **card_id** and **mobilepay_id** is required.
 </aside>
 
 ### Response
