@@ -2027,7 +2027,7 @@ curl --request PUT \
   -H 'Content-Type: application/json' \
   --data '{
     "carrier": "/ABCD-F1",
-    "verification_code": "AES_CFB_ENCODED_STRING"
+    "verification_code": "E_INVOICE_VERIFICATION_CODE"
   }'
 ```
 
@@ -2038,7 +2038,7 @@ url = 'https://api.cardbo.info/api/v6/user/invoice'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   "carrier": "/ABCD-F1",
-  "verification_code": "AES_CFB_ENCODED_STRING"
+  "verification_code": "E_INVOICE_VERIFICATION_CODE"
 }
 response = requests.put(url, headers=headers, json=data)
 ```
@@ -2049,7 +2049,7 @@ const axios = require('axios');
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
   carrier: "/ABCD-F1",
-  verification_code: "AES_CFB_ENCODED_STRING"
+  verification_code: "E_INVOICE_VERIFICATION_CODE"
 }
 axios.put('https://api.cardbo.info/api/v6/user/invoice', data, {
     headers: headers
@@ -2098,7 +2098,7 @@ Authorization | Bearer token | API access token
 Parameter         | Required | Type  | Description
 ----------------- | -------- | ----- | -----------
 carrier           | true    | string | mobile pay carrier code
-verification_code | true    | string | verification code in AES CFB encryption
+verification_code | true    | string | verification code
 
 ### Response
 
@@ -6173,9 +6173,13 @@ Authorization | Bearer token | API access token
 
 Query        | Required | Muti-values | Description
 ------------ | -------- | ----------- | -----------
-store_id     | true     | false       | store id
-card_id      | true     | false       | card id
-mobilepay_id | false    | false       |mobilepay id
+store_id     | false    | false       | store id
+card_id      | false    | false       | card id
+mobilepay_id | false    | false       | mobilepay id
+
+<aside class="notice">
+At least one of `card_id` and `mobilepay_id` is required.
+</aside>
 
 ### Response
 
