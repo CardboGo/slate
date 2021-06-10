@@ -128,22 +128,23 @@ expense   | int       | expense value
 
 ## UserReward
 
-Key                | Type        | Enums      | Description
------------------- | ----------- | ---------- | -----------
-reward_id          | string      |            | reward id
-user               | User        |            | User object
-card               | CardDisplay |            | CardDisplay object
-offer              | Offer       |            | Offer object
-reward_unit_value  | float       |            | offer reward value per unit
-reward_name        | string      |            | offer cashback reward name
-reward_upper_bound | int         |            | offer cashback upper bound
-pinned             | bool        |            | is the reward pinned to the summary page
-year               | int         |            | year of the reward
-month              | int         | [`1`-`12`] | month of the reward
-expense            | int         |            | expense of the month
-reward_value       | float       |            | total reward value which user get of the month
-created_at         | int         |            | create time in timestamp
-updated_at         | int         |            | update time in timestamp
+Key                 | Type   | Description
+------------------- | ------ | -----------
+reward_id           | string | reward id
+card_id             | string | CardDisplay object
+offer_id            | string | Offer object
+reward_unit_value   | float  | offer reward value per unit
+reward_name         | string | offer cashback reward name
+reward_upper_bound  | int    | offer cashback upper bound
+expense_upper_bound | int    | expense upper bound
+left_expense        | int    | left expense
+start_date          | int    | year of the reward
+end_date            | int    | month of the reward
+expense             | int    | expense of the month
+reward_value        | float  | total reward value which user get of the month
+offer               | Offer  | Offer object
+created_at          | int    | create time in timestamp
+updated_at          | int    | update time in timestamp
 
 ## Administrator
 
@@ -321,6 +322,14 @@ max_cashback_offers  | []string  |           | array of offer id which is includ
 cashback_upper_bound | int       |           | min cashback upper bound from all offers
 cashback_amount      | int       |           | amount getting from max cashback
 
+## AccountingRecordOffer
+
+Key          | Type  | Description
+------------ | ----- | -----------
+offer        | Offer | Offer object
+selected     | bool  | is the offer selected for max cashback
+reward_value | float | the reward value get from the offer
+
 ## AccountingRecord
 
 Key           | Type               | Enums | Description
@@ -384,6 +393,23 @@ unrecorded      | bool            |       | is invoice is recorded or not
 status          | int             | UNRECORDED: `1` <br/> PENDING: `2` <br/> RECORDED: `3` <br/> ARCHIVED: `4` | status of the invoice
 created_at      | int             |       | create time in timestamp
 updated_at      | int             |       | update time in timestamp
+
+## ErrorReport
+
+Key               | Type             | Enums | Description
+----------------- | ---------------- | ----- | -----------
+report_id         | string           |       | report id
+report_type       | int              | OFFER: `1` <br/> ACCOUNTING: `2` | report type
+user              | User             |       | User Object
+accounting_record | AccountingRecord |       | AccountingRecord object
+store             | Store            |       | Store object
+store_name        | string           |       | store name when store is not in our DB
+offer_ids         | []string         |       | offer id array
+content           | string           |       | report content
+note              | string           |       | error handling note
+status            | int              | PENDING: `1` <br/> DISCARD: `2` <br/> FINISHED: `3` | the handling status of the report
+created_at        | int              |       | create time in timestamp
+updated_at        | int              |       | update time in timestamp
 
 # 1. Authentication
 
@@ -6090,7 +6116,7 @@ error | string | error message
 
 ```shell
 curl --request GET \
-  --url https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5f9a747p00c2abf3d4a54d4q&card_id=5f9a747p00c2abf3d4a54d4q&mobilepay_id=5f9a747p00c2abf3d4a54d4q \
+  --url https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5f9a747p00c2abf3d4a54d4q&card_id=5f9a747p00c2abf3d4a54d4q&mobilepay_id=5f9a747p00c2abf3d4a54d4q&expense=100&date=1617601542000 \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -6098,7 +6124,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5f9a747p00c2abf3d4a54d4q&card_id=5f9a747p00c2abf3d4a54d4q&mobilepay_id=5f9a747p00c2abf3d4a54d4q'
+url = 'https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5f9a747p00c2abf3d4a54d4q&card_id=5f9a747p00c2abf3d4a54d4q&mobilepay_id=5f9a747p00c2abf3d4a54d4q&expense=100&date=1617601542000'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.delete(url, headers=headers)
 ```
@@ -6107,7 +6133,7 @@ response = requests.delete(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.delete('https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5f9a747p00c2abf3d4a54d4q&card_id=5f9a747p00c2abf3d4a54d4q&mobilepay_id=5f9a747p00c2abf3d4a54d4q', {
+axios.delete('https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5f9a747p00c2abf3d4a54d4q&card_id=5f9a747p00c2abf3d4a54d4q&mobilepay_id=5f9a747p00c2abf3d4a54d4q&expense=100&date=1617601542000', {
     headers: headers
   })
   .then(function (response) {
@@ -6126,25 +6152,11 @@ axios.delete('https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5
   "message": "Ok",
   "result": [
     {
-      "card": {
-        "card_info": "..."
+      "offer": {
+        "offer_info": "..."
       },
-      "mobilepay": {
-        "mobilepay_info": "..."
-      },
-      "offers": [
-        {
-          "offer_info": "..."
-        }
-      ],
-      "rating": 0.878,
-      "star": 5,
-      "max_cashback": 4.5,
-      "max_cashback_offers": [
-        "5f9a747p00c2abf3d4a54d4q"
-      ],
-      "cashback_upper_bound": 500,
-      "cashback_amount": 200
+      "selected": true,
+      "reward_value": 0.5
     }
   ],
   "timestamp": 1617601542000
@@ -6176,6 +6188,8 @@ Query        | Required | Muti-values | Description
 store_id     | false    | false       | store id
 card_id      | false    | false       | card id
 mobilepay_id | false    | false       | mobilepay id
+expense      | true     | false       | the amount of the expense
+date         | true     | false       | the date of expense in timestamp
 
 <aside class="notice">
 At least one of **card_id** and **mobilepay_id** is required.
@@ -6185,17 +6199,11 @@ At least one of **card_id** and **mobilepay_id** is required.
 
 #### Success
 
-Key                  | Type      | Enums     | Description
--------------------- | --------- | --------- | -----------
-card                 | Card      |           | Card object
-mobilepay            | MobilePay |           | MobilePay object
-offers               | []Offer   |           | array of Offer object
-rating               | float     |           | card rating from 0 to 1
-star                 | int       | [`1`-`5`] | number of star convert from rating from 1 to 5
-max_cashback         | float     |           | max cashback value accumulated from all offers
-max_cashback_offers  | []string  |           | array of offer id which is including in max cashback
-cashback_upper_bound | int       |           | min cashback upper bound from all offers
-cashback_amount      | int       |           | amount getting from max cashback
+Key          | Type  | Description
+------------ | ----- | -----------
+offer        | Offer | Offer object
+selected     | bool  | is the offer selected for max cashback
+reward_value | float | the reward value get from the offer
 
 #### Error
 
@@ -6341,6 +6349,132 @@ error | string | error message
 # 11. UserAction
 
 # 12. ErrorReport
+
+## 12-1. Insert error report
+
+> Insert an error report:
+
+```shell
+curl --request POST \
+  --url https://api.cardbo.info/api/v5/error_report \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "accounting_id": "5f9a747p00c2abf3d4a54d4q",
+    "store_id": "5f9a747p00c2abf3d4a54d4q",
+    "report_type": 2,
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v5/error_report'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "accounting_id": "5f9a747p00c2abf3d4a54d4q",
+  "store_id": "5f9a747p00c2abf3d4a54d4q",
+  "report_type": 2,
+}
+response = requests.post(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  accounting_id: "5f9a747p00c2abf3d4a54d4q",
+  store_id: "5f9a747p00c2abf3d4a54d4q",
+  report_type: 2,
+}
+axios.post('https://api.cardbo.info/api/v5/error_report', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "report_id": "5f9a747p00c2abf3d4a54d4q",
+    "user": {
+      "user_info": "..."
+    },
+    "accounting_record": {
+      "accounting_info": "...",
+    },
+    "store": {
+      "store_info": "...",
+    },
+    "report_type": 2,
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Insert an error report
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`POST https://api.cardbo.info/api/v5/error_report`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter     | Required | Type     | Enums | Description
+------------- | -------- | -------- | ----- | -----------
+report_type   | true     | int      | OFFER: `1` <br/> ACCOUNTING: `2` |
+accounting_id | false    | string   |       | accounting record id
+store_id      | false    | string   |       | store id
+store_name    | false    | int      |       | store name when the store is not in our DB
+offer_ids     | false    | string   |       | offer is array
+content       | false    | string   |       | report content
+
+### Response
+
+#### Success
+
+Key               | Type             | Enums | Description
+----------------- | ---------------- | ----- | -----------
+report_id         | string           |       | report id
+report_type       | int              | OFFER: `1` <br/> ACCOUNTING: `2` | report type
+user              | User             |       | User Object
+accounting_record | AccountingRecord |       | AccountingRecord object
+store             | Store            |       | Store object
+store_name        | string           |       | store name when store is not in our DB
+offer_ids         | []string         |       | offer id array
+content           | string           |       | report content
+note              | string           |       | error handling note
+status            | int              | PENDING: `1` <br/> DISCARD: `2` <br/> FINISHED: `3` | the handling status of the report
+created_at        | int              |       | create time in timestamp
+updated_at        | int              |       | update time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
 
 # 13. LimitedTimeOffer
 
@@ -6638,31 +6772,36 @@ axios.post('https://api.cardbo.info/api/v6/accounting', data, {
 
 ```json
 {
-  "_id": "5f9a747p00c2abf3d4a54d4q",
-  "user": {
-    "user_info": "..."
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "_id": "5f9a747p00c2abf3d4a54d4q",
+    "user": {
+      "user_info": "..."
+    },
+    "card": {
+      "card_info": "...",
+    },
+    "mobilepay": {
+      "mobilepay_info": "...",
+    },
+    "amount": 1000,
+    "name": "午餐",
+    "store": {
+      "store_info": "...",
+    },
+    "store_name": "",
+    "invoice": "AB99999999",
+    "date": 1617601542000,
+    "rewards": [
+      {
+        "offer_id": "5f9a747p00c2abf3d4a54d4q",
+        "reward_name": "現金",
+        "reward_value": 28.83
+      }
+    ]
   },
-  "card": {
-    "card_info": "...",
-  },
-  "mobilepay": {
-    "mobilepay_info": "...",
-  },
-  "amount": 1000,
-  "name": "午餐",
-  "store": {
-    "store_info": "...",
-  },
-  "store_name": "",
-  "invoice": "AB99999999",
-  "date": 1617601542000,
-  "rewards": [
-    {
-      "offer_id": "5f9a747p00c2abf3d4a54d4q",
-      "reward_name": "現金",
-      "reward_value": 28.83
-    }
-  ]
+  "timestamp": 1617601542000
 }
 ```
 
@@ -6721,6 +6860,12 @@ invoice_type  | int                | QRCode: `1` <br/> Carrier: `2` <br/> NoInvo
 pending       | string             |       | is the record in pending or not
 created_at    | int                |       | create time in timestamp
 updated_at    | int                |       | update time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
 
 ## 16-4. Insert an accounting record with QR code invoice
 
