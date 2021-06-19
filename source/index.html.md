@@ -322,6 +322,27 @@ max_cashback_offers  | []string  |           | array of offer id which is includ
 cashback_upper_bound | int       |           | min cashback upper bound from all offers
 cashback_amount      | int       |           | amount getting from max cashback
 
+## OfferUpdateInfo
+
+Key              | Type  | Description
+---------------- | ----- | -----------
+offer            | Offer | Offer object
+recently_updated | bool  | Is the offer updated recenlty
+
+## NewUserOffer
+
+Key        | Type          | Description
+---------- | ------------- | -----------
+offer_id   | string        | Offer ID
+title      | string        | Title of the offer
+cards      | []Card        | Array of Card object
+start_date | int           | start date in timestamp
+end_date   | int           | end date in timestamp
+url        | string        | offer URL
+creator    | Administrator | Creator info
+created_at | int           | create time in timestamp
+updated_at | int           | update time in timestamp
+
 ## AccountingRecordOffer
 
 Key          | Type  | Description
@@ -6100,17 +6121,107 @@ error | string | error message
 
 ## 7-18. Search offers of all cards
 
-## 7-19. Get recommended offers of user's cards
+## 7-19. Get recommended offers
 
-## 7-20. Search google maps offers
+## 7-20. Get card offers
 
-## 7-21. Get google maps top search keywords
+> Get all offers and new user offers of a card
 
-## 7-22. Get all offers of a card
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v5.5/offers/formal/card/5f9a747p00c2abf3d4a54d4q \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
 
-## 7-23. Get expired offers
+```python
+import requests
 
-## 7-24. Search offers for accounting record
+url = 'https://api.cardbo.info/api/v5.5/offers/formal/card/5f9a747p00c2abf3d4a54d4q'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.delete(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.delete('https://api.cardbo.info/api/v5.5/offers/formal/card/5f9a747p00c2abf3d4a54d4q', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "offers": [
+      {
+        "offer": {
+          "offer_info": "...",
+        },
+        "recently_updated": false
+      }
+    ],
+    "new_user_offers": [
+      {
+        "new_user_offer_info": "..."
+      }
+    ]
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get all offers and new user offers of a card
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v5.5/offers/formal/card/{card_id}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+<aside class="notice">
+At least one of **card_id** and **mobilepay_id** is required.
+</aside>
+
+### Response
+
+#### Success
+
+Key             | Type              | Description
+--------------- | ----------------- | -----------
+offers          | []OfferUpdateInfo | Array of OfferUpdateInfo object
+new_user_offers | []NewUserOffer    | Array of  NewUserOffer object
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 7-21. Get expired offers
+
+## 7-22. Search offers for accounting record
 
 > Search offers for accounting record:
 
