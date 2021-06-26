@@ -420,17 +420,20 @@ updated_at      | int             |       | update time in timestamp
 Key               | Type             | Enums | Description
 ----------------- | ---------------- | ----- | -----------
 report_id         | string           |       | report id
-report_type       | int              | OFFER: `1` <br/> ACCOUNTING: `2` | report type
+report_type       | int              | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
 user              | User             |       | User Object
 accounting_record | AccountingRecord |       | AccountingRecord object
 store             | Store            |       | Store object
 store_name        | string           |       | store name when store is not in our DB
 offer_ids         | []string         |       | offer id array
+url_error         | bool             |       | is the offer URL error
 content           | string           |       | report content
 note              | string           |       | error handling note
-status            | int              | PENDING: `1` <br/> DISCARD: `2` <br/> FINISHED: `3` | the handling status of the report
+status            | int              | PENDING: `1` <br/> WAITING_NOTIFY: `2` <br/> FINISHED: `3` | the handling status of the report
 created_at        | int              |       | create time in timestamp
 updated_at        | int              |       | update time in timestamp
+fixed_at          | int              |       | fixing time in timestamp
+notified_at       | int              |       | notification time in timestamp
 
 # 1. Authentication
 
@@ -6467,7 +6470,7 @@ error | string | error message
 
 ```shell
 curl --request POST \
-  --url https://api.cardbo.info/api/v5/error_report \
+  --url https://api.cardbo.info/api/v6/error_report \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -6480,7 +6483,7 @@ curl --request POST \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/error_report'
+url = 'https://api.cardbo.info/api/v6/error_report'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   "accounting_id": "5f9a747p00c2abf3d4a54d4q",
@@ -6499,7 +6502,7 @@ data = {
   store_id: "5f9a747p00c2abf3d4a54d4q",
   report_type: 2,
 }
-axios.post('https://api.cardbo.info/api/v5/error_report', data, {
+axios.post('https://api.cardbo.info/api/v6/error_report', data, {
     headers: headers
   })
   .then(function (response) {
@@ -6518,6 +6521,7 @@ axios.post('https://api.cardbo.info/api/v5/error_report', data, {
   "message": "Ok",
   "result": {
     "report_id": "5f9a747p00c2abf3d4a54d4q",
+    "report_type": 1,
     "user": {
       "user_info": "..."
     },
@@ -6527,7 +6531,17 @@ axios.post('https://api.cardbo.info/api/v5/error_report', data, {
     "store": {
       "store_info": "...",
     },
-    "report_type": 2,
+    "store_name": "",
+    "offer_ids": [
+      "5f9a747p00c2abf3d4a54d4q"
+    ],
+    "url_error": false,
+    "content": "error",
+    "status": 1,
+    "created_at": 1617601542000,
+    "updated_at": 0,
+    "fixed_at": 0,
+    "notified_at": 0
   },
   "timestamp": 1617601542000
 }
@@ -6541,7 +6555,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`POST https://api.cardbo.info/api/v5/error_report`
+`POST https://api.cardbo.info/api/v6/error_report`
 
 ### Request
 
@@ -6553,14 +6567,15 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter     | Required | Type     | Enums | Description
-------------- | -------- | -------- | ----- | -----------
-report_type   | true     | int      | OFFER: `1` <br/> ACCOUNTING: `2` |
-accounting_id | false    | string   |       | accounting record id
-store_id      | false    | string   |       | store id
-store_name    | false    | int      |       | store name when the store is not in our DB
-offer_ids     | false    | string   |       | offer is array
-content       | false    | string   |       | report content
+Parameter     | Required  | Type     | Enums | Description
+------------- | --------- | -------- | ----- | -----------
+report_type   | true      | int      | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
+accounting_id | false     | string   |       | accounting record id
+store_id      | false(*1) | string   |       | store id
+store_name    | false(*1) | int      |       | store name when the store is not in our DB
+offer_ids     | false     | string   |       | offer is array
+url_error     | false     | bool     |       | is the offer URL error
+content       | false     | string   |       | report content
 
 ### Response
 
@@ -6569,17 +6584,490 @@ content       | false    | string   |       | report content
 Key               | Type             | Enums | Description
 ----------------- | ---------------- | ----- | -----------
 report_id         | string           |       | report id
-report_type       | int              | OFFER: `1` <br/> ACCOUNTING: `2` | report type
+report_type       | int              | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
 user              | User             |       | User Object
 accounting_record | AccountingRecord |       | AccountingRecord object
 store             | Store            |       | Store object
 store_name        | string           |       | store name when store is not in our DB
 offer_ids         | []string         |       | offer id array
+url_error         | bool             |       | is the offer URL error
 content           | string           |       | report content
 note              | string           |       | error handling note
-status            | int              | PENDING: `1` <br/> DISCARD: `2` <br/> FINISHED: `3` | the handling status of the report
+status            | int              | PENDING: `1` <br/> WAITING_NOTIFY: `2` <br/> FINISHED: `3` | the handling status of the report
 created_at        | int              |       | create time in timestamp
 updated_at        | int              |       | update time in timestamp
+fixed_at          | int              |       | fixing time in timestamp
+notified_at       | int              |       | notification time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 12-2. Get error reports
+
+> Get error reports:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/error_reports?report_type=1 \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/error_reports?report_type=1'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/error_reports?report_type=1', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": [
+    {
+      "report_id": "5f9a747p00c2abf3d4a54d4q",
+      "report_type": 1,
+      "user": {
+        "user_info": "..."
+      },
+      "accounting_record": {
+        "accounting_info": "...",
+      },
+      "store": {
+        "store_info": "...",
+      },
+      "store_name": "",
+      "offer_ids": [
+        "5f9a747p00c2abf3d4a54d4q"
+      ],
+      "url_error": false,
+      "content": "error",
+      "status": 1,
+      "created_at": 1617601542000,
+      "updated_at": 0,
+      "fixed_at": 0,
+      "notified_at": 0
+    }
+  ],
+  "timestamp": 1617601542000
+}
+```
+
+Get error reports
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/error_reports?report_type=1`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Queries
+
+Query       | Required | Muti-values | Enums | Description
+----------- | -------- | ----------- | ----- | -----------
+report_type | true     | false       | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
+
+### Response
+
+#### Success
+
+Key               | Type             | Enums | Description
+----------------- | ---------------- | ----- | -----------
+report_id         | string           |       | report id
+report_type       | int              | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
+user              | User             |       | User Object
+accounting_record | AccountingRecord |       | AccountingRecord object
+store             | Store            |       | Store object
+store_name        | string           |       | store name when store is not in our DB
+offer_ids         | []string         |       | offer id array
+url_error         | bool             |       | is the offer URL error
+content           | string           |       | report content
+note              | string           |       | error handling note
+status            | int              | PENDING: `1` <br/> WAITING_NOTIFY: `2` <br/> FINISHED: `3` | the handling status of the report
+created_at        | int              |       | create time in timestamp
+updated_at        | int              |       | update time in timestamp
+fixed_at          | int              |       | fixing time in timestamp
+notified_at       | int              |       | notification time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 12-3. Get error report by report_id
+
+> Get error report by report_id:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "report_id": "5f9a747p00c2abf3d4a54d4q",
+    "report_type": 1,
+    "user": {
+      "user_info": "..."
+    },
+    "accounting_record": {
+      "accounting_info": "...",
+    },
+    "store": {
+      "store_info": "...",
+    },
+    "store_name": "",
+    "offer_ids": [
+      "5f9a747p00c2abf3d4a54d4q"
+    ],
+    "url_error": false,
+    "content": "error",
+    "status": 1,
+    "created_at": 1617601542000,
+    "updated_at": 0,
+    "fixed_at": 0,
+    "notified_at": 0
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get error report by report_id
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter | Description
+--------- | -----------
+report_id | report id
+
+### Response
+
+#### Success
+
+Key               | Type             | Enums | Description
+----------------- | ---------------- | ----- | -----------
+report_id         | string           |       | report id
+report_type       | int              | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
+user              | User             |       | User Object
+accounting_record | AccountingRecord |       | AccountingRecord object
+store             | Store            |       | Store object
+store_name        | string           |       | store name when store is not in our DB
+offer_ids         | []string         |       | offer id array
+url_error         | bool             |       | is the offer URL error
+content           | string           |       | report content
+note              | string           |       | error handling note
+status            | int              | PENDING: `1` <br/> WAITING_NOTIFY: `2` <br/> FINISHED: `3` | the handling status of the report
+created_at        | int              |       | create time in timestamp
+updated_at        | int              |       | update time in timestamp
+fixed_at          | int              |       | fixing time in timestamp
+notified_at       | int              |       | notification time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 12-4. Make report status to FIXED
+
+> Make report status to FIXED:
+
+```shell
+curl --request PUT \
+  --url https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.put(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.put('https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "report_id": "5f9a747p00c2abf3d4a54d4q",
+    "report_type": 1,
+    "user": {
+      "user_info": "..."
+    },
+    "accounting_record": {
+      "accounting_info": "...",
+    },
+    "store": {
+      "store_info": "...",
+    },
+    "store_name": "",
+    "offer_ids": [
+      "5f9a747p00c2abf3d4a54d4q"
+    ],
+    "url_error": false,
+    "content": "error",
+    "status": 1,
+    "created_at": 1617601542000,
+    "updated_at": 0,
+    "fixed_at": 0,
+    "notified_at": 0
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Make report status to FIXED
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+### Response
+
+#### Success
+
+Key               | Type             | Enums | Description
+----------------- | ---------------- | ----- | -----------
+report_id         | string           |       | report id
+report_type       | int              | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
+user              | User             |       | User Object
+accounting_record | AccountingRecord |       | AccountingRecord object
+store             | Store            |       | Store object
+store_name        | string           |       | store name when store is not in our DB
+offer_ids         | []string         |       | offer id array
+url_error         | bool             |       | is the offer URL error
+content           | string           |       | report content
+note              | string           |       | error handling note
+status            | int              | PENDING: `1` <br/> WAITING_NOTIFY: `2` <br/> FINISHED: `3` | the handling status of the report
+created_at        | int              |       | create time in timestamp
+updated_at        | int              |       | update time in timestamp
+fixed_at          | int              |       | fixing time in timestamp
+notified_at       | int              |       | notification time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 12-5. Make report status to NOTIFIED
+
+> Make report status to NOTIFIED:
+
+```shell
+curl --request PUT \
+  --url https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.put(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.put('https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "report_id": "5f9a747p00c2abf3d4a54d4q",
+    "report_type": 1,
+    "user": {
+      "user_info": "..."
+    },
+    "accounting_record": {
+      "accounting_info": "...",
+    },
+    "store": {
+      "store_info": "...",
+    },
+    "store_name": "",
+    "offer_ids": [
+      "5f9a747p00c2abf3d4a54d4q"
+    ],
+    "url_error": false,
+    "content": "error",
+    "status": 1,
+    "created_at": 1617601542000,
+    "updated_at": 0,
+    "fixed_at": 0,
+    "notified_at": 0
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Make report status to NOTIFIED
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+### Response
+
+#### Success
+
+Key               | Type             | Enums | Description
+----------------- | ---------------- | ----- | -----------
+report_id         | string           |       | report id
+report_type       | int              | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
+user              | User             |       | User Object
+accounting_record | AccountingRecord |       | AccountingRecord object
+store             | Store            |       | Store object
+store_name        | string           |       | store name when store is not in our DB
+offer_ids         | []string         |       | offer id array
+url_error         | bool             |       | is the offer URL error
+content           | string           |       | report content
+note              | string           |       | error handling note
+status            | int              | PENDING: `1` <br/> WAITING_NOTIFY: `2` <br/> FINISHED: `3` | the handling status of the report
+created_at        | int              |       | create time in timestamp
+updated_at        | int              |       | update time in timestamp
+fixed_at          | int              |       | fixing time in timestamp
+notified_at       | int              |       | notification time in timestamp
 
 #### Error
 
