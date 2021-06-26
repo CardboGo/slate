@@ -6577,6 +6577,8 @@ offer_ids     | false     | string   |       | offer is array
 url_error     | false     | bool     |       | is the offer URL error
 content       | false     | string   |       | report content
 
+*1: one of `store_id` and `store_name` is required
+
 ### Response
 
 #### Success
@@ -7424,17 +7426,17 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter     | Required | Type     | Description
-------------- | -------- | -------- | -----------
-card_id       | true     | string   | card id
-mobilepay_id  | true     | string   | mobilepay id
-amount        | true     | int      | the amount of the money
-name          | true     | string   | name of the record
+Parameter     | Required  | Type     | Description
+------------- | --------- | -------- | -----------
+card_id       | true      | string   | card id
+mobilepay_id  | true      | string   | mobilepay id
+amount        | true      | int      | the amount of the money
+name          | true      | string   | name of the record
 store_id      | false(*1) | string   | store id
 store_name    | false(*1) | string   | store name when the store not in our database
-date          | true     | int      | the datetime of the expense in timestamp
-rewards       | false    | []string | array of offer id that can get from the expense
-completed     | true     | bool     | is the record completed
+date          | true      | int      | the datetime of the expense in timestamp
+rewards       | false     | []string | array of offer id that can get from the expense
+completed     | true      | bool     | is the record completed
 
 *1: one of `store_id` and `store_name` is required
 
