@@ -417,23 +417,24 @@ updated_at      | int             |       | update time in timestamp
 
 ## ErrorReport
 
-Key               | Type             | Enums | Description
------------------ | ---------------- | ----- | -----------
-report_id         | string           |       | report id
-report_type       | int              | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
-user              | User             |       | User Object
-accounting_record | AccountingRecord |       | AccountingRecord object
-store             | Store            |       | Store object
-store_name        | string           |       | store name when store is not in our DB
-offer_ids         | []string         |       | offer id array
-url_error         | bool             |       | is the offer URL error
-content           | string           |       | report content
-note              | string           |       | error handling note
-status            | int              | PENDING: `1` <br/> WAITING_NOTIFY: `2` <br/> FINISHED: `3` | the handling status of the report
-created_at        | int              |       | create time in timestamp
-updated_at        | int              |       | update time in timestamp
-fixed_at          | int              |       | fixing time in timestamp
-notified_at       | int              |       | notification time in timestamp
+Key                | Type             | Enums | Description
+------------------ | ---------------- | ----- | -----------
+report_id          | string           |       | report id
+report_type        | int              | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
+user               | User             |       | User Object
+accounting_record  | AccountingRecord |       | AccountingRecord object
+store              | Store            |       | Store object
+store_name         | string           |       | store name when store is not in our DB
+offer_ids          | []string         |       | offer id array
+new_user_offer_ids | []string         |       | new user offer id array
+url_error          | bool             |       | is the offer URL error
+content            | string           |       | report content
+note               | string           |       | error handling note
+status             | int              | PENDING: `1` <br/> WAITING_NOTIFY: `2` <br/> FINISHED: `3` | the handling status of the report
+created_at         | int              |       | create time in timestamp
+updated_at         | int              |       | update time in timestamp
+fixed_at           | int              |       | fixing time in timestamp
+notified_at        | int              |       | notification time in timestamp
 
 # 1. Authentication
 
@@ -6567,17 +6568,18 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter     | Required  | Type     | Enums | Description
-------------- | --------- | -------- | ----- | -----------
-report_type   | true      | int      | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
-accounting_id | false     | string   |       | accounting record id
-store_id      | false(*1) | string   |       | store id
-store_name    | false(*1) | int      |       | store name when the store is not in our DB
-offer_ids     | false     | string   |       | offer is array
-url_error     | false     | bool     |       | is the offer URL error
-content       | false     | string   |       | report content
+Parameter          | Required  | Type     | Enums | Description
+------------------ | --------- | -------- | ----- | -----------
+report_type        | true      | int      | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
+accounting_id      | false     | string   |       | accounting record id
+store_id           | false(*1) | string   |       | store id
+store_name         | false(*1) | int      |       | store name when the store is not in our DB
+offer_ids          | false     | string   |       | offer id array
+new_user_offer_ids | false     | string   |       | new user offer id array
+url_error          | false     | bool     |       | is the offer URL error
+content            | false     | string   |       | report content
 
-*1: one of `store_id` and `store_name` is required
+*1: one of `store_id` and `store_name` is required if `report_type` is `1` and `3`
 
 ### Response
 
