@@ -2494,6 +2494,12 @@
 <td>offer id array</td>
 </tr>
 <tr>
+<td>new_user_offer_ids</td>
+<td>[]string</td>
+<td></td>
+<td>new user offer id array</td>
+</tr>
+<tr>
 <td>url_error</td>
 <td>bool</td>
 <td></td>
@@ -11675,7 +11681,14 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>false</td>
 <td>string</td>
 <td></td>
-<td>offer is array</td>
+<td>offer id array</td>
+</tr>
+<tr>
+<td>new_user_offer_ids</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+<td>new user offer id array</td>
 </tr>
 <tr>
 <td>url_error</td>
@@ -11693,7 +11706,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </tr>
 </tbody></table>
 
-<p>*1: one of <code>store_id</code> and <code>store_name</code> is required</p>
+<p>*1: one of <code>store_id</code> and <code>store_name</code> is required if <code>report_type</code> is <code>1</code> and <code>3</code></p>
 <h3 id='response-51'>Response</h3><h4 id='success-51'>Success</h4>
 <table><thead>
 <tr>
