@@ -135,6 +135,7 @@ card_id             | string | CardDisplay object
 offer_id            | string | Offer object
 reward_unit_value   | float  | offer reward value per unit
 reward_name         | string | offer cashback reward name
+coin_image          | string | coin image URL
 reward_upper_bound  | int    | offer cashback upper bound
 expense_upper_bound | int    | expense upper bound
 left_expense        | int    | left expense
@@ -350,6 +351,17 @@ Key          | Type  | Description
 offer        | Offer | Offer object
 selected     | bool  | is the offer selected for max cashback
 reward_value | float | the reward value get from the offer
+
+## AccountingSummary
+
+Key                | Type             | Description
+------------------ | ---------------- | -----------
+user               | User             | User object
+month              | int              | The month of the records
+total_expense      | int              | monthly total expense
+total_reward       | int              | monthly total reward
+card_user_rewards  | CardUserReward   | CardUserReward object
+mobilepay_expenses | MobilePayExpense | MobilePayExpense object
 
 ## AccountingRecord
 
@@ -2056,6 +2068,7 @@ Authorization | Bearer token | API access token
 Key                | Type             | Description
 ------------------ | ---------------- | -----------
 user               | User             | User object
+month              | int              | The month of the records
 total_expense      | int              | monthly total expense
 total_reward       | int              | monthly total reward
 card_user_rewards  | CardUserReward   | CardUserReward object
@@ -7206,9 +7219,9 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 16-2. Get accounting records of a card
+## 16-2. Get card Accounting info
 
-> Get accounting records of a card:
+> Get accounting records and user rewards of a card:
 
 ```shell
 curl --request GET \
@@ -7268,7 +7281,7 @@ axios.get('https://api.cardbo.info/api/v6/accountings/5f9a747p00c2abf3d4a54d4q/2
 }
 ```
 
-Get accounting records of a card
+Get accounting records and user rewards of a card
 
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
