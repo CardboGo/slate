@@ -393,6 +393,9 @@
                     <a href="#accountingrecordoffer" class="toc-h2 toc-link" data-title="AccountingRecordOffer">AccountingRecordOffer</a>
                   </li>
                   <li>
+                    <a href="#accountingsummary" class="toc-h2 toc-link" data-title="AccountingSummary">AccountingSummary</a>
+                  </li>
+                  <li>
                     <a href="#accountingrecord" class="toc-h2 toc-link" data-title="AccountingRecord">AccountingRecord</a>
                   </li>
                   <li>
@@ -758,7 +761,7 @@
                     <a href="#16-1-get-pending-accounting-records" class="toc-h2 toc-link" data-title="16-1. Get pending accounting records">16-1. Get pending accounting records</a>
                   </li>
                   <li>
-                    <a href="#16-2-get-accounting-records-of-a-card" class="toc-h2 toc-link" data-title="16-2. Get accounting records of a card">16-2. Get accounting records of a card</a>
+                    <a href="#16-2-get-card-accounting-info" class="toc-h2 toc-link" data-title="16-2. Get card Accounting info">16-2. Get card Accounting info</a>
                   </li>
                   <li>
                     <a href="#16-3-insert-an-accounting-record-without-invoice" class="toc-h2 toc-link" data-title="16-3. Insert an accounting record without invoice">16-3. Insert an accounting record without invoice</a>
@@ -1186,6 +1189,11 @@
 <td>reward_name</td>
 <td>string</td>
 <td>offer cashback reward name</td>
+</tr>
+<tr>
+<td>coin_image</td>
+<td>string</td>
+<td>coin image URL</td>
 </tr>
 <tr>
 <td>reward_upper_bound</td>
@@ -2147,6 +2155,45 @@
 <td>reward_value</td>
 <td>float</td>
 <td>the reward value get from the offer</td>
+</tr>
+</tbody></table>
+<h2 id='accountingsummary'>AccountingSummary</h2>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user</td>
+<td>User</td>
+<td>User object</td>
+</tr>
+<tr>
+<td>month</td>
+<td>int</td>
+<td>The month of the records</td>
+</tr>
+<tr>
+<td>total_expense</td>
+<td>int</td>
+<td>monthly total expense</td>
+</tr>
+<tr>
+<td>total_reward</td>
+<td>int</td>
+<td>monthly total reward</td>
+</tr>
+<tr>
+<td>card_user_rewards</td>
+<td>CardUserReward</td>
+<td>CardUserReward object</td>
+</tr>
+<tr>
+<td>mobilepay_expenses</td>
+<td>MobilePayExpense</td>
+<td>MobilePayExpense object</td>
 </tr>
 </tbody></table>
 <h2 id='accountingrecord'>AccountingRecord</h2>
@@ -4715,6 +4762,11 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>user</td>
 <td>User</td>
 <td>User object</td>
+</tr>
+<tr>
+<td>month</td>
+<td>int</td>
+<td>The month of the records</td>
 </tr>
 <tr>
 <td>total_expense</td>
@@ -12828,9 +12880,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='16-2-get-accounting-records-of-a-card'>16-2. Get accounting records of a card</h2>
+<h2 id='16-2-get-card-accounting-info'>16-2. Get card Accounting info</h2>
 <blockquote>
-<p>Get accounting records of a card:</p>
+<p>Get accounting records and user rewards of a card:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
   <span class="nt">--url</span> https://api.cardbo.info/api/v6/accountings/5f9a747p00c2abf3d4a54d4q/2021 <span class="se">\</span>
@@ -12881,7 +12933,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Get accounting records of a card</p>
+<p>Get accounting records and user rewards of a card</p>
 
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
