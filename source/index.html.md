@@ -422,6 +422,7 @@ currency        | string          |       | money currency
 price           | int             |       | the price of the expense
 details         | []InvoiceDetail |       | array of InvoiceDetail object
 qr_code_items   | []QRCodeItem    |       | array of QRCodeItem object
+store           | Store           |       | the store of the invoice
 unrecorded      | bool            |       | is invoice is recorded or not
 status          | int             | UNRECORDED: `1` <br/> PENDING: `2` <br/> RECORDED: `3` <br/> ARCHIVED: `4` | status of the invoice
 created_at      | int             |       | create time in timestamp
@@ -8468,6 +8469,7 @@ currency        | string          |       | money currency
 price           | int             |       | the price of the expense
 details         | []InvoiceDetail |       | array of InvoiceDetail object
 qr_code_items   | []QRCodeItem    |       | array of QRCodeItem object
+store           | Store           |       | the store of the invoice
 unrecorded      | bool            |       | is invoice is recorded or not
 status          | int             | UNRECORDED: `1` <br/> PENDING: `2` <br/> RECORDED: `3` <br/> ARCHIVED: `4` | status of the invoice
 created_at      | int             |       | create time in timestamp
@@ -8563,6 +8565,118 @@ Authorization | Bearer token | API access token
 Key    | Type   | Description
 ------ | ------ | -----------
 result | string | no result
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 17-3. Get QR Code invoice data
+
+> Get QR Code invoice data:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/invoice/qrcode?qr_code_left={INVOICE_LEFT_QR_CODE} \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/invoice/qrcode?qr_code_left={INVOICE_LEFT_QR_CODE}'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/invoice/qrcode?qr_code_left={INVOICE_LEFT_QR_CODE}', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "invoice_no": "AB99999999",
+    "status": "已確認",
+    "period": "11006",
+    "seller_name": "Store A",
+    "seller_tax_id": "12345678",
+    "seller_address": "",
+    "invoice_time": 1617601542000,
+    "buyer_tax_id": "12345678",
+    "currency": "TWD",
+    "price": 1000,
+    "details": null,
+    "store": {
+      "store_info": "..."
+    },
+    "unrecorded": true,
+    "created_at": 1617601542000
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get QR Code invoice data
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/invoice/qrcode`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Queries
+
+Query        | Required | Muti-values |  Description
+------------ | -------- | ----------- |  -----------
+qr_code_left | true     | false       | the left part of the QR Code on invoice
+
+### Response
+
+#### Success
+
+Key             | Type            | Description
+--------------- | --------------- | -----------
+invoice_no      | string          | invoice number
+einvoice_status | string          | the status from the E-invcoie API
+period          | string          | invoice period
+seller_name     | string          | seller name
+seller_tax_id   | string          | seller tax id
+seller_address  | string          | seller address
+invoice_time    | string          | time of the invoice in timestamp
+buyer_tax_id    | string          | date of the expese in timestamp
+currency        | string          | money currency
+price           | int             | the price of the expense
+details         | []InvoiceDetail | array of InvoiceDetail object
+qr_code_items   | []QRCodeItem    | array of QRCodeItem object
+store           | Store           | the store of the invoice
 
 #### Error
 
