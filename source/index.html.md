@@ -8821,9 +8821,9 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-# 18. Card Questionnaire
+# 19. Card Questionnaire
 
-## 18-1. Insert card questionnaire
+## 19-1. Insert card questionnaire
 
 > Insert card questionnaire:
 
@@ -8973,7 +8973,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 18-2. Update card questionnaire
+## 19-2. Update card questionnaire
 
 > Update card questionnaire:
 
@@ -9129,7 +9129,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 18-3. Get questionnaire by questionnaire_id
+## 19-3. Get questionnaire by questionnaire_id
 
 > Get questionnaire by questionnaire_id:
 
@@ -9233,7 +9233,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 18-4. Get questionnaire by card
+## 19-4. Get questionnaire by card
 
 > Get questionnaire by card:
 
@@ -9337,7 +9337,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 18-4. Get questionnaires
+## 19-5. Get questionnaires
 
 > Get questionnaires:
 
