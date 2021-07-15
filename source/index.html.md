@@ -449,6 +449,24 @@ updated_at         | int              |       | update time in timestamp
 fixed_at           | int              |       | fixing time in timestamp
 notified_at        | int              |       | notification time in timestamp
 
+## CardQuestionnaire
+
+Key              | Type            | Description
+---------------- | --------------- | -----------
+questionnaire_id | string          | questionnaire id
+card             | Card            | the card of the questionnaires
+questionnaires   | []Questionnaire | array of questionnaire
+created_at       | int             | create time in timestamp
+updated_at       | int             | update time in timestamp
+
+## Questionnaire
+
+Key         | Type     | Description
+----------- | -------- | -----------
+question    | string   | question content
+options     | []string | array of options
+description | string   | the description of the question
+
 # 1. Authentication
 
 ## 1-1. Administrator
@@ -6874,6 +6892,9 @@ curl --request PUT \
   --url https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json'
+  --data '{
+    "note": "the note content..."
+  }'
 ```
 
 ```python
@@ -6881,14 +6902,20 @@ import requests
 
 url = 'https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
-response = requests.put(url, headers=headers)
+data = {
+  "note": "the note content..."
+}
+response = requests.post(url, headers=headers, json=data)
 ```
 
 ```javascript
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.put('https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed', {
+data = {
+  note: "the note content...",
+}
+axios.put('https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed', data, {
     headers: headers
   })
   .then(function (response) {
@@ -6950,6 +6977,12 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 Key           | Value        | Description
 ------------- | ------------ | -----------
 Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter | Required  | Type     | Description
+--------- | --------- | -------- | -----------
+note      | false     | string   | The note for the error report
 
 ### Response
 
@@ -8781,6 +8814,622 @@ offers    | true     | []string | order array of offer id
 Key | Type | Description
 --- | ---- | -----------
 NA  | NA   | NA
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+# 18. Card Questionnaire
+
+## 18-1. Insert card questionnaire
+
+> Insert card questionnaire:
+
+```shell
+curl --request POST \
+  --url https://api.cardbo.info/api/v6/questionnaire \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "card": {
+      "card_id": "5f756d85c2349d9139648a81"
+    },
+    "questionnaires": [
+      {
+        "question": "是否綁定帳戶自動扣款",
+        "options": [
+          "是",
+          "否"
+        ],
+        "description": "是否綁定帳戶自動扣款"
+      }
+    ]
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/questionnaire'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "card": {
+    "card_id": "5f756d85c2349d9139648a81"
+  },
+  "questionnaires": [
+    {
+      "question": "是否綁定帳戶自動扣款",
+      "options": [
+        "是",
+        "否"
+      ],
+      "description": "是否綁定帳戶自動扣款"
+    }
+  ]
+}
+response = requests.post(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  card: {
+    card_id: "5f756d85c2349d9139648a81"
+  },
+  questionnaires: [
+    {
+      question: "是否綁定帳戶自動扣款",
+      options: [
+        "是",
+        "否"
+      ],
+      description: "是否綁定帳戶自動扣款"
+    }
+  ]
+}
+axios.post('https://api.cardbo.info/api/v6/questionnaire', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "questionnaire_id": "60efac665532d3cc0fcf28f7",
+    "card": {
+      "card_info": "..."
+    },
+    "questionnaires": [
+      {
+        "question": "當期帳單以 Richart 帳戶自動扣繳",
+        "options": [
+          "是",
+          "否"
+        ],
+        "description": "當期帳單以 Richart 帳戶自動扣繳"
+      }
+    ],
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Insert card questionnaire
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`POST https://api.cardbo.info/api/v6/questionnaire`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter      | Required | Type            | Description
+-------------- | -------- | --------------- | -----------
+card           | true     | Card            | Card object of the questionnaire
+questionnaires | true     | []Questionnaire | array of questionnaires
+
+### Response
+
+#### Success
+
+Key              | Type            | Description
+---------------- | --------------- | -----------
+questionnaire_id | string          | questionnaire id
+card             | Card            | the card of the questionnaires
+questionnaires   | []Questionnaire | array of questionnaire
+created_at       | int             | create time in timestamp
+updated_at       | int             | update time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 18-2. Update card questionnaire
+
+> Update card questionnaire:
+
+```shell
+curl --request PUT \
+  --url https://api.cardbo.info/api/v6/questionnaire/{questionnaire_id} \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "card": {
+      "card_id": "5f756d85c2349d9139648a81"
+    },
+    "questionnaires": [
+      {
+        "question": "是否綁定帳戶自動扣款",
+        "options": [
+          "是",
+          "否"
+        ],
+        "description": "是否綁定帳戶自動扣款"
+      }
+    ]
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/questionnaire/{questionnaire_id}'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "card": {
+    "card_id": "5f756d85c2349d9139648a81"
+  },
+  "questionnaires": [
+    {
+      "question": "是否綁定帳戶自動扣款",
+      "options": [
+        "是",
+        "否"
+      ],
+      "description": "是否綁定帳戶自動扣款"
+    }
+  ]
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  card: {
+    card_id: "5f756d85c2349d9139648a81"
+  },
+  questionnaires: [
+    {
+      question: "是否綁定帳戶自動扣款",
+      options: [
+        "是",
+        "否"
+      ],
+      description: "是否綁定帳戶自動扣款"
+    }
+  ]
+}
+axios.put('https://api.cardbo.info/api/v6/questionnaire/{questionnaire_id}', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "questionnaire_id": "60efac665532d3cc0fcf28f7",
+    "card": {
+      "card_info": "..."
+    },
+    "questionnaires": [
+      {
+        "question": "當期帳單以 Richart 帳戶自動扣繳",
+        "options": [
+          "是",
+          "否"
+        ],
+        "description": "當期帳單以 Richart 帳戶自動扣繳"
+      }
+    ],
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Update card questionnaire
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://api.cardbo.info/api/v6/questionnaire/{questionnaire_id}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter        | Description
+---------------- | -----------
+questionnaire_id | questionnaire id
+
+#### Parameters
+
+Parameter      | Required | Type            | Description
+-------------- | -------- | --------------- | -----------
+card           | true     | Card            | Card object of the questionnaire
+questionnaires | true     | []Questionnaire | array of questionnaires
+
+### Response
+
+#### Success
+
+Key              | Type            | Description
+---------------- | --------------- | -----------
+questionnaire_id | string          | questionnaire id
+card             | Card            | the card of the questionnaires
+questionnaires   | []Questionnaire | array of questionnaire
+created_at       | int             | create time in timestamp
+updated_at       | int             | update time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 18-3. Get questionnaire by questionnaire_id
+
+> Get questionnaire by questionnaire_id:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/questionnaire/id/{questionnaire_id} \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/questionnaire/id/{questionnaire_id}'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/questionnaire/id/{questionnaire_id}', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "questionnaire_id": "60efac665532d3cc0fcf28f7",
+    "card": {
+      "card_info": "..."
+    },
+    "questionnaires": [
+      {
+        "question": "當期帳單以 Richart 帳戶自動扣繳",
+        "options": [
+          "是",
+          "否"
+        ],
+        "description": "當期帳單以 Richart 帳戶自動扣繳"
+      }
+    ],
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get questionnaire by questionnaire_id
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/questionnaire/id/{questionnaire_id}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter        | Description
+---------------- | -----------
+questionnaire_id | questionnaire id
+
+### Response
+
+#### Success
+
+Key              | Type            | Description
+---------------- | --------------- | -----------
+questionnaire_id | string          | questionnaire id
+card             | Card            | the card of the questionnaires
+questionnaires   | []Questionnaire | array of questionnaire
+created_at       | int             | create time in timestamp
+updated_at       | int             | update time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 18-4. Get questionnaire by card
+
+> Get questionnaire by card:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/questionnaire/card/{card_id} \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/questionnaire/card/{card_id}'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/questionnaire/card/{card_id}', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "questionnaire_id": "60efac665532d3cc0fcf28f7",
+    "card": {
+      "card_info": "..."
+    },
+    "questionnaires": [
+      {
+        "question": "當期帳單以 Richart 帳戶自動扣繳",
+        "options": [
+          "是",
+          "否"
+        ],
+        "description": "當期帳單以 Richart 帳戶自動扣繳"
+      }
+    ],
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get questionnaire by card
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/questionnaire/card/{card_id}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter | Description
+--------- | -----------
+card_id   | card id
+
+### Response
+
+#### Success
+
+Key              | Type            | Description
+---------------- | --------------- | -----------
+questionnaire_id | string          | questionnaire id
+card             | Card            | the card of the questionnaires
+questionnaires   | []Questionnaire | array of questionnaire
+created_at       | int             | create time in timestamp
+updated_at       | int             | update time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 18-4. Get questionnaires
+
+> Get questionnaires:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/questionnaires \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/questionnaires'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/questionnaires', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": [
+    {
+      "questionnaire_id": "60efac665532d3cc0fcf28f7",
+      "card": {
+        "card_info": "..."
+      },
+      "questionnaires": [
+        {
+          "question": "當期帳單以 Richart 帳戶自動扣繳",
+          "options": [
+            "是",
+            "否"
+          ],
+          "description": "當期帳單以 Richart 帳戶自動扣繳"
+        }
+      ],
+      "created_at": 1617601542000,
+      "updated_at": 1617601542000
+    }
+  ],
+  "timestamp": 1617601542000
+}
+```
+
+Get questionnaires
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/questionnaires`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+### Response
+
+#### Success
+
+Key              | Type            | Description
+---------------- | --------------- | -----------
+questionnaire_id | string          | questionnaire id
+card             | Card            | the card of the questionnaires
+questionnaires   | []Questionnaire | array of questionnaire
+created_at       | int             | create time in timestamp
+updated_at       | int             | update time in timestamp
 
 #### Error
 
