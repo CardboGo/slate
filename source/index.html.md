@@ -9026,11 +9026,11 @@ card           | true     | Card            | Card object of the questionnaire
 questionnaires | true     | []Questionnaire | array of questionnaires
 
 <aside class="notice">
-**Question Type**
-- TAG: `tag` is required & `options` cannot be set
-- OPTIONS: `options` is required & `tag` cannot be set
-- ACCOUNT BINDING: `options` & `tag` cannot be set
-- ELECTRONIC BILL: `options` & `tag` cannot be set
+<b>Question Type</b> </br>
+- TAG: <code>tag</code> is required & <code>options</code> cannot be set </br>
+- OPTIONS: <code>options</code> is required & <code>tag</code> cannot be set </br>
+- ACCOUNT BINDING: <code>options</code> & <code>tag</code> cannot be set </br>
+- ELECTRONIC BILL: <code>options</code> & <code>tag</code> cannot be set
 </aside>
 
 ### Response
@@ -9258,11 +9258,11 @@ card           | true     | Card            | Card object of the questionnaire
 questionnaires | true     | []Questionnaire | array of questionnaires
 
 <aside class="notice">
-**Question Type**
-- TAG: `tag` is required & `options` cannot be set
-- OPTIONS: `options` is required & `tag` cannot be set
-- ACCOUNT BINDING: `options` & `tag` cannot be set
-- ELECTRONIC BILL: `options` & `tag` cannot be set
+<b>Question Type</b> </br>
+- TAG: <code>tag</code> is required & <code>options</code> cannot be set </br>
+- OPTIONS: <code>options</code> is required & <code>tag</code> cannot be set </br>
+- ACCOUNT BINDING: <code>options</code> & <code>tag</code> cannot be set </br>
+- ELECTRONIC BILL: <code>options</code> & <code>tag</code> cannot be set
 </aside>
 
 ### Response
