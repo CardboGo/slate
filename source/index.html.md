@@ -461,11 +461,13 @@ updated_at       | int             | update time in timestamp
 
 ## Questionnaire
 
-Key         | Type     | Description
------------ | -------- | -----------
-question    | string   | question content
-options     | []string | array of options
-description | string   | the description of the question
+Key           | Type     | Enums | Description
+------------- | -------- | ----- | -----------
+question_type | int      | TAG: `1` <br/> OPTIONS: `2` <br/> ACCOUNT_BINDING: `3` <br/> ELETRONIC_BILL: `4` | the type of the question
+question      | string   |       | question content
+options       | []string |       | array of options
+tag           | string   |       | self defined tag when the question type is TAG
+description   | string   |       | the description of the question
 
 # 1. Authentication
 
@@ -8838,12 +8840,29 @@ curl --request POST \
     },
     "questionnaires": [
       {
-        "question": "是否綁定帳戶自動扣款",
+        "question_type": 1,
+        "tag": "手機提款",
+        "question": "是否設定手機提款？",
+        "description": "是否設定手機提款？"
+      },
+      {
+        "question_type": 2,
+        "question": "懂匯/超匯？",
         "options": [
-          "是",
-          "否"
+          "懂匯",
+          "超匯"
         ],
-        "description": "是否綁定帳戶自動扣款"
+        "description": "懂匯：.../超匯：..."
+      },
+      {
+        "question_type": 3,
+        "question": "當期帳單以 Richart 帳戶自動扣繳",
+        "description": "當期帳單以 Richart 帳戶自動扣繳"
+      },
+      {
+        "question_type": 4,
+        "question": "是否申辦電子帳單？",
+        "description": "申辦電子帳單"
       }
     ]
   }'
@@ -8860,12 +8879,29 @@ data = {
   },
   "questionnaires": [
     {
-      "question": "是否綁定帳戶自動扣款",
+      "question_type": 1,
+      "tag": "手機提款",
+      "question": "是否設定手機提款？",
+      "description": "是否設定手機提款？"
+    },
+    {
+      "question_type": 2,
+      "question": "懂匯/超匯？",
       "options": [
-        "是",
-        "否"
+        "懂匯",
+        "超匯"
       ],
-      "description": "是否綁定帳戶自動扣款"
+      "description": "懂匯：.../超匯：..."
+    },
+    {
+      "question_type": 3,
+      "question": "當期帳單以 Richart 帳戶自動扣繳",
+      "description": "當期帳單以 Richart 帳戶自動扣繳"
+    },
+    {
+      "question_type": 4,
+      "question": "是否申辦電子帳單？",
+      "description": "申辦電子帳單"
     }
   ]
 }
@@ -8882,12 +8918,29 @@ data = {
   },
   questionnaires: [
     {
-      question: "是否綁定帳戶自動扣款",
+      question_type: 1,
+      tag: "手機提款",
+      question: "是否設定手機提款？",
+      description: "是否設定手機提款？"
+    },
+    {
+      question_type: 2,
+      question: "懂匯/超匯？",
       options: [
-        "是",
-        "否"
+        "懂匯",
+        "超匯"
       ],
-      description: "是否綁定帳戶自動扣款"
+      description: "懂匯：.../超匯：..."
+    },
+    {
+      question_type: 3,
+      question: "當期帳單以 Richart 帳戶自動扣繳",
+      description: "當期帳單以 Richart 帳戶自動扣繳"
+    },
+    {
+      question_type: 4,
+      question: "是否申辦電子帳單？",
+      description: "申辦電子帳單"
     }
   ]
 }
@@ -8915,12 +8968,29 @@ axios.post('https://api.cardbo.info/api/v6/questionnaire', data, {
     },
     "questionnaires": [
       {
-        "question": "當期帳單以 Richart 帳戶自動扣繳",
+        "question_type": 1,
+        "tag": "手機提款",
+        "question": "是否設定手機提款？",
+        "description": "是否設定手機提款？"
+      },
+      {
+        "question_type": 2,
+        "question": "懂匯/超匯？",
         "options": [
-          "是",
-          "否"
+          "懂匯",
+          "超匯"
         ],
+        "description": "懂匯：.../超匯：..."
+      },
+      {
+        "question_type": 3,
+        "question": "當期帳單以 Richart 帳戶自動扣繳",
         "description": "當期帳單以 Richart 帳戶自動扣繳"
+      },
+      {
+        "question_type": 4,
+        "question": "是否申辦電子帳單？",
+        "description": "申辦電子帳單"
       }
     ],
     "created_at": 1617601542000,
@@ -8955,6 +9025,14 @@ Parameter      | Required | Type            | Description
 card           | true     | Card            | Card object of the questionnaire
 questionnaires | true     | []Questionnaire | array of questionnaires
 
+<aside class="notice">
+**Question Type**
+- TAG: `tag` is required & `options` cannot be set
+- OPTIONS: `options` is required & `tag` cannot be set
+- ACCOUNT BINDING: `options` & `tag` cannot be set
+- ELECTRONIC BILL: `options` & `tag` cannot be set
+</aside>
+
 ### Response
 
 #### Success
@@ -8988,12 +9066,29 @@ curl --request PUT \
     },
     "questionnaires": [
       {
-        "question": "是否綁定帳戶自動扣款",
+        "question_type": 1,
+        "tag": "手機提款",
+        "question": "是否設定手機提款？",
+        "description": "是否設定手機提款？"
+      },
+      {
+        "question_type": 2,
+        "question": "懂匯/超匯？",
         "options": [
-          "是",
-          "否"
+          "懂匯",
+          "超匯"
         ],
-        "description": "是否綁定帳戶自動扣款"
+        "description": "懂匯：.../超匯：..."
+      },
+      {
+        "question_type": 3,
+        "question": "當期帳單以 Richart 帳戶自動扣繳",
+        "description": "當期帳單以 Richart 帳戶自動扣繳"
+      },
+      {
+        "question_type": 4,
+        "question": "是否申辦電子帳單？",
+        "description": "申辦電子帳單"
       }
     ]
   }'
@@ -9010,12 +9105,29 @@ data = {
   },
   "questionnaires": [
     {
-      "question": "是否綁定帳戶自動扣款",
+      "question_type": 1,
+      "tag": "手機提款",
+      "question": "是否設定手機提款？",
+      "description": "是否設定手機提款？"
+    },
+    {
+      "question_type": 2,
+      "question": "懂匯/超匯？",
       "options": [
-        "是",
-        "否"
+        "懂匯",
+        "超匯"
       ],
-      "description": "是否綁定帳戶自動扣款"
+      "description": "懂匯：.../超匯：..."
+    },
+    {
+      "question_type": 3,
+      "question": "當期帳單以 Richart 帳戶自動扣繳",
+      "description": "當期帳單以 Richart 帳戶自動扣繳"
+    },
+    {
+      "question_type": 4,
+      "question": "是否申辦電子帳單？",
+      "description": "申辦電子帳單"
     }
   ]
 }
@@ -9032,12 +9144,29 @@ data = {
   },
   questionnaires: [
     {
-      question: "是否綁定帳戶自動扣款",
+      question_type: 1,
+      tag: "手機提款",
+      question: "是否設定手機提款？",
+      description: "是否設定手機提款？"
+    },
+    {
+      question_type: 2,
+      question: "懂匯/超匯？",
       options: [
-        "是",
-        "否"
+        "懂匯",
+        "超匯"
       ],
-      description: "是否綁定帳戶自動扣款"
+      description: "懂匯：.../超匯：..."
+    },
+    {
+      question_type: 3,
+      question: "當期帳單以 Richart 帳戶自動扣繳",
+      description: "當期帳單以 Richart 帳戶自動扣繳"
+    },
+    {
+      question_type: 4,
+      question: "是否申辦電子帳單？",
+      description: "申辦電子帳單"
     }
   ]
 }
@@ -9065,12 +9194,29 @@ axios.put('https://api.cardbo.info/api/v6/questionnaire/{questionnaire_id}', dat
     },
     "questionnaires": [
       {
-        "question": "當期帳單以 Richart 帳戶自動扣繳",
+        "question_type": 1,
+        "tag": "手機提款",
+        "question": "是否設定手機提款？",
+        "description": "是否設定手機提款？"
+      },
+      {
+        "question_type": 2,
+        "question": "懂匯/超匯？",
         "options": [
-          "是",
-          "否"
+          "懂匯",
+          "超匯"
         ],
+        "description": "懂匯：.../超匯：..."
+      },
+      {
+        "question_type": 3,
+        "question": "當期帳單以 Richart 帳戶自動扣繳",
         "description": "當期帳單以 Richart 帳戶自動扣繳"
+      },
+      {
+        "question_type": 4,
+        "question": "是否申辦電子帳單？",
+        "description": "申辦電子帳單"
       }
     ],
     "created_at": 1617601542000,
@@ -9110,6 +9256,14 @@ Parameter      | Required | Type            | Description
 -------------- | -------- | --------------- | -----------
 card           | true     | Card            | Card object of the questionnaire
 questionnaires | true     | []Questionnaire | array of questionnaires
+
+<aside class="notice">
+**Question Type**
+- TAG: `tag` is required & `options` cannot be set
+- OPTIONS: `options` is required & `tag` cannot be set
+- ACCOUNT BINDING: `options` & `tag` cannot be set
+- ELECTRONIC BILL: `options` & `tag` cannot be set
+</aside>
 
 ### Response
 
