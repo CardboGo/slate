@@ -461,13 +461,22 @@ updated_at       | int             | update time in timestamp
 
 ## Questionnaire
 
-Key           | Type     | Enums | Description
-------------- | -------- | ----- | -----------
-question_type | int      | TAG: `1` <br/> OPTIONS: `2` <br/> ACCOUNT_BINDING: `3` <br/> ELETRONIC_BILL: `4` | the type of the question
-question      | string   |       | question content
-options       | []string |       | array of options
-tag           | string   |       | self defined tag when the question type is TAG
-description   | string   |       | the description of the question
+Key           | Type      | Enums | Description
+------------- | --------- | ----- | -----------
+question_type | int       | TAG: `1` <br/> OPTIONS: `2` <br/> ACCOUNT_BINDING: `3` <br/> ELETRONIC_BILL: `4` <br/> ETICKET: `5` | the type of the question
+question      | string    |       | question content
+options       | []string  |       | array of options
+tag           | string    |       | self defined tag when the question type is TAG
+etickets      | []ETicket |       | array of ETicket when the question type is ETICKET
+description   | string    |       | the description of the question
+
+## ETicket
+
+Key        | Type  | Description
+---------- | ------ | -----------
+eticket_id | string | eticket id
+name       | string | eticket name
+image      | string | image URL
 
 # 1. Authentication
 
@@ -9030,7 +9039,8 @@ questionnaires | true     | []Questionnaire | array of questionnaires
 - TAG: <code>tag</code> is required & <code>options</code> cannot be set </br>
 - OPTIONS: <code>options</code> is required & <code>tag</code> cannot be set </br>
 - ACCOUNT BINDING: <code>options</code> & <code>tag</code> cannot be set </br>
-- ELECTRONIC BILL: <code>options</code> & <code>tag</code> cannot be set
+- ELECTRONIC BILL: <code>options</code> & <code>tag</code> cannot be set </br>
+- ETICKET: <code>etickets</code> is required
 </aside>
 
 ### Response
@@ -9262,7 +9272,8 @@ questionnaires | true     | []Questionnaire | array of questionnaires
 - TAG: <code>tag</code> is required & <code>options</code> cannot be set </br>
 - OPTIONS: <code>options</code> is required & <code>tag</code> cannot be set </br>
 - ACCOUNT BINDING: <code>options</code> & <code>tag</code> cannot be set </br>
-- ELECTRONIC BILL: <code>options</code> & <code>tag</code> cannot be set
+- ELECTRONIC BILL: <code>options</code> & <code>tag</code> cannot be set </br>
+- ETICKET: <code>etickets</code> is required
 </aside>
 
 ### Response
@@ -9584,6 +9595,284 @@ card             | Card            | the card of the questionnaires
 questionnaires   | []Questionnaire | array of questionnaire
 created_at       | int             | create time in timestamp
 updated_at       | int             | update time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+# 20. ETicket
+
+## 20-1. Insert eticket
+
+> Insert eticket:
+
+```shell
+curl --request POST \
+  --url https://api.cardbo.info/api/v6/eticket \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "name": "悠遊卡"
+    "image": "https://www.image.com"
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/eticket'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "name": "悠遊卡"
+  "image": "https://www.image.com"
+}
+response = requests.post(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  name: "悠遊卡"
+  image: "https://www.image.com"
+}
+axios.post('https://api.cardbo.info/api/v6/eticket', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "eticket_id": "5f9a747p00c2abf3d4a54d4q",
+    "name": "悠遊卡",
+    "image": "https://www.image.com"
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Insert eticket
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`POST https://api.cardbo.info/api/v6/eticket`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter | Required | Type   | Description
+--------- | -------- | ------ | -----------
+name      | true     | string | eticket name
+image     | false    | string | image URL
+
+### Response
+
+#### Success
+
+Key        | Type  | Description
+---------- | ------ | -----------
+eticket_id | string | eticket id
+name       | string | eticket name
+image      | string | image URL
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 20-2. Get eticket by eticket_id
+
+> Get eticket by eticket_id:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/eticket/{eticket_id} \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/eticket/{eticket_id}'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/eticket/{eticket_id}', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "eticket_id": "5f9a747p00c2abf3d4a54d4q",
+    "name": "悠遊卡",
+    "image": "https://www.image.com"
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get eticket by eticket_id
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/eticket/{eticket_id}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter | Description
+---------- | -----------
+eticket_id | eticket id
+
+### Response
+
+#### Success
+
+Key        | Type  | Description
+---------- | ------ | -----------
+eticket_id | string | eticket id
+name       | string | eticket name
+image      | string | image URL
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 20-3. Get etickets
+
+> Get etickets:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/etickets \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/etickets'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/etickets', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": [
+    {
+      "eticket_id": "5f9a747p00c2abf3d4a54d4q",
+      "name": "悠遊卡",
+      "image": "https://www.image.com"
+    }
+  ],
+  "timestamp": 1617601542000
+}
+```
+
+Get etickets
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/etickets`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+### Response
+
+#### Success
+
+Key        | Type  | Description
+---------- | ------ | -----------
+eticket_id | string | eticket id
+name       | string | eticket name
+image      | string | image URL
 
 #### Error
 
