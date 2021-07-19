@@ -2754,6 +2754,12 @@
 <td></td>
 <td>the answer to the questionnaire, value depends on the question type</td>
 </tr>
+<tr>
+<td>tag</td>
+<td>string</td>
+<td></td>
+<td>the tag of the question when the question type is TAG</td>
+</tr>
 </tbody></table>
 <h2 id='eticket'>ETicket</h2>
 <table><thead>
@@ -16649,7 +16655,8 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
     "questionnaires": [
       {
         "question_type": 1,
-        "answer": "人臉辨識"
+        "answer": "是",
+        "tag": "人臉辨識"
       },
       {
         "question_type": 2,
@@ -16677,7 +16684,8 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   <span class="s">"questionnaires"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="s">"question_type"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="s">"answer"</span><span class="p">:</span> <span class="s">"人臉辨識"</span>
+      <span class="s">"answer"</span><span class="p">:</span> <span class="s">"是"</span><span class="p">,</span>
+      <span class="s">"tag"</span><span class="p">:</span> <span class="s">"人臉辨識"</span>
     <span class="p">},</span>
     <span class="p">{</span>
       <span class="s">"question_type"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
@@ -16705,7 +16713,8 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   <span class="na">questionnaires</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="na">questin_type</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="na">answer</span><span class="p">:</span> <span class="dl">"</span><span class="s2">人臉辨識</span><span class="dl">"</span>
+      <span class="na">answer</span><span class="p">:</span> <span class="dl">"</span><span class="s2">是</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">tag</span><span class="p">:</span> <span class="dl">"</span><span class="s2">人臉辨識</span><span class="dl">"</span>
     <span class="p">},</span>
     <span class="p">{</span>
       <span class="na">question_type</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
@@ -16785,7 +16794,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 <aside class="notice">
 <b>Question Type</b> </br>
-- TAG: answer is the tag from the questionnaire <code>tag</code> field  </br>
+- TAG: answer can only be <code>是</code> or <code>否</code>, tag is the tag from the questionnaire <code>tag</code> field  </br>
 - OPTIONS: answer is the option from the questionnaire <code>options</code> field </br>
 - ACCOUNT BINDING: answer can only be <code>是</code> or <code>否</code> </br>
 - ELECTRONIC BILL: answer can only be <code>是</code> or <code>否</code> </br>
