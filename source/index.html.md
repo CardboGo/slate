@@ -470,6 +470,13 @@ tag           | string    |       | self defined tag when the question type is T
 etickets      | []ETicket |       | array of ETicket when the question type is ETICKET
 description   | string    |       | the description of the question
 
+## QuestionnaireAnswer
+
+Key           | Type      | Enums | Description
+------------- | --------- | ----- | -----------
+question_type | int       | TAG: `1` <br/> OPTIONS: `2` <br/> ACCOUNT_BINDING: `3` <br/> ELETRONIC_BILL: `4` <br/> ETICKET: `5` | the type of the question
+answer        | string    |       | the answer to the questionnaire, value depends on the question type
+
 ## ETicket
 
 Key        | Type  | Description
@@ -4863,7 +4870,7 @@ axios.get('https://api.cardbo.info/api/v5/cards/pending?size=10&page=1&options=n
 
 ```json
 {
-  "code": 200,
+  "code": 201,
   "message": "Ok",
   "result": [
     {
@@ -5050,7 +5057,7 @@ axios.post('https://api.cardbo.info/api/v5/card/pending', data, {
 
 ```json
 {
-  "code": 200,
+  "code": 201,
   "message": "Ok",
   "result": {
     "card_id": "5f9a747p00c2abf3d4a54d4q",
@@ -5877,7 +5884,7 @@ axios.post('https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q
 
 ```json
 {
-  "code": 200,
+  "code": 201,
   "message": "Ok",
   "result": {
     "card_id": "5f9a747p00c2abf3d4a54d4q",
@@ -5985,7 +5992,7 @@ axios.post('https://api.cardbo.info/api/v5/mobilepay', data, {
 
 ```json
 {
-  "code": 200,
+  "code": 201,
   "message": "Ok",
   "result": {
     "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
@@ -6561,7 +6568,7 @@ axios.post('https://api.cardbo.info/api/v6/error_report', data, {
 
 ```json
 {
-  "code": 200,
+  "code": 201,
   "message": "Ok",
   "result": {
     "report_id": "5f9a747p00c2abf3d4a54d4q",
@@ -7433,7 +7440,7 @@ axios.post('https://api.cardbo.info/api/v6/accounting', data, {
 
 ```json
 {
-  "code": 200,
+  "code": 201,
   "message": "Ok",
   "result": {
     "_id": "5f9a747p00c2abf3d4a54d4q",
@@ -7608,31 +7615,36 @@ axios.post('https://api.cardbo.info/api/v6/accounting/qr_code', data, {
 
 ```json
 {
-  "_id": "5f9a747p00c2abf3d4a54d4q",
-  "user": {
-    "user_info": "..."
+  "code": 201,
+  "message": "Ok",
+  "result": {
+    "accounting_id": "5f9a747p00c2abf3d4a54d4q",
+    "user": {
+      "user_info": "..."
+    },
+    "card": {
+      "card_info": "...",
+    },
+    "mobilepay": {
+      "mobilepay_info": "...",
+    },
+    "amount": 1000,
+    "name": "午餐",
+    "store": {
+      "store_info": "...",
+    },
+    "store_name": "",
+    "invoice": "AB99999999",
+    "date": 1617601542000,
+    "rewards": [
+      {
+        "offer_id": "5f9a747p00c2abf3d4a54d4q",
+        "reward_name": "現金",
+        "reward_value": 28.83
+      }
+    ]
   },
-  "card": {
-    "card_info": "...",
-  },
-  "mobilepay": {
-    "mobilepay_info": "...",
-  },
-  "amount": 1000,
-  "name": "午餐",
-  "store": {
-    "store_info": "...",
-  },
-  "store_name": "",
-  "invoice": "AB99999999",
-  "date": 1617601542000,
-  "rewards": [
-    {
-      "offer_id": "5f9a747p00c2abf3d4a54d4q",
-      "reward_name": "現金",
-      "reward_value": 28.83
-    }
-  ]
+  "timestamp": 1617601542000
 }
 ```
 
@@ -7777,31 +7789,36 @@ axios.post('https://api.cardbo.info/api/v6/accounting/qr_code', data, {
 
 ```json
 {
-  "_id": "5f9a747p00c2abf3d4a54d4q",
-  "user": {
-    "user_info": "..."
+  "code": 201,
+  "message": "Ok",
+  "result": {
+    "accounting_id": "5f9a747p00c2abf3d4a54d4q",
+    "user": {
+      "user_info": "..."
+    },
+    "card": {
+      "card_info": "...",
+    },
+    "mobilepay": {
+      "mobilepay_info": "...",
+    },
+    "amount": 1000,
+    "name": "午餐",
+    "store": {
+      "store_info": "...",
+    },
+    "store_name": "",
+    "invoice": "AB99999999",
+    "date": 1617601542000,
+    "rewards": [
+      {
+        "offer_id": "5f9a747p00c2abf3d4a54d4q",
+        "reward_name": "現金",
+        "reward_value": 28.83
+      }
+    ]
   },
-  "card": {
-    "card_info": "...",
-  },
-  "mobilepay": {
-    "mobilepay_info": "...",
-  },
-  "amount": 1000,
-  "name": "午餐",
-  "store": {
-    "store_info": "...",
-  },
-  "store_name": "",
-  "invoice": "AB99999999",
-  "date": 1617601542000,
-  "rewards": [
-    {
-      "offer_id": "5f9a747p00c2abf3d4a54d4q",
-      "reward_name": "現金",
-      "reward_value": 28.83
-    }
-  ]
+  "timestamp": 1617601542000
 }
 ```
 
@@ -8872,6 +8889,16 @@ curl --request POST \
         "question_type": 4,
         "question": "是否申辦電子帳單？",
         "description": "申辦電子帳單"
+      },
+      {
+        "question_type": 5,
+        "question": "電子票證",
+        "description": "電子票證",
+        "etickets": [
+          {
+            "eticket_id": "5f756d85c2349d9139648a81"
+          }
+        ]
       }
     ]
   }'
@@ -8911,6 +8938,16 @@ data = {
       "question_type": 4,
       "question": "是否申辦電子帳單？",
       "description": "申辦電子帳單"
+    },
+    {
+      "question_type": 5,
+      "question": "電子票證",
+      "description": "電子票證",
+      "etickets": [
+        {
+          "eticket_id": "5f756d85c2349d9139648a81"
+        }
+      ]
     }
   ]
 }
@@ -8950,6 +8987,16 @@ data = {
       question_type: 4,
       question: "是否申辦電子帳單？",
       description: "申辦電子帳單"
+    },
+    {
+      question_type: 5,
+      question: "電子票證",
+      description: "電子票證",
+      etickets: [
+        {
+          eticket_id: "5f756d85c2349d9139648a81"
+        }
+      ]
     }
   ]
 }
@@ -8968,7 +9015,7 @@ axios.post('https://api.cardbo.info/api/v6/questionnaire', data, {
 
 ```json
 {
-  "code": 200,
+  "code": 201,
   "message": "Ok",
   "result": {
     "questionnaire_id": "60efac665532d3cc0fcf28f7",
@@ -9000,6 +9047,16 @@ axios.post('https://api.cardbo.info/api/v6/questionnaire', data, {
         "question_type": 4,
         "question": "是否申辦電子帳單？",
         "description": "申辦電子帳單"
+      },
+      {
+        "question_type": 5,
+        "question": "電子票證",
+        "description": "電子票證",
+        "etickets": [
+          {
+            "eticket_id": "5f756d85c2349d9139648a81"
+          }
+        ]
       }
     ],
     "created_at": 1617601542000,
@@ -9099,6 +9156,16 @@ curl --request PUT \
         "question_type": 4,
         "question": "是否申辦電子帳單？",
         "description": "申辦電子帳單"
+      },
+      {
+        "question_type": 5,
+        "question": "電子票證",
+        "description": "電子票證",
+        "etickets": [
+          {
+            "eticket_id": "5f756d85c2349d9139648a81"
+          }
+        ]
       }
     ]
   }'
@@ -9138,6 +9205,16 @@ data = {
       "question_type": 4,
       "question": "是否申辦電子帳單？",
       "description": "申辦電子帳單"
+    },
+    {
+      "question_type": 5,
+      "question": "電子票證",
+      "description": "電子票證",
+      "etickets": [
+        {
+          "eticket_id": "5f756d85c2349d9139648a81"
+        }
+      ]
     }
   ]
 }
@@ -9177,6 +9254,16 @@ data = {
       question_type: 4,
       question: "是否申辦電子帳單？",
       description: "申辦電子帳單"
+    },
+    {
+      question_type: 5,
+      question: "電子票證",
+      description: "電子票證",
+      etickets: [
+        {
+          eticket_id: "5f756d85c2349d9139648a81"
+        }
+      ]
     }
   ]
 }
@@ -9195,7 +9282,7 @@ axios.put('https://api.cardbo.info/api/v6/questionnaire/{questionnaire_id}', dat
 
 ```json
 {
-  "code": 200,
+  "code": 201,
   "message": "Ok",
   "result": {
     "questionnaire_id": "60efac665532d3cc0fcf28f7",
@@ -9227,6 +9314,16 @@ axios.put('https://api.cardbo.info/api/v6/questionnaire/{questionnaire_id}', dat
         "question_type": 4,
         "question": "是否申辦電子帳單？",
         "description": "申辦電子帳單"
+      },
+      {
+        "question_type": 5,
+        "question": "電子票證",
+        "description": "電子票證",
+        "etickets": [
+          {
+            "eticket_id": "5f756d85c2349d9139648a81"
+          }
+        ]
       }
     ],
     "created_at": 1617601542000,
@@ -9602,6 +9699,170 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
+## 19-6. Submit questionnaire
+
+> Submit questionnaire:
+
+```shell
+curl --request POST \
+  --url https://api.cardbo.info/api/v6/questionnaire/submit/{card_id} \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "questionnaires": [
+      {
+        "question_type": 1,
+        "answer": "人臉辨識"
+      },
+      {
+        "question_type": 2,
+        "answer": "方案一"
+      },
+      {
+        "question_type": 3,
+        "answer": "是"
+      },
+      {
+        "question_type": 4,
+        "answer": "否"
+      },
+      {
+        "question_type": 5,
+        "answer": "5f756d85c2349d9139648a81"
+      }
+    ]
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/questionnaire/submit/{card_id}'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "questionnaires": [
+    {
+      "question_type": 1,
+      "answer": "人臉辨識"
+    },
+    {
+      "question_type": 2,
+      "answer": "方案一"
+    },
+    {
+      "question_type": 3,
+      "answer": "是"
+    },
+    {
+      "question_type": 4,
+      "answer": "否"
+    },
+    {
+      "question_type": 5,
+      "answer": "5f756d85c2349d9139648a81"
+    }
+  ]
+}
+response = requests.post(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  questionnaires: [
+    {
+      questin_type: 1,
+      answer: "人臉辨識"
+    },
+    {
+      question_type: 2,
+      answer: "方案一"
+    },
+    {
+      question_type: 3,
+      answer: "是"
+    },
+    {
+      question_type: 4,
+      answer: "否"
+    },
+    {
+      question_type: 5,
+      answer: "5f756d85c2349d9139648a81"
+    }
+  ]
+}
+axios.post('https://api.cardbo.info/api/v6/questionnaire/submit/{card_id}', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 201,
+  "message": "Ok",
+  "result": {},
+  "timestamp": 1617601542000
+}
+```
+
+User submit questionaaire
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`POST https://api.cardbo.info/api/v6/questionnaire/submit/{card_id}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter      | Required | Type                  | Description
+-------------- | -------- | --------------------- | -----------
+questionnaires | true     | []QuestionnaireAnswer | array of QuestionnaireAnswer object
+
+<aside class="notice">
+<b>Question Type</b> </br>
+- TAG: answer is the tag from the questionnaire <code>tag</code> field  </br>
+- OPTIONS: answer is the option from the questionnaire <code>options</code> field </br>
+- ACCOUNT BINDING: answer can only be <code>是</code> or <code>否</code> </br>
+- ELECTRONIC BILL: answer can only be <code>是</code> or <code>否</code> </br>
+- ETICKET: answer can only be the be <code>eticket_id<code>
+</aside>
+
+### Response
+
+#### Success
+
+Key    | Type | Description
+------ | ---- | -----------
+result | None | no success response
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
 # 20. ETicket
 
 ## 20-1. Insert eticket
@@ -9654,7 +9915,7 @@ axios.post('https://api.cardbo.info/api/v6/eticket', data, {
 
 ```json
 {
-  "code": 200,
+  "code": 201,
   "message": "Ok",
   "result": {
     "eticket_id": "5f9a747p00c2abf3d4a54d4q",
