@@ -476,6 +476,7 @@ Key           | Type      | Enums | Description
 ------------- | --------- | ----- | -----------
 question_type | int       | TAG: `1` <br/> OPTIONS: `2` <br/> ACCOUNT_BINDING: `3` <br/> ELETRONIC_BILL: `4` <br/> ETICKET: `5` | the type of the question
 answer        | string    |       | the answer to the questionnaire, value depends on the question type
+tag           | string    |       | the tag of the question when the question type is TAG
 
 ## ETicket
 
@@ -9712,7 +9713,8 @@ curl --request POST \
     "questionnaires": [
       {
         "question_type": 1,
-        "answer": "人臉辨識"
+        "answer": "是",
+        "tag": "人臉辨識"
       },
       {
         "question_type": 2,
@@ -9743,7 +9745,8 @@ data = {
   "questionnaires": [
     {
       "question_type": 1,
-      "answer": "人臉辨識"
+      "answer": "是",
+      "tag": "人臉辨識"
     },
     {
       "question_type": 2,
@@ -9774,7 +9777,8 @@ data = {
   questionnaires: [
     {
       questin_type: 1,
-      answer: "人臉辨識"
+      answer: "是",
+      tag: "人臉辨識"
     },
     {
       question_type: 2,
@@ -9842,7 +9846,7 @@ questionnaires | true     | []QuestionnaireAnswer | array of QuestionnaireAnswer
 
 <aside class="notice">
 <b>Question Type</b> </br>
-- TAG: answer is the tag from the questionnaire <code>tag</code> field  </br>
+- TAG: answer can only be <code>是</code> or <code>否</code>, tag is the tag from the questionnaire <code>tag</code> field  </br>
 - OPTIONS: answer is the option from the questionnaire <code>options</code> field </br>
 - ACCOUNT BINDING: answer can only be <code>是</code> or <code>否</code> </br>
 - ELECTRONIC BILL: answer can only be <code>是</code> or <code>否</code> </br>
