@@ -9455,12 +9455,65 @@ axios.get('https://api.cardbo.info/api/v6/questionnaire/id/{questionnaire_id}', 
     },
     "questionnaires": [
       {
+        "quesiton_no": 1,
+        "question_type": 1,
+        "question": "是否設定手機提款？",
+        "options": [
+          "是",
+          "否"
+        ],
+        "tag": "手機提款",
+        "description": "是否設定手機提款？",
+        "etickets": []
+      },
+      {
+        "quesiton_no": 2,
+        "question_type": 2,
+        "question": "懂匯/超匯？",
+        "options": [
+          "懂匯",
+          "超匯"
+        ],
+        "tag": "",
+        "description": "懂匯：.../超匯：...",
+        "etickets": []
+      },
+      {
+        "quesiton_no": 3,
+        "question_type": 3,
         "question": "當期帳單以 Richart 帳戶自動扣繳",
         "options": [
           "是",
           "否"
         ],
-        "description": "當期帳單以 Richart 帳戶自動扣繳"
+        "tag": "",
+        "description": "當期帳單以 Richart 帳戶自動扣繳",
+        "etickets": []
+      },
+      {
+        "quesiton_no": 4,
+        "question_type": 4,
+        "question": "是否申辦電子帳單？",
+        "options": [
+          "是",
+          "否"
+        ],
+        "tag": "",
+        "description": "申辦電子帳單",
+        "etickets": []
+      },
+      {
+        "quesiton_no": 5,
+        "question_type": 5,
+        "question": "電子票證",
+        "options": [],
+        "tag": "",
+        "description": "電子票證",
+        "etickets": [
+          {
+            "eticket_info": "..."
+          }
+        ]
       }
     ],
     "created_at": 1617601542000,
@@ -9560,12 +9613,65 @@ axios.get('https://api.cardbo.info/api/v6/questionnaire/card/{card_id}', {
       },
       "questionnaires": [
         {
+          "quesiton_no": 1,
+          "question_type": 1,
+          "question": "是否設定手機提款？",
+          "options": [
+            "是",
+            "否"
+          ],
+          "tag": "手機提款",
+          "description": "是否設定手機提款？",
+          "etickets": []
+        },
+        {
+          "quesiton_no": 2,
+          "question_type": 2,
+          "question": "懂匯/超匯？",
+          "options": [
+            "懂匯",
+            "超匯"
+          ],
+          "tag": "",
+          "description": "懂匯：.../超匯：...",
+          "etickets": []
+        },
+        {
+          "quesiton_no": 3,
+          "question_type": 3,
           "question": "當期帳單以 Richart 帳戶自動扣繳",
           "options": [
             "是",
             "否"
           ],
-          "description": "當期帳單以 Richart 帳戶自動扣繳"
+          "tag": "",
+          "description": "當期帳單以 Richart 帳戶自動扣繳",
+          "etickets": []
+        },
+        {
+          "quesiton_no": 4,
+          "question_type": 4,
+          "question": "是否申辦電子帳單？",
+          "options": [
+            "是",
+            "否"
+          ],
+          "tag": "",
+          "description": "申辦電子帳單",
+          "etickets": []
+        },
+        {
+          "quesiton_no": 5,
+          "question_type": 5,
+          "question": "電子票證",
+          "options": [],
+          "tag": "",
+          "description": "電子票證",
+          "etickets": [
+            {
+              "eticket_info": "..."
+            }
+          ]
         }
       ],
       "created_at": 1617601542000,
@@ -9709,12 +9815,65 @@ axios.get('https://api.cardbo.info/api/v6/questionnaires', {
       },
       "questionnaires": [
         {
+          "quesiton_no": 1,
+          "question_type": 1,
+          "question": "是否設定手機提款？",
+          "options": [
+            "是",
+            "否"
+          ],
+          "tag": "手機提款",
+          "description": "是否設定手機提款？",
+          "etickets": []
+        },
+        {
+          "quesiton_no": 2,
+          "question_type": 2,
+          "question": "懂匯/超匯？",
+          "options": [
+            "懂匯",
+            "超匯"
+          ],
+          "tag": "",
+          "description": "懂匯：.../超匯：...",
+          "etickets": []
+        },
+        {
+          "quesiton_no": 3,
+          "question_type": 3,
           "question": "當期帳單以 Richart 帳戶自動扣繳",
           "options": [
             "是",
             "否"
           ],
-          "description": "當期帳單以 Richart 帳戶自動扣繳"
+          "tag": "",
+          "description": "當期帳單以 Richart 帳戶自動扣繳",
+          "etickets": []
+        },
+        {
+          "quesiton_no": 4,
+          "question_type": 4,
+          "question": "是否申辦電子帳單？",
+          "options": [
+            "是",
+            "否"
+          ],
+          "tag": "",
+          "description": "申辦電子帳單",
+          "etickets": []
+        },
+        {
+          "quesiton_no": 5,
+          "question_type": 5,
+          "question": "電子票證",
+          "options": [],
+          "tag": "",
+          "description": "電子票證",
+          "etickets": [
+            {
+              "eticket_info": "..."
+            }
+          ]
         }
       ],
       "created_at": 1617601542000,
