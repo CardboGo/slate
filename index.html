@@ -417,6 +417,9 @@
                     <a href="#questionnaire" class="toc-h2 toc-link" data-title="Questionnaire">Questionnaire</a>
                   </li>
                   <li>
+                    <a href="#cardquestionnaireanswer" class="toc-h2 toc-link" data-title="CardQuestionnaireAnswer">CardQuestionnaireAnswer</a>
+                  </li>
+                  <li>
                     <a href="#questionnaireanswer" class="toc-h2 toc-link" data-title="QuestionnaireAnswer">QuestionnaireAnswer</a>
                   </li>
                   <li>
@@ -833,7 +836,7 @@
                     <a href="#19-3-get-questionnaire-by-questionnaire_id" class="toc-h2 toc-link" data-title="19-3. Get questionnaire by questionnaire_id">19-3. Get questionnaire by questionnaire_id</a>
                   </li>
                   <li>
-                    <a href="#19-4-get-questionnaire-by-card" class="toc-h2 toc-link" data-title="19-4. Get questionnaire by card">19-4. Get questionnaire by card</a>
+                    <a href="#19-4-get-user-card-questionnaire" class="toc-h2 toc-link" data-title="19-4. Get user card questionnaire">19-4. Get user card questionnaire</a>
                   </li>
                   <li>
                     <a href="#19-5-get-questionnaires" class="toc-h2 toc-link" data-title="19-5. Get questionnaires">19-5. Get questionnaires</a>
@@ -2697,6 +2700,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>question_no</td>
+<td>int</td>
+<td></td>
+<td>the number of the question (unique in each card)</td>
+</tr>
+<tr>
 <td>question_type</td>
 <td>int</td>
 <td>TAG: <code>1</code> <br/> OPTIONS: <code>2</code> <br/> ACCOUNT_BINDING: <code>3</code> <br/> ELETRONIC_BILL: <code>4</code> <br/> ETICKET: <code>5</code></td>
@@ -2733,6 +2742,60 @@
 <td>the description of the question</td>
 </tr>
 </tbody></table>
+<h2 id='cardquestionnaireanswer'>CardQuestionnaireAnswer</h2>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>questionnaire_id</td>
+<td>string</td>
+<td>questionnaire id</td>
+</tr>
+<tr>
+<td>User</td>
+<td>User</td>
+<td>User object</td>
+</tr>
+<tr>
+<td>card</td>
+<td>Card</td>
+<td>the card of the questionnaires</td>
+</tr>
+<tr>
+<td>card_last_no</td>
+<td>string</td>
+<td>the last 4 number of user&#39;s credit card</td>
+</tr>
+<tr>
+<td>reward_day</td>
+<td>int</td>
+<td>the end day of a month of the reward</td>
+</tr>
+<tr>
+<td>questionnaires</td>
+<td>[]QuestionnaireAnswer</td>
+<td>array of questionnaire</td>
+</tr>
+<tr>
+<td>completed</td>
+<td>bool</td>
+<td>is the questionnaire completed or not</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>int</td>
+<td>create time in timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>int</td>
+<td>update time in timestamp</td>
+</tr>
+</tbody></table>
 <h2 id='questionnaireanswer'>QuestionnaireAnswer</h2>
 <table><thead>
 <tr>
@@ -2742,6 +2805,12 @@
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>question_no</td>
+<td>int</td>
+<td></td>
+<td>the number of the question (unique in each card)</td>
+</tr>
 <tr>
 <td>question_type</td>
 <td>int</td>
@@ -16385,9 +16454,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='19-4-get-questionnaire-by-card'>19-4. Get questionnaire by card</h2>
+<h2 id='19-4-get-user-card-questionnaire'>19-4. Get user card questionnaire</h2>
 <blockquote>
-<p>Get questionnaire by card:</p>
+<p>Get user card questionnaire:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
   <span class="nt">--url</span> https://api.cardbo.info/api/v6/questionnaire/card/<span class="o">{</span>card_id<span class="o">}</span> <span class="se">\</span>
@@ -16418,27 +16487,75 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"questionnaire_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60efac665532d3cc0fcf28f7"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="nl">"questionnaire"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"questionnaire_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60efac665532d3cc0fcf28f7"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"questionnaires"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"當期帳單以 Richart 帳戶自動扣繳"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"是"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"否"</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"當期帳單以 Richart 帳戶自動扣繳"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"questionnaires"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"當期帳單以 Richart 帳戶自動扣繳"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-          </span><span class="s2">"是"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"否"</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"當期帳單以 Richart 帳戶自動扣繳"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+    </span><span class="nl">"answer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"questionnaire_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60efac665532d3cc0fcf28f7"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">        
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"card_last_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"reward_day"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"questionnaires"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"question_no"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"question_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"否"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"數位帳戶綁定"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"question_no"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"question_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"方案1"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"question_no"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"question_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"是"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"question_no"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"question_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"是"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"question_no"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"question_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60efac665532d3cc0fcf28f7"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1626850077000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1626857480000</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Get questionnaire by card</p>
+<p>Get questionnaire and user&#39;s answer of a card</p>
 
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
@@ -16480,29 +16597,14 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </tr>
 </thead><tbody>
 <tr>
-<td>questionnaire_id</td>
-<td>string</td>
-<td>questionnaire id</td>
+<td>questionnaire</td>
+<td>CardQuestionnaire</td>
+<td>CardQuestionnaire object</td>
 </tr>
 <tr>
-<td>card</td>
-<td>Card</td>
-<td>the card of the questionnaires</td>
-</tr>
-<tr>
-<td>questionnaires</td>
-<td>[]Questionnaire</td>
-<td>array of questionnaire</td>
-</tr>
-<tr>
-<td>created_at</td>
-<td>int</td>
-<td>create time in timestamp</td>
-</tr>
-<tr>
-<td>updated_at</td>
-<td>int</td>
-<td>update time in timestamp</td>
+<td>answer</td>
+<td>CardQuestionnaireAnswer</td>
+<td>CardQuestionnaireAnswer object</td>
 </tr>
 </tbody></table>
 <h4 id='error-72'>Error</h4>
@@ -16654,23 +16756,28 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   <span class="nt">--data</span> <span class="s1">'{
     "questionnaires": [
       {
+        "question_no": 1,
         "question_type": 1,
         "answer": "是",
         "tag": "人臉辨識"
       },
       {
+        "question_no": 2,
         "question_type": 2,
         "answer": "方案一"
       },
       {
+        "question_no": 3,
         "question_type": 3,
         "answer": "是"
       },
       {
+        "question_no": 4,
         "question_type": 4,
         "answer": "否"
       },
       {
+        "question_no": 5,
         "question_type": 5,
         "answer": "5f756d85c2349d9139648a81"
       }
@@ -16683,23 +16790,28 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">"questionnaires"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
+      <span class="s">"question_no"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
       <span class="s">"question_type"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
       <span class="s">"answer"</span><span class="p">:</span> <span class="s">"是"</span><span class="p">,</span>
       <span class="s">"tag"</span><span class="p">:</span> <span class="s">"人臉辨識"</span>
     <span class="p">},</span>
     <span class="p">{</span>
+      <span class="s">"question_no"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
       <span class="s">"question_type"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
       <span class="s">"answer"</span><span class="p">:</span> <span class="s">"方案一"</span>
     <span class="p">},</span>
     <span class="p">{</span>
+      <span class="s">"question_no"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
       <span class="s">"question_type"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
       <span class="s">"answer"</span><span class="p">:</span> <span class="s">"是"</span>
     <span class="p">},</span>
     <span class="p">{</span>
+      <span class="s">"question_no"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
       <span class="s">"question_type"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
       <span class="s">"answer"</span><span class="p">:</span> <span class="s">"否"</span>
     <span class="p">},</span>
     <span class="p">{</span>
+      <span class="s">"question_no"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
       <span class="s">"question_type"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
       <span class="s">"answer"</span><span class="p">:</span> <span class="s">"5f756d85c2349d9139648a81"</span>
     <span class="p">}</span>
@@ -16712,23 +16824,27 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">questionnaires</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
+      <span class="na">question_no</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
       <span class="na">questin_type</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
       <span class="na">answer</span><span class="p">:</span> <span class="dl">"</span><span class="s2">是</span><span class="dl">"</span><span class="p">,</span>
       <span class="na">tag</span><span class="p">:</span> <span class="dl">"</span><span class="s2">人臉辨識</span><span class="dl">"</span>
     <span class="p">},</span>
     <span class="p">{</span>
+      <span class="na">question_no</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
       <span class="na">question_type</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
       <span class="na">answer</span><span class="p">:</span> <span class="dl">"</span><span class="s2">方案一</span><span class="dl">"</span>
     <span class="p">},</span>
-    <span class="p">{</span>
+      <span class="na">question_no</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
       <span class="na">question_type</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
       <span class="na">answer</span><span class="p">:</span> <span class="dl">"</span><span class="s2">是</span><span class="dl">"</span>
     <span class="p">},</span>
     <span class="p">{</span>
+      <span class="na">question_no</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
       <span class="na">question_type</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
       <span class="na">answer</span><span class="p">:</span> <span class="dl">"</span><span class="s2">否</span><span class="dl">"</span>
     <span class="p">},</span>
     <span class="p">{</span>
+      <span class="na">question_no</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
       <span class="na">question_type</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
       <span class="na">answer</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f756d85c2349d9139648a81</span><span class="dl">"</span>
     <span class="p">}</span>
@@ -16784,6 +16900,18 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>card_last_no</td>
+<td>false</td>
+<td>string</td>
+<td>the last 4 number of user&#39;s credit card</td>
+</tr>
+<tr>
+<td>reward_day</td>
+<td>false</td>
+<td>int</td>
+<td>the end day of a month of the reward</td>
+</tr>
 <tr>
 <td>questionnaires</td>
 <td>true</td>
