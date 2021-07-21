@@ -463,6 +463,7 @@ updated_at       | int             | update time in timestamp
 
 Key           | Type      | Enums | Description
 ------------- | --------- | ----- | -----------
+question_no   | int       |       | the number of the question (unique in each card)
 question_type | int       | TAG: `1` <br/> OPTIONS: `2` <br/> ACCOUNT_BINDING: `3` <br/> ELETRONIC_BILL: `4` <br/> ETICKET: `5` | the type of the question
 question      | string    |       | question content
 options       | []string  |       | array of options
@@ -470,10 +471,25 @@ tag           | string    |       | self defined tag when the question type is T
 etickets      | []ETicket |       | array of ETicket when the question type is ETICKET
 description   | string    |       | the description of the question
 
+## CardQuestionnaireAnswer
+
+Key              | Type                  | Description
+---------------- | --------------------- | -----------
+questionnaire_id | string                | questionnaire id
+User             | User                  | User object
+card             | Card                  | the card of the questionnaires
+card_last_no     | string                | the last 4 number of user's credit card
+reward_day       | int                   | the end day of a month of the reward
+questionnaires   | []QuestionnaireAnswer | array of questionnaire
+completed        | bool                  | is the questionnaire completed or not
+created_at       | int                   | create time in timestamp
+updated_at       | int                   | update time in timestamp
+
 ## QuestionnaireAnswer
 
 Key           | Type      | Enums | Description
 ------------- | --------- | ----- | -----------
+question_no   | int       |       | the number of the question (unique in each card)
 question_type | int       | TAG: `1` <br/> OPTIONS: `2` <br/> ACCOUNT_BINDING: `3` <br/> ELETRONIC_BILL: `4` <br/> ETICKET: `5` | the type of the question
 answer        | string    |       | the answer to the questionnaire, value depends on the question type
 tag           | string    |       | the tag of the question when the question type is TAG
@@ -9496,9 +9512,9 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 19-4. Get questionnaire by card
+## 19-4. Get user card questionnaire
 
-> Get questionnaire by card:
+> Get user card questionnaire:
 
 ```shell
 curl --request GET \
@@ -9537,28 +9553,76 @@ axios.get('https://api.cardbo.info/api/v6/questionnaire/card/{card_id}', {
   "code": 200,
   "message": "Ok",
   "result": {
-    "questionnaire_id": "60efac665532d3cc0fcf28f7",
-    "card": {
-      "card_info": "..."
+    "questionnaire": {
+      "questionnaire_id": "60efac665532d3cc0fcf28f7",
+      "card": {
+        "card_info": "..."
+      },
+      "questionnaires": [
+        {
+          "question": "當期帳單以 Richart 帳戶自動扣繳",
+          "options": [
+            "是",
+            "否"
+          ],
+          "description": "當期帳單以 Richart 帳戶自動扣繳"
+        }
+      ],
+      "created_at": 1617601542000,
+      "updated_at": 1617601542000
     },
-    "questionnaires": [
-      {
-        "question": "當期帳單以 Richart 帳戶自動扣繳",
-        "options": [
-          "是",
-          "否"
-        ],
-        "description": "當期帳單以 Richart 帳戶自動扣繳"
-      }
-    ],
-    "created_at": 1617601542000,
-    "updated_at": 1617601542000
+    "answer": {
+      "questionnaire_id": "60efac665532d3cc0fcf28f7",
+      "user": {
+        "user_info": "...",
+      },
+      "card": {
+        "card_info": "..."        
+      },
+      "card_last_no": "1234",
+      "reward_day": 30,
+      "questionnaires": [
+        {
+          "question_no": 1,
+          "question_type": 1,
+          "answer": "否",
+          "tag": "數位帳戶綁定"
+        },
+        {
+          "question_no": 2,
+          "question_type": 2,
+          "answer": "方案1",
+          "tag": ""
+        },
+        {
+          "question_no": 3,
+          "question_type": 3,
+          "answer": "是",
+          "tag": ""
+        },
+        {
+          "question_no": 4,
+          "question_type": 4,
+          "answer": "是",
+          "tag": ""
+        },
+        {
+          "question_no": 5,
+          "question_type": 5,
+          "answer": "60efac665532d3cc0fcf28f7",
+          "tag": ""
+        }
+      ],
+      "completed": true,
+      "created_at": 1626850077000,
+      "updated_at": 1626857480000
+    }
   },
   "timestamp": 1617601542000
 }
 ```
 
-Get questionnaire by card
+Get questionnaire and user's answer of a card
 
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
@@ -9586,13 +9650,10 @@ card_id   | card id
 
 #### Success
 
-Key              | Type            | Description
----------------- | --------------- | -----------
-questionnaire_id | string          | questionnaire id
-card             | Card            | the card of the questionnaires
-questionnaires   | []Questionnaire | array of questionnaire
-created_at       | int             | create time in timestamp
-updated_at       | int             | update time in timestamp
+Key           | Type                    | Description
+------------- | ----------------------- | -----------
+questionnaire | CardQuestionnaire       | CardQuestionnaire object
+answer        | CardQuestionnaireAnswer | CardQuestionnaireAnswer object
 
 #### Error
 
@@ -9712,23 +9773,28 @@ curl --request POST \
   --data '{
     "questionnaires": [
       {
+        "question_no": 1,
         "question_type": 1,
         "answer": "是",
         "tag": "人臉辨識"
       },
       {
+        "question_no": 2,
         "question_type": 2,
         "answer": "方案一"
       },
       {
+        "question_no": 3,
         "question_type": 3,
         "answer": "是"
       },
       {
+        "question_no": 4,
         "question_type": 4,
         "answer": "否"
       },
       {
+        "question_no": 5,
         "question_type": 5,
         "answer": "5f756d85c2349d9139648a81"
       }
@@ -9744,23 +9810,28 @@ headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   "questionnaires": [
     {
+      "question_no": 1,
       "question_type": 1,
       "answer": "是",
       "tag": "人臉辨識"
     },
     {
+      "question_no": 2,
       "question_type": 2,
       "answer": "方案一"
     },
     {
+      "question_no": 3,
       "question_type": 3,
       "answer": "是"
     },
     {
+      "question_no": 4,
       "question_type": 4,
       "answer": "否"
     },
     {
+      "question_no": 5,
       "question_type": 5,
       "answer": "5f756d85c2349d9139648a81"
     }
@@ -9776,23 +9847,27 @@ headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
   questionnaires: [
     {
+      question_no: 1,
       questin_type: 1,
       answer: "是",
       tag: "人臉辨識"
     },
     {
+      question_no: 2,
       question_type: 2,
       answer: "方案一"
     },
-    {
+      question_no: 3,
       question_type: 3,
       answer: "是"
     },
     {
+      question_no: 4,
       question_type: 4,
       answer: "否"
     },
     {
+      question_no: 5,
       question_type: 5,
       answer: "5f756d85c2349d9139648a81"
     }
@@ -9842,6 +9917,8 @@ Authorization | Bearer token | API access token
 
 Parameter      | Required | Type                  | Description
 -------------- | -------- | --------------------- | -----------
+card_last_no   | false    | string                | the last 4 number of user's credit card
+reward_day     | false    | int                   | the end day of a month of the reward
 questionnaires | true     | []QuestionnaireAnswer | array of QuestionnaireAnswer object
 
 <aside class="notice">
