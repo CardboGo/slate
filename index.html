@@ -2584,6 +2584,18 @@
 <td>AccountingRecord object</td>
 </tr>
 <tr>
+<td>card</td>
+<td>Card</td>
+<td></td>
+<td>Card object</td>
+</tr>
+<tr>
+<td>mobilepay</td>
+<td>MobilePay</td>
+<td></td>
+<td>MobilePay object</td>
+</tr>
+<tr>
 <td>store</td>
 <td>Store</td>
 <td></td>
@@ -11865,6 +11877,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   <span class="nt">--data</span> <span class="s1">'{
     "accounting_id": "5f9a747p00c2abf3d4a54d4q",
     "store_id": "5f9a747p00c2abf3d4a54d4q",
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
+    "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+    "content": "error..."
     "report_type": 2,
   }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
@@ -11874,6 +11889,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">"accounting_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
   <span class="s">"store_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
+  <span class="s">"card_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
+  <span class="s">"mobilepay_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
+  <span class="s">"content"</span><span class="p">:</span> <span class="s">"error..."</span>
   <span class="s">"report_type"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
 <span class="p">}</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
@@ -11883,6 +11901,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">accounting_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">store_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">card_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">mobilepay_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">content</span><span class="p">:</span> <span class="dl">"</span><span class="s2">error...</span><span class="dl">"</span>
   <span class="na">report_type</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
 <span class="p">}</span>
 <span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/error_report</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
@@ -11908,10 +11929,16 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
       </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"accounting_record"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"accounting_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"accounting_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nl">"offer_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -11971,18 +11998,32 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>false</td>
 <td>string</td>
 <td></td>
-<td>accounting record id</td>
+<td>accounting record ID</td>
 </tr>
 <tr>
-<td>store_id</td>
+<td>card_id</td>
 <td>false(*1)</td>
 <td>string</td>
 <td></td>
-<td>store id</td>
+<td>card ID</td>
+</tr>
+<tr>
+<td>mobilepay_id</td>
+<td>false(*1)</td>
+<td>string</td>
+<td></td>
+<td>mobile pay ID</td>
+</tr>
+<tr>
+<td>store_id</td>
+<td>false(*2)</td>
+<td>string</td>
+<td></td>
+<td>store ID</td>
 </tr>
 <tr>
 <td>store_name</td>
-<td>false(*1)</td>
+<td>false(*2)</td>
 <td>int</td>
 <td></td>
 <td>store name when the store is not in our DB</td>
@@ -11992,14 +12033,14 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>false</td>
 <td>string</td>
 <td></td>
-<td>offer id array</td>
+<td>offer ID array</td>
 </tr>
 <tr>
 <td>new_user_offer_ids</td>
 <td>false</td>
 <td>string</td>
 <td></td>
-<td>new user offer id array</td>
+<td>new user offer ID array</td>
 </tr>
 <tr>
 <td>url_error</td>
@@ -12017,7 +12058,10 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </tr>
 </tbody></table>
 
-<p>*1: one of <code>store_id</code> and <code>store_name</code> is required if <code>report_type</code> is <code>1</code> and <code>3</code></p>
+<aside class="notice">
+*1: one of <code>card_id</code> and <code>mobilepay_id</code> is required when report_type is <code>1</code> <br/>
+*2: one of <code>store_id</code> and <code>store_name</code> is required when report_type is <code>1</code> and <code>3</code>
+</aside>
 <h3 id='response-51'>Response</h3><h4 id='success-51'>Success</h4>
 <table><thead>
 <tr>
@@ -17175,9 +17219,10 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </span></code></pre></div>
 <p>Insert eticket</p>
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
+<aside class="notice"></aside>
+
+<p>You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside></p>
 <h3 id='http-request-75'>HTTP Request</h3>
 <p><code>POST https://api.cardbo.info/api/v6/eticket</code></p>
 <h3 id='request-75'>Request</h3><h4 id='headers-72'>Headers</h4>
