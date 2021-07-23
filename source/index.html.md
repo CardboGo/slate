@@ -436,6 +436,8 @@ report_id          | string           |       | report id
 report_type        | int              | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
 user               | User             |       | User Object
 accounting_record  | AccountingRecord |       | AccountingRecord object
+card               | Card             |       | Card object
+mobilepay          | MobilePay        |       | MobilePay object
 store              | Store            |       | Store object
 store_name         | string           |       | store name when store is not in our DB
 offer_ids          | []string         |       | offer id array
@@ -6544,6 +6546,9 @@ curl --request POST \
   --data '{
     "accounting_id": "5f9a747p00c2abf3d4a54d4q",
     "store_id": "5f9a747p00c2abf3d4a54d4q",
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
+    "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+    "content": "error..."
     "report_type": 2,
   }'
 ```
@@ -6556,6 +6561,9 @@ headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   "accounting_id": "5f9a747p00c2abf3d4a54d4q",
   "store_id": "5f9a747p00c2abf3d4a54d4q",
+  "card_id": "5f9a747p00c2abf3d4a54d4q",
+  "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+  "content": "error..."
   "report_type": 2,
 }
 response = requests.post(url, headers=headers, json=data)
@@ -6568,6 +6576,9 @@ headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
   accounting_id: "5f9a747p00c2abf3d4a54d4q",
   store_id: "5f9a747p00c2abf3d4a54d4q",
+  card_id: "5f9a747p00c2abf3d4a54d4q",
+  mobilepay_id: "5f9a747p00c2abf3d4a54d4q",
+  content: "error..."
   report_type: 2,
 }
 axios.post('https://api.cardbo.info/api/v6/error_report', data, {
@@ -6594,10 +6605,16 @@ axios.post('https://api.cardbo.info/api/v6/error_report', data, {
       "user_info": "..."
     },
     "accounting_record": {
-      "accounting_info": "...",
+      "accounting_info": "..."
+    },
+    "card": {
+      "card_info": "..."
+    },
+    "mobilepay": {
+      "mobilepay_info": "..."
     },
     "store": {
-      "store_info": "...",
+      "store_info": "..."
     },
     "store_name": "",
     "offer_ids": [
@@ -6638,15 +6655,20 @@ Authorization | Bearer token | API access token
 Parameter          | Required  | Type     | Enums | Description
 ------------------ | --------- | -------- | ----- | -----------
 report_type        | true      | int      | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
-accounting_id      | false     | string   |       | accounting record id
-store_id           | false(*1) | string   |       | store id
-store_name         | false(*1) | int      |       | store name when the store is not in our DB
-offer_ids          | false     | string   |       | offer id array
-new_user_offer_ids | false     | string   |       | new user offer id array
+accounting_id      | false     | string   |       | accounting record ID
+card_id            | false(*1) | string   |       | card ID
+mobilepay_id       | false(*1) | string   |       | mobile pay ID
+store_id           | false(*2) | string   |       | store ID
+store_name         | false(*2) | int      |       | store name when the store is not in our DB
+offer_ids          | false     | string   |       | offer ID array
+new_user_offer_ids | false     | string   |       | new user offer ID array
 url_error          | false     | bool     |       | is the offer URL error
 content            | false     | string   |       | report content
 
-*1: one of `store_id` and `store_name` is required if `report_type` is `1` and `3`
+<aside class="notice">
+*1: one of <code>card_id</code> and <code>mobilepay_id</code> is required when report_type is <code>1</code> <br/>
+*2: one of <code>store_id</code> and <code>store_name</code> is required when report_type is <code>1</code> and <code>3</code>
+</aside>
 
 ### Response
 
@@ -10174,7 +10196,7 @@ axios.post('https://api.cardbo.info/api/v6/eticket', data, {
 
 Insert eticket
 
-<aside class="notice">
+<aside class="notice"></aside>
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
 
