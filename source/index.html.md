@@ -6674,23 +6674,26 @@ content            | false     | string   |       | report content
 
 #### Success
 
-Key               | Type             | Enums | Description
------------------ | ---------------- | ----- | -----------
-report_id         | string           |       | report id
-report_type       | int              | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
-user              | User             |       | User Object
-accounting_record | AccountingRecord |       | AccountingRecord object
-store             | Store            |       | Store object
-store_name        | string           |       | store name when store is not in our DB
-offer_ids         | []string         |       | offer id array
-url_error         | bool             |       | is the offer URL error
-content           | string           |       | report content
-note              | string           |       | error handling note
-status            | int              | PENDING: `1` <br/> WAITING_NOTIFY: `2` <br/> FINISHED: `3` | the handling status of the report
-created_at        | int              |       | create time in timestamp
-updated_at        | int              |       | update time in timestamp
-fixed_at          | int              |       | fixing time in timestamp
-notified_at       | int              |       | notification time in timestamp
+Key                | Type             | Enums | Description
+------------------ | ---------------- | ----- | -----------
+report_id          | string           |       | report id
+report_type        | int              | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
+user               | User             |       | User Object
+accounting_record  | AccountingRecord |       | AccountingRecord object
+card               | Card             |       | Card object
+mobilepay          | MobilePay        |       | MobilePay object
+store              | Store            |       | Store object
+store_name         | string           |       | store name when store is not in our DB
+offer_ids          | []string         |       | offer id array
+new_user_offer_ids | []string         |       | new user offer id array
+url_error          | bool             |       | is the offer URL error
+content            | string           |       | report content
+note               | string           |       | error handling note
+status             | int              | PENDING: `1` <br/> WAITING_NOTIFY: `2` <br/> FINISHED: `3` | the handling status of the report
+created_at         | int              |       | create time in timestamp
+updated_at         | int              |       | update time in timestamp
+fixed_at           | int              |       | fixing time in timestamp
+notified_at        | int              |       | notification time in timestamp
 
 #### Error
 
@@ -6746,10 +6749,16 @@ axios.get('https://api.cardbo.info/api/v6/error_reports?report_type=1', {
         "user_info": "..."
       },
       "accounting_record": {
-        "accounting_info": "...",
+        "accounting_info": "..."
+      },
+      "card": {
+        "card_info": "..."
+      },
+      "mobilepay": {
+        "mobilepay_info": "..."
       },
       "store": {
-        "store_info": "...",
+        "store_info": "..."
       },
       "store_name": "",
       "offer_ids": [
@@ -6796,23 +6805,26 @@ report_type | true     | false       | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` 
 
 #### Success
 
-Key               | Type             | Enums | Description
------------------ | ---------------- | ----- | -----------
-report_id         | string           |       | report id
-report_type       | int              | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
-user              | User             |       | User Object
-accounting_record | AccountingRecord |       | AccountingRecord object
-store             | Store            |       | Store object
-store_name        | string           |       | store name when store is not in our DB
-offer_ids         | []string         |       | offer id array
-url_error         | bool             |       | is the offer URL error
-content           | string           |       | report content
-note              | string           |       | error handling note
-status            | int              | PENDING: `1` <br/> WAITING_NOTIFY: `2` <br/> FINISHED: `3` | the handling status of the report
-created_at        | int              |       | create time in timestamp
-updated_at        | int              |       | update time in timestamp
-fixed_at          | int              |       | fixing time in timestamp
-notified_at       | int              |       | notification time in timestamp
+Key                | Type             | Enums | Description
+------------------ | ---------------- | ----- | -----------
+report_id          | string           |       | report id
+report_type        | int              | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
+user               | User             |       | User Object
+accounting_record  | AccountingRecord |       | AccountingRecord object
+card               | Card             |       | Card object
+mobilepay          | MobilePay        |       | MobilePay object
+store              | Store            |       | Store object
+store_name         | string           |       | store name when store is not in our DB
+offer_ids          | []string         |       | offer id array
+new_user_offer_ids | []string         |       | new user offer id array
+url_error          | bool             |       | is the offer URL error
+content            | string           |       | report content
+note               | string           |       | error handling note
+status             | int              | PENDING: `1` <br/> WAITING_NOTIFY: `2` <br/> FINISHED: `3` | the handling status of the report
+created_at         | int              |       | create time in timestamp
+updated_at         | int              |       | update time in timestamp
+fixed_at           | int              |       | fixing time in timestamp
+notified_at        | int              |       | notification time in timestamp
 
 #### Error
 
@@ -6867,10 +6879,16 @@ axios.get('https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q'
       "user_info": "..."
     },
     "accounting_record": {
-      "accounting_info": "...",
+      "accounting_info": "..."
+    },
+    "card": {
+      "card_info": "..."
+    },
+    "mobilepay": {
+      "mobilepay_info": "..."
     },
     "store": {
-      "store_info": "...",
+      "store_info": "..."
     },
     "store_name": "",
     "offer_ids": [
@@ -6916,23 +6934,26 @@ report_id | report id
 
 #### Success
 
-Key               | Type             | Enums | Description
------------------ | ---------------- | ----- | -----------
-report_id         | string           |       | report id
-report_type       | int              | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
-user              | User             |       | User Object
-accounting_record | AccountingRecord |       | AccountingRecord object
-store             | Store            |       | Store object
-store_name        | string           |       | store name when store is not in our DB
-offer_ids         | []string         |       | offer id array
-url_error         | bool             |       | is the offer URL error
-content           | string           |       | report content
-note              | string           |       | error handling note
-status            | int              | PENDING: `1` <br/> WAITING_NOTIFY: `2` <br/> FINISHED: `3` | the handling status of the report
-created_at        | int              |       | create time in timestamp
-updated_at        | int              |       | update time in timestamp
-fixed_at          | int              |       | fixing time in timestamp
-notified_at       | int              |       | notification time in timestamp
+Key                | Type             | Enums | Description
+------------------ | ---------------- | ----- | -----------
+report_id          | string           |       | report id
+report_type        | int              | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
+user               | User             |       | User Object
+accounting_record  | AccountingRecord |       | AccountingRecord object
+card               | Card             |       | Card object
+mobilepay          | MobilePay        |       | MobilePay object
+store              | Store            |       | Store object
+store_name         | string           |       | store name when store is not in our DB
+offer_ids          | []string         |       | offer id array
+new_user_offer_ids | []string         |       | new user offer id array
+url_error          | bool             |       | is the offer URL error
+content            | string           |       | report content
+note               | string           |       | error handling note
+status             | int              | PENDING: `1` <br/> WAITING_NOTIFY: `2` <br/> FINISHED: `3` | the handling status of the report
+created_at         | int              |       | create time in timestamp
+updated_at         | int              |       | update time in timestamp
+fixed_at           | int              |       | fixing time in timestamp
+notified_at        | int              |       | notification time in timestamp
 
 #### Error
 
@@ -6996,10 +7017,16 @@ axios.put('https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/
       "user_info": "..."
     },
     "accounting_record": {
-      "accounting_info": "...",
+      "accounting_info": "..."
+    },
+    "card": {
+      "card_info": "..."
+    },
+    "mobilepay": {
+      "mobilepay_info": "..."
     },
     "store": {
-      "store_info": "...",
+      "store_info": "..."
     },
     "store_name": "",
     "offer_ids": [
@@ -7045,23 +7072,26 @@ note      | false     | string   | The note for the error report
 
 #### Success
 
-Key               | Type             | Enums | Description
------------------ | ---------------- | ----- | -----------
-report_id         | string           |       | report id
-report_type       | int              | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
-user              | User             |       | User Object
-accounting_record | AccountingRecord |       | AccountingRecord object
-store             | Store            |       | Store object
-store_name        | string           |       | store name when store is not in our DB
-offer_ids         | []string         |       | offer id array
-url_error         | bool             |       | is the offer URL error
-content           | string           |       | report content
-note              | string           |       | error handling note
-status            | int              | PENDING: `1` <br/> WAITING_NOTIFY: `2` <br/> FINISHED: `3` | the handling status of the report
-created_at        | int              |       | create time in timestamp
-updated_at        | int              |       | update time in timestamp
-fixed_at          | int              |       | fixing time in timestamp
-notified_at       | int              |       | notification time in timestamp
+Key                | Type             | Enums | Description
+------------------ | ---------------- | ----- | -----------
+report_id          | string           |       | report id
+report_type        | int              | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
+user               | User             |       | User Object
+accounting_record  | AccountingRecord |       | AccountingRecord object
+card               | Card             |       | Card object
+mobilepay          | MobilePay        |       | MobilePay object
+store              | Store            |       | Store object
+store_name         | string           |       | store name when store is not in our DB
+offer_ids          | []string         |       | offer id array
+new_user_offer_ids | []string         |       | new user offer id array
+url_error          | bool             |       | is the offer URL error
+content            | string           |       | report content
+note               | string           |       | error handling note
+status             | int              | PENDING: `1` <br/> WAITING_NOTIFY: `2` <br/> FINISHED: `3` | the handling status of the report
+created_at         | int              |       | create time in timestamp
+updated_at         | int              |       | update time in timestamp
+fixed_at           | int              |       | fixing time in timestamp
+notified_at        | int              |       | notification time in timestamp
 
 #### Error
 
@@ -7116,10 +7146,16 @@ axios.put('https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/
       "user_info": "..."
     },
     "accounting_record": {
-      "accounting_info": "...",
+      "accounting_info": "..."
+    },
+    "card": {
+      "card_info": "..."
+    },
+    "mobilepay": {
+      "mobilepay_info": "..."
     },
     "store": {
-      "store_info": "...",
+      "store_info": "..."
     },
     "store_name": "",
     "offer_ids": [
@@ -7159,23 +7195,26 @@ Authorization | Bearer token | API access token
 
 #### Success
 
-Key               | Type             | Enums | Description
------------------ | ---------------- | ----- | -----------
-report_id         | string           |       | report id
-report_type       | int              | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
-user              | User             |       | User Object
-accounting_record | AccountingRecord |       | AccountingRecord object
-store             | Store            |       | Store object
-store_name        | string           |       | store name when store is not in our DB
-offer_ids         | []string         |       | offer id array
-url_error         | bool             |       | is the offer URL error
-content           | string           |       | report content
-note              | string           |       | error handling note
-status            | int              | PENDING: `1` <br/> WAITING_NOTIFY: `2` <br/> FINISHED: `3` | the handling status of the report
-created_at        | int              |       | create time in timestamp
-updated_at        | int              |       | update time in timestamp
-fixed_at          | int              |       | fixing time in timestamp
-notified_at       | int              |       | notification time in timestamp
+Key                | Type             | Enums | Description
+------------------ | ---------------- | ----- | -----------
+report_id          | string           |       | report id
+report_type        | int              | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
+user               | User             |       | User Object
+accounting_record  | AccountingRecord |       | AccountingRecord object
+card               | Card             |       | Card object
+mobilepay          | MobilePay        |       | MobilePay object
+store              | Store            |       | Store object
+store_name         | string           |       | store name when store is not in our DB
+offer_ids          | []string         |       | offer id array
+new_user_offer_ids | []string         |       | new user offer id array
+url_error          | bool             |       | is the offer URL error
+content            | string           |       | report content
+note               | string           |       | error handling note
+status             | int              | PENDING: `1` <br/> WAITING_NOTIFY: `2` <br/> FINISHED: `3` | the handling status of the report
+created_at         | int              |       | create time in timestamp
+updated_at         | int              |       | update time in timestamp
+fixed_at           | int              |       | fixing time in timestamp
+notified_at        | int              |       | notification time in timestamp
 
 #### Error
 
