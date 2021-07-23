@@ -9930,6 +9930,8 @@ curl --request POST \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
+    "card_last_no": "0134",
+    "reward_day": 30,
     "questionnaires": [
       {
         "question_no": 1,
@@ -9967,6 +9969,8 @@ import requests
 url = 'https://api.cardbo.info/api/v6/questionnaire/submit/{card_id}'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
+  "card_last_no": "0134",
+  "reward_day": 30,
   "questionnaires": [
     {
       "question_no": 1,
@@ -10004,6 +10008,8 @@ const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
+  card_last_no: "0134",
+  reward_day: 30,
   questionnaires: [
     {
       question_no: 1,
