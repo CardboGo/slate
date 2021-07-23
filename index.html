@@ -16913,6 +16913,8 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   <span class="nt">--data</span> <span class="s1">'{
+    "card_last_no": "0134",
+    "reward_day": 30,
     "questionnaires": [
       {
         "question_no": 1,
@@ -16947,6 +16949,8 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/questionnaire/submit/{card_id}'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">"card_last_no"</span><span class="p">:</span> <span class="s">"0134"</span><span class="p">,</span>
+  <span class="s">"reward_day"</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
   <span class="s">"questionnaires"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="s">"question_no"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -16981,6 +16985,8 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
 <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">card_last_no</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0134</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">reward_day</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
   <span class="na">questionnaires</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="na">question_no</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
