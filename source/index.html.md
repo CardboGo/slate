@@ -215,17 +215,21 @@ image_10 | string | image URL
 
 ## CardDisplay
 
-Key           | Type    | Enums  | Description
-------------- | ------- | ------ | -----------
-card_id       | string  |        | card id
-name          | string  |        | card name
-bank          | Bank    |        | bank information
-image         | string  |        | image URL
-issuer        | string  | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
-level         | int     | [`1`-`8`] | level of the card
-level_name    | string  |        | level name of the card
-payment_date  | int     | [`1`-`31`] | the payment of the card
-enable_reward | bool    |        | is the card enable reward
+Key                     | Type    | Enums  | Description
+----------------------- | ------- | ------ | -----------
+card_id                 | string  |        | card id
+name                    | string  |        | card name
+bank                    | Bank    |        | bank information
+image                   | string  |        | image URL
+issuer                  | string  | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
+level                   | int     | [`1`-`8`] | level of the card
+level_name              | string  |        | level name of the card
+payment_date            | int     | [`1`-`31`] | the payment of the card
+reward_day              | int     |        | the reward day of the card (DEFAULT: payment_date)
+card_last_no            | string  |        | the last 4 number of user's credit card
+has_questionnaire       | bool    |        | does the card has the questionnaire
+questionnaire_completed | bool    |        | is the questionnaire completed or not
+enable_reward           | bool    |        | is the card enable reward
 
 ## MobilePay
 
