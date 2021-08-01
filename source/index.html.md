@@ -327,6 +327,73 @@ max_cashback_offers  | []string  |           | array of offer id which is includ
 cashback_upper_bound | int       |           | min cashback upper bound from all offers
 cashback_amount      | int       |           | amount getting from max cashback
 
+## OfferSearchResult
+
+Key    | Type                    | Description
+------ | ----------------------- | -----------
+store  | Store                   | Store object
+amount | int                     | expense amount
+result | OfferSearchResultDetail | array of OfferSearchResultDetail object
+
+## OfferSearchResultDetail
+
+Key                   | Type           | Description
+--------------------- | -------------- | -----------
+card                  | Card           | Card object
+mobilepays            | []MobilePay    | array of mobilepays
+max_cashback_p        | float          | max cashback percentage value
+max_expense           | int            | max expense value
+cashback_p_coins      | []CashbackCoin | reward name and coin image of cashback percentage
+cashback_value        | float          | cashback user can get
+max_cashback_p_offers | []OfferResult  | array of max cashback percentage offers
+cashback_f_coins      | []CashbackCoin | reward name and coin image of cashback fixed
+max_cashback_f        | int            | max cashback fixed value
+max_cashback_f_offers | []OfferResult  | array of max cashback fixed offers
+all_offers            | []OfferResult  | all offers match the request
+
+## CashbackCoin
+
+Key          | Type   | Description
+------------ | ------ | -----------
+reward_name  | string | reward name (現金, Line Points, 街口幣, Open Points, P幣, Hami Point, 代幣...)
+image        | string | coin image URL
+
+## OfferResult
+
+Key                | Type              | Description
+------------------ | ----------------- | -----------
+offer_id           | string            | offer ID
+options            | []string          | array of options
+end_date           | int               | max cashback percentage value
+condition          | string            | end date in timestamp
+upper_bound        | []OfferUpperBound | array of offer upper bound
+max_reward_content | RewardContent     | max reward content of the offer
+reward_contents    | []RewardContent   | array of all reward content
+
+## OfferUpperBound
+
+Key                   | Type     | Enums | Description
+--------------------- | -------- | ----- | -----------
+upperbound_id         | string   |       | upperbound ID
+cash_upper_bound      | int      |       | cashback upperbound value
+frequency_upper_bound | int      |       | how many times can the offer got
+upper_bound_period    | int      | TOTAL: `1` <br/> EVERY: `2` <br/> DAILY: `3` <br/> WEEKLY: `4` <br/> MONTHLY: `5` <br/> ANNUALLY: `6` | upper bound period
+store_independent     | bool     |       | is the upper bound calculate independent from each store
+sharing_upper_bounds  | []string |       | array of upperbound ID share same upper bound
+
+## RewardContent
+
+Key                  | Type   | Enums  | Description
+-------------------- | ------ | ------ | -----------
+reward_content_type  | int    | INDEPENDENT: `1` <br/> ACCUMULATIVE: `2` <br/> STAG_ACCUMULATIVE: `3` | reward content type
+channel_type         | int    | NO_MINCOST: `1` <br/> SINGLE_CHANNEL: `2` <br/> ALL_CHANNEL: `3` <br/> GENERAL_EXPENSE: `4` <br/> TOTAL_EXPENSE: `5` | mon cost channel type
+mincost_period_times | int    |        | how many time for the min cost period
+mincost_period       | int    | TOTAL: `1` <br/> EVERY: `2` <br/> DAILY: `3` <br/> WEEKLY: `4` <br/> MONTHLY: `5` <br/> ANNUALLY: `6` <br/> | min cost period
+mincost_value        | int    |        | min cost value
+reward_name          | string |        | reward name (現金, Line Points, 街口幣, Open Points, P幣, Hami Point, 代幣...)
+reward_value         | float  |        | reward value
+coin_image           | string |        | coin image URL
+
 ## OfferUpdateInfo
 
 Key              | Type  | Description
@@ -6194,7 +6261,264 @@ error | string | error message
 
 ## 7-16. Get formal offers by offer id list
 
-## 7-17. Search offers of user's cards
+## 7-17. Search offers from user's cards
+
+> search offers from user's card
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/offers/search?store=711&amount=100 \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/offers/search?store=711&amount=100'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.delete(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.delete('https://api.cardbo.info/api/v6/offers/search?store=711&amount=100', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "user_type": 1,
+    "store": {
+      "store_info": "..."
+    },
+    "amount": 100,
+    "results": [
+      {
+        "card": {
+          "user_card_info": "..."
+        },
+        "mobilepays": [
+          {
+            "mobilepay_info": "..."
+          }
+        ],
+        "max_cashback_p": 10,
+        "max_expense": 10000,
+        "cashback_p_coins": [
+          {
+            "reward_name": "Line Points",
+            "image": "https://image/line-points.png"
+          }
+        ],
+        "cashback_value": 34.6,
+        "max_cashback_p_offers": [
+          {
+            "offer_id": "5f9a747p00c2abf3d4a54d4q",
+            "options": [
+              "懂匯"
+            ],
+            "end_date": 1617601542000,
+            "condition": "this is the condition",
+            "upper_bound": [
+              {
+                "upperbound_id": "5f9a747p00c2abf3d4a54d4q",
+                "cash_upper_bound": 100,
+                "frequency_upper_bound": 0,
+                "upper_bound_period": 5,
+                "store_independent": true,
+                "sharing_upper_bounds": [
+                  "5f9a747p00c2abf3d4a54d4q",
+                  "5f9a747p00c2abf3d4a54d4q"
+                ]
+              }
+            ],
+            "max_reward_content": {
+              "reward_content_type": 2,
+              "channel_type": 3,
+              "mincost_period_times": 1,
+              "mincost_period": 5,
+              "mincost_value": 5000,
+              "reward_name": "Line Points",
+              "reward_value": 3.5,
+              "coin_image": "https://image/line-points.png"
+            },
+            "reward_contents": [
+              {
+                "reward_content_type": 2,
+                "channel_type": 3,
+                "mincost_period_times": 1,
+                "mincost_period": 5,
+                "mincost_value": 5000,
+                "reward_name": "Line Points",
+                "reward_value": 3.5,
+                "coin_image": "https://image/line-points.png"
+              }
+            ]
+          }
+        ],
+        "cashback_f_coins": [
+          {
+            "reward_name": "Line Points",
+            "image": "https://image/line-points.png"
+          }
+        ],
+        "max_cashback_f": 500,
+        "max_cashback_f_offers": [
+          {
+            "offer_id": "5f9a747p00c2abf3d4a54d4q",
+            "options": [
+              "懂匯"
+            ],
+            "end_date": 1617601542000,
+            "condition": "this is the condition",
+            "upper_bound": [
+              {
+                "upperbound_id": "5f9a747p00c2abf3d4a54d4q",
+                "cash_upper_bound": 100,
+                "frequency_upper_bound": 0,
+                "upper_bound_period": 5,
+                "store_independent": true,
+                "sharing_upper_bounds": [
+                  "5f9a747p00c2abf3d4a54d4q",
+                  "5f9a747p00c2abf3d4a54d4q"
+                ]
+              }
+            ],
+            "max_reward_content": {
+              "reward_content_type": 2,
+              "channel_type": 3,
+              "mincost_period_times": 1,
+              "mincost_period": 5,
+              "mincost_value": 5000,
+              "reward_name": "Line Points",
+              "reward_value": 3.5,
+              "coin_image": "https://image/line-points.png"
+            },
+            "reward_contents": [
+              {
+                "reward_content_type": 2,
+                "channel_type": 3,
+                "mincost_period_times": 1,
+                "mincost_period": 5,
+                "mincost_value": 5000,
+                "reward_name": "Line Points",
+                "reward_value": 3.5,
+                "coin_image": "https://image/line-points.png"
+              }
+            ]
+          }
+        ],
+        "all_offers": [
+          {
+            "offer_id": "5f9a747p00c2abf3d4a54d4q",
+            "options": [
+              "懂匯"
+            ],
+            "end_date": 1617601542000,
+            "condition": "this is the condition",
+            "upper_bound": [
+              {
+                "upperbound_id": "5f9a747p00c2abf3d4a54d4q",
+                "cash_upper_bound": 100,
+                "frequency_upper_bound": 0,
+                "upper_bound_period": 5,
+                "store_independent": true,
+                "sharing_upper_bounds": [
+                  "5f9a747p00c2abf3d4a54d4q",
+                  "5f9a747p00c2abf3d4a54d4q"
+                ]
+              }
+            ],
+            "max_reward_content": {
+              "reward_content_type": 2,
+              "channel_type": 3,
+              "mincost_period_times": 1,
+              "mincost_period": 5,
+              "mincost_value": 5000,
+              "reward_name": "Line Points",
+              "reward_value": 3.5,
+              "coin_image": "https://image/line-points.png"
+            },
+            "reward_contents": [
+              {
+                "reward_content_type": 2,
+                "channel_type": 3,
+                "mincost_period_times": 1,
+                "mincost_period": 5,
+                "mincost_value": 5000,
+                "reward_name": "Line Points",
+                "reward_value": 3.5,
+                "coin_image": "https://image/line-points.png"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get all offers and new user offers of a card
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/offers/search`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Queries
+
+Query  | Required | Muti-values | Description
+------ | -------- | ----------- | -----------
+store  | true     | false       | store name
+amount | true     | false       | expense amount
+
+<aside class="notice">
+At least one of **card_id** and **mobilepay_id** is required.
+</aside>
+
+### Response
+
+#### Success
+
+Key    | Type                    | Description
+------ | ----------------------- | -----------
+store  | Store                   | Store object
+amount | int                     | expense amount
+result | OfferSearchResultDetail | array of OfferSearchResultDetail object
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
 
 ## 7-18. Search offers of all cards
 
