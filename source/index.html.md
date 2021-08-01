@@ -360,15 +360,16 @@ image        | string | coin image URL
 
 ## OfferResult
 
-Key                | Type              | Description
------------------- | ----------------- | -----------
-offer_id           | string            | offer ID
-options            | []string          | array of options
-end_date           | int               | max cashback percentage value
-condition          | string            | end date in timestamp
-upper_bound        | []OfferUpperBound | array of offer upper bound
-max_reward_content | RewardContent     | max reward content of the offer
-reward_contents    | []RewardContent   | array of all reward content
+Key                | Type              | Enums | Description
+------------------ | ----------------- | ----- | -----------
+offer_id           | string            |       | offer ID
+options            | []string          |       | array of options
+end_date           | int               |       | max cashback percentage value
+condition          | string            |       | end date in timestamp
+upper_bound        | []OfferUpperBound |       | array of offer upper bound
+reward_type        | int               | CASHBACK_PERCENTAGE: `1` <br/> CASHBACK_FIXED: `2` | reward type
+max_reward_content | RewardContent     |       | max reward content of the offer
+reward_contents    | []RewardContent   |       | array of all reward content
 
 ## OfferUpperBound
 
@@ -6347,6 +6348,7 @@ axios.delete('https://api.cardbo.info/api/v6/offers/search?store=711&amount=100'
                 ]
               }
             ],
+            "reward_type": 1,
             "max_reward_content": {
               "reward_content_type": 2,
               "channel_type": 3,
@@ -6399,6 +6401,7 @@ axios.delete('https://api.cardbo.info/api/v6/offers/search?store=711&amount=100'
                 ]
               }
             ],
+            "reward_type": 2,
             "max_reward_content": {
               "reward_content_type": 2,
               "channel_type": 3,
