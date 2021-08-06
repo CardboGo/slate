@@ -173,22 +173,23 @@ image   | string  | image url
 
 ## Card
 
-Key        | Type         | Enums                                            | Description
----------- | ------------ | ------------------------------------------------ | -----------
-card_id    | string       |                                                  | card id
-name       | string       |                                                  | card name
-bank       | Bank         |                                                  | Bank object
-options    | []CardOption |                                                  | CardOption object
-images     | CardImage    |                                                  | CardImage object
-promote    | bool         |                                                  | is the card promoted
-website    | string       |                                                  | card official website
-creator    | string       |                                                  | creator id
-examiner   | string       |                                                  | examiner id
-created_at | string       |                                                  | created timestamp
-updated_at | string       |                                                  |updated timestamp
-status     | int          | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status
-comment    | string       |                                                  | failure comment
-user_has   | bool         |                                                  | does user has the card or not
+Key            | Type          | Enums                                            | Description
+-------------- | ------------- | ------------------------------------------------ | -----------
+card_id        | string        |                                                  | card id
+name           | string        |                                                  | card name
+bank           | Bank          |                                                  | Bank object
+options        | []CardOption  |                                                  | CardOption object
+images         | CardImage     |                                                  | CardImage object
+promote        | bool          |                                                  | is the card promoted
+website        | string        |                                                  | card official website
+creator        | string        |                                                  | creator id
+examiner       | string        |                                                  | examiner id
+created_at     | string        |                                                  | created timestamp
+updated_at     | string        |                                                  |updated timestamp
+status         | int           | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status
+comment        | string        |                                                  | failure comment
+user_has       | bool          |                                                  | does user has the card or not
+card_promotion | CardPromotion |                                                  | card promotion info
 
 ## CardOption
 
@@ -215,21 +216,38 @@ image_10 | string | image URL
 
 ## CardDisplay
 
-Key                     | Type    | Enums  | Description
------------------------ | ------- | ------ | -----------
-card_id                 | string  |        | card id
-name                    | string  |        | card name
-bank                    | Bank    |        | bank information
-image                   | string  |        | image URL
-issuer                  | string  | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
-level                   | int     | [`1`-`8`] | level of the card
-level_name              | string  |        | level name of the card
-payment_date            | int     | [`1`-`31`] | the payment of the card
-reward_day              | int     |        | the reward day of the card (DEFAULT: payment_date)
-card_last_no            | string  |        | the last 4 number of user's credit card
-has_questionnaire       | bool    |        | does the card has the questionnaire
-questionnaire_completed | bool    |        | is the questionnaire completed or not
-enable_reward           | bool    |        | is the card enable reward
+Key                     | Type          | Enums  | Description
+----------------------- | ------------- | ------ | -----------
+card_id                 | string        |        | card id
+name                    | string        |        | card name
+bank                    | Bank          |        | bank information
+image                   | string        |        | image URL
+issuer                  | string        | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
+level                   | int           | [`1`-`8`] | level of the card
+level_name              | string        |        | level name of the card
+payment_date            | int           | [`1`-`31`] | the payment of the card
+reward_day              | int           |        | the reward day of the card (DEFAULT: payment_date)
+card_last_no            | string        |        | the last 4 number of user's credit card
+has_questionnaire       | bool          |        | does the card has the questionnaire
+questionnaire_completed | bool          |        | is the questionnaire completed or not
+enable_reward           | bool          |        | is the card enable reward
+card_promotion          | CardPromotion |        | card promotion info
+
+## CardPromotion
+
+Key             | Type              | Description
+--------------- | ----------------- | -----------
+left_promotion  | CardPromotionInfo | left promotion data
+right_promotion | CardPromotionInfo | right promotion data
+
+## CardPromotionInfo
+
+Key          | Type   | Enums                            | Description
+------------ | ------ | -------------------------------- | -----------
+reward_type  | int    | NEW_USER: `1` </br> GENERAL: `2` | reward type
+reward_value | int    |                                  | reward value for cashback reward
+reward_name  | string |                                  | reward name
+title        | string |                                  | reward title
 
 ## MobilePay
 
@@ -6024,6 +6042,317 @@ Key     | Type    | Description
 ------- | ------- | -----------
 card_id | string  | card id
 url     | string  | image URL
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 5-19. Set formal card promotion
+
+> Set formal card promotion:
+
+```shell
+curl --request PUT \
+  --url https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q/promotion \
+  -H 'Authorization: Bearer meowmeowmeowaccess'
+  --data '{
+    "left_promotion": {
+      "reward_type": 1,
+      "reward_value": 600,
+      "reward_name": "LINE Points",
+      "title": "新戶首刷回饋"
+    },
+    "right_promotion": {
+      "reward_type": 2,
+      "reward_value": 6,
+      "reward_name": "%",
+      "title": "指定通路最高回饋"
+    }
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q/promotion'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "left_promotion": {
+    "reward_type": 1,
+    "reward_value": 600,
+    "reward_name": "LINE Points",
+    "title": "新戶首刷回饋"
+  },
+  "right_promotion": {
+    "reward_type": 2,
+    "reward_value": 6,
+    "reward_name": "%",
+    "title": "指定通路最高回饋"
+  }
+}
+response = requests.post(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  left_promotion: {
+    reward_type: 1,
+    reward_value: 600,
+    reward_name: "LINE Points",
+    title: "新戶首刷回饋"
+  },
+  right_promotion: {
+    reward_type: 2,
+    reward_value: 6,
+    reward_name: "%",
+    title: "指定通路最高回饋"
+  }
+}
+axios.post('https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q/promotion',data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
+    "name": "台新@GoGo卡",
+    "options": [
+      {
+        "issuer": "VISA",
+        "level": 4,
+        "level_name": "御璽卡"
+      }
+    ],
+    "images": {
+      "image_1": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+      "image_2": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-2.png",
+      "image_3": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-3.png"
+    },
+    "promote": false,
+    "website": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg021/card001/",
+    "bank": {
+      "bank_id": "5f756d85c2349d9139648a81",
+      "name": "台新銀行",
+      "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/taishin-bank.png",
+      "image": "https://i.imgur.com/zueSUZY.png",
+      "code": "812"
+    },
+    "card_promotion": {
+      "left_promotion": {
+        "reward_type": 1,
+        "reward_value": 600,
+        "reward_name": "LINE Points",
+        "title": "新戶首刷回饋"
+      },
+      "right_promotion": {
+        "reward_type": 2,
+        "reward_value": 6,
+        "reward_name": "%",
+        "title": "指定通路最高回饋"
+      }
+    },
+    "creator": {
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
+      "username": "Harrison"
+    },
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "examiner": {
+      "administrator_id": "5f9a747p00c2abf3d4a54d4q",
+      "username": "Harrison"
+    },
+    "status": 3,
+    "comment": ""
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Set formal card promotion
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://api.cardbo.info/api/v5/card/formal/{card_id}/promotion`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter | Description
+--------- | -----------
+card_id   | card id
+
+#### Parameters
+
+Parameter       | Required | Type              | Description
+--------------- | -------- | ----------------- | -----------
+left_promotion  | true     | CardPromotionInfo | left promotion data
+right_promotion | true     | CardPromotionInfo | left promotion data
+
+##### CardPromotionInfo
+
+Parameter       | Required | Type   | Enums                            | Description
+--------------- | -------- | ------ | -------------------------------- | -----------
+reward_type     | true     | int    | NEW_USER: `1` </br> GENERAL: `2` | reward type
+reward_value    | false    | int    |                                  | reward value for cashback reward
+reward_name     | true     | string |                                  | reward name
+title           | true     | string |                                  | reward title
+
+### Response
+
+#### Success
+
+Key            | Type          | Enums                                            | Description
+-------------- | ------------- | ------------------------------------------------ | -----------
+card_id        | string        |                                                  | card id
+name           | string        |                                                  | card name
+bank           | Bank          |                                                  | bank information
+options        | string        |                                                  | logo url
+images         | string        |                                                  | image url
+promote        | bool          |                                                  | is the card promoted
+card_promotion | CardPromotion |                                                  | card promotion data
+website        | string        |                                                  | card official website
+creator        | string        |                                                  | creator id
+examiner       | string        |                                                  | examiner id
+created_at     | string        |                                                  | created timestamp
+updated_at     | string        |                                                  | updated timestamp
+status         | int           | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status
+comment        | string        |                                                  | failure comment
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 5-20. Get card reward infomation
+
+> Get card reward infomation:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v5/cards/formal/reward_info \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v5/cards/formal/reward_info'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v5/cards/formal/reward_info', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 201,
+  "message": "Ok",
+  "result": {
+    "user_cards": [
+      {
+        "card_info": "..."
+      }
+    ],
+    "bank_cards": [
+      {
+        "bank": {
+          "bank_info": "..."
+        },
+        "cards": [
+          {
+            "card_info": "...",
+          }
+        ]
+      },
+    ],
+    "cooperated_cards": [
+      {
+        "card_info": "..."
+      }
+    ],
+    "promote_cards": [
+      {
+        "card_info": "..."
+      }
+    ]
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get card reward infomation
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v5/cards/formal/reward_info`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+### Response
+
+#### Success
+
+Key              | Type          | Description
+---------------- | ------------- | -----------
+user_cards       | []CardDisplay | user's card array
+bank_cards       | []Card        | all card infomation of banks
+cooperated_cards | []Card        | cooperated card array info (old)
+promote_cards    | []CardDisplay | cooperated card array info (new)
 
 #### Error
 
