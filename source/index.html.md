@@ -91,10 +91,11 @@ last_login            | int                  |       | User last login time in t
 
 ## UserMobilepay
 
-Key       | Type          | Description
---------- | ------------- | -----------
-mobilepay | MobilePay     | MobilePay object
-cards     | []CardDisplay | array of CardDisplay object
+Key             | Type          | Description
+--------------- | ------------- | -----------
+mobilepay       | MobilePay     | MobilePay object
+no_card_binding | bool          | mobilepay does not bind any card
+cards           | []CardDisplay | array of CardDisplay object
 
 ## UserInvoice
 
@@ -170,6 +171,13 @@ name    | string  | bank name
 code    | string  | bank code  
 logo    | string  | logo url
 image   | string  | image url
+
+## BankCard
+
+Key   | Type   | Description
+----- | ------ | -----------
+bank  | Bank   | Bank object
+cards | []Card | Array of card object
 
 ## Card
 
@@ -251,12 +259,13 @@ title        | string |                                  | reward title
 
 ## MobilePay
 
-Key          | Type    | Description
------------- | ------- | -----------
-mobilepay_id | string  | mobilepay id
-name         | string  | mobilepay name
-image        | string  | mobilepay image URL
-deep_link    | string  | deep link of the mobile pay
+Key            | Type    | Enums | Description
+-------------- | ------- | ----- | -----------
+mobilepay_id   | string  |       | mobilepay id
+name           | string  |       | mobilepay name
+mobilepay_type | int     | 行動支付: `1` </br> 電子支付: `2` | mobilepay type
+image          | string  |       | mobilepay image URL
+deep_link      | string  |       | deep link of the mobile pay
 
 ## Offer
 
@@ -987,7 +996,7 @@ axios.get('https://api.cardbo.info/api/v5/user', {
     "cardbo_point": 0,
     "cards": [
       {
-        "card_id": "5fdb2ff546a97b49dac8a6ad",
+        "card_id": "5f9a747p00c2abf3d4a54d4q",
         "name": "永豐幣倍卡",
         "bank": {
           "bank_id": "5f756d85c2349d9139648a7d",
@@ -997,7 +1006,7 @@ axios.get('https://api.cardbo.info/api/v5/user', {
           "code": "807"
         },
         "level": 5,
-        "image": "https://storage.googleapis.com/cardbo-images/card/5fdb2ff546a97b49dac8a6ad-1.png",
+        "image": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
         "issuer": "MASTERCARD"
       }
     ],
@@ -1011,7 +1020,7 @@ axios.get('https://api.cardbo.info/api/v5/user', {
         },
         "cards": [
           {
-            "card_id": "5fdb2ff546a97b49dac8a6ad",
+            "card_id": "5f9a747p00c2abf3d4a54d4q",
             "name": "永豐幣倍卡",
             "bank": {
               "bank_id": "5f756d85c2349d9139648a7d",
@@ -1021,7 +1030,7 @@ axios.get('https://api.cardbo.info/api/v5/user', {
               "code": "807"
             },
             "level": 5,
-            "image": "https://storage.googleapis.com/cardbo-images/card/5fdb2ff546a97b49dac8a6ad-1.png",
+            "image": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
             "issuer": "MASTERCARD"
           }
         ]
@@ -1149,7 +1158,7 @@ axios.put('https://api.cardbo.info/api/v5/user', data, {
     "cardbo_point": 0,
     "cards": [
       {
-        "card_id": "5fdb2ff546a97b49dac8a6ad",
+        "card_id": "5f9a747p00c2abf3d4a54d4q",
         "name": "永豐幣倍卡",
         "bank": {
           "bank_id": "5f756d85c2349d9139648a7d",
@@ -1159,7 +1168,7 @@ axios.put('https://api.cardbo.info/api/v5/user', data, {
           "code": "807"
         },
         "level": 5,
-        "image": "https://storage.googleapis.com/cardbo-images/card/5fdb2ff546a97b49dac8a6ad-1.png",
+        "image": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
         "issuer": "MASTERCARD"
       }
     ],
@@ -1173,7 +1182,7 @@ axios.put('https://api.cardbo.info/api/v5/user', data, {
         },
         "cards": [
           {
-            "card_id": "5fdb2ff546a97b49dac8a6ad",
+            "card_id": "5f9a747p00c2abf3d4a54d4q",
             "name": "永豐幣倍卡",
             "bank": {
               "bank_id": "5f756d85c2349d9139648a7d",
@@ -1183,7 +1192,7 @@ axios.put('https://api.cardbo.info/api/v5/user', data, {
               "code": "807"
             },
             "level": 5,
-            "image": "https://storage.googleapis.com/cardbo-images/card/5fdb2ff546a97b49dac8a6ad-1.png",
+            "image": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
             "issuer": "MASTERCARD"
           }
         ]
@@ -2386,7 +2395,7 @@ axios.put('https://api.cardbo.info/api/v6/user/card_payment_date', data, {
     "cardbo_point": 0,
     "cards": [
       {
-        "card_id": "5fdb2ff546a97b49dac8a6ad",
+        "card_id": "5f9a747p00c2abf3d4a54d4q",
         "name": "永豐幣倍卡",
         "bank": {
           "bank_id": "5f756d85c2349d9139648a7d",
@@ -2396,7 +2405,7 @@ axios.put('https://api.cardbo.info/api/v6/user/card_payment_date', data, {
           "code": "807"
         },
         "level": 5,
-        "image": "https://storage.googleapis.com/cardbo-images/card/5fdb2ff546a97b49dac8a6ad-1.png",
+        "image": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
         "issuer": "MASTERCARD"
       }
     ],
@@ -2410,7 +2419,7 @@ axios.put('https://api.cardbo.info/api/v6/user/card_payment_date', data, {
         },
         "cards": [
           {
-            "card_id": "5fdb2ff546a97b49dac8a6ad",
+            "card_id": "5f9a747p00c2abf3d4a54d4q",
             "name": "永豐幣倍卡",
             "bank": {
               "bank_id": "5f756d85c2349d9139648a7d",
@@ -2420,7 +2429,7 @@ axios.put('https://api.cardbo.info/api/v6/user/card_payment_date', data, {
               "code": "807"
             },
             "level": 5,
-            "image": "https://storage.googleapis.com/cardbo-images/card/5fdb2ff546a97b49dac8a6ad-1.png",
+            "image": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
             "issuer": "MASTERCARD"
           }
         ]
@@ -2549,7 +2558,7 @@ axios.put('https://api.cardbo.info/api/v6/user/card_payment_date/unset', data, {
     "cardbo_point": 0,
     "cards": [
       {
-        "card_id": "5fdb2ff546a97b49dac8a6ad",
+        "card_id": "5f9a747p00c2abf3d4a54d4q",
         "name": "永豐幣倍卡",
         "bank": {
           "bank_id": "5f756d85c2349d9139648a7d",
@@ -2559,7 +2568,7 @@ axios.put('https://api.cardbo.info/api/v6/user/card_payment_date/unset', data, {
           "code": "807"
         },
         "level": 5,
-        "image": "https://storage.googleapis.com/cardbo-images/card/5fdb2ff546a97b49dac8a6ad-1.png",
+        "image": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
         "issuer": "MASTERCARD"
       }
     ],
@@ -2573,7 +2582,7 @@ axios.put('https://api.cardbo.info/api/v6/user/card_payment_date/unset', data, {
         },
         "cards": [
           {
-            "card_id": "5fdb2ff546a97b49dac8a6ad",
+            "card_id": "5f9a747p00c2abf3d4a54d4q",
             "name": "永豐幣倍卡",
             "bank": {
               "bank_id": "5f756d85c2349d9139648a7d",
@@ -2583,7 +2592,7 @@ axios.put('https://api.cardbo.info/api/v6/user/card_payment_date/unset', data, {
               "code": "807"
             },
             "level": 5,
-            "image": "https://storage.googleapis.com/cardbo-images/card/5fdb2ff546a97b49dac8a6ad-1.png",
+            "image": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
             "issuer": "MASTERCARD"
           }
         ]
@@ -2646,6 +2655,358 @@ interested_categories | []InterestedCategory |       | user interest categories 
 created_at            | int                  |       | create time in timestamp
 updated_at            | int                  |       | update time in timestamp
 last_login            | int                  |       | User last login time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 2-15. Set user mobile pay no card binding
+
+> Set user mobile pay no card binding:
+
+```shell
+curl --request PUT \
+  --url https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/set_no_card \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/set_no_card'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.put(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.put('https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/set_no_card', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "user_id": "5f9a747p00c2abf3d4a54d4q",
+    "line_id": "Udchd7f131dvvhdbe166692206a12335c",
+    "username": "Harrison Peng",
+    "image": "https://image.com/image.png",
+    "email": "harrison@cardbo.info",
+    "phone_number": "0987654321",
+    "cardbo_point": 0,
+    "cards": [
+      {
+        "card_info": "...",
+      }
+    ],
+    "user_mobilepays": [
+      {
+        "mobilepay": {
+          "mobilepay_info": "...",
+        },
+        "no_card_binding": false,
+        "cards": [
+          {
+            "card_info": "...",
+          }
+        ]
+      }
+    ],
+    "user_level": 1,
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "last_login": 1617601542000
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Set user mobile pay no card binding
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/set_no_card`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+### Response
+
+#### Success
+
+Key                   | Type                 | Enums | Description
+--------------------- | -------------------- | ----- | -----------
+user_id               | string               |       | User id
+line_id               | string               |       | LINE id
+username              | string               |       | Username
+image                 | string               |       | User image
+email                 | string               |       | Email
+phone_number          | string               |       | Phone number
+cardbo_point          | int                  |       | Cardbo point (useless)
+cards                 | []Card               |       | User own card array
+user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
+user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+invoice               | UserInvoice          |       | user invcoie info
+subscription          | int                  | UNSUBSCRIBED: `1` <br/> SUBSCRIBED: `2` | is user subscribe the user reward
+update_message        | bool                 |       | does the user need to get the update message
+interested_categories | []InterestedCategory |       | user interest categories data
+created_at            | int                  |       | create time in timestamp
+updated_at            | int                  |       | update time in timestamp
+last_login            | int                  |       | User last login time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 2-16. Unset user mobile pay no card binding
+
+> Unset user mobile pay no card binding:
+
+```shell
+curl --request PUT \
+  --url https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/unset_no_card \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/unset_no_card'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.put(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.put('https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/unset_no_card', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "user_id": "5f9a747p00c2abf3d4a54d4q",
+    "line_id": "Udchd7f131dvvhdbe166692206a12335c",
+    "username": "Harrison Peng",
+    "image": "https://image.com/image.png",
+    "email": "harrison@cardbo.info",
+    "phone_number": "0987654321",
+    "cardbo_point": 0,
+    "cards": [
+      {
+        "card_info": "...",
+      }
+    ],
+    "user_mobilepays": [
+      {
+        "mobilepay": {
+          "mobilepay_info": "...",
+        },
+        "no_card_binding": false,
+        "cards": [
+          {
+            "card_info": "...",
+          }
+        ]
+      }
+    ],
+    "user_level": 1,
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "last_login": 1617601542000
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Unset user mobile pay no card binding
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/unset_no_card`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+### Response
+
+#### Success
+
+Key                   | Type                 | Enums | Description
+--------------------- | -------------------- | ----- | -----------
+user_id               | string               |       | User id
+line_id               | string               |       | LINE id
+username              | string               |       | Username
+image                 | string               |       | User image
+email                 | string               |       | Email
+phone_number          | string               |       | Phone number
+cardbo_point          | int                  |       | Cardbo point (useless)
+cards                 | []Card               |       | User own card array
+user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
+user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+invoice               | UserInvoice          |       | user invcoie info
+subscription          | int                  | UNSUBSCRIBED: `1` <br/> SUBSCRIBED: `2` | is user subscribe the user reward
+update_message        | bool                 |       | does the user need to get the update message
+interested_categories | []InterestedCategory |       | user interest categories data
+created_at            | int                  |       | create time in timestamp
+updated_at            | int                  |       | update time in timestamp
+last_login            | int                  |       | User last login time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## 2-17. Get user pocket
+
+> Get user pocket:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v5/user/pocket \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v5/user/pocket'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v5/user/pocket', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "user": {
+      "user_info": "..."
+    },
+    "mobilepays": [
+      {
+        "mobilepay_info": "...",
+      }
+    ],
+    "bank_cards": [
+      {
+        "bank": {
+          "bank_info": "...",
+        },
+        "cards": [
+          {
+            "card_info": "...",
+          }
+        ]
+      }
+    ],
+    "popular_cards": [
+      {
+        "card_info": "...",
+      }
+    ]
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get user pocket
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v5/user/pocket`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+### Response
+
+#### Success
+
+Key           | Type        | Description
+------------- | ----------- | -----------
+user          | User        | User object
+mobilepays    | []Mobilepay | Array of Mobilepay object
+bank_cards    | []BankCard  | All bank cards info
+popular_cards | []Card      | Array of popular cards
 
 #### Error
 
