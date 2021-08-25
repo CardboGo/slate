@@ -12877,7 +12877,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <p>search offers from user&#39;s card</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v6/offers/search <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/offers/formal/search <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   <span class="nt">--data</span> <span class="s1">'{
@@ -12887,7 +12887,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/offers/search'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/offers/formal/search'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">"store"</span><span class="p">:</span> <span class="s">"711"</span><span class="p">,</span>
@@ -12903,7 +12903,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   <span class="na">amount</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
   <span class="na">post_conditions</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">上網登錄</span><span class="dl">"</span><span class="p">]</span>
 <span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/offers/search?store=711&amp;amount=100</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/offers/formal/search</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
@@ -13037,7 +13037,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
 <h3 id='http-request-53'>HTTP Request</h3>
-<p><code>POST https://api.cardbo.info/api/v6/offers/search</code></p>
+<p><code>POST https://api.cardbo.info/api/v6/offers/formal/search</code></p>
 <h3 id='request-53'>Request</h3><h4 id='headers-50'>Headers</h4>
 <table><thead>
 <tr>
