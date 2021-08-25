@@ -354,30 +354,6 @@ max_cashback_offers  | []string  |           | array of offer id which is includ
 cashback_upper_bound | int       |           | min cashback upper bound from all offers
 cashback_amount      | int       |           | amount getting from max cashback
 
-## OfferSearchResult
-
-Key    | Type                    | Description
------- | ----------------------- | -----------
-store  | Store                   | Store object
-amount | int                     | expense amount
-result | OfferSearchResultDetail | array of OfferSearchResultDetail object
-
-## OfferSearchResultDetail
-
-Key                   | Type           | Description
---------------------- | -------------- | -----------
-card                  | Card           | Card object
-mobilepays            | []MobilePay    | array of mobilepays
-max_cashback_p        | float          | max cashback percentage value
-max_expense           | int            | max expense value
-cashback_p_coins      | []CashbackCoin | reward name and coin image of cashback percentage
-cashback_value        | float          | cashback user can get
-max_cashback_p_offers | []OfferResult  | array of max cashback percentage offers
-cashback_f_coins      | []CashbackCoin | reward name and coin image of cashback fixed
-max_cashback_f        | int            | max cashback fixed value
-max_cashback_f_offers | []OfferResult  | array of max cashback fixed offers
-all_offers            | []OfferResult  | all offers match the request
-
 ## CashbackCoin
 
 Key          | Type   | Description
@@ -391,12 +367,17 @@ Key                | Type              | Enums | Description
 ------------------ | ----------------- | ----- | -----------
 offer_id           | string            |       | offer ID
 options            | []string          |       | array of options
-end_date           | int               |       | max cashback percentage value
-condition          | string            |       | end date in timestamp
-upper_bound        | []OfferUpperBound |       | array of offer upper bound
+end_date           | int               |       | end date in timestamp
+pre_conditions     | []string          |       | array of pre conditions
+post_conditions    | []string          |       | array of post conditions
+register_url       | string            |       | register URL
+coupon_code        | string            |       | coupon code
+discount_url       | string            |       | discount URL
+upper_bounds       | []OfferUpperBound |       | array of offer upper bound
 reward_type        | int               | CASHBACK_PERCENTAGE: `1` <br/> CASHBACK_FIXED: `2` | reward type
-max_reward_content | RewardContent     |       | max reward content of the offer
-reward_contents    | []RewardContent   |       | array of all reward content
+max_reward_content | RewardContent     |       | best reward can get from reward contents
+reward_contents    | []RewardContent   |       | array of all reward contents
+selected           | bool              |       | is the reward selected
 
 ## OfferUpperBound
 
@@ -6957,25 +6938,40 @@ error | string | error message
 > search offers from user's card
 
 ```shell
-curl --request GET \
-  --url https://api.cardbo.info/api/v6/offers/search?store=711&amount=100 \
+curl --request POST \
+  --url https://api.cardbo.info/api/v6/offers/formal/search \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
+  --data '{
+    "store": "711",
+    "amount": 100,
+    "post_conditions": ["上網登錄"]
+  }'
 ```
 
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v6/offers/search?store=711&amount=100'
+url = 'https://api.cardbo.info/api/v6/offers/formal/search'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
-response = requests.delete(url, headers=headers)
+data = {
+  "store": "711",
+  "amount": 100,
+  "post_conditions": ["上網登錄"]
+}
+response = requests.post(url, headers=headers, json=data)
 ```
 
 ```javascript
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.delete('https://api.cardbo.info/api/v6/offers/search?store=711&amount=100', {
+data = {
+  store: "711",
+  amount: 100,
+  post_conditions: ["上網登錄"]
+}
+axios.post('https://api.cardbo.info/api/v6/offers/formal/search', data, {
     headers: headers
   })
   .then(function (response) {
@@ -6993,182 +6989,119 @@ axios.delete('https://api.cardbo.info/api/v6/offers/search?store=711&amount=100'
   "code": 200,
   "message": "Ok",
   "result": {
-    "user_type": 1,
+    "user_type": 3,
     "store": {
-      "store_info": "..."
+      "store": "...",
     },
     "amount": 100,
     "results": [
       {
+        "special_condition": false,
         "card": {
-          "user_card_info": "..."
+          "card_id": "5f9a747p00c2abf3d4a54d4q",
+          "name": "信用卡",
+          "bank": {
+            "bank": "...",
+          },
+          "level": 1,
+          "image": "https://image.png",
+          "issuer": "VISA",
+          "payment_date": 0,
+          "card_last_no": "",
+          "reward_day": 0,
+          "has_questionnaire": true,
+          "questionnaire_completed": false,
+          "enable_reward": false
         },
         "mobilepays": [
           {
-            "mobilepay_info": "..."
+            "mobilepay": "...",
           }
         ],
-        "max_cashback_p": 10,
-        "max_expense": 10000,
-        "cashback_p_coins": [
-          {
-            "reward_name": "Line Points",
-            "image": "https://image/line-points.png"
-          }
-        ],
-        "cashback_value": 34.6,
-        "max_cashback_p_offers": [
-          {
-            "offer_id": "5f9a747p00c2abf3d4a54d4q",
-            "options": [
-              "懂匯"
-            ],
-            "end_date": 1617601542000,
-            "condition": "this is the condition",
-            "upper_bound": [
-              {
-                "upperbound_id": "5f9a747p00c2abf3d4a54d4q",
-                "cash_upper_bound": 100,
-                "frequency_upper_bound": 0,
-                "upper_bound_period": 5,
-                "store_independent": true,
-                "sharing_upper_bounds": [
-                  "5f9a747p00c2abf3d4a54d4q",
-                  "5f9a747p00c2abf3d4a54d4q"
-                ]
-              }
-            ],
-            "reward_type": 1,
-            "max_reward_content": {
-              "reward_content_type": 2,
-              "channel_type": 3,
-              "mincost_period_times": 1,
-              "mincost_period": 5,
-              "mincost_value": 5000,
+        "cashback_value": {
+          "cashback_value": 500,
+          "cashback_coins": [
+            {
               "reward_name": "Line Points",
-              "reward_value": 3.5,
-              "coin_image": "https://image/line-points.png"
-            },
-            "reward_contents": [
-              {
-                "reward_content_type": 2,
-                "channel_type": 3,
-                "mincost_period_times": 1,
-                "mincost_period": 5,
-                "mincost_value": 5000,
-                "reward_name": "Line Points",
-                "reward_value": 3.5,
-                "coin_image": "https://image/line-points.png"
-              }
-            ]
-          }
-        ],
-        "cashback_f_coins": [
-          {
-            "reward_name": "Line Points",
-            "image": "https://image/line-points.png"
-          }
-        ],
-        "max_cashback_f": 500,
-        "max_cashback_f_offers": [
-          {
-            "offer_id": "5f9a747p00c2abf3d4a54d4q",
-            "options": [
-              "懂匯"
-            ],
-            "end_date": 1617601542000,
-            "condition": "this is the condition",
-            "upper_bound": [
-              {
-                "upperbound_id": "5f9a747p00c2abf3d4a54d4q",
-                "cash_upper_bound": 100,
-                "frequency_upper_bound": 0,
-                "upper_bound_period": 5,
-                "store_independent": true,
-                "sharing_upper_bounds": [
-                  "5f9a747p00c2abf3d4a54d4q",
-                  "5f9a747p00c2abf3d4a54d4q"
-                ]
-              }
-            ],
-            "reward_type": 2,
-            "max_reward_content": {
-              "reward_content_type": 2,
-              "channel_type": 3,
-              "mincost_period_times": 1,
-              "mincost_period": 5,
-              "mincost_value": 5000,
+              "image": "https://image.png"
+            }
+          ]
+        },
+        "cashback_percentage": {
+          "max_expense": 200,
+          "max_cashback": 18,
+          "cashback_coins": [
+            {
               "reward_name": "Line Points",
-              "reward_value": 3.5,
-              "coin_image": "https://image/line-points.png"
-            },
-            "reward_contents": [
-              {
-                "reward_content_type": 2,
-                "channel_type": 3,
-                "mincost_period_times": 1,
-                "mincost_period": 5,
-                "mincost_value": 5000,
+              "image": "https://image.png"
+            }
+          ],
+          "offers": [
+            {
+              "offer_id": "5f9a747p00c2abf3d4a54d4q",
+              "options": [],
+              "end_date": 1617601542000,
+              "pre_conditions": [
+                "綁定 Line 帳號"
+              ],
+              "post_conditions": null,
+              "register_url": "",
+              "coupon_code": "",
+              "discount_url": "",
+              "upper_bounds": [
+                {
+                  "upperbound": "...",
+                }
+              ],
+              "reward_type": 1,
+              "max_reward_content": {
+                "mincost_period_times": 0,
+                "mincost_period": 0,
+                "excluded_places": [],
+                "mincost_value": 0,
                 "reward_name": "Line Points",
-                "reward_value": 3.5,
-                "coin_image": "https://image/line-points.png"
-              }
-            ]
-          }
-        ],
-        "all_offers": [
+                "reward_value": 15,
+                "coin_image": "https://image.png"
+              },
+              "reward_contents": [
+                {
+                  "mincost_period_times": 0,
+                  "mincost_period": 0,
+                  "excluded_places": [],
+                  "mincost_value": 0,
+                  "reward_name": "Line Points",
+                  "reward_value": 15,
+                  "coin_image": "https://image.png"
+                }
+              ],
+              "selected": true
+            }
+          ]
+        },
+        "cashback_fixed": {
+          "max_expense": 0,
+          "max_cashback": 0,
+          "cashback_coins": [],
+          "offers": []
+        },
+        "conditions": [
           {
-            "offer_id": "5f9a747p00c2abf3d4a54d4q",
-            "options": [
-              "懂匯"
-            ],
-            "end_date": 1617601542000,
-            "condition": "this is the condition",
-            "upper_bound": [
-              {
-                "upperbound_id": "5f9a747p00c2abf3d4a54d4q",
-                "cash_upper_bound": 100,
-                "frequency_upper_bound": 0,
-                "upper_bound_period": 5,
-                "store_independent": true,
-                "sharing_upper_bounds": [
-                  "5f9a747p00c2abf3d4a54d4q",
-                  "5f9a747p00c2abf3d4a54d4q"
-                ]
-              }
-            ],
-            "max_reward_content": {
-              "reward_content_type": 2,
-              "channel_type": 3,
-              "mincost_period_times": 1,
-              "mincost_period": 5,
-              "mincost_value": 5000,
-              "reward_name": "Line Points",
-              "reward_value": 3.5,
-              "coin_image": "https://image/line-points.png"
-            },
-            "reward_contents": [
-              {
-                "reward_content_type": 2,
-                "channel_type": 3,
-                "mincost_period_times": 1,
-                "mincost_period": 5,
-                "mincost_value": 5000,
-                "reward_name": "Line Points",
-                "reward_value": 3.5,
-                "coin_image": "https://image/line-points.png"
-              }
-            ]
+            "condition_type": 1,
+            "name": "綁定 Line 帳號",
+            "url": ""
           }
         ]
       }
+    ],
+    "post_conditions": [
+      "上網登錄"
     ]
   },
   "timestamp": 1617601542000
 }
 ```
 
-Get all offers and new user offers of a card
+Search offers by store
 
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
@@ -7176,7 +7109,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 ### HTTP Request
 
-`GET https://api.cardbo.info/api/v6/offers/search`
+`POST https://api.cardbo.info/api/v6/offers/formal/search`
 
 ### Request
 
@@ -7186,26 +7119,56 @@ Key           | Value        | Description
 ------------- | ------------ | -----------
 Authorization | Bearer token | API access token
 
-#### Queries
+#### Parameters
 
-Query  | Required | Muti-values | Description
------- | -------- | ----------- | -----------
-store  | true     | false       | store name
-amount | true     | false       | expense amount
-
-<aside class="notice">
-At least one of **card_id** and **mobilepay_id** is required.
-</aside>
+Parameter       | Required | Type     | Description
+--------------- | -------- | -------- | -----------
+store           | true     | string   | store name
+amount          | false    | int      | expense amount
+post_conditions | false    | []string | post condition array
 
 ### Response
 
 #### Success
 
-Key    | Type                    | Description
------- | ----------------------- | -----------
-store  | Store                   | Store object
-amount | int                     | expense amount
-result | OfferSearchResultDetail | array of OfferSearchResultDetail object
+<aside class="notice">
+Only one of <code>results</code> and <code>post_conditions</code> have value. If API returns <code>post_conditions</code>, need to provide <code>post_conditions</code> which meet user's condtion and call API again.
+</aside>
+
+Key             | Type                    | Description
+--------------- | ----------------------- | -----------
+store           | Store                   | Store object
+amount          | int                     | expense amount
+results         | OfferSearchResultDetail | array of OfferSearchResultDetail object
+post_conditions | []string                | array of post conditions
+
+#### OfferSearchResultDetail
+
+Key                 | Type           | Description
+------------------- | -------------- | -----------
+special_condition   | bool           | is special condition
+card                | Card           | Card object
+mobilepays          | []MobilePay    | array of mobilepays
+cashback_value      | CashbackValue  | cashback value for user type 3
+cashback_percentage | RewardDetail   | cashback percentage info
+cashback_fixed      | RewardDetail   | cashback fixed info
+conditions          | float          | array of conditions
+
+#### CashbackValue
+
+Key            | Type           | Description
+-------------- | -------------- | -----------
+cashback_value | float          | reward value
+cashback_coins | []CashbackCoin | array of cashback coins
+
+#### RewardDetail
+
+Key            | Type           | Description
+-------------- | -------------- | -----------
+max_expense    | int            | max expense for the reward
+max_cashback   | float          | max cashback percentage/fixed value
+cashback_coins | []CashbackCoin | array of cashback coins
+offers         | []OfferResult  | array of OfferResult
 
 #### Error
 
@@ -7295,7 +7258,7 @@ Key           | Value        | Description
 Authorization | Bearer token | API access token
 
 <aside class="notice">
-At least one of **card_id** and **mobilepay_id** is required.
+At least one of <b>card_id</b> and <b>mobilepay_id</b> is required.
 </aside>
 
 ### Response
@@ -7397,7 +7360,7 @@ expense      | true     | false       | the amount of the expense
 date         | true     | false       | the date of expense in timestamp
 
 <aside class="notice">
-At least one of **card_id** and **mobilepay_id** is required.
+At least one of <b>card_id</b> and <b>mobilepay_id</b> is required.
 </aside>
 
 ### Response
