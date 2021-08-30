@@ -7572,6 +7572,56 @@ reward_content_type     | true     | int               | `1`: 優惠獨立計算
 mincost_type            | true     | int               | `1`: 沒有最低消費限制 </br> `2`: 當下消費單筆滿 </br> `3`: 當下消費每滿 </br> `4`: 單一通路總共滿 </br> `5`: 單一通路個別滿 </br> `6`: 單一通路每滿 </br> `7`: 全通路總共滿 </br> `8`: 全通路個別滿 </br> `9`: 全通路每滿 </br> `10`: 一般消費總共滿 </br> `11`: 一般消費個別滿 </br> `12`: 一般消費每滿 </br> `13`: 國內一般消費總共滿 </br> `14`: 國內一般消費個別滿 </br> `15`: 國內一般消費每滿 </br> `16`: 總消費總共滿 </br> `17`: 總消費個別滿 </br> `18`: 總消費每滿 | Minimum cost type
 reward_contents         | true     | []RewardContent   |       | Reward contents
 
+*OfferBank*
+
+Parameter | Required | Type         | Description
+--------- | -------- | ------------ | -----------
+bank      | true     | Bank         | Bank info
+options   | false    | []CardOption | The options of the card in the bank which can get the offer
+
+*CardOption*
+
+Parameter  | Required | Type   | Enums | Description
+---------- | ------ | ----- | -----------
+issuer     | true     | string | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
+level      | true     | int    | [`1`-`8`] | level of the card
+
+*OfferCard*
+
+Parameter  | Required | Type   | Enums | Description
+---------- | -------- | ------ | ----- | -----------
+card_id    | true     | string |       | card id
+issuer     | true     | string | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
+level      | true     | int    | [`1`-`8`] | level of the card
+
+*OfferMobilePay*
+
+Parameter    | Required | Type      | Enums | Description
+------------ | -------- | --------- | ----- | -----------
+mobilepay    | true     | MobilePay |       | Mobile pay which can get the offer
+payment_type | true     | string    | `1`: 感應支付(NFC) </br> `2`: 掃碼支付 </br> `3`:條碼支付 | Payment tyoe to use to get the offer
+
+*OfferUpperBound*
+
+Key                   | Required | Type     | Enums | Description
+--------------------- | -------- | -------- | ----- | -----------
+cash_upper_bound      | false    | int      |       | cashback upperbound value
+frequency_upper_bound | false    | int      |       | how many times can the offer got
+upper_bound_period    | true     | int      | `1`: TOTAL <br/> `2`: EVERY <br/> `3`: DAILY <br/> `4`: WEEKLY <br/> `5`: MONTHLY <br/> `6`: ANNUALLY | upper bound period
+store_independent     | true     | bool     |       | is the upper bound calculate independent from each store
+sharing_upper_bounds  | false    | []string |       | array of upperbound ID share same upper bound (`upper_bound_id`)
+
+*RewardContent*
+
+Key                  | Required | Type    | Enums  | Description
+-------------------- | -------- | ------- | ------ | -----------
+mincost_period_times | false    | int     |        | how many time for the min cost period
+mincost_period       | false    | int     | `1`: TOTAL <br/> `2`: EVERY <br/> `3`: DAILY <br/> `4`: WEEKLY <br/> `5`: MONTHLY <br/> `6`: ANNUALLY | min cost period
+excluded_places      | false    | []Store |        | Places that excluded from the min cost
+mincost_value        | false    | int     |        | min cost value
+reward_name          | true     | string  |        | reward name (現金, Line Points, 街口幣, Open Points, P幣, Hami Point, 代幣...)
+reward_value         | true     | float   |        | reward value
+
 ### Response
 
 #### Success
@@ -7666,16 +7716,15 @@ sharing_upper_bounds  | []string |       | array of upperbound ID share same upp
 
 *RewardContent*
 
-Key                  | Type   | Enums  | Description
--------------------- | ------ | ------ | -----------
-reward_content_type  | int    | INDEPENDENT: `1` <br/> ACCUMULATIVE: `2` <br/> STAG_ACCUMULATIVE: `3` | reward content type
-channel_type         | int    | NO_MINCOST: `1` <br/> SINGLE_CHANNEL: `2` <br/> ALL_CHANNEL: `3` <br/> GENERAL_EXPENSE: `4` <br/> TOTAL_EXPENSE: `5` | mon cost channel type
-mincost_period_times | int    |        | how many time for the min cost period
-mincost_period       | int    | `1`: TOTAL <br/> `2`: EVERY <br/> `3`: DAILY <br/> `4`: WEEKLY <br/> `5`: MONTHLY <br/> `6`: ANNUALLY | min cost period
-mincost_value        | int    |        | min cost value
-reward_name          | string |        | reward name (現金, Line Points, 街口幣, Open Points, P幣, Hami Point, 代幣...)
-reward_value         | float  |        | reward value
-coin_image           | string |        | coin image URL
+Key                  | Type    | Enums  | Description
+-------------------- | ------- | ------ | -----------
+mincost_period_times | int     |        | how many time for the min cost period
+mincost_period       | int     | `1`: TOTAL <br/> `2`: EVERY <br/> `3`: DAILY <br/> `4`: WEEKLY <br/> `5`: MONTHLY <br/> `6`: ANNUALLY | min cost period
+excluded_places      | []Store |        | Places that excluded from the min cost
+mincost_value        | int     |        | min cost value
+reward_name          | string  |        | reward name (現金, Line Points, 街口幣, Open Points, P幣, Hami Point, 代幣...)
+reward_value         | float   |        | reward value
+coin_image           | string  |        | coin image URL
 
 #### Error
 
@@ -7993,16 +8042,15 @@ sharing_upper_bounds  | []string |       | array of upperbound ID share same upp
 
 *RewardContent*
 
-Key                  | Type   | Enums  | Description
--------------------- | ------ | ------ | -----------
-reward_content_type  | int    | INDEPENDENT: `1` <br/> ACCUMULATIVE: `2` <br/> STAG_ACCUMULATIVE: `3` | reward content type
-channel_type         | int    | NO_MINCOST: `1` <br/> SINGLE_CHANNEL: `2` <br/> ALL_CHANNEL: `3` <br/> GENERAL_EXPENSE: `4` <br/> TOTAL_EXPENSE: `5` | mon cost channel type
-mincost_period_times | int    |        | how many time for the min cost period
-mincost_period       | int    | `1`: TOTAL <br/> `2`: EVERY <br/> `3`: DAILY <br/> `4`: WEEKLY <br/> `5`: MONTHLY <br/> `6`: ANNUALLY | min cost period
-mincost_value        | int    |        | min cost value
-reward_name          | string |        | reward name (現金, Line Points, 街口幣, Open Points, P幣, Hami Point, 代幣...)
-reward_value         | float  |        | reward value
-coin_image           | string |        | coin image URL
+Key                  | Type    | Enums  | Description
+-------------------- | ------- | ------ | -----------
+mincost_period_times | int     |        | how many time for the min cost period
+mincost_period       | int     | `1`: TOTAL <br/> `2`: EVERY <br/> `3`: DAILY <br/> `4`: WEEKLY <br/> `5`: MONTHLY <br/> `6`: ANNUALLY | min cost period
+excluded_places      | []Store |        | Places that excluded from the min cost
+mincost_value        | int     |        | min cost value
+reward_name          | string  |        | reward name (現金, Line Points, 街口幣, Open Points, P幣, Hami Point, 代幣...)
+reward_value         | float   |        | reward value
+coin_image           | string  |        | coin image URL
 
 #### Error
 
@@ -9002,6 +9050,56 @@ reward_content_type     | false    | int               | `1`: 優惠獨立計算
 mincost_type            | false    | int               | `1`: 沒有最低消費限制 </br> `2`: 當下消費單筆滿 </br> `3`: 當下消費每滿 </br> `4`: 單一通路總共滿 </br> `5`: 單一通路個別滿 </br> `6`: 單一通路每滿 </br> `7`: 全通路總共滿 </br> `8`: 全通路個別滿 </br> `9`: 全通路每滿 </br> `10`: 一般消費總共滿 </br> `11`: 一般消費個別滿 </br> `12`: 一般消費每滿 </br> `13`: 國內一般消費總共滿 </br> `14`: 國內一般消費個別滿 </br> `15`: 國內一般消費每滿 </br> `16`: 總消費總共滿 </br> `17`: 總消費個別滿 </br> `18`: 總消費每滿 | Minimum cost type
 reward_contents         | false    | []RewardContent   |       | Reward contents
 
+*OfferBank*
+
+Parameter | Required | Type         | Description
+--------- | -------- | ------------ | -----------
+bank      | true     | Bank         | Bank info
+options   | false    | []CardOption | The options of the card in the bank which can get the offer
+
+*CardOption*
+
+Parameter  | Required | Type   | Enums | Description
+---------- | ------ | ----- | -----------
+issuer     | true     | string | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
+level      | true     | int    | [`1`-`8`] | level of the card
+
+*OfferCard*
+
+Parameter  | Required | Type   | Enums | Description
+---------- | -------- | ------ | ----- | -----------
+card_id    | true     | string |       | card id
+issuer     | true     | string | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
+level      | true     | int    | [`1`-`8`] | level of the card
+
+*OfferMobilePay*
+
+Parameter    | Required | Type      | Enums | Description
+------------ | -------- | --------- | ----- | -----------
+mobilepay    | true     | MobilePay |       | Mobile pay which can get the offer
+payment_type | true     | string    | `1`: 感應支付(NFC) </br> `2`: 掃碼支付 </br> `3`:條碼支付 | Payment tyoe to use to get the offer
+
+*OfferUpperBound*
+
+Key                   | Required | Type     | Enums | Description
+--------------------- | -------- | -------- | ----- | -----------
+cash_upper_bound      | false    | int      |       | cashback upperbound value
+frequency_upper_bound | false    | int      |       | how many times can the offer got
+upper_bound_period    | true     | int      | `1`: TOTAL <br/> `2`: EVERY <br/> `3`: DAILY <br/> `4`: WEEKLY <br/> `5`: MONTHLY <br/> `6`: ANNUALLY | upper bound period
+store_independent     | true     | bool     |       | is the upper bound calculate independent from each store
+sharing_upper_bounds  | false    | []string |       | array of upperbound ID share same upper bound (`upper_bound_id`)
+
+*RewardContent*
+
+Key                  | Required | Type    | Enums  | Description
+-------------------- | -------- | ------- | ------ | -----------
+mincost_period_times | false    | int     |        | how many time for the min cost period
+mincost_period       | false    | int     | `1`: TOTAL <br/> `2`: EVERY <br/> `3`: DAILY <br/> `4`: WEEKLY <br/> `5`: MONTHLY <br/> `6`: ANNUALLY | min cost period
+excluded_places      | false    | []Store |        | Places that excluded from the min cost
+mincost_value        | false    | int     |        | min cost value
+reward_name          | true     | string  |        | reward name (現金, Line Points, 街口幣, Open Points, P幣, Hami Point, 代幣...)
+reward_value         | true     | float   |        | reward value
+
 ### Response
 
 #### Success
@@ -9096,16 +9194,15 @@ sharing_upper_bounds  | []string |       | array of upperbound ID share same upp
 
 *RewardContent*
 
-Key                  | Type   | Enums  | Description
--------------------- | ------ | ------ | -----------
-reward_content_type  | int    | INDEPENDENT: `1` <br/> ACCUMULATIVE: `2` <br/> STAG_ACCUMULATIVE: `3` | reward content type
-channel_type         | int    | NO_MINCOST: `1` <br/> SINGLE_CHANNEL: `2` <br/> ALL_CHANNEL: `3` <br/> GENERAL_EXPENSE: `4` <br/> TOTAL_EXPENSE: `5` | mon cost channel type
-mincost_period_times | int    |        | how many time for the min cost period
-mincost_period       | int    | `1`: TOTAL <br/> `2`: EVERY <br/> `3`: DAILY <br/> `4`: WEEKLY <br/> `5`: MONTHLY <br/> `6`: ANNUALLY | min cost period
-mincost_value        | int    |        | min cost value
-reward_name          | string |        | reward name (現金, Line Points, 街口幣, Open Points, P幣, Hami Point, 代幣...)
-reward_value         | float  |        | reward value
-coin_image           | string |        | coin image URL
+Key                  | Type    | Enums  | Description
+-------------------- | ------- | ------ | -----------
+mincost_period_times | int     |        | how many time for the min cost period
+mincost_period       | int     | `1`: TOTAL <br/> `2`: EVERY <br/> `3`: DAILY <br/> `4`: WEEKLY <br/> `5`: MONTHLY <br/> `6`: ANNUALLY | min cost period
+excluded_places      | []Store |        | Places that excluded from the min cost
+mincost_value        | int     |        | min cost value
+reward_name          | string  |        | reward name (現金, Line Points, 街口幣, Open Points, P幣, Hami Point, 代幣...)
+reward_value         | float   |        | reward value
+coin_image           | string  |        | coin image URL
 
 #### Error
 
