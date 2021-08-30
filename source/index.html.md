@@ -7582,7 +7582,7 @@ options   | false    | []CardOption | The options of the card in the bank which 
 *CardOption*
 
 Parameter  | Required | Type   | Enums | Description
----------- | ------ | ----- | -----------
+---------- | -------- | ------ | ----- | -----------
 issuer     | true     | string | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
 level      | true     | int    | [`1`-`8`] | level of the card
 
@@ -9060,7 +9060,7 @@ options   | false    | []CardOption | The options of the card in the bank which 
 *CardOption*
 
 Parameter  | Required | Type   | Enums | Description
----------- | ------ | ----- | -----------
+---------- | -------- | ------ | ----- | -----------
 issuer     | true     | string | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
 level      | true     | int    | [`1`-`8`] | level of the card
 
