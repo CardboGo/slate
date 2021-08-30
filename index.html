@@ -13781,6 +13781,201 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>Reward contents</td>
 </tr>
 </tbody></table>
+
+<p><em>OfferBank</em></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bank</td>
+<td>true</td>
+<td>Bank</td>
+<td>Bank info</td>
+</tr>
+<tr>
+<td>options</td>
+<td>false</td>
+<td>[]CardOption</td>
+<td>The options of the card in the bank which can get the offer</td>
+</tr>
+</tbody></table>
+
+<p><em>CardOption</em></p>
+
+<p>Parameter  | Required | Type   | Enums | Description
+---------- | ------ | ----- | -----------
+issuer     | true     | string | <code>VISA</code>, <code>MASTERCARD</code>, <code>JCB</code>, <code>AMERICAN EXPRESS</code>, <code>UNION PAY</code> | issuer of the card
+level      | true     | int    | [<code>1</code>-<code>8</code>] | level of the card</p>
+
+<p><em>OfferCard</em></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>card id</td>
+</tr>
+<tr>
+<td>issuer</td>
+<td>true</td>
+<td>string</td>
+<td><code>VISA</code>, <code>MASTERCARD</code>, <code>JCB</code>, <code>AMERICAN EXPRESS</code>, <code>UNION PAY</code></td>
+<td>issuer of the card</td>
+</tr>
+<tr>
+<td>level</td>
+<td>true</td>
+<td>int</td>
+<td>[<code>1</code>-<code>8</code>]</td>
+<td>level of the card</td>
+</tr>
+</tbody></table>
+
+<p><em>OfferMobilePay</em></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobilepay</td>
+<td>true</td>
+<td>MobilePay</td>
+<td></td>
+<td>Mobile pay which can get the offer</td>
+</tr>
+<tr>
+<td>payment_type</td>
+<td>true</td>
+<td>string</td>
+<td><code>1</code>: 感應支付(NFC) </br> <code>2</code>: 掃碼支付 </br> <code>3</code>:條碼支付</td>
+<td>Payment tyoe to use to get the offer</td>
+</tr>
+</tbody></table>
+
+<p><em>OfferUpperBound</em></p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Required</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cash_upper_bound</td>
+<td>false</td>
+<td>int</td>
+<td></td>
+<td>cashback upperbound value</td>
+</tr>
+<tr>
+<td>frequency_upper_bound</td>
+<td>false</td>
+<td>int</td>
+<td></td>
+<td>how many times can the offer got</td>
+</tr>
+<tr>
+<td>upper_bound_period</td>
+<td>true</td>
+<td>int</td>
+<td><code>1</code>: TOTAL <br/> <code>2</code>: EVERY <br/> <code>3</code>: DAILY <br/> <code>4</code>: WEEKLY <br/> <code>5</code>: MONTHLY <br/> <code>6</code>: ANNUALLY</td>
+<td>upper bound period</td>
+</tr>
+<tr>
+<td>store_independent</td>
+<td>true</td>
+<td>bool</td>
+<td></td>
+<td>is the upper bound calculate independent from each store</td>
+</tr>
+<tr>
+<td>sharing_upper_bounds</td>
+<td>false</td>
+<td>[]string</td>
+<td></td>
+<td>array of upperbound ID share same upper bound (<code>upper_bound_id</code>)</td>
+</tr>
+</tbody></table>
+
+<p><em>RewardContent</em></p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Required</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mincost_period_times</td>
+<td>false</td>
+<td>int</td>
+<td></td>
+<td>how many time for the min cost period</td>
+</tr>
+<tr>
+<td>mincost_period</td>
+<td>false</td>
+<td>int</td>
+<td><code>1</code>: TOTAL <br/> <code>2</code>: EVERY <br/> <code>3</code>: DAILY <br/> <code>4</code>: WEEKLY <br/> <code>5</code>: MONTHLY <br/> <code>6</code>: ANNUALLY</td>
+<td>min cost period</td>
+</tr>
+<tr>
+<td>excluded_places</td>
+<td>false</td>
+<td>[]Store</td>
+<td></td>
+<td>Places that excluded from the min cost</td>
+</tr>
+<tr>
+<td>mincost_value</td>
+<td>false</td>
+<td>int</td>
+<td></td>
+<td>min cost value</td>
+</tr>
+<tr>
+<td>reward_name</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>reward name (現金, Line Points, 街口幣, Open Points, P幣, Hami Point, 代幣...)</td>
+</tr>
+<tr>
+<td>reward_value</td>
+<td>true</td>
+<td>float</td>
+<td></td>
+<td>reward value</td>
+</tr>
+</tbody></table>
 <h3 id='response-53'>Response</h3><h4 id='success-53'>Success</h4>
 <p><em>Offer</em></p>
 
@@ -14210,18 +14405,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </tr>
 </thead><tbody>
 <tr>
-<td>reward_content_type</td>
-<td>int</td>
-<td>INDEPENDENT: <code>1</code> <br/> ACCUMULATIVE: <code>2</code> <br/> STAG_ACCUMULATIVE: <code>3</code></td>
-<td>reward content type</td>
-</tr>
-<tr>
-<td>channel_type</td>
-<td>int</td>
-<td>NO_MINCOST: <code>1</code> <br/> SINGLE_CHANNEL: <code>2</code> <br/> ALL_CHANNEL: <code>3</code> <br/> GENERAL_EXPENSE: <code>4</code> <br/> TOTAL_EXPENSE: <code>5</code></td>
-<td>mon cost channel type</td>
-</tr>
-<tr>
 <td>mincost_period_times</td>
 <td>int</td>
 <td></td>
@@ -14232,6 +14415,12 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>int</td>
 <td><code>1</code>: TOTAL <br/> <code>2</code>: EVERY <br/> <code>3</code>: DAILY <br/> <code>4</code>: WEEKLY <br/> <code>5</code>: MONTHLY <br/> <code>6</code>: ANNUALLY</td>
 <td>min cost period</td>
+</tr>
+<tr>
+<td>excluded_places</td>
+<td>[]Store</td>
+<td></td>
+<td>Places that excluded from the min cost</td>
 </tr>
 <tr>
 <td>mincost_value</td>
@@ -14921,18 +15110,6 @@ There are 20 data each page.
 </tr>
 </thead><tbody>
 <tr>
-<td>reward_content_type</td>
-<td>int</td>
-<td>INDEPENDENT: <code>1</code> <br/> ACCUMULATIVE: <code>2</code> <br/> STAG_ACCUMULATIVE: <code>3</code></td>
-<td>reward content type</td>
-</tr>
-<tr>
-<td>channel_type</td>
-<td>int</td>
-<td>NO_MINCOST: <code>1</code> <br/> SINGLE_CHANNEL: <code>2</code> <br/> ALL_CHANNEL: <code>3</code> <br/> GENERAL_EXPENSE: <code>4</code> <br/> TOTAL_EXPENSE: <code>5</code></td>
-<td>mon cost channel type</td>
-</tr>
-<tr>
 <td>mincost_period_times</td>
 <td>int</td>
 <td></td>
@@ -14943,6 +15120,12 @@ There are 20 data each page.
 <td>int</td>
 <td><code>1</code>: TOTAL <br/> <code>2</code>: EVERY <br/> <code>3</code>: DAILY <br/> <code>4</code>: WEEKLY <br/> <code>5</code>: MONTHLY <br/> <code>6</code>: ANNUALLY</td>
 <td>min cost period</td>
+</tr>
+<tr>
+<td>excluded_places</td>
+<td>[]Store</td>
+<td></td>
+<td>Places that excluded from the min cost</td>
 </tr>
 <tr>
 <td>mincost_value</td>
@@ -16590,6 +16773,201 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>Reward contents</td>
 </tr>
 </tbody></table>
+
+<p><em>OfferBank</em></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bank</td>
+<td>true</td>
+<td>Bank</td>
+<td>Bank info</td>
+</tr>
+<tr>
+<td>options</td>
+<td>false</td>
+<td>[]CardOption</td>
+<td>The options of the card in the bank which can get the offer</td>
+</tr>
+</tbody></table>
+
+<p><em>CardOption</em></p>
+
+<p>Parameter  | Required | Type   | Enums | Description
+---------- | ------ | ----- | -----------
+issuer     | true     | string | <code>VISA</code>, <code>MASTERCARD</code>, <code>JCB</code>, <code>AMERICAN EXPRESS</code>, <code>UNION PAY</code> | issuer of the card
+level      | true     | int    | [<code>1</code>-<code>8</code>] | level of the card</p>
+
+<p><em>OfferCard</em></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>card id</td>
+</tr>
+<tr>
+<td>issuer</td>
+<td>true</td>
+<td>string</td>
+<td><code>VISA</code>, <code>MASTERCARD</code>, <code>JCB</code>, <code>AMERICAN EXPRESS</code>, <code>UNION PAY</code></td>
+<td>issuer of the card</td>
+</tr>
+<tr>
+<td>level</td>
+<td>true</td>
+<td>int</td>
+<td>[<code>1</code>-<code>8</code>]</td>
+<td>level of the card</td>
+</tr>
+</tbody></table>
+
+<p><em>OfferMobilePay</em></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobilepay</td>
+<td>true</td>
+<td>MobilePay</td>
+<td></td>
+<td>Mobile pay which can get the offer</td>
+</tr>
+<tr>
+<td>payment_type</td>
+<td>true</td>
+<td>string</td>
+<td><code>1</code>: 感應支付(NFC) </br> <code>2</code>: 掃碼支付 </br> <code>3</code>:條碼支付</td>
+<td>Payment tyoe to use to get the offer</td>
+</tr>
+</tbody></table>
+
+<p><em>OfferUpperBound</em></p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Required</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cash_upper_bound</td>
+<td>false</td>
+<td>int</td>
+<td></td>
+<td>cashback upperbound value</td>
+</tr>
+<tr>
+<td>frequency_upper_bound</td>
+<td>false</td>
+<td>int</td>
+<td></td>
+<td>how many times can the offer got</td>
+</tr>
+<tr>
+<td>upper_bound_period</td>
+<td>true</td>
+<td>int</td>
+<td><code>1</code>: TOTAL <br/> <code>2</code>: EVERY <br/> <code>3</code>: DAILY <br/> <code>4</code>: WEEKLY <br/> <code>5</code>: MONTHLY <br/> <code>6</code>: ANNUALLY</td>
+<td>upper bound period</td>
+</tr>
+<tr>
+<td>store_independent</td>
+<td>true</td>
+<td>bool</td>
+<td></td>
+<td>is the upper bound calculate independent from each store</td>
+</tr>
+<tr>
+<td>sharing_upper_bounds</td>
+<td>false</td>
+<td>[]string</td>
+<td></td>
+<td>array of upperbound ID share same upper bound (<code>upper_bound_id</code>)</td>
+</tr>
+</tbody></table>
+
+<p><em>RewardContent</em></p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Required</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mincost_period_times</td>
+<td>false</td>
+<td>int</td>
+<td></td>
+<td>how many time for the min cost period</td>
+</tr>
+<tr>
+<td>mincost_period</td>
+<td>false</td>
+<td>int</td>
+<td><code>1</code>: TOTAL <br/> <code>2</code>: EVERY <br/> <code>3</code>: DAILY <br/> <code>4</code>: WEEKLY <br/> <code>5</code>: MONTHLY <br/> <code>6</code>: ANNUALLY</td>
+<td>min cost period</td>
+</tr>
+<tr>
+<td>excluded_places</td>
+<td>false</td>
+<td>[]Store</td>
+<td></td>
+<td>Places that excluded from the min cost</td>
+</tr>
+<tr>
+<td>mincost_value</td>
+<td>false</td>
+<td>int</td>
+<td></td>
+<td>min cost value</td>
+</tr>
+<tr>
+<td>reward_name</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>reward name (現金, Line Points, 街口幣, Open Points, P幣, Hami Point, 代幣...)</td>
+</tr>
+<tr>
+<td>reward_value</td>
+<td>true</td>
+<td>float</td>
+<td></td>
+<td>reward value</td>
+</tr>
+</tbody></table>
 <h3 id='response-56'>Response</h3><h4 id='success-56'>Success</h4>
 <p><em>Offer</em></p>
 
@@ -17019,18 +17397,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </tr>
 </thead><tbody>
 <tr>
-<td>reward_content_type</td>
-<td>int</td>
-<td>INDEPENDENT: <code>1</code> <br/> ACCUMULATIVE: <code>2</code> <br/> STAG_ACCUMULATIVE: <code>3</code></td>
-<td>reward content type</td>
-</tr>
-<tr>
-<td>channel_type</td>
-<td>int</td>
-<td>NO_MINCOST: <code>1</code> <br/> SINGLE_CHANNEL: <code>2</code> <br/> ALL_CHANNEL: <code>3</code> <br/> GENERAL_EXPENSE: <code>4</code> <br/> TOTAL_EXPENSE: <code>5</code></td>
-<td>mon cost channel type</td>
-</tr>
-<tr>
 <td>mincost_period_times</td>
 <td>int</td>
 <td></td>
@@ -17041,6 +17407,12 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>int</td>
 <td><code>1</code>: TOTAL <br/> <code>2</code>: EVERY <br/> <code>3</code>: DAILY <br/> <code>4</code>: WEEKLY <br/> <code>5</code>: MONTHLY <br/> <code>6</code>: ANNUALLY</td>
 <td>min cost period</td>
+</tr>
+<tr>
+<td>excluded_places</td>
+<td>[]Store</td>
+<td></td>
+<td>Places that excluded from the min cost</td>
 </tr>
 <tr>
 <td>mincost_value</td>
