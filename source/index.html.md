@@ -267,6 +267,15 @@ mobilepay_type | int     | 行動支付: `1` </br> 電子支付: `2` | mobilepay
 image          | string  |       | mobilepay image URL
 deep_link      | string  |       | deep link of the mobile pay
 
+## Tag
+
+Parameter   | Type   | Enums | Description
+----------- | ------ | ----- | -----------
+tag_id      | string |       | Tag ID
+name        | string |       | Tag name
+description | string |       | Tag description
+tag_type    | int    | `1`: General </br> `2`: MobilePay | Tag type
+
 ## Offer
 
 Key                     | Type         | Enums | Description
@@ -9827,6 +9836,101 @@ Key   | Type   | Description
 error | string | error message
 
 # 9. Tag
+
+## • Get tags
+
+> Get tags:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/tags?type=1 \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/tags?type=1'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/tags?type=2', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": [
+    {
+      "tag_id": "5f9a747p00c2abf3d4a54d4q",
+      "name": "tagname",
+      "description": "tag description",
+      "tag_type": 2
+    }
+  ],
+  "timestamp": 1617601542000
+}
+```
+
+Get pending offers
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/tags`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Queries
+
+Query | Required | Muti-values | Enums                                                 | Description
+----- | -------- | ----------- | ----------------------------------------------------- | -----------
+type  | false    | false       | `0`: All Type </br> `1`: General </br> `2`: MobilePay | The type of the tag
+
+### Response
+
+#### Success
+
+*Tag*
+
+Parameter   | Type   | Enums | Description
+----------- | ------ | ----- | -----------
+tag_id      | string |       | Tag ID
+name        | string |       | Tag name
+description | string |       | Tag description
+tag_type    | int    | `1`: General </br> `2`: MobilePay | Tag type
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
 
 # 10. Permission
 
