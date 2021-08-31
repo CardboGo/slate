@@ -17548,12 +17548,13 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
     </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
     </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"result_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"special_condition"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nl">"card_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
           </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"信用卡"</span><span class="p">,</span><span class="w">
           </span><span class="nl">"bank"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"bank"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"{bank_info}"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
           </span><span class="nl">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://image.png"</span><span class="p">,</span><span class="w">
@@ -17565,9 +17566,12 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
           </span><span class="nl">"questionnaire_completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
           </span><span class="nl">"enable_reward"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"{mobilepay_info}"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+        </span><span class="p">},</span><span class="w">
         </span><span class="nl">"mobilepays"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"{mobilepay_info}"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
         </span><span class="nl">"cashback_value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -17602,7 +17606,14 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
               </span><span class="nl">"discount_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
               </span><span class="nl">"upper_bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
-                  </span><span class="nl">"upperbound"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+                  </span><span class="nl">"upperbound_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+                  </span><span class="nl">"cash_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+                  </span><span class="nl">"frequency_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                  </span><span class="nl">"upper_bound_period"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                  </span><span class="nl">"store_independent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                  </span><span class="nl">"sharing_upper_bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="w">
+                  </span><span class="p">]</span><span class="w">
                 </span><span class="p">}</span><span class="w">
               </span><span class="p">],</span><span class="w">
               </span><span class="nl">"reward_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -17739,43 +17750,63 @@ Only one of <code>results</code> and <code>post_conditions</code> have value. If
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
+<td>result_type</td>
+<td>int</td>
+<td><code>1</code>: MobilePay Only </br> <code>2</code>: Card Only </br> <code>3</code>: Card with MobilePay</td>
+<td>Result payment type</td>
+</tr>
+<tr>
 <td>special_condition</td>
 <td>bool</td>
-<td>is special condition</td>
+<td></td>
+<td>Is special condition</td>
+</tr>
+<tr>
+<td>mobilepay</td>
+<td>MobilePay</td>
+<td></td>
+<td>Mobeile pay for <code>result_type=1</code></td>
 </tr>
 <tr>
 <td>card</td>
-<td>Card</td>
-<td>Card object</td>
+<td>UserCard</td>
+<td></td>
+<td>User card for <code>result_type=2</code> and <code>result_type=3</code></td>
 </tr>
 <tr>
 <td>mobilepays</td>
 <td>[]MobilePay</td>
-<td>array of mobilepays</td>
+<td></td>
+<td>Mobile pays array for <code>result_type=3</code></td>
 </tr>
 <tr>
 <td>cashback_value</td>
 <td>CashbackValue</td>
-<td>cashback value for user type 3</td>
+<td></td>
+<td>Cashback value for <code>user_type=3</code></td>
 </tr>
 <tr>
 <td>cashback_percentage</td>
 <td>RewardDetail</td>
-<td>cashback percentage info</td>
+<td></td>
+<td>Cashback percentage info</td>
 </tr>
 <tr>
 <td>cashback_fixed</td>
 <td>RewardDetail</td>
-<td>cashback fixed info</td>
+<td></td>
+<td>Cashback fixed info</td>
 </tr>
 <tr>
 <td>conditions</td>
 <td>float</td>
-<td>array of conditions</td>
+<td></td>
+<td>Array of conditions</td>
 </tr>
 </tbody></table>
 <h4 id='cashbackvalue'>CashbackValue</h4>
