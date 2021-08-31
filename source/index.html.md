@@ -9299,12 +9299,13 @@ axios.post('https://api.cardbo.info/api/v6/offers/formal/search', data, {
     "amount": 100,
     "results": [
       {
+        "result_type": 1,
         "special_condition": false,
         "card": {
           "card_id": "5f9a747p00c2abf3d4a54d4q",
           "name": "信用卡",
           "bank": {
-            "bank": "...",
+            "{bank_info}": "...",
           },
           "level": 1,
           "image": "https://image.png",
@@ -9316,9 +9317,12 @@ axios.post('https://api.cardbo.info/api/v6/offers/formal/search', data, {
           "questionnaire_completed": false,
           "enable_reward": false
         },
+        "mobilepay": {
+          "{mobilepay_info}": "..."
+        },
         "mobilepays": [
           {
-            "mobilepay": "...",
+            "{mobilepay_info}": "..."
           }
         ],
         "cashback_value": {
@@ -9353,7 +9357,14 @@ axios.post('https://api.cardbo.info/api/v6/offers/formal/search', data, {
               "discount_url": "",
               "upper_bounds": [
                 {
-                  "upperbound": "...",
+                  "upperbound_id": "5f9a747p00c2abf3d4a54d4q",
+                  "cash_upper_bound": 200,
+                  "frequency_upper_bound": 3,
+                  "upper_bound_period": 5,
+                  "store_independent": false,
+                  "sharing_upper_bounds": [
+                    "5f9a747p00c2abf3d4a54d4q"
+                  ]
                 }
               ],
               "reward_type": 1,
@@ -9447,15 +9458,17 @@ post_conditions | []string                | array of post conditions
 
 #### OfferSearchResultDetail
 
-Key                 | Type           | Description
-------------------- | -------------- | -----------
-special_condition   | bool           | is special condition
-card                | Card           | Card object
-mobilepays          | []MobilePay    | array of mobilepays
-cashback_value      | CashbackValue  | cashback value for user type 3
-cashback_percentage | RewardDetail   | cashback percentage info
-cashback_fixed      | RewardDetail   | cashback fixed info
-conditions          | float          | array of conditions
+Key                 | Type          | Enums | Description
+------------------- | ------------- | ----- | -----------
+result_type         | int           | `1`: MobilePay Only </br> `2`: Card Only </br> `3`: Card with MobilePay | Result payment type
+special_condition   | bool          |       | Is special condition
+mobilepay           | MobilePay     |       | Mobeile pay for `result_type=1`
+card                | UserCard      |       | User card for `result_type=2` and `result_type=3`
+mobilepays          | []MobilePay   |       | Mobile pays array for `result_type=3`
+cashback_value      | CashbackValue |       | Cashback value for `user_type=3`
+cashback_percentage | RewardDetail  |       | Cashback percentage info
+cashback_fixed      | RewardDetail  |       | Cashback fixed info
+conditions          | float         |       | Array of conditions
 
 #### CashbackValue
 
