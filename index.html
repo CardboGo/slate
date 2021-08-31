@@ -381,6 +381,9 @@
                     <a href="#mobilepay" class="toc-h2 toc-link" data-title="MobilePay">MobilePay</a>
                   </li>
                   <li>
+                    <a href="#tag" class="toc-h2 toc-link" data-title="Tag">Tag</a>
+                  </li>
+                  <li>
                     <a href="#offer" class="toc-h2 toc-link" data-title="Offer">Offer</a>
                   </li>
                   <li>
@@ -772,6 +775,11 @@
           </li>
           <li>
             <a href="#9-tag" class="toc-h1 toc-link" data-title="9. Tag">9. Tag</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-tags" class="toc-h2 toc-link" data-title="• Get tags">• Get tags</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#10-permission" class="toc-h1 toc-link" data-title="10. Permission">10. Permission</a>
@@ -1834,6 +1842,40 @@
 <td>string</td>
 <td></td>
 <td>deep link of the mobile pay</td>
+</tr>
+</tbody></table>
+<h2 id='tag'>Tag</h2>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tag_id</td>
+<td>string</td>
+<td></td>
+<td>Tag ID</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>Tag name</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td></td>
+<td>Tag description</td>
+</tr>
+<tr>
+<td>tag_type</td>
+<td>int</td>
+<td><code>1</code>: General </br> <code>2</code>: MobilePay</td>
+<td>Tag type</td>
 </tr>
 </tbody></table>
 <h2 id='offer'>Offer</h2>
@@ -18245,7 +18287,139 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>error message</td>
 </tr>
 </tbody></table>
-<h1 id='9-tag'>9. Tag</h1><h1 id='10-permission'>10. Permission</h1><h1 id='11-useraction'>11. UserAction</h1><h1 id='12-errorreport'>12. ErrorReport</h1><h2 id='12-1-insert-error-report'>12-1. Insert error report</h2>
+<h1 id='9-tag'>9. Tag</h1><h2 id='get-tags'>• Get tags</h2>
+<blockquote>
+<p>Get tags:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/tags?type<span class="o">=</span>1 <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/tags?type=1'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/tags?type=2</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"tag_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tagname"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tag description"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"tag_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Get pending offers</p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+<h3 id='http-request-61'>HTTP Request</h3>
+<p><code>GET https://api.cardbo.info/api/v6/tags</code></p>
+<h3 id='request-61'>Request</h3><h4 id='headers-58'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='queries-12'>Queries</h4>
+<table><thead>
+<tr>
+<th>Query</th>
+<th>Required</th>
+<th>Muti-values</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>false</td>
+<td>false</td>
+<td><code>0</code>: All Type </br> <code>1</code>: General </br> <code>2</code>: MobilePay</td>
+<td>The type of the tag</td>
+</tr>
+</tbody></table>
+<h3 id='response-61'>Response</h3><h4 id='success-61'>Success</h4>
+<p><em>Tag</em></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tag_id</td>
+<td>string</td>
+<td></td>
+<td>Tag ID</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>Tag name</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td></td>
+<td>Tag description</td>
+</tr>
+<tr>
+<td>tag_type</td>
+<td>int</td>
+<td><code>1</code>: General </br> <code>2</code>: MobilePay</td>
+<td>Tag type</td>
+</tr>
+</tbody></table>
+<h4 id='error-61'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
+<h1 id='10-permission'>10. Permission</h1><h1 id='11-useraction'>11. UserAction</h1><h1 id='12-errorreport'>12. ErrorReport</h1><h2 id='12-1-insert-error-report'>12-1. Insert error report</h2>
 <blockquote>
 <p>Insert an error report:</p>
 </blockquote>
@@ -18339,9 +18513,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
-<h3 id='http-request-61'>HTTP Request</h3>
+<h3 id='http-request-62'>HTTP Request</h3>
 <p><code>POST https://api.cardbo.info/api/v6/error_report</code></p>
-<h3 id='request-61'>Request</h3><h4 id='headers-58'>Headers</h4>
+<h3 id='request-62'>Request</h3><h4 id='headers-59'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -18441,244 +18615,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 *1: one of <code>card_id</code> and <code>mobilepay_id</code> is required when report_type is <code>1</code> <br/>
 *2: one of <code>store_id</code> and <code>store_name</code> is required when report_type is <code>1</code> and <code>3</code>
 </aside>
-<h3 id='response-61'>Response</h3><h4 id='success-61'>Success</h4>
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Enums</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>report_id</td>
-<td>string</td>
-<td></td>
-<td>report id</td>
-</tr>
-<tr>
-<td>report_type</td>
-<td>int</td>
-<td>OFFER_DETAIL: <code>1</code> <br/> CARD_REWARD: <code>2</code> <br/> ACCOUNTING: <code>3</code></td>
-<td>report type</td>
-</tr>
-<tr>
-<td>user</td>
-<td>User</td>
-<td></td>
-<td>User Object</td>
-</tr>
-<tr>
-<td>accounting_record</td>
-<td>AccountingRecord</td>
-<td></td>
-<td>AccountingRecord object</td>
-</tr>
-<tr>
-<td>card</td>
-<td>Card</td>
-<td></td>
-<td>Card object</td>
-</tr>
-<tr>
-<td>mobilepay</td>
-<td>MobilePay</td>
-<td></td>
-<td>MobilePay object</td>
-</tr>
-<tr>
-<td>store</td>
-<td>Store</td>
-<td></td>
-<td>Store object</td>
-</tr>
-<tr>
-<td>store_name</td>
-<td>string</td>
-<td></td>
-<td>store name when store is not in our DB</td>
-</tr>
-<tr>
-<td>offer_ids</td>
-<td>[]string</td>
-<td></td>
-<td>offer id array</td>
-</tr>
-<tr>
-<td>new_user_offer_ids</td>
-<td>[]string</td>
-<td></td>
-<td>new user offer id array</td>
-</tr>
-<tr>
-<td>url_error</td>
-<td>bool</td>
-<td></td>
-<td>is the offer URL error</td>
-</tr>
-<tr>
-<td>content</td>
-<td>string</td>
-<td></td>
-<td>report content</td>
-</tr>
-<tr>
-<td>note</td>
-<td>string</td>
-<td></td>
-<td>error handling note</td>
-</tr>
-<tr>
-<td>status</td>
-<td>int</td>
-<td>PENDING: <code>1</code> <br/> WAITING_NOTIFY: <code>2</code> <br/> FINISHED: <code>3</code></td>
-<td>the handling status of the report</td>
-</tr>
-<tr>
-<td>created_at</td>
-<td>int</td>
-<td></td>
-<td>create time in timestamp</td>
-</tr>
-<tr>
-<td>updated_at</td>
-<td>int</td>
-<td></td>
-<td>update time in timestamp</td>
-</tr>
-<tr>
-<td>fixed_at</td>
-<td>int</td>
-<td></td>
-<td>fixing time in timestamp</td>
-</tr>
-<tr>
-<td>notified_at</td>
-<td>int</td>
-<td></td>
-<td>notification time in timestamp</td>
-</tr>
-</tbody></table>
-<h4 id='error-61'>Error</h4>
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>error</td>
-<td>string</td>
-<td>error message</td>
-</tr>
-</tbody></table>
-<h2 id='12-2-get-error-reports'>12-2. Get error reports</h2>
-<blockquote>
-<p>Get error reports:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v6/error_reports?report_type<span class="o">=</span>1 <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/error_reports?report_type=1'</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/error_reports?report_type=1</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
-    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-  <span class="p">});</span>
-</code></pre></div>
-<blockquote>
-<p>Response example:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"report_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nl">"accounting_record"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"accounting_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"offer_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nl">"url_error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"fixed_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"notified_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>Get error reports</p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-<h3 id='http-request-62'>HTTP Request</h3>
-<p><code>GET https://api.cardbo.info/api/v6/error_reports?report_type=1</code></p>
-<h3 id='request-62'>Request</h3><h4 id='headers-59'>Headers</h4>
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Authorization</td>
-<td>Bearer token</td>
-<td>API access token</td>
-</tr>
-</tbody></table>
-<h4 id='queries-12'>Queries</h4>
-<table><thead>
-<tr>
-<th>Query</th>
-<th>Required</th>
-<th>Muti-values</th>
-<th>Enums</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>report_type</td>
-<td>true</td>
-<td>false</td>
-<td>OFFER_DETAIL: <code>1</code> <br/> CARD_REWARD: <code>2</code> <br/> ACCOUNTING: <code>3</code></td>
-<td>report type</td>
-</tr>
-</tbody></table>
 <h3 id='response-62'>Response</h3><h4 id='success-62'>Success</h4>
 <table><thead>
 <tr>
@@ -18811,23 +18747,23 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='12-3-get-error-report-by-report_id'>12-3. Get error report by report_id</h2>
+<h2 id='12-2-get-error-reports'>12-2. Get error reports</h2>
 <blockquote>
-<p>Get error report by report_id:</p>
+<p>Get error reports:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/error_reports?report_type<span class="o">=</span>1 <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/error_reports?report_type=1'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/error_reports?report_type=1</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
@@ -18843,46 +18779,48 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"report_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"accounting_record"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"accounting_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"offer_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"url_error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fixed_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"notified_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"report_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"accounting_record"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"accounting_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offer_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"url_error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fixed_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"notified_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
   </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Get error report by report_id</p>
+<p>Get error reports</p>
 
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
 <h3 id='http-request-63'>HTTP Request</h3>
-<p><code>GET https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q</code></p>
+<p><code>GET https://api.cardbo.info/api/v6/error_reports?report_type=1</code></p>
 <h3 id='request-63'>Request</h3><h4 id='headers-60'>Headers</h4>
 <table><thead>
 <tr>
@@ -18897,16 +18835,22 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h4 id='path-parameters-21'>Path Parameters</h4>
+<h4 id='queries-13'>Queries</h4>
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Query</th>
+<th>Required</th>
+<th>Muti-values</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>report_id</td>
-<td>report id</td>
+<td>report_type</td>
+<td>true</td>
+<td>false</td>
+<td>OFFER_DETAIL: <code>1</code> <br/> CARD_REWARD: <code>2</code> <br/> ACCOUNTING: <code>3</code></td>
+<td>report type</td>
 </tr>
 </tbody></table>
 <h3 id='response-63'>Response</h3><h4 id='success-63'>Success</h4>
@@ -19041,32 +18985,23 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='12-4-make-report-status-to-fixed'>12-4. Make report status to FIXED</h2>
+<h2 id='12-3-get-error-report-by-report_id'>12-3. Get error report by report_id</h2>
 <blockquote>
-<p>Make report status to FIXED:</p>
+<p>Get error report by report_id:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span>
-  <span class="nt">--data</span> <span class="s1">'{
-    "note": "the note content..."
-  }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">"note"</span><span class="p">:</span> <span class="s">"the note content..."</span>
-<span class="p">}</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
-<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">note</span><span class="p">:</span> <span class="dl">"</span><span class="s2">the note content...</span><span class="dl">"</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
@@ -19115,13 +19050,13 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Make report status to FIXED</p>
+<p>Get error report by report_id</p>
 
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
 <h3 id='http-request-64'>HTTP Request</h3>
-<p><code>PUT https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed</code></p>
+<p><code>GET https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q</code></p>
 <h3 id='request-64'>Request</h3><h4 id='headers-61'>Headers</h4>
 <table><thead>
 <tr>
@@ -19136,20 +19071,16 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h4 id='parameters-31'>Parameters</h4>
+<h4 id='path-parameters-21'>Path Parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Required</th>
-<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>note</td>
-<td>false</td>
-<td>string</td>
-<td>The note for the error report</td>
+<td>report_id</td>
+<td>report id</td>
 </tr>
 </tbody></table>
 <h3 id='response-64'>Response</h3><h4 id='success-64'>Success</h4>
@@ -19284,23 +19215,32 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='12-5-make-report-status-to-notified'>12-5. Make report status to NOTIFIED</h2>
+<h2 id='12-4-make-report-status-to-fixed'>12-4. Make report status to FIXED</h2>
 <blockquote>
-<p>Make report status to NOTIFIED:</p>
+<p>Make report status to FIXED:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "note": "the note content..."
+  }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">"note"</span><span class="p">:</span> <span class="s">"the note content..."</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">note</span><span class="p">:</span> <span class="dl">"</span><span class="s2">the note content...</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
@@ -19349,13 +19289,13 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Make report status to NOTIFIED</p>
+<p>Make report status to FIXED</p>
 
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
 <h3 id='http-request-65'>HTTP Request</h3>
-<p><code>PUT https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified</code></p>
+<p><code>PUT https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed</code></p>
 <h3 id='request-65'>Request</h3><h4 id='headers-62'>Headers</h4>
 <table><thead>
 <tr>
@@ -19368,6 +19308,22 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>Authorization</td>
 <td>Bearer token</td>
 <td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='parameters-31'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>note</td>
+<td>false</td>
+<td>string</td>
+<td>The note for the error report</td>
 </tr>
 </tbody></table>
 <h3 id='response-65'>Response</h3><h4 id='success-65'>Success</h4>
@@ -19502,6 +19458,224 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>error message</td>
 </tr>
 </tbody></table>
+<h2 id='12-5-make-report-status-to-notified'>12-5. Make report status to NOTIFIED</h2>
+<blockquote>
+<p>Make report status to NOTIFIED:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"report_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"accounting_record"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"accounting_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"offer_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"url_error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fixed_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"notified_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Make report status to NOTIFIED</p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+<h3 id='http-request-66'>HTTP Request</h3>
+<p><code>PUT https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified</code></p>
+<h3 id='request-66'>Request</h3><h4 id='headers-63'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h3 id='response-66'>Response</h3><h4 id='success-66'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>report_id</td>
+<td>string</td>
+<td></td>
+<td>report id</td>
+</tr>
+<tr>
+<td>report_type</td>
+<td>int</td>
+<td>OFFER_DETAIL: <code>1</code> <br/> CARD_REWARD: <code>2</code> <br/> ACCOUNTING: <code>3</code></td>
+<td>report type</td>
+</tr>
+<tr>
+<td>user</td>
+<td>User</td>
+<td></td>
+<td>User Object</td>
+</tr>
+<tr>
+<td>accounting_record</td>
+<td>AccountingRecord</td>
+<td></td>
+<td>AccountingRecord object</td>
+</tr>
+<tr>
+<td>card</td>
+<td>Card</td>
+<td></td>
+<td>Card object</td>
+</tr>
+<tr>
+<td>mobilepay</td>
+<td>MobilePay</td>
+<td></td>
+<td>MobilePay object</td>
+</tr>
+<tr>
+<td>store</td>
+<td>Store</td>
+<td></td>
+<td>Store object</td>
+</tr>
+<tr>
+<td>store_name</td>
+<td>string</td>
+<td></td>
+<td>store name when store is not in our DB</td>
+</tr>
+<tr>
+<td>offer_ids</td>
+<td>[]string</td>
+<td></td>
+<td>offer id array</td>
+</tr>
+<tr>
+<td>new_user_offer_ids</td>
+<td>[]string</td>
+<td></td>
+<td>new user offer id array</td>
+</tr>
+<tr>
+<td>url_error</td>
+<td>bool</td>
+<td></td>
+<td>is the offer URL error</td>
+</tr>
+<tr>
+<td>content</td>
+<td>string</td>
+<td></td>
+<td>report content</td>
+</tr>
+<tr>
+<td>note</td>
+<td>string</td>
+<td></td>
+<td>error handling note</td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>PENDING: <code>1</code> <br/> WAITING_NOTIFY: <code>2</code> <br/> FINISHED: <code>3</code></td>
+<td>the handling status of the report</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>int</td>
+<td></td>
+<td>create time in timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>int</td>
+<td></td>
+<td>update time in timestamp</td>
+</tr>
+<tr>
+<td>fixed_at</td>
+<td>int</td>
+<td></td>
+<td>fixing time in timestamp</td>
+</tr>
+<tr>
+<td>notified_at</td>
+<td>int</td>
+<td></td>
+<td>notification time in timestamp</td>
+</tr>
+</tbody></table>
+<h4 id='error-66'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
 <h1 id='13-limitedtimeoffer'>13. LimitedTimeOffer</h1><h1 id='14-newuseroffer'>14. NewUserOffer</h1><h1 id='15-datamigration'>15. DataMigration</h1><h1 id='16-accountingrecord'>16. AccountingRecord</h1><h2 id='16-1-get-pending-accounting-records'>16-1. Get pending accounting records</h2>
 <blockquote>
 <p>Get pending accounting records:</p>
@@ -19571,9 +19745,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
-<h3 id='http-request-66'>HTTP Request</h3>
+<h3 id='http-request-67'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/accountings/pending</code></p>
-<h3 id='request-66'>Request</h3><h4 id='headers-63'>Headers</h4>
+<h3 id='request-67'>Request</h3><h4 id='headers-64'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -19587,7 +19761,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h3 id='response-66'>Response</h3><h4 id='success-66'>Success</h4>
+<h3 id='response-67'>Response</h3><h4 id='success-67'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -19687,7 +19861,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>update time in timestamp</td>
 </tr>
 </tbody></table>
-<h4 id='error-66'>Error</h4>
+<h4 id='error-67'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -19759,9 +19933,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
-<h3 id='http-request-67'>HTTP Request</h3>
+<h3 id='http-request-68'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/accountings/{card_id}/{year}</code></p>
-<h3 id='request-67'>Request</h3><h4 id='headers-64'>Headers</h4>
+<h3 id='request-68'>Request</h3><h4 id='headers-65'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -19775,7 +19949,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h3 id='response-67'>Response</h3><h4 id='success-67'>Success</h4>
+<h3 id='response-68'>Response</h3><h4 id='success-68'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -19794,7 +19968,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>monthly accounting record info</td>
 </tr>
 </tbody></table>
-<h4 id='error-67'>Error</h4>
+<h4 id='error-68'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -19911,9 +20085,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
-<h3 id='http-request-68'>HTTP Request</h3>
+<h3 id='http-request-69'>HTTP Request</h3>
 <p><code>POST https://api.cardbo.info/api/v6/accounting</code></p>
-<h3 id='request-68'>Request</h3><h4 id='headers-65'>Headers</h4>
+<h3 id='request-69'>Request</h3><h4 id='headers-66'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -19971,323 +20145,6 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>false(*1)</td>
 <td>string</td>
 <td>store name when the store not in our database</td>
-</tr>
-<tr>
-<td>date</td>
-<td>true</td>
-<td>int</td>
-<td>the datetime of the expense in timestamp</td>
-</tr>
-<tr>
-<td>rewards</td>
-<td>false</td>
-<td>[]string</td>
-<td>array of offer id that can get from the expense</td>
-</tr>
-<tr>
-<td>completed</td>
-<td>true</td>
-<td>bool</td>
-<td>is the record completed</td>
-</tr>
-</tbody></table>
-
-<p>*1: one of <code>store_id</code> and <code>store_name</code> is required</p>
-<h3 id='response-68'>Response</h3><h4 id='success-68'>Success</h4>
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Enums</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>accounting_id</td>
-<td>string</td>
-<td></td>
-<td>accotungin id</td>
-</tr>
-<tr>
-<td>user</td>
-<td>User</td>
-<td></td>
-<td>User object</td>
-</tr>
-<tr>
-<td>card</td>
-<td>Card</td>
-<td></td>
-<td>Card object</td>
-</tr>
-<tr>
-<td>mobilepay</td>
-<td>MobilePay</td>
-<td></td>
-<td>MobilePay object</td>
-</tr>
-<tr>
-<td>invoice</td>
-<td>Invoice</td>
-<td></td>
-<td>Invoice object</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>int</td>
-<td></td>
-<td>how much money of the record</td>
-</tr>
-<tr>
-<td>name</td>
-<td>string</td>
-<td></td>
-<td>description of the record</td>
-</tr>
-<tr>
-<td>store</td>
-<td>Store</td>
-<td></td>
-<td>Store object</td>
-</tr>
-<tr>
-<td>store_name</td>
-<td>string</td>
-<td></td>
-<td>store name when the store is not in our database</td>
-</tr>
-<tr>
-<td>date</td>
-<td>int</td>
-<td></td>
-<td>date of the expese in timestamp</td>
-</tr>
-<tr>
-<td>rewards</td>
-<td>[]AccountingReward</td>
-<td></td>
-<td>array of AccountingReward object</td>
-</tr>
-<tr>
-<td>invoice_type</td>
-<td>int</td>
-<td>QRCode: <code>1</code> <br/> Carrier: <code>2</code> <br/> NoInvoice: <code>3</code></td>
-<td>invoice tpye of the record</td>
-</tr>
-<tr>
-<td>pending</td>
-<td>string</td>
-<td></td>
-<td>is the record in pending or not</td>
-</tr>
-<tr>
-<td>created_at</td>
-<td>int</td>
-<td></td>
-<td>create time in timestamp</td>
-</tr>
-<tr>
-<td>updated_at</td>
-<td>int</td>
-<td></td>
-<td>update time in timestamp</td>
-</tr>
-</tbody></table>
-<h4 id='error-68'>Error</h4>
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>error</td>
-<td>string</td>
-<td>error message</td>
-</tr>
-</tbody></table>
-<h2 id='16-4-insert-an-accounting-record-with-qr-code-invoice'>16-4. Insert an accounting record with QR code invoice</h2>
-<blockquote>
-<p>Insert an accounting record with QR code invoice:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v6/accounting/qr_code <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  <span class="nt">--data</span> <span class="s1">'{
-    "card_id": "5f9a747p00c2abf3d4a54d4q",
-    "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
-    "amount": 1000,
-    "name": "午餐",
-    "store_id": "5f9a747p00c2abf3d4a54d4q",
-    "qr_code_left": "INVOICE_QR_CODE_LEFT",
-    "qr_code_right": "INVOICE_QR_CODE_RIGHT",
-    "rewards": [
-      "offer_id": "5f9a747p00c2abf3d4a54d4q"
-    ],
-    "date": 1617601542000,
-    "completed": true
-  }'</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/accounting/qr_code'</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">"card_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
-  <span class="s">"mobilepay_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
-  <span class="s">"amount"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
-  <span class="s">"name"</span><span class="p">:</span> <span class="s">"午餐"</span><span class="p">,</span>
-  <span class="s">"store_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
-  <span class="s">"qr_code_left"</span><span class="p">:</span> <span class="s">"INVOICE_QR_CODE_LEFT"</span><span class="p">,</span>
-  <span class="s">"qr_code_right"</span><span class="p">:</span> <span class="s">"INVOICE_QR_CODE_RIGHT"</span><span class="p">,</span>
-  <span class="s">"rewards"</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s">"offer_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span>
-  <span class="p">],</span>
-  <span class="s">"date"</span><span class="p">:</span> <span class="mi">1617601542000</span><span class="p">,</span>
-  <span class="s">"completed"</span><span class="p">:</span> <span class="n">true</span>
-<span class="p">}</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
-<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">card_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">mobilepay_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">amount</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
-  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">午餐</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">store_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">qr_code_left</span><span class="p">:</span> <span class="dl">"</span><span class="s2">INVOICE_QR_CODE_LEFT</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">qr_code_right</span><span class="p">:</span> <span class="dl">"</span><span class="s2">INVOICE_QR_CODE_RIGHT</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">rewards</span><span class="p">:</span> <span class="p">[</span>
-    <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span>
-  <span class="p">],</span>
-  <span class="na">date</span><span class="p">:</span> <span class="mi">1617601542000</span><span class="p">,</span>
-  <span class="na">completed</span><span class="p">:</span> <span class="kc">true</span>
-<span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/accounting/qr_code</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
-    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-  <span class="p">});</span>
-</code></pre></div>
-<blockquote>
-<p>Response example:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">201</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"accounting_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"午餐"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AB99999999"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"rewards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"reward_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"現金"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"reward_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.83</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>Insert an accounting record with QR code invoice</p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-<h3 id='http-request-69'>HTTP Request</h3>
-<p><code>POST https://api.cardbo.info/api/v6/accounting/qr_code</code></p>
-<h3 id='request-69'>Request</h3><h4 id='headers-66'>Headers</h4>
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Authorization</td>
-<td>Bearer token</td>
-<td>API access token</td>
-</tr>
-</tbody></table>
-<h4 id='parameters-33'>Parameters</h4>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>card_id</td>
-<td>true</td>
-<td>string</td>
-<td>card id</td>
-</tr>
-<tr>
-<td>mobilepay_id</td>
-<td>true</td>
-<td>string</td>
-<td>mobilepay id</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>true</td>
-<td>int</td>
-<td>the amount of the money</td>
-</tr>
-<tr>
-<td>name</td>
-<td>true</td>
-<td>string</td>
-<td>name of the record</td>
-</tr>
-<tr>
-<td>store_id</td>
-<td>false(*1)</td>
-<td>string</td>
-<td>store id</td>
-</tr>
-<tr>
-<td>store_name</td>
-<td>false(*1)</td>
-<td>string</td>
-<td>store name when the store not in our database</td>
-</tr>
-<tr>
-<td>qr_code_left</td>
-<td>true</td>
-<td>string</td>
-<td>the left QR code on the invcoie</td>
-</tr>
-<tr>
-<td>qr_code_right</td>
-<td>true</td>
-<td>string</td>
-<td>the right QR code on the invcoie</td>
 </tr>
 <tr>
 <td>date</td>
@@ -20424,9 +20281,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='16-5-insert-an-accounting-record-with-carrier-invoice'>16-5. Insert an accounting record with carrier invoice</h2>
+<h2 id='16-4-insert-an-accounting-record-with-qr-code-invoice'>16-4. Insert an accounting record with QR code invoice</h2>
 <blockquote>
-<p>Insert an accounting record with carrier invoice:</p>
+<p>Insert an accounting record with QR code invoice:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="se">\</span>
   <span class="nt">--url</span> https://api.cardbo.info/api/v6/accounting/qr_code <span class="se">\</span>
@@ -20438,7 +20295,8 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
     "amount": 1000,
     "name": "午餐",
     "store_id": "5f9a747p00c2abf3d4a54d4q",
-    "invoice_id": "5f9a747p00c2abf3d4a54d4q",
+    "qr_code_left": "INVOICE_QR_CODE_LEFT",
+    "qr_code_right": "INVOICE_QR_CODE_RIGHT",
     "rewards": [
       "offer_id": "5f9a747p00c2abf3d4a54d4q"
     ],
@@ -20455,7 +20313,8 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   <span class="s">"amount"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
   <span class="s">"name"</span><span class="p">:</span> <span class="s">"午餐"</span><span class="p">,</span>
   <span class="s">"store_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
-  <span class="s">"invoice_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
+  <span class="s">"qr_code_left"</span><span class="p">:</span> <span class="s">"INVOICE_QR_CODE_LEFT"</span><span class="p">,</span>
+  <span class="s">"qr_code_right"</span><span class="p">:</span> <span class="s">"INVOICE_QR_CODE_RIGHT"</span><span class="p">,</span>
   <span class="s">"rewards"</span><span class="p">:</span> <span class="p">[</span>
     <span class="s">"offer_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span>
   <span class="p">],</span>
@@ -20472,7 +20331,8 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   <span class="na">amount</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
   <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">午餐</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">store_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">invoice_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">qr_code_left</span><span class="p">:</span> <span class="dl">"</span><span class="s2">INVOICE_QR_CODE_LEFT</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">qr_code_right</span><span class="p">:</span> <span class="dl">"</span><span class="s2">INVOICE_QR_CODE_RIGHT</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">rewards</span><span class="p">:</span> <span class="p">[</span>
     <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span>
   <span class="p">],</span>
@@ -20525,7 +20385,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Insert an accounting record with carrier invoice</p>
+<p>Insert an accounting record with QR code invoice</p>
 
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
@@ -20546,7 +20406,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h4 id='parameters-34'>Parameters</h4>
+<h4 id='parameters-33'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -20592,10 +20452,16 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>store name when the store not in our database</td>
 </tr>
 <tr>
-<td>invoice_id</td>
+<td>qr_code_left</td>
 <td>true</td>
 <td>string</td>
-<td>invoice id</td>
+<td>the left QR code on the invcoie</td>
+</tr>
+<tr>
+<td>qr_code_right</td>
+<td>true</td>
+<td>string</td>
+<td>the right QR code on the invcoie</td>
 </tr>
 <tr>
 <td>date</td>
@@ -20732,62 +20598,62 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='16-6-update-accounting-record'>16-6 Update accounting record</h2>
+<h2 id='16-5-insert-an-accounting-record-with-carrier-invoice'>16-5. Insert an accounting record with carrier invoice</h2>
 <blockquote>
-<p>Update administrator profile:</p>
+<p>Insert an accounting record with carrier invoice:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v6/accounting/5f9a747p00c2abf3d4a54d4q <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/accounting/qr_code <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   <span class="nt">--data</span> <span class="s1">'{
     "card_id": "5f9a747p00c2abf3d4a54d4q",
     "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
-    "amount": 100,
-    "name": "sample_expense",
+    "amount": 1000,
+    "name": "午餐",
     "store_id": "5f9a747p00c2abf3d4a54d4q",
-    "date": 1617601542000,
-    "qr_code_right": "INVOICE_QR_CODE_RIGHT",
-    "qr_code_left": "INVOICE_QR_CODE_LEFT",
+    "invoice_id": "5f9a747p00c2abf3d4a54d4q",
     "rewards": [
-      "5f9a747p00c2abf3d4a54d4q"
-    ]
+      "offer_id": "5f9a747p00c2abf3d4a54d4q"
+    ],
+    "date": 1617601542000,
+    "completed": true
   }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/accounting/5f9a747p00c2abf3d4a54d4q'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/accounting/qr_code'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">"card_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
   <span class="s">"mobilepay_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
-  <span class="s">"amount"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-  <span class="s">"name"</span><span class="p">:</span> <span class="s">"sample_expense"</span><span class="p">,</span>
+  <span class="s">"amount"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+  <span class="s">"name"</span><span class="p">:</span> <span class="s">"午餐"</span><span class="p">,</span>
   <span class="s">"store_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
-  <span class="s">"date"</span><span class="p">:</span> <span class="mi">1617601542000</span><span class="p">,</span>
-  <span class="s">"qr_code_right"</span><span class="p">:</span> <span class="s">"INVOICE_QR_CODE_RIGHT"</span><span class="p">,</span>
-  <span class="s">"qr_code_left"</span><span class="p">:</span> <span class="s">"INVOICE_QR_CODE_LEFT"</span><span class="p">,</span>
+  <span class="s">"invoice_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
   <span class="s">"rewards"</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s">"5f9a747p00c2abf3d4a54d4q"</span>
-  <span class="p">]</span>
+    <span class="s">"offer_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span>
+  <span class="p">],</span>
+  <span class="s">"date"</span><span class="p">:</span> <span class="mi">1617601542000</span><span class="p">,</span>
+  <span class="s">"completed"</span><span class="p">:</span> <span class="n">true</span>
 <span class="p">}</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
 <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">card_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">mobilepay_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">amount</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">sample_expense</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">amount</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">午餐</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">store_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">date</span><span class="p">:</span> <span class="mi">1617601542000</span><span class="p">,</span>
-  <span class="na">qr_code_right</span><span class="p">:</span> <span class="dl">"</span><span class="s2">INVOICE_QR_CODE_RIGHT</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">qr_code_left</span><span class="p">:</span> <span class="dl">"</span><span class="s2">INVOICE_QR_CODE_LEFT</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">invoice_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">rewards</span><span class="p">:</span> <span class="p">[</span>
     <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span>
-  <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="na">date</span><span class="p">:</span> <span class="mi">1617601542000</span><span class="p">,</span>
+  <span class="na">completed</span><span class="p">:</span> <span class="kc">true</span>
 <span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/accounting/5f9a747p00c2abf3d4a54d4q</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/accounting/qr_code</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
@@ -20801,40 +20667,45 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <p>Response example:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">201</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"accounting_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"午餐"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AB99999999"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rewards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"reward_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"現金"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"reward_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.83</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample_expense"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AB99999999"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"rewards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"reward_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"現金"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"reward_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.83</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Update administrator profile</p>
+<p>Insert an accounting record with carrier invoice</p>
 
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
 <h3 id='http-request-71'>HTTP Request</h3>
-<p><code>PUT https://api.cardbo.info/api/v6/accounting/{accounting_id}</code></p>
+<p><code>POST https://api.cardbo.info/api/v6/accounting/qr_code</code></p>
 <h3 id='request-71'>Request</h3><h4 id='headers-68'>Headers</h4>
 <table><thead>
 <tr>
@@ -20849,19 +20720,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h4 id='path-parameters-22'>Path Parameters</h4>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>administrator_id</td>
-<td>administrator id</td>
-</tr>
-</tbody></table>
-<h4 id='parameters-35'>Parameters</h4>
+<h4 id='parameters-34'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -20872,75 +20731,67 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </thead><tbody>
 <tr>
 <td>card_id</td>
-<td>false(*1)</td>
+<td>true</td>
 <td>string</td>
 <td>card id</td>
 </tr>
 <tr>
 <td>mobilepay_id</td>
-<td>false(*1)</td>
+<td>true</td>
 <td>string</td>
 <td>mobilepay id</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>true</td>
+<td>int</td>
+<td>the amount of the money</td>
+</tr>
+<tr>
+<td>name</td>
+<td>true</td>
 <td>string</td>
-<td>amount of the expense</td>
+<td>name of the record</td>
 </tr>
 <tr>
 <td>store_id</td>
-<td>false(*2)</td>
+<td>false(*1)</td>
 <td>string</td>
 <td>store id</td>
 </tr>
 <tr>
 <td>store_name</td>
-<td>false(*2)</td>
+<td>false(*1)</td>
 <td>string</td>
-<td>stroe name if the stroe is not in our database</td>
+<td>store name when the store not in our database</td>
+</tr>
+<tr>
+<td>invoice_id</td>
+<td>true</td>
+<td>string</td>
+<td>invoice id</td>
 </tr>
 <tr>
 <td>date</td>
 <td>true</td>
 <td>int</td>
-<td>date of the expense in timestamp</td>
-</tr>
-<tr>
-<td>qr_code_right</td>
-<td>false</td>
-<td>string</td>
-<td>right part of the invoice QR Code when updating QR Code invoice record</td>
-</tr>
-<tr>
-<td>qr_code_left</td>
-<td>false</td>
-<td>string</td>
-<td>left part of the invoice QR Code when updating QR Code invoice record</td>
-</tr>
-<tr>
-<td>invoice_id</td>
-<td>false</td>
-<td>string</td>
-<td>invoice id when updating carrier invoice record</td>
+<td>the datetime of the expense in timestamp</td>
 </tr>
 <tr>
 <td>rewards</td>
-<td>false(*3)</td>
+<td>false</td>
 <td>[]string</td>
 <td>array of offer id that can get from the expense</td>
 </tr>
 <tr>
 <td>completed</td>
-<td>false</td>
+<td>true</td>
 <td>bool</td>
 <td>is the record completed</td>
 </tr>
 </tbody></table>
 
-<p>*1: Must set at least one of <code>card_id</code> and <code>mobilepay_id</code>
-*2: Must set one of <code>store_id</code> and <code>store_name</code>
-*3: if <code>card_id</code> is set, <code>rewards</code> is required</p>
+<p>*1: one of <code>store_id</code> and <code>store_name</code> is required</p>
 <h3 id='response-71'>Response</h3><h4 id='success-71'>Success</h4>
 <table><thead>
 <tr>
@@ -21055,23 +20906,62 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='16-7-get-accounting-record-by-accounting_id'>16-7 Get accounting record by accounting_id</h2>
+<h2 id='16-6-update-accounting-record'>16-6 Update accounting record</h2>
 <blockquote>
-<p>Get accounting record by accounting_id:</p>
+<p>Update administrator profile:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v6/accounting/<span class="o">{</span>accounting_id<span class="o">}</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/accounting/5f9a747p00c2abf3d4a54d4q <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
+    "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+    "amount": 100,
+    "name": "sample_expense",
+    "store_id": "5f9a747p00c2abf3d4a54d4q",
+    "date": 1617601542000,
+    "qr_code_right": "INVOICE_QR_CODE_RIGHT",
+    "qr_code_left": "INVOICE_QR_CODE_LEFT",
+    "rewards": [
+      "5f9a747p00c2abf3d4a54d4q"
+    ]
+  }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/accounting/{accounting_id}'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/accounting/5f9a747p00c2abf3d4a54d4q'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">"card_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
+  <span class="s">"mobilepay_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
+  <span class="s">"amount"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="s">"name"</span><span class="p">:</span> <span class="s">"sample_expense"</span><span class="p">,</span>
+  <span class="s">"store_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
+  <span class="s">"date"</span><span class="p">:</span> <span class="mi">1617601542000</span><span class="p">,</span>
+  <span class="s">"qr_code_right"</span><span class="p">:</span> <span class="s">"INVOICE_QR_CODE_RIGHT"</span><span class="p">,</span>
+  <span class="s">"qr_code_left"</span><span class="p">:</span> <span class="s">"INVOICE_QR_CODE_LEFT"</span><span class="p">,</span>
+  <span class="s">"rewards"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s">"5f9a747p00c2abf3d4a54d4q"</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/accounting/{accounting_id}</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">card_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">mobilepay_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">amount</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">sample_expense</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">store_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">date</span><span class="p">:</span> <span class="mi">1617601542000</span><span class="p">,</span>
+  <span class="na">qr_code_right</span><span class="p">:</span> <span class="dl">"</span><span class="s2">INVOICE_QR_CODE_RIGHT</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">qr_code_left</span><span class="p">:</span> <span class="dl">"</span><span class="s2">INVOICE_QR_CODE_LEFT</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">rewards</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/accounting/5f9a747p00c2abf3d4a54d4q</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
@@ -21085,45 +20975,40 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <p>Response example:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"午餐"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AB99999999"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"rewards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"reward_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"現金"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"reward_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.83</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+  </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+  </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample_expense"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AB99999999"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"rewards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"reward_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"現金"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"reward_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.83</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Get accounting record by accounting_id</p>
+<p>Update administrator profile</p>
 
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
 <h3 id='http-request-72'>HTTP Request</h3>
-<p><code>GET https://api.cardbo.info/api/v6/accounting/{accounting_id}</code></p>
+<p><code>PUT https://api.cardbo.info/api/v6/accounting/{accounting_id}</code></p>
 <h3 id='request-72'>Request</h3><h4 id='headers-69'>Headers</h4>
 <table><thead>
 <tr>
@@ -21138,7 +21023,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h4 id='path-parameters-23'>Path Parameters</h4>
+<h4 id='path-parameters-22'>Path Parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -21146,10 +21031,90 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </tr>
 </thead><tbody>
 <tr>
-<td>accounting_id</td>
-<td>accounting id</td>
+<td>administrator_id</td>
+<td>administrator id</td>
 </tr>
 </tbody></table>
+<h4 id='parameters-35'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>false(*1)</td>
+<td>string</td>
+<td>card id</td>
+</tr>
+<tr>
+<td>mobilepay_id</td>
+<td>false(*1)</td>
+<td>string</td>
+<td>mobilepay id</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>string</td>
+<td>amount of the expense</td>
+</tr>
+<tr>
+<td>store_id</td>
+<td>false(*2)</td>
+<td>string</td>
+<td>store id</td>
+</tr>
+<tr>
+<td>store_name</td>
+<td>false(*2)</td>
+<td>string</td>
+<td>stroe name if the stroe is not in our database</td>
+</tr>
+<tr>
+<td>date</td>
+<td>true</td>
+<td>int</td>
+<td>date of the expense in timestamp</td>
+</tr>
+<tr>
+<td>qr_code_right</td>
+<td>false</td>
+<td>string</td>
+<td>right part of the invoice QR Code when updating QR Code invoice record</td>
+</tr>
+<tr>
+<td>qr_code_left</td>
+<td>false</td>
+<td>string</td>
+<td>left part of the invoice QR Code when updating QR Code invoice record</td>
+</tr>
+<tr>
+<td>invoice_id</td>
+<td>false</td>
+<td>string</td>
+<td>invoice id when updating carrier invoice record</td>
+</tr>
+<tr>
+<td>rewards</td>
+<td>false(*3)</td>
+<td>[]string</td>
+<td>array of offer id that can get from the expense</td>
+</tr>
+<tr>
+<td>completed</td>
+<td>false</td>
+<td>bool</td>
+<td>is the record completed</td>
+</tr>
+</tbody></table>
+
+<p>*1: Must set at least one of <code>card_id</code> and <code>mobilepay_id</code>
+*2: Must set one of <code>store_id</code> and <code>store_name</code>
+*3: if <code>card_id</code> is set, <code>rewards</code> is required</p>
 <h3 id='response-72'>Response</h3><h4 id='success-72'>Success</h4>
 <table><thead>
 <tr>
@@ -21264,11 +21229,11 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='16-8-delete-an-accounting-record'>16-8 Delete an accounting record</h2>
+<h2 id='16-7-get-accounting-record-by-accounting_id'>16-7 Get accounting record by accounting_id</h2>
 <blockquote>
-<p>Delete an accounting record:</p>
+<p>Get accounting record by accounting_id:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> DELETE <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
   <span class="nt">--url</span> https://api.cardbo.info/api/v6/accounting/<span class="o">{</span>accounting_id<span class="o">}</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
@@ -21276,11 +21241,11 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 <span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/accounting/{accounting_id}'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/accounting/{accounting_id}</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/accounting/{accounting_id}</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
@@ -21326,13 +21291,13 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Delete an accounting record</p>
+<p>Get accounting record by accounting_id</p>
 
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
 <h3 id='http-request-73'>HTTP Request</h3>
-<p><code>DELETE https://api.cardbo.info/api/v6/accounting/{accounting_id}</code></p>
+<p><code>GET https://api.cardbo.info/api/v6/accounting/{accounting_id}</code></p>
 <h3 id='request-73'>Request</h3><h4 id='headers-70'>Headers</h4>
 <table><thead>
 <tr>
@@ -21347,7 +21312,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h4 id='path-parameters-24'>Path Parameters</h4>
+<h4 id='path-parameters-23'>Path Parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -21473,6 +21438,215 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>error message</td>
 </tr>
 </tbody></table>
+<h2 id='16-8-delete-an-accounting-record'>16-8 Delete an accounting record</h2>
+<blockquote>
+<p>Delete an accounting record:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> DELETE <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/accounting/<span class="o">{</span>accounting_id<span class="o">}</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/accounting/{accounting_id}'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/accounting/{accounting_id}</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"午餐"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AB99999999"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rewards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"reward_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"現金"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"reward_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.83</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Delete an accounting record</p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+<h3 id='http-request-74'>HTTP Request</h3>
+<p><code>DELETE https://api.cardbo.info/api/v6/accounting/{accounting_id}</code></p>
+<h3 id='request-74'>Request</h3><h4 id='headers-71'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='path-parameters-24'>Path Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accounting_id</td>
+<td>accounting id</td>
+</tr>
+</tbody></table>
+<h3 id='response-74'>Response</h3><h4 id='success-74'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accounting_id</td>
+<td>string</td>
+<td></td>
+<td>accotungin id</td>
+</tr>
+<tr>
+<td>user</td>
+<td>User</td>
+<td></td>
+<td>User object</td>
+</tr>
+<tr>
+<td>card</td>
+<td>Card</td>
+<td></td>
+<td>Card object</td>
+</tr>
+<tr>
+<td>mobilepay</td>
+<td>MobilePay</td>
+<td></td>
+<td>MobilePay object</td>
+</tr>
+<tr>
+<td>invoice</td>
+<td>Invoice</td>
+<td></td>
+<td>Invoice object</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>int</td>
+<td></td>
+<td>how much money of the record</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>description of the record</td>
+</tr>
+<tr>
+<td>store</td>
+<td>Store</td>
+<td></td>
+<td>Store object</td>
+</tr>
+<tr>
+<td>store_name</td>
+<td>string</td>
+<td></td>
+<td>store name when the store is not in our database</td>
+</tr>
+<tr>
+<td>date</td>
+<td>int</td>
+<td></td>
+<td>date of the expese in timestamp</td>
+</tr>
+<tr>
+<td>rewards</td>
+<td>[]AccountingReward</td>
+<td></td>
+<td>array of AccountingReward object</td>
+</tr>
+<tr>
+<td>invoice_type</td>
+<td>int</td>
+<td>QRCode: <code>1</code> <br/> Carrier: <code>2</code> <br/> NoInvoice: <code>3</code></td>
+<td>invoice tpye of the record</td>
+</tr>
+<tr>
+<td>pending</td>
+<td>string</td>
+<td></td>
+<td>is the record in pending or not</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>int</td>
+<td></td>
+<td>create time in timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>int</td>
+<td></td>
+<td>update time in timestamp</td>
+</tr>
+</tbody></table>
+<h4 id='error-74'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
 <h2 id='16-9-get-monthly-accounting-records'>16-9 Get monthly accounting records</h2>
 <blockquote>
 <p>Get monthly accounting records:</p>
@@ -21548,9 +21722,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
-<h3 id='http-request-74'>HTTP Request</h3>
+<h3 id='http-request-75'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/accountings/year/{year}</code></p>
-<h3 id='request-74'>Request</h3><h4 id='headers-71'>Headers</h4>
+<h3 id='request-75'>Request</h3><h4 id='headers-72'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -21576,7 +21750,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>year</td>
 </tr>
 </tbody></table>
-<h3 id='response-74'>Response</h3><h4 id='success-74'>Success</h4>
+<h3 id='response-75'>Response</h3><h4 id='success-75'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -21604,7 +21778,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>array of AccountingRecord</td>
 </tr>
 </tbody></table>
-<h4 id='error-74'>Error</h4>
+<h4 id='error-75'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -21677,9 +21851,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
-<h3 id='http-request-75'>HTTP Request</h3>
+<h3 id='http-request-76'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/invoices/unrecorded</code></p>
-<h3 id='request-75'>Request</h3><h4 id='headers-72'>Headers</h4>
+<h3 id='request-76'>Request</h3><h4 id='headers-73'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -21693,7 +21867,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h3 id='response-75'>Response</h3><h4 id='success-75'>Success</h4>
+<h3 id='response-76'>Response</h3><h4 id='success-76'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -21817,7 +21991,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>update time in timestamp</td>
 </tr>
 </tbody></table>
-<h4 id='error-75'>Error</h4>
+<h4 id='error-76'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -21886,9 +22060,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
-<h3 id='http-request-76'>HTTP Request</h3>
+<h3 id='http-request-77'>HTTP Request</h3>
 <p><code>PUT https://api.cardbo.info/api/v6/invoices/archive</code></p>
-<h3 id='request-76'>Request</h3><h4 id='headers-73'>Headers</h4>
+<h3 id='request-77'>Request</h3><h4 id='headers-74'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -21902,7 +22076,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h3 id='response-76'>Response</h3><h4 id='success-76'>Success</h4>
+<h3 id='response-77'>Response</h3><h4 id='success-77'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -21916,7 +22090,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>no result</td>
 </tr>
 </tbody></table>
-<h4 id='error-76'>Error</h4>
+<h4 id='error-77'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -21988,9 +22162,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
-<h3 id='http-request-77'>HTTP Request</h3>
+<h3 id='http-request-78'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/invoice/qrcode</code></p>
-<h3 id='request-77'>Request</h3><h4 id='headers-74'>Headers</h4>
+<h3 id='request-78'>Request</h3><h4 id='headers-75'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -22004,7 +22178,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h4 id='queries-13'>Queries</h4>
+<h4 id='queries-14'>Queries</h4>
 <table><thead>
 <tr>
 <th>Query</th>
@@ -22020,7 +22194,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>the left part of the QR Code on invoice</td>
 </tr>
 </tbody></table>
-<h3 id='response-77'>Response</h3><h4 id='success-77'>Success</h4>
+<h3 id='response-78'>Response</h3><h4 id='success-78'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -22094,7 +22268,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>the store of the invoice</td>
 </tr>
 </tbody></table>
-<h4 id='error-77'>Error</h4>
+<h4 id='error-78'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -22167,9 +22341,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
-<h3 id='http-request-78'>HTTP Request</h3>
+<h3 id='http-request-79'>HTTP Request</h3>
 <p><code>PUT https://api.cardbo.info/api/v6/reward/order</code></p>
-<h3 id='request-78'>Request</h3><h4 id='headers-75'>Headers</h4>
+<h3 id='request-79'>Request</h3><h4 id='headers-76'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -22205,7 +22379,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>order array of offer id</td>
 </tr>
 </tbody></table>
-<h3 id='response-78'>Response</h3><h4 id='success-78'>Success</h4>
+<h3 id='response-79'>Response</h3><h4 id='success-79'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -22219,7 +22393,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>NA</td>
 </tr>
 </tbody></table>
-<h4 id='error-78'>Error</h4>
+<h4 id='error-79'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -22444,9 +22618,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
-<h3 id='http-request-79'>HTTP Request</h3>
+<h3 id='http-request-80'>HTTP Request</h3>
 <p><code>POST https://api.cardbo.info/api/v6/questionnaire</code></p>
-<h3 id='request-79'>Request</h3><h4 id='headers-76'>Headers</h4>
+<h3 id='request-80'>Request</h3><h4 id='headers-77'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -22491,7 +22665,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 - ELECTRONIC BILL: <code>options</code> & <code>tag</code> cannot be set </br>
 - ETICKET: <code>etickets</code> is required
 </aside>
-<h3 id='response-79'>Response</h3><h4 id='success-79'>Success</h4>
+<h3 id='response-80'>Response</h3><h4 id='success-80'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -22525,7 +22699,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>update time in timestamp</td>
 </tr>
 </tbody></table>
-<h4 id='error-79'>Error</h4>
+<h4 id='error-80'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -22750,9 +22924,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
-<h3 id='http-request-80'>HTTP Request</h3>
+<h3 id='http-request-81'>HTTP Request</h3>
 <p><code>PUT https://api.cardbo.info/api/v6/questionnaire/{questionnaire_id}</code></p>
-<h3 id='request-80'>Request</h3><h4 id='headers-77'>Headers</h4>
+<h3 id='request-81'>Request</h3><h4 id='headers-78'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -22809,7 +22983,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 - ELECTRONIC BILL: <code>options</code> & <code>tag</code> cannot be set </br>
 - ETICKET: <code>etickets</code> is required
 </aside>
-<h3 id='response-80'>Response</h3><h4 id='success-80'>Success</h4>
+<h3 id='response-81'>Response</h3><h4 id='success-81'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -22843,7 +23017,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>update time in timestamp</td>
 </tr>
 </tbody></table>
-<h4 id='error-80'>Error</h4>
+<h4 id='error-81'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -22968,9 +23142,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
-<h3 id='http-request-81'>HTTP Request</h3>
+<h3 id='http-request-82'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/questionnaire/id/{questionnaire_id}</code></p>
-<h3 id='request-81'>Request</h3><h4 id='headers-78'>Headers</h4>
+<h3 id='request-82'>Request</h3><h4 id='headers-79'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -22996,7 +23170,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>questionnaire id</td>
 </tr>
 </tbody></table>
-<h3 id='response-81'>Response</h3><h4 id='success-81'>Success</h4>
+<h3 id='response-82'>Response</h3><h4 id='success-82'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23030,7 +23204,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>update time in timestamp</td>
 </tr>
 </tbody></table>
-<h4 id='error-81'>Error</h4>
+<h4 id='error-82'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23203,9 +23377,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
-<h3 id='http-request-82'>HTTP Request</h3>
+<h3 id='http-request-83'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/questionnaire/card/{card_id}</code></p>
-<h3 id='request-82'>Request</h3><h4 id='headers-79'>Headers</h4>
+<h3 id='request-83'>Request</h3><h4 id='headers-80'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23231,7 +23405,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>card id</td>
 </tr>
 </tbody></table>
-<h3 id='response-82'>Response</h3><h4 id='success-82'>Success</h4>
+<h3 id='response-83'>Response</h3><h4 id='success-83'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23250,7 +23424,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>CardQuestionnaireAnswer object</td>
 </tr>
 </tbody></table>
-<h4 id='error-82'>Error</h4>
+<h4 id='error-83'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23377,9 +23551,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
-<h3 id='http-request-83'>HTTP Request</h3>
+<h3 id='http-request-84'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/questionnaires</code></p>
-<h3 id='request-83'>Request</h3><h4 id='headers-80'>Headers</h4>
+<h3 id='request-84'>Request</h3><h4 id='headers-81'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23393,7 +23567,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h3 id='response-83'>Response</h3><h4 id='success-83'>Success</h4>
+<h3 id='response-84'>Response</h3><h4 id='success-84'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23427,7 +23601,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>update time in timestamp</td>
 </tr>
 </tbody></table>
-<h4 id='error-83'>Error</h4>
+<h4 id='error-84'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23577,9 +23751,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
-<h3 id='http-request-84'>HTTP Request</h3>
+<h3 id='http-request-85'>HTTP Request</h3>
 <p><code>POST https://api.cardbo.info/api/v6/questionnaire/submit/{card_id}</code></p>
-<h3 id='request-84'>Request</h3><h4 id='headers-81'>Headers</h4>
+<h3 id='request-85'>Request</h3><h4 id='headers-82'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23630,7 +23804,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 - ELECTRONIC BILL: answer can only be <code>是</code> or <code>否</code> </br>
 - ETICKET: answer can only be the be <code>eticket_id<code>
 </aside>
-<h3 id='response-84'>Response</h3><h4 id='success-84'>Success</h4>
+<h3 id='response-85'>Response</h3><h4 id='success-85'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23644,7 +23818,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>no success response</td>
 </tr>
 </tbody></table>
-<h4 id='error-84'>Error</h4>
+<h4 id='error-85'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23716,9 +23890,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 
 <p>You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside></p>
-<h3 id='http-request-85'>HTTP Request</h3>
+<h3 id='http-request-86'>HTTP Request</h3>
 <p><code>POST https://api.cardbo.info/api/v6/eticket</code></p>
-<h3 id='request-85'>Request</h3><h4 id='headers-82'>Headers</h4>
+<h3 id='request-86'>Request</h3><h4 id='headers-83'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23754,7 +23928,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>image URL</td>
 </tr>
 </tbody></table>
-<h3 id='response-85'>Response</h3><h4 id='success-85'>Success</h4>
+<h3 id='response-86'>Response</h3><h4 id='success-86'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23778,7 +23952,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>image URL</td>
 </tr>
 </tbody></table>
-<h4 id='error-85'>Error</h4>
+<h4 id='error-86'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23837,9 +24011,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
-<h3 id='http-request-86'>HTTP Request</h3>
+<h3 id='http-request-87'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/eticket/{eticket_id}</code></p>
-<h3 id='request-86'>Request</h3><h4 id='headers-83'>Headers</h4>
+<h3 id='request-87'>Request</h3><h4 id='headers-84'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23865,7 +24039,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>eticket id</td>
 </tr>
 </tbody></table>
-<h3 id='response-86'>Response</h3><h4 id='success-86'>Success</h4>
+<h3 id='response-87'>Response</h3><h4 id='success-87'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23889,7 +24063,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>image URL</td>
 </tr>
 </tbody></table>
-<h4 id='error-86'>Error</h4>
+<h4 id='error-87'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23950,9 +24124,9 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside>
-<h3 id='http-request-87'>HTTP Request</h3>
+<h3 id='http-request-88'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/etickets</code></p>
-<h3 id='request-87'>Request</h3><h4 id='headers-84'>Headers</h4>
+<h3 id='request-88'>Request</h3><h4 id='headers-85'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23966,7 +24140,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h3 id='response-87'>Response</h3><h4 id='success-87'>Success</h4>
+<h3 id='response-88'>Response</h3><h4 id='success-88'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23990,7 +24164,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>image URL</td>
 </tr>
 </tbody></table>
-<h4 id='error-87'>Error</h4>
+<h4 id='error-88'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
