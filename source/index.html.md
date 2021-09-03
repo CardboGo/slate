@@ -278,90 +278,47 @@ tag_type    | int    | `1`: General </br> `2`: MobilePay | Tag type
 
 ## Offer
 
-Key                     | Type         | Enums | Description
------------------------ | ------------ | ----- | -----------
-offer_id                | string       | | offer id
-option                  | string       | | option name of the offer
-option_binding          | []string     | | array of offer id that binding the option
-bank                    | Bank         | | Bank object
-cards                   | []OfferCard  | | cards having the offer
-mobilepays              | []MobilePay  | | mobilepays having the offer
-independent_to_card     | bool         | | is the mobilepay offer independent to card (only for mobilepay offer)
-places                  | []Store      | | stores that can get the offer
-included_places         | []Store      | | stores that can get the offer
-excluded_places         | []Store      | | stores that ar excluded from the offer
-categories              | []string     | | offer categories
-url                     | string       | | offer source URL
-start_date              | int          | | offer start date in timestamp
-end_date                | int          | | offer end date in timestamp
-tags                    | []Tag        | | offer tags
-is_independent_reward   | bool         | | if offer is independent rewards (cannot be accumulated with non independent offers)
-reward_type             | int          | CASHBACK_PERCENTAGE: `1` <br/> CASHBACK_FIXED: `2` | reward type
-condition               | string       | | offer condition
-mobile_pay_binding      | []MobilePay  | | mobilepay needed to binding
-weekday                 | []int        | [`1`-`7`] | weekday that can get the offer
-time                    | string       | | time that can get the offer
-channel                 | string       | | channel to get the offer
-pay_method              | []MobilePay  | | mobilepay needed to use to get the offer
-register_needed         | bool         | | is offer need to register
-coupon_needed           | bool         | | is offer need to use the coupon
-min_cost                | OfferMinCost | | min cost to get the offer
-account_binding_needed  | bool         | | is needed to bind account to get the offer
-installment_required    | bool         | | is needed to have installment to get the offer
-installment_acceptable  | bool         | | can installment to get the offer
-installment_reward_type | int          | `依分期回饋`, `統一回饋` | the type of installment reward
-prior_event             | string       | | prior event condition to get the offer
-user_type               | string       | | user type to get the offer
-other_condition         | string       | | other condition to get the offer
-upper_bound_description | string       | | the deccription of all the upper bounds
-cash_upper_bound        | int          | | cashback upper bound value
-cash_upper_bound_unit   | string       | `筆`, `日`, `期`, `週`, `月`, `季`, `年`, `半年`, `檔期`, `總共` | cashback upper bound unit
-time_upper_bound        | int          | | time upper bound value
-time_upper_bound_unit   | string       | `筆`, `日`, `期`, `週`, `月`, `季`, `年`, `半年`, `檔期`, `總共` | time upper bound unit
-frequency_upper_bound   | int          | | frequency upper bound value
-sharing_upper_bound     | []string     | | array of offer id that share the cashback upper bound
-reward_content          | string       | | the content of the reward
-reward_description      | string       | | product description of the offer
-reward_name             | string       | | reward name of the offer
-reward_value            | float        | | reward value of the offer
-creator                 | string       | | creator administrator id
-created_at              | int          | | create time in timestamp
-updated_at              | int          | | update time in timestamp
-examiner                | string       | | examiner  administrator id
-examined_at             | int          | | examine time in timestamp
-status                  | int          | PENDING: `1` <br/> FAILED: `2` <br/> PASSED: `3` | status
-comment                 | string       | | comment for administrator
-
-## OfferCard
-
-Key        | Type    | Enums                                                        | Description
----------- | ------- | ------------------------------------------------------------ | -----------
-card_id    | string  |                                                              | card id
-issuer     | string  | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
-level      | int     | [`1`-`8`]                                                    | level of the card
-
-## OfferMinCost
-
-Key         | Type   | Enums | Description
------------ | ------ | ----- | -----------
-unit_number | int    | | unit numner of the min cost
-unit        | string | `筆`, `日`, `期`, `週`, `月`, `季`, `年`, `半年`, `檔期`, `總共` | unit of the min cost
-restriction | string | `個別滿`, `總共滿`, `每滿` | min cost restriction
-amount      | int    | | amount of the min cost
-
-## OfferRecommendation
-
-Key                  | Type      | Enums     | Description
--------------------- | --------- | --------- | -----------
-card                 | Card      |           | Card object
-mobilepay            | MobilePay |           | MobilePay object
-offers               | []Offer   |           | array of Offer object
-rating               | float     |           | card rating from 0 to 1
-star                 | int       | [`1`-`5`] | number of star convert from rating from 1 to 5
-max_cashback         | float     |           | max cashback value accumulated from all offers
-max_cashback_offers  | []string  |           | array of offer id which is including in max cashback
-cashback_upper_bound | int       |           | min cashback upper bound from all offers
-cashback_amount      | int       |           | amount getting from max cashback
+Parameter               | Type              | Enums | Description
+----------------------- | ----------------- | ----- | -----------
+option_array            | []OfferOption     |       | Offer options for user questionnaire
+offer_bank              | []OfferBank       |       | All bank of card can get the offer
+excluded_cards          | []OfferCard       |       | Cards excluded from bank offer
+cards                   | []OfferCard       |       | Array of OfferCard
+mobilepay_array         | []OfferMobilePay  |       | mobile pays can get the offer
+mobilepay_option        | int               | `1`: 不限制 </br> `2`: 限定帳戶綁定 </br> `3`: 限定綁定信用卡 | Option of the mobile pays to get the offer
+eticket_payments        | []ETicket         |       | E-ticket of the card to use to get the offer
+stores                  | []OfferStore      |       | Stores to get the offer
+mpt_included_stores     | []OfferStore      |       | Stores that can included for mobile pay
+excluded_stores         | []OfferStore      |       | Stores that are excluded from the tags
+url                     | string            |       | Offer URL
+start_date              | int               |       | Offer start date in timeStamp
+end_date                | int               |       | Offer end date in timeStamp
+general_tags            | []Tag             |       | Tags which the type is general
+mobilepay_tags          | []Tag             |       | Tags which the type is mobilepay
+excluded_tags           | []Tag             |       | Tags excluded from the places
+is_independent_reward   | bool              |       | Is the offer is independent or not
+reward_type             | int               | `1`: 現金回饋-趴數 </br> `2`: 現金回饋-固定值 | Reward type
+pre_conditions          | []string          |       | 事前問卷
+post_conditions         | []string          |       | 事後問卷
+mobile_pay_binding      | []MobilePay       |       | Mobile pays which need to bind to get the offer
+weekday                 | []int             | [`1`-`7`] | The day in a week that can get the offer
+month_days              | []int             | [`1`-`31`] | The day in a month that can get the offer
+time                    | string            |       | The time in a day that can get the offer
+pay_methods             | []OfferMobilePay  |       | Mobile pays to use to get the offer
+register_url            | string            |       | 登錄網址
+coupon_code             | string            |       | 優惠代碼
+discount_url            | string            |       | 專屬連結
+account_binding_type    | int               | `0`: 不限制 </br> `1`: 必須是 </br> `2`: 必須否 | Need to bind account
+account_name            | string            |       | Account name to bind
+electronic_bill_type    | int               | `0`: 不限制 </br> `1`: 必須是 </br> `2`: 必須否 | Need to apply electronic biil
+installment_required    | bool              |       | Need to intall
+installment_acceptable  | bool              |       | Can installment get the offer
+installment_reward_type | string            | [`依分期回饋`, `統一回饋`] | The type of the installemnt offer
+note                    | string            |       | Note
+upper_bounds            | []OfferUpperBound |       | Upper bounds
+reward_content_type     | int               | `1`: 優惠獨立計算 </br> `2`: 優惠累積計算 </br> `3`: 優惠分段累積計算 | Reward content type
+mincost_type            | int               | `1`: 沒有最低消費限制 </br> `2`: 當下消費單筆滿 </br> `3`: 當下消費每滿 </br> `4`: 單一通路總共滿 </br> `5`: 單一通路個別滿 </br> `6`: 單一通路每滿 </br> `7`: 全通路總共滿 </br> `8`: 全通路個別滿 </br> `9`: 全通路每滿 </br> `10`: 一般消費總共滿 </br> `11`: 一般消費個別滿 </br> `12`: 一般消費每滿 </br> `13`: 國內一般消費總共滿 </br> `14`: 國內一般消費個別滿 </br> `15`: 國內一般消費每滿 </br> `16`: 總消費總共滿 </br> `17`: 總消費個別滿 </br> `18`: 總消費每滿 | Minimum cost type
+reward_contents         | []RewardContent   |       | Reward contents
 
 ## CashbackCoin
 
@@ -6919,11 +6876,10 @@ curl --request POST \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
-    "options": [
-      "OPS_1"
-    ],
-    "options_binding": [
-      "5f9a747p00c2abf3d4a54d4q"
+    "option_array": [
+      {
+        "option": "OPT-1"
+      }
     ],
     "offer_bank": {
       "bank": {
@@ -6960,19 +6916,28 @@ curl --request POST \
         "eticket_id": "5f9a747p00c2abf3d4a54d4q"
       }
     ],
-    "places": [
+    "stores": [
       {
-        "store_id": "5f9a747p00c2abf3d4a54d4q",
+        "store": {
+          "store_id": "5f9a747p00c2abf3d4a54d4q"
+        },
+        "channel": 0
       }
     ],
-    "mpt_included_places": [
+    "mpt_included_stores": [
       {
-        "store_id": "5f9a747p00c2abf3d4a54d4q",
+        "store": {
+          "store_id": "5f9a747p00c2abf3d4a54d4q"
+        },
+        "channel": 1
       }
     ],
-    "excluded_places": [
+    "excluded_stores": [
       {
-        "store_id": "5f9a747p00c2abf3d4a54d4q",
+        "store": {
+          "store_id": "5f9a747p00c2abf3d4a54d4q"
+        },
+        "channel": 2
       }
     ],
     "url": "https://url.com",
@@ -7067,11 +7032,10 @@ import requests
 url = 'https://api.cardbo.info/api/v6/offer/pending'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
-  "options": [
-    "OPS_1"
-  ],
-  "options_binding": [
-    "5f9a747p00c2abf3d4a54d4q"
+  "option_array": [
+    {
+      "option": "OPT-1"
+    }
   ],
   "offer_bank": {
     "bank": {
@@ -7108,19 +7072,28 @@ data = {
       "eticket_id": "5f9a747p00c2abf3d4a54d4q"
     }
   ],
-  "places": [
+  "stores": [
     {
-      "store_id": "5f9a747p00c2abf3d4a54d4q",
+      "store": {
+        "store_id": "5f9a747p00c2abf3d4a54d4q"
+      },
+      "channel": 0
     }
   ],
-  "mpt_included_places": [
+  "mpt_included_stores": [
     {
-      "store_id": "5f9a747p00c2abf3d4a54d4q",
+      "store": {
+        "store_id": "5f9a747p00c2abf3d4a54d4q"
+      },
+      "channel": 1
     }
   ],
-  "excluded_places": [
+  "excluded_stores": [
     {
-      "store_id": "5f9a747p00c2abf3d4a54d4q",
+      "store": {
+        "store_id": "5f9a747p00c2abf3d4a54d4q"
+      },
+      "channel": 2
     }
   ],
   "url": "https://url.com",
@@ -7215,11 +7188,10 @@ const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
-  options: [
-    "OPS_1"
-  ],
-  options_binding: [
-    "5f9a747p00c2abf3d4a54d4q"
+  option_array: [
+    {
+      option: "OPT-1"
+    }
   ],
   offer_bank: {
     bank: {
@@ -7256,19 +7228,28 @@ data = {
       eticket_id: "5f9a747p00c2abf3d4a54d4q"
     }
   ],
-  places: [
+  stores: [
     {
-      store_id: "5f9a747p00c2abf3d4a54d4q",
+      store: {
+        store_id: "5f9a747p00c2abf3d4a54d4q"
+      },
+      channel: 0
     }
   ],
-  mpt_included_places: [
+  mpt_included_stores: [
     {
-      store_id: "5f9a747p00c2abf3d4a54d4q",
+      store: {
+        store_id: "5f9a747p00c2abf3d4a54d4q"
+      },
+      channel: 1
     }
   ],
-  excluded_places: [
+  excluded_stores: [
     {
-      store_id: "5f9a747p00c2abf3d4a54d4q",
+      store: {
+        store_id: "5f9a747p00c2abf3d4a54d4q"
+      },
+      channel: 2
     }
   ],
   url: "https://url.com",
@@ -7374,11 +7355,11 @@ axios.post('https://api.cardbo.info/api/v6/offer/pending', data, {
   "message": "Ok",
   "result": {
     "offer_id": "5f9a747p00c2abf3d4a54d4q",
-    "options": [
-      "OPS_1"
-    ],
-    "options_binding": [
-      "5f9a747p00c2abf3d4a54d4q"
+    "option_array": [
+      {
+        "option": "OPT-1",
+        "bindings": []
+      }
     ],
     "offer_bank": {
       "bank": {
@@ -7415,19 +7396,28 @@ axios.post('https://api.cardbo.info/api/v6/offer/pending', data, {
         "eticket_info": "..."
       }
     ],
-    "places": [
+    "stores": [
       {
-        "store_info": "...",
+        "store": {
+          "{store_info}": "..."
+        },
+        "channel": 0
       }
     ],
-    "mpt_included_places": [
+    "mpt_included_stores": [
       {
-        "store_info": "...",
+        "store": {
+          "{store_info}": "..."
+        },
+        "channel": 1
       }
     ],
-    "excluded_places": [
+    "excluded_stores": [
       {
-        "store_info": "...",
+        "store": {
+          "{store_info}": "..."
+        },
+        "channel": 2
       }
     ],
     "url": "https://url.com",
@@ -7540,17 +7530,16 @@ Authorization | Bearer token | API access token
 
 Parameter               | Required | Type              | Enums | Description
 ----------------------- | -------- | ----------------- | ----- | -----------
-options                 | false    | []string          |       | 方案 (事前問卷)
-options_binding         | false    | []string          |       | 不同方案組合 (`offer_id`)
+option_array            | false    | []OfferOption     |       | Offer options for user questionnaire
 offer_bank              | false    | []OfferBank       |       | All bank of card can get the offer
 excluded_cards          | false    | []OfferCard       |       | Cards excluded from bank offer
 cards                   | false    | []OfferCard       |       | Array of OfferCard
 mobilepay_array         | false    | []OfferMobilePay  |       | mobile pays can get the offer
 mobilepay_option        | false    | int               | `1`: 不限制 </br> `2`: 限定帳戶綁定 </br> `3`: 限定綁定信用卡 | Option of the mobile pays to get the offer
 eticket_payments        | false    | []ETicket         |       | E-ticket of the card to use to get the offer
-places                  | false    | []Store           |       | Places to get the offer
-mpt_included_places     | false    | []Store           |       | Stores that can included for mobile pay tags
-excluded_places         | false    | []Store           |       | Stores that are excluded from the tags
+stores                  | false    | []OfferStore      |       | Stores to get the offer
+mpt_included_stores     | false    | []OfferStore      |       | Stores that can included for mobile pay
+excluded_stores         | false    | []OfferStore      |       | Stores that are excluded from the tags
 url                     | true     | string            |       | Offer URL
 start_date              | true     | int               |       | Offer start date in timeStamp
 end_date                | true     | int               |       | Offer end date in timeStamp
@@ -7581,6 +7570,12 @@ reward_content_type     | true     | int               | `1`: 優惠獨立計算
 mincost_type            | true     | int               | `1`: 沒有最低消費限制 </br> `2`: 當下消費單筆滿 </br> `3`: 當下消費每滿 </br> `4`: 單一通路總共滿 </br> `5`: 單一通路個別滿 </br> `6`: 單一通路每滿 </br> `7`: 全通路總共滿 </br> `8`: 全通路個別滿 </br> `9`: 全通路每滿 </br> `10`: 一般消費總共滿 </br> `11`: 一般消費個別滿 </br> `12`: 一般消費每滿 </br> `13`: 國內一般消費總共滿 </br> `14`: 國內一般消費個別滿 </br> `15`: 國內一般消費每滿 </br> `16`: 總消費總共滿 </br> `17`: 總消費個別滿 </br> `18`: 總消費每滿 | Minimum cost type
 reward_contents         | true     | []RewardContent   |       | Reward contents
 
+*OfferOption*
+
+Parameter | Required | Type   | Description
+--------- | -------- | ------ | -----------
+option    | true     | string | 方案 (事前問卷)
+
 *OfferBank*
 
 Parameter | Required | Type         | Description
@@ -7609,6 +7604,13 @@ Parameter    | Required | Type      | Enums | Description
 ------------ | -------- | --------- | ----- | -----------
 mobilepay    | true     | MobilePay |       | Mobile pay which can get the offer
 payment_type | true     | string    | `1`: 感應支付(NFC) </br> `2`: 掃碼支付 </br> `3`:條碼支付 | Payment tyoe to use to get the offer
+
+*OfferStore*
+
+Parameter | Required | Type  | Enums | Description
+--------- | -------- | ----- | ----- | -----------
+store     | true     | Store |       | Store object
+channel   | true     | int   | `0`: No restriction </br> `1`: Physical store </br> `2`: Web </br> `3`: App | The channel of the store
 
 *OfferUpperBound*
 
@@ -7639,17 +7641,16 @@ reward_value         | true     | float   |        | reward value
 
 Parameter               | Type              | Enums | Description
 ----------------------- | ----------------- | ----- | -----------
-options                 | []string          |       | 方案 (事前問卷)
-options_binding         | []string          |       | 不同方案組合 (`offer_id`)
+option_array            | []OfferOption     |       | Offer options for user questionnaire
 offer_bank              | []OfferBank       |       | All bank of card can get the offer
 excluded_cards          | []OfferCard       |       | Cards excluded from bank offer
 cards                   | []OfferCard       |       | Array of OfferCard
 mobilepay_array         | []OfferMobilePay  |       | mobile pays can get the offer
 mobilepay_option        | int               | `1`: 不限制 </br> `2`: 限定帳戶綁定 </br> `3`: 限定綁定信用卡 | Option of the mobile pays to get the offer
 eticket_payments        | []ETicket         |       | E-ticket of the card to use to get the offer
-places                  | []Store           |       | Places to get the offer
-mpt_included_places     | []Store           |       | Stores that can included for mobile pay tags
-excluded_places         | []Store           |       | Stores that are excluded from the tags
+stores                  | []OfferStore      |       | Stores to get the offer
+mpt_included_stores     | []OfferStore      |       | Stores that can included for mobile pay
+excluded_stores         | []OfferStore      |       | Stores that are excluded from the tags
 url                     | string            |       | Offer URL
 start_date              | int               |       | Offer start date in timeStamp
 end_date                | int               |       | Offer end date in timeStamp
@@ -7679,6 +7680,12 @@ upper_bounds            | []OfferUpperBound |       | Upper bounds
 reward_content_type     | int               | `1`: 優惠獨立計算 </br> `2`: 優惠累積計算 </br> `3`: 優惠分段累積計算 | Reward content type
 mincost_type            | int               | `1`: 沒有最低消費限制 </br> `2`: 當下消費單筆滿 </br> `3`: 當下消費每滿 </br> `4`: 單一通路總共滿 </br> `5`: 單一通路個別滿 </br> `6`: 單一通路每滿 </br> `7`: 全通路總共滿 </br> `8`: 全通路個別滿 </br> `9`: 全通路每滿 </br> `10`: 一般消費總共滿 </br> `11`: 一般消費個別滿 </br> `12`: 一般消費每滿 </br> `13`: 國內一般消費總共滿 </br> `14`: 國內一般消費個別滿 </br> `15`: 國內一般消費每滿 </br> `16`: 總消費總共滿 </br> `17`: 總消費個別滿 </br> `18`: 總消費每滿 | Minimum cost type
 reward_contents         | []RewardContent   |       | Reward contents
+
+*OfferOption*
+
+Parameter | Required | Type   | Description
+--------- | -------- | ------ | -----------
+option    | true     | string | 方案 (事前問卷)
 
 *OfferBank*
 
@@ -7711,6 +7718,13 @@ Parameter    | Type      | Enums | Description
 ------------ | --------- | ----- | -----------
 mobilepay    | MobilePay |       | Mobile pay which can get the offer
 payment_type | string    | `1`: 感應支付(NFC) </br> `2`: 掃碼支付 </br> `3`:條碼支付 | Payment tyoe to use to get the offer
+
+*OfferStore*
+
+Parameter | Required | Type  | Enums | Description
+--------- | -------- | ----- | ----- | -----------
+store     | true     | Store |       | Store object
+channel   | true     | int   | `0`: No restriction </br> `1`: Physical store </br> `2`: Web </br> `3`: App | The channel of the store
 
 *OfferUpperBound*
 
@@ -7784,11 +7798,11 @@ axios.get('https://api.cardbo.info/api/v6/offers/pending?page=1', {
   "result": [
     {
       "offer_id": "5f9a747p00c2abf3d4a54d4q",
-      "options": [
-        "OPS_1"
-      ],
-      "options_binding": [
-        "5f9a747p00c2abf3d4a54d4q"
+      "option_array": [
+        {
+          "option": "OPT-1",
+          "bindings": []
+        }
       ],
       "offer_bank": {
         "bank": {
@@ -7825,19 +7839,28 @@ axios.get('https://api.cardbo.info/api/v6/offers/pending?page=1', {
           "eticket_info": "..."
         }
       ],
-      "places": [
+      "stores": [
         {
-          "store_info": "...",
+          "store": {
+            "{store_info}": "..."
+          },
+          "channel": 0
         }
       ],
-      "mpt_included_places": [
+      "mpt_included_stores": [
         {
-          "store_info": "...",
+          "store": {
+            "{store_info}": "..."
+          },
+          "channel": 1
         }
       ],
-      "excluded_places": [
+      "excluded_stores": [
         {
-          "store_info": "...",
+          "store": {
+            "{store_info}": "..."
+          },
+          "channel": 2
         }
       ],
       "url": "https://url.com",
@@ -8109,11 +8132,11 @@ axios.get('https://api.cardbo.info/api/v6/offer/pending/5f9a747p00c2abf3d4a54d4q
   "message": "Ok",
   "result": {
     "offer_id": "5f9a747p00c2abf3d4a54d4q",
-    "options": [
-      "OPS_1"
-    ],
-    "options_binding": [
-      "5f9a747p00c2abf3d4a54d4q"
+    "option_array": [
+      {
+        "option": "OPT-1",
+        "bindings": []
+      }
     ],
     "offer_bank": {
       "bank": {
@@ -8150,19 +8173,28 @@ axios.get('https://api.cardbo.info/api/v6/offer/pending/5f9a747p00c2abf3d4a54d4q
         "eticket_info": "..."
       }
     ],
-    "places": [
+    "stores": [
       {
-        "store_info": "...",
+        "store": {
+          "{store_info}": "..."
+        },
+        "channel": 0
       }
     ],
-    "mpt_included_places": [
+    "mpt_included_stores": [
       {
-        "store_info": "...",
+        "store": {
+          "{store_info}": "..."
+        },
+        "channel": 1
       }
     ],
-    "excluded_places": [
+    "excluded_stores": [
       {
-        "store_info": "...",
+        "store": {
+          "{store_info}": "..."
+        },
+        "channel": 2
       }
     ],
     "url": "https://url.com",
@@ -8397,11 +8429,10 @@ curl --request PUT \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
-    "options": [
-      "OPS_1"
-    ],
-    "options_binding": [
-      "5f9a747p00c2abf3d4a54d4q"
+    "option_array": [
+      {
+        "option": "OPT-1"
+      }
     ],
     "offer_bank": {
       "bank": {
@@ -8438,19 +8469,28 @@ curl --request PUT \
         "eticket_id": "5f9a747p00c2abf3d4a54d4q"
       }
     ],
-    "places": [
+    "stores": [
       {
-        "store_id": "5f9a747p00c2abf3d4a54d4q",
+        "store": {
+          "store_id": "5f9a747p00c2abf3d4a54d4q"
+        },
+        "channel": 0
       }
     ],
-    "mpt_included_places": [
+    "mpt_included_stores": [
       {
-        "store_id": "5f9a747p00c2abf3d4a54d4q",
+        "store": {
+          "store_id": "5f9a747p00c2abf3d4a54d4q"
+        },
+        "channel": 1
       }
     ],
-    "excluded_places": [
+    "excluded_stores": [
       {
-        "store_id": "5f9a747p00c2abf3d4a54d4q",
+        "store": {
+          "store_id": "5f9a747p00c2abf3d4a54d4q"
+        },
+        "channel": 2
       }
     ],
     "url": "https://url.com",
@@ -8545,11 +8585,10 @@ import requests
 url = 'https://api.cardbo.info/api/v6/offer/pending/5f9a747p00c2abf3d4a54d4q'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
-  "options": [
-    "OPS_1"
-  ],
-  "options_binding": [
-    "5f9a747p00c2abf3d4a54d4q"
+  "option_array": [
+    {
+      "option": "OPT-1"
+    }
   ],
   "offer_bank": {
     "bank": {
@@ -8586,19 +8625,28 @@ data = {
       "eticket_id": "5f9a747p00c2abf3d4a54d4q"
     }
   ],
-  "places": [
+  "stores": [
     {
-      "store_id": "5f9a747p00c2abf3d4a54d4q",
+      "store": {
+        "store_id": "5f9a747p00c2abf3d4a54d4q"
+      },
+      "channel": 0
     }
   ],
-  "mpt_included_places": [
+  "mpt_included_stores": [
     {
-      "store_id": "5f9a747p00c2abf3d4a54d4q",
+      "store": {
+        "store_id": "5f9a747p00c2abf3d4a54d4q"
+      },
+      "channel": 1
     }
   ],
-  "excluded_places": [
+  "excluded_stores": [
     {
-      "store_id": "5f9a747p00c2abf3d4a54d4q",
+      "store": {
+        "store_id": "5f9a747p00c2abf3d4a54d4q"
+      },
+      "channel": 2
     }
   ],
   "url": "https://url.com",
@@ -8693,11 +8741,10 @@ const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
-  options: [
-    "OPS_1"
-  ],
-  options_binding: [
-    "5f9a747p00c2abf3d4a54d4q"
+  option_array: [
+    {
+      option: "OPT-1"
+    }
   ],
   offer_bank: {
     bank: {
@@ -8734,19 +8781,28 @@ data = {
       eticket_id: "5f9a747p00c2abf3d4a54d4q"
     }
   ],
-  places: [
+  stores: [
     {
-      store_id: "5f9a747p00c2abf3d4a54d4q",
+      store: {
+        store_id: "5f9a747p00c2abf3d4a54d4q"
+      },
+      channel: 0
     }
   ],
-  mpt_included_places: [
+  mpt_included_stores: [
     {
-      store_id: "5f9a747p00c2abf3d4a54d4q",
+      store: {
+        store_id: "5f9a747p00c2abf3d4a54d4q"
+      },
+      channel: 1
     }
   ],
-  excluded_places: [
+  excluded_stores: [
     {
-      store_id: "5f9a747p00c2abf3d4a54d4q",
+      store: {
+        store_id: "5f9a747p00c2abf3d4a54d4q"
+      },
+      channel: 2
     }
   ],
   url: "https://url.com",
@@ -8848,15 +8904,15 @@ axios.put('https://api.cardbo.info/api/v6/offer/pending', data, {
 
 ```json
 {
-  "code": 201,
+  "code": 200,
   "message": "Ok",
   "result": {
     "offer_id": "5f9a747p00c2abf3d4a54d4q",
-    "options": [
-      "OPS_1"
-    ],
-    "options_binding": [
-      "5f9a747p00c2abf3d4a54d4q"
+    "option_array": [
+      {
+        "option": "OPT-1",
+        "bindings": []
+      }
     ],
     "offer_bank": {
       "bank": {
@@ -8893,19 +8949,28 @@ axios.put('https://api.cardbo.info/api/v6/offer/pending', data, {
         "eticket_info": "..."
       }
     ],
-    "places": [
+    "stores": [
       {
-        "store_info": "...",
+        "store": {
+          "{store_info}": "..."
+        },
+        "channel": 0
       }
     ],
-    "mpt_included_places": [
+    "mpt_included_stores": [
       {
-        "store_info": "...",
+        "store": {
+          "{store_info}": "..."
+        },
+        "channel": 1
       }
     ],
-    "excluded_places": [
+    "excluded_stores": [
       {
-        "store_info": "...",
+        "store": {
+          "{store_info}": "..."
+        },
+        "channel": 2
       }
     ],
     "url": "https://url.com",
@@ -8996,7 +9061,7 @@ axios.put('https://api.cardbo.info/api/v6/offer/pending', data, {
 }
 ```
 
-Insert pending offer
+Update pending offer
 
 <aside class="notice">
 You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
@@ -9018,25 +9083,24 @@ Authorization | Bearer token | API access token
 
 Parameter               | Required | Type              | Enums | Description
 ----------------------- | -------- | ----------------- | ----- | -----------
-options                 | false    | []string          |       | 方案 (事前問卷)
-options_binding         | false    | []string          |       | 不同方案組合 (`offer_id`)
+option_array            | false    | []OfferOption     |       | Offer options for user questionnaire
 offer_bank              | false    | []OfferBank       |       | All bank of card can get the offer
 excluded_cards          | false    | []OfferCard       |       | Cards excluded from bank offer
 cards                   | false    | []OfferCard       |       | Array of OfferCard
 mobilepay_array         | false    | []OfferMobilePay  |       | mobile pays can get the offer
 mobilepay_option        | false    | int               | `1`: 不限制 </br> `2`: 限定帳戶綁定 </br> `3`: 限定綁定信用卡 | Option of the mobile pays to get the offer
 eticket_payments        | false    | []ETicket         |       | E-ticket of the card to use to get the offer
-places                  | false    | []Store           |       | Places to get the offer
-mpt_included_places     | false    | []Store           |       | Stores that can included for mobile pay tags
-excluded_places         | false    | []Store           |       | Stores that are excluded from the tags
-url                     | false    | string            |       | Offer URL
-start_date              | false    | int               |       | Offer start date in timeStamp
-end_date                | false    | int               |       | Offer end date in timeStamp
+stores                  | false    | []OfferStore      |       | Stores to get the offer
+mpt_included_stores     | false    | []OfferStore      |       | Stores that can included for mobile pay
+excluded_stores         | false    | []OfferStore      |       | Stores that are excluded from the tags
+url                     | true     | string            |       | Offer URL
+start_date              | true     | int               |       | Offer start date in timeStamp
+end_date                | true     | int               |       | Offer end date in timeStamp
 general_tags            | false    | []Tag             |       | Tags which the type is general
 mobilepay_tags          | false    | []Tag             |       | Tags which the type is mobilepay
 excluded_tags           | false    | []Tag             |       | Tags excluded from the places
-is_independent_reward   | false    | bool              |       | Is the offer is independent or not
-reward_type             | false    | int               | `1`: 現金回饋-趴數 </br> `2`: 現金回饋-固定值 | Reward type
+is_independent_reward   | true     | bool              |       | Is the offer is independent or not
+reward_type             | true     | int               | `1`: 現金回饋-趴數 </br> `2`: 現金回饋-固定值 | Reward type
 pre_conditions          | false    | []string          |       | 事前問卷
 post_conditions         | false    | []string          |       | 事後問卷
 mobile_pay_binding      | false    | []MobilePay       |       | Mobile pays which need to bind to get the offer
@@ -9047,17 +9111,23 @@ pay_methods             | false    | []OfferMobilePay  |       | Mobile pays to 
 register_url            | false    | string            |       | 登錄網址
 coupon_code             | false    | string            |       | 優惠代碼
 discount_url            | false    | string            |       | 專屬連結
-account_binding_type    | false    | int               | `0`: 不限制 </br> `1`: 必須是 </br> `2`: 必須否 | Need to bind account
+account_binding_type    | true     | int               | `0`: 不限制 </br> `1`: 必須是 </br> `2`: 必須否 | Need to bind account
 account_name            | false    | string            |       | Account name to bind
-electronic_bill_type    | false    | int               | `0`: 不限制 </br> `1`: 必須是 </br> `2`: 必須否 | Need to apply electronic biil
-installment_required    | false    | bool              |       | Need to intall
-installment_acceptable  | false    | bool              |       | Can installment get the offer
+electronic_bill_type    | true     | int               | `0`: 不限制 </br> `1`: 必須是 </br> `2`: 必須否 | Need to apply electronic biil
+installment_required    | true     | bool              |       | Need to intall
+installment_acceptable  | true     | bool              |       | Can installment get the offer
 installment_reward_type | false    | string            | [`依分期回饋`, `統一回饋`] | The type of the installemnt offer
 note                    | false    | string            |       | Note
 upper_bounds            | false    | []OfferUpperBound |       | Upper bounds
-reward_content_type     | false    | int               | `1`: 優惠獨立計算 </br> `2`: 優惠累積計算 </br> `3`: 優惠分段累積計算 | Reward content type
-mincost_type            | false    | int               | `1`: 沒有最低消費限制 </br> `2`: 當下消費單筆滿 </br> `3`: 當下消費每滿 </br> `4`: 單一通路總共滿 </br> `5`: 單一通路個別滿 </br> `6`: 單一通路每滿 </br> `7`: 全通路總共滿 </br> `8`: 全通路個別滿 </br> `9`: 全通路每滿 </br> `10`: 一般消費總共滿 </br> `11`: 一般消費個別滿 </br> `12`: 一般消費每滿 </br> `13`: 國內一般消費總共滿 </br> `14`: 國內一般消費個別滿 </br> `15`: 國內一般消費每滿 </br> `16`: 總消費總共滿 </br> `17`: 總消費個別滿 </br> `18`: 總消費每滿 | Minimum cost type
-reward_contents         | false    | []RewardContent   |       | Reward contents
+reward_content_type     | true     | int               | `1`: 優惠獨立計算 </br> `2`: 優惠累積計算 </br> `3`: 優惠分段累積計算 | Reward content type
+mincost_type            | true     | int               | `1`: 沒有最低消費限制 </br> `2`: 當下消費單筆滿 </br> `3`: 當下消費每滿 </br> `4`: 單一通路總共滿 </br> `5`: 單一通路個別滿 </br> `6`: 單一通路每滿 </br> `7`: 全通路總共滿 </br> `8`: 全通路個別滿 </br> `9`: 全通路每滿 </br> `10`: 一般消費總共滿 </br> `11`: 一般消費個別滿 </br> `12`: 一般消費每滿 </br> `13`: 國內一般消費總共滿 </br> `14`: 國內一般消費個別滿 </br> `15`: 國內一般消費每滿 </br> `16`: 總消費總共滿 </br> `17`: 總消費個別滿 </br> `18`: 總消費每滿 | Minimum cost type
+reward_contents         | true     | []RewardContent   |       | Reward contents
+
+*OfferOption*
+
+Parameter | Required | Type   | Description
+--------- | -------- | ------ | -----------
+option    | true     | string | 方案 (事前問卷)
 
 *OfferBank*
 
@@ -9088,6 +9158,13 @@ Parameter    | Required | Type      | Enums | Description
 mobilepay    | true     | MobilePay |       | Mobile pay which can get the offer
 payment_type | true     | string    | `1`: 感應支付(NFC) </br> `2`: 掃碼支付 </br> `3`:條碼支付 | Payment tyoe to use to get the offer
 
+*OfferStore*
+
+Parameter | Required | Type  | Enums | Description
+--------- | -------- | ----- | ----- | -----------
+store     | true     | Store |       | Store object
+channel   | true     | int   | `0`: No restriction </br> `1`: Physical store </br> `2`: Web </br> `3`: App | The channel of the store
+
 *OfferUpperBound*
 
 Key                   | Required | Type     | Enums | Description
@@ -9117,17 +9194,16 @@ reward_value         | true     | float   |        | reward value
 
 Parameter               | Type              | Enums | Description
 ----------------------- | ----------------- | ----- | -----------
-options                 | []string          |       | 方案 (事前問卷)
-options_binding         | []string          |       | 不同方案組合 (`offer_id`)
+option_array            | []OfferOption     |       | Offer options for user questionnaire
 offer_bank              | []OfferBank       |       | All bank of card can get the offer
 excluded_cards          | []OfferCard       |       | Cards excluded from bank offer
 cards                   | []OfferCard       |       | Array of OfferCard
 mobilepay_array         | []OfferMobilePay  |       | mobile pays can get the offer
 mobilepay_option        | int               | `1`: 不限制 </br> `2`: 限定帳戶綁定 </br> `3`: 限定綁定信用卡 | Option of the mobile pays to get the offer
 eticket_payments        | []ETicket         |       | E-ticket of the card to use to get the offer
-places                  | []Store           |       | Places to get the offer
-mpt_included_places     | []Store           |       | Stores that can included for mobile pay tags
-excluded_places         | []Store           |       | Stores that are excluded from the tags
+stores                  | []OfferStore      |       | Stores to get the offer
+mpt_included_stores     | []OfferStore      |       | Stores that can included for mobile pay
+excluded_stores         | []OfferStore      |       | Stores that are excluded from the tags
 url                     | string            |       | Offer URL
 start_date              | int               |       | Offer start date in timeStamp
 end_date                | int               |       | Offer end date in timeStamp
@@ -9157,6 +9233,12 @@ upper_bounds            | []OfferUpperBound |       | Upper bounds
 reward_content_type     | int               | `1`: 優惠獨立計算 </br> `2`: 優惠累積計算 </br> `3`: 優惠分段累積計算 | Reward content type
 mincost_type            | int               | `1`: 沒有最低消費限制 </br> `2`: 當下消費單筆滿 </br> `3`: 當下消費每滿 </br> `4`: 單一通路總共滿 </br> `5`: 單一通路個別滿 </br> `6`: 單一通路每滿 </br> `7`: 全通路總共滿 </br> `8`: 全通路個別滿 </br> `9`: 全通路每滿 </br> `10`: 一般消費總共滿 </br> `11`: 一般消費個別滿 </br> `12`: 一般消費每滿 </br> `13`: 國內一般消費總共滿 </br> `14`: 國內一般消費個別滿 </br> `15`: 國內一般消費每滿 </br> `16`: 總消費總共滿 </br> `17`: 總消費個別滿 </br> `18`: 總消費每滿 | Minimum cost type
 reward_contents         | []RewardContent   |       | Reward contents
+
+*OfferOption*
+
+Parameter | Required | Type   | Description
+--------- | -------- | ------ | -----------
+option    | true     | string | 方案 (事前問卷)
 
 *OfferBank*
 
@@ -9189,6 +9271,13 @@ Parameter    | Type      | Enums | Description
 ------------ | --------- | ----- | -----------
 mobilepay    | MobilePay |       | Mobile pay which can get the offer
 payment_type | string    | `1`: 感應支付(NFC) </br> `2`: 掃碼支付 </br> `3`:條碼支付 | Payment tyoe to use to get the offer
+
+*OfferStore*
+
+Parameter | Required | Type  | Enums | Description
+--------- | -------- | ----- | ----- | -----------
+store     | true     | Store |       | Store object
+channel   | true     | int   | `0`: No restriction </br> `1`: Physical store </br> `2`: Web </br> `3`: App | The channel of the store
 
 *OfferUpperBound*
 
@@ -9238,6 +9327,893 @@ error | string | error message
 ## • Get formal offer by offer id
 
 ## • Update formal offer
+
+> Update formal offer:
+
+```shell
+curl --request PUT \
+  --url https://api.cardbo.info/api/v6/offer/formal/5f9a747p00c2abf3d4a54d4q \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "option_array": [
+      {
+        "option": "OPT-1"
+      }
+    ],
+    "offer_bank": {
+      "bank": {
+        "bank_id": "5f9a747p00c2abf3d4a54d4q"
+      },
+      "options": [
+        {
+          "issuer": "VISA",
+          "level": 5
+        }
+      ]
+    },
+    "excluded_cards": [
+      {
+        "card_id": "5f9a747p00c2abf3d4a54d4q"
+      }
+    ],
+    "cards": [
+      {
+        "card_id": "5f9a747p00c2abf3d4a54d4q"
+      }
+    ],
+    "mobilepay_array": [
+      {
+        "mobilepay": {
+          "mobilepay_id": "5f9a747p00c2abf3d4a54d4q"
+        },
+        "payment_type": 0
+      }
+    ],
+    "mobilepay_option": 0,
+    "eticket_payment": [
+      {
+        "eticket_id": "5f9a747p00c2abf3d4a54d4q"
+      }
+    ],
+    "stores": [
+      {
+        "store": {
+          "store_id": "5f9a747p00c2abf3d4a54d4q"
+        },
+        "channel": 0
+      }
+    ],
+    "mpt_included_stores": [
+      {
+        "store": {
+          "store_id": "5f9a747p00c2abf3d4a54d4q"
+        },
+        "channel": 1
+      }
+    ],
+    "excluded_stores": [
+      {
+        "store": {
+          "store_id": "5f9a747p00c2abf3d4a54d4q"
+        },
+        "channel": 2
+      }
+    ],
+    "url": "https://url.com",
+    "start_date": 1617601542000,
+    "end_date": 1617601542000,
+    "general_tags": [
+      {
+        "tag_id": "5f9a747p00c2abf3d4a54d4q",
+      }
+    ],
+    "mobilepay_tags": [
+      {
+        "tag_id": "5f9a747p00c2abf3d4a54d4q",
+      }
+    ],
+    "excluded_tags": [
+      {
+        "tag_id": "5f9a747p00c2abf3d4a54d4q",
+      }
+    ],
+    "is_independent_reward": false,
+    "reward_type": 1,
+    "pre_conditions": [
+      "pre1"
+    ],
+    "post_conditions": [
+      "post1"
+    ],
+    "mobile_pay_binding": [
+      {
+        "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+      }
+    ],
+    "weekday": [
+      1,
+      7
+    ],
+    "month_days": [
+      1,
+      2
+    ],
+    "time": "10:00-12:00",
+    "pay_methods": [
+      {
+        "mobilepay": {
+          "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+        },
+        "payment_type": 0
+      }
+    ],
+    "register_url": "https://www.www.www",
+    "coupon_code": "coupon",
+    "discount_url": "https://www.www.www",
+    "account_binding_type": 1,
+    "account_name": "account",
+    "electronic_bill_type": 1,
+    "installment_required": false,
+    "installment_acceptable": false,
+    "installment_reward_type": "依分期回饋",
+    "note": "",
+    "upper_bounds": [
+      {
+        "upperbound_id": "5f9a747p00c2abf3d4a54d4q",
+        "cash_upper_bound": 200,
+        "frequency_upper_bound": 3,
+        "upper_bound_period": 5,
+        "store_independent": false,
+        "sharing_upper_bounds": [
+          "5f9a747p00c2abf3d4a54d4q"
+        ]
+      }
+    ],
+    "reward_content_type": 2,
+    "mincost_type": 17,
+    "reward_contents": [
+      {
+        "mincost_period_times": 1,
+        "mincost_period": 5,
+        "excluded_places": [],
+        "mincost_value": 6000,
+        "reward_name": "Line Points",
+        "reward_value": 3.5,
+        "coin_image": "https://image.png"
+      }
+    ]
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/offer/formal/5f9a747p00c2abf3d4a54d4q'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "option_array": [
+    {
+      "option": "OPT-1"
+    }
+  ],
+  "offer_bank": {
+    "bank": {
+      "bank_id": "5f9a747p00c2abf3d4a54d4q"
+    },
+    "options": [
+      {
+        "issuer": "VISA",
+        "level": 5
+      }
+    ]
+  },
+  "excluded_cards": [
+    {
+      "card_id": "5f9a747p00c2abf3d4a54d4q"
+    }
+  ],
+  "cards": [
+    {
+      "card_id": "5f9a747p00c2abf3d4a54d4q"
+    }
+  ],
+  "mobilepay_array": [
+    {
+      "mobilepay": {
+        "mobilepay_id": "5f9a747p00c2abf3d4a54d4q"
+      },
+      "payment_type": 0
+    }
+  ],
+  "mobilepay_option": 0,
+  "eticket_payment": [
+    {
+      "eticket_id": "5f9a747p00c2abf3d4a54d4q"
+    }
+  ],
+  "stores": [
+    {
+      "store": {
+        "store_id": "5f9a747p00c2abf3d4a54d4q"
+      },
+      "channel": 0
+    }
+  ],
+  "mpt_included_stores": [
+    {
+      "store": {
+        "store_id": "5f9a747p00c2abf3d4a54d4q"
+      },
+      "channel": 1
+    }
+  ],
+  "excluded_stores": [
+    {
+      "store": {
+        "store_id": "5f9a747p00c2abf3d4a54d4q"
+      },
+      "channel": 2
+    }
+  ],
+  "url": "https://url.com",
+  "start_date": 1617601542000,
+  "end_date": 1617601542000,
+  "general_tags": [
+    {
+      "tag_id": "5f9a747p00c2abf3d4a54d4q",
+    }
+  ],
+  "mobilepay_tags": [
+    {
+      "tag_id": "5f9a747p00c2abf3d4a54d4q",
+    }
+  ],
+  "excluded_tags": [
+    {
+      "tag_id": "5f9a747p00c2abf3d4a54d4q",
+    }
+  ],
+  "is_independent_reward": false,
+  "reward_type": 1,
+  "pre_conditions": [
+    "pre1"
+  ],
+  "post_conditions": [
+    "post1"
+  ],
+  "mobile_pay_binding": [
+    {
+      "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+    }
+  ],
+  "weekday": [
+    1,
+    7
+  ],
+  "month_days": [
+    1,
+    2
+  ],
+  "time": "10:00-12:00",
+  "pay_methods": [
+    {
+      "mobilepay": {
+        "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+      },
+      "payment_type": 0
+    }
+  ],
+  "register_url": "https://www.www.www",
+  "coupon_code": "coupon",
+  "discount_url": "https://www.www.www",
+  "account_binding_type": 1,
+  "account_name": "account",
+  "electronic_bill_type": 1,
+  "installment_required": false,
+  "installment_acceptable": false,
+  "installment_reward_type": "依分期回饋",
+  "note": "",
+  "upper_bounds": [
+    {
+      "upperbound_id": "5f9a747p00c2abf3d4a54d4q",
+      "cash_upper_bound": 200,
+      "frequency_upper_bound": 3,
+      "upper_bound_period": 5,
+      "store_independent": false,
+      "sharing_upper_bounds": [
+        "5f9a747p00c2abf3d4a54d4q"
+      ]
+    }
+  ],
+  "reward_content_type": 2,
+  "mincost_type": 17,
+  "reward_contents": [
+    {
+      "mincost_period_times": 1,
+      "mincost_period": 5,
+      "excluded_places": [],
+      "mincost_value": 6000,
+      "reward_name": "Line Points",
+      "reward_value": 3.5,
+      "coin_image": "https://image.png"
+    }
+  ]
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  option_array: [
+    {
+      option: "OPT-1"
+    }
+  ],
+  offer_bank: {
+    bank: {
+      "bank_id": "5f9a747p00c2abf3d4a54d4q"
+    },
+    options: [
+      {
+        issuer: VISA,
+        level: 5
+      }
+    ]
+  },
+  excluded_cards: [
+    {
+      card_id: "5f9a747p00c2abf3d4a54d4q"
+    }
+  ],
+  cards: [
+    {
+      card_id: "5f9a747p00c2abf3d4a54d4q"
+    }
+  ],
+  mobilepay_array: [
+    {
+      mobilepay: {
+        mobilepay_id: "5f9a747p00c2abf3d4a54d4q"
+      },
+      payment_type: 0
+    }
+  ],
+  mobilepay_option: 0,
+  eticket_payment: [
+    {
+      eticket_id: "5f9a747p00c2abf3d4a54d4q"
+    }
+  ],
+  stores: [
+    {
+      store: {
+        store_id: "5f9a747p00c2abf3d4a54d4q"
+      },
+      channel: 0
+    }
+  ],
+  mpt_included_stores: [
+    {
+      store: {
+        store_id: "5f9a747p00c2abf3d4a54d4q"
+      },
+      channel: 1
+    }
+  ],
+  excluded_stores: [
+    {
+      store: {
+        store_id: "5f9a747p00c2abf3d4a54d4q"
+      },
+      channel: 2
+    }
+  ],
+  url: "https://url.com",
+  start_date: 1617601542000,
+  end_date: 1617601542000,
+  general_tags: [
+    {
+      tag_id: "5f9a747p00c2abf3d4a54d4q",
+    }
+  ],
+  mobilepay_tags: [
+    {
+      tag_id: "5f9a747p00c2abf3d4a54d4q",
+    }
+  ],
+  excluded_tags: [
+    {
+      tag_id: "5f9a747p00c2abf3d4a54d4q",
+    }
+  ],
+  is_independent_reward: false,
+  reward_type: 1,
+  pre_conditions: [
+    "pre1"
+  ],
+  post_conditions: [
+    "post1"
+  ],
+  mobile_pay_binding: [
+    {
+      mobilepay_id: "5f9a747p00c2abf3d4a54d4q",
+    }
+  ],
+  weekday: [
+    1,
+    7
+  ],
+  month_days: [
+    1,
+    2
+  ],
+  time: "10:00-12:00",
+  pay_methods: [
+    {
+      mobilepay: {
+        mobilepay_id: "5f9a747p00c2abf3d4a54d4q",
+      },
+      payment_type: 0
+    }
+  ],
+  register_url: "https://www.www.www",
+  coupon_code: "coupon",
+  discount_url: "https://www.www.www",
+  account_binding_type: 1,
+  account_name: "account",
+  electronic_bill_type: 1,
+  installment_required: false,
+  installment_acceptable: false,
+  installment_reward_type: "依分期回饋",
+  note: "",
+  upper_bounds: [
+    {
+      upperbound_id: "5f9a747p00c2abf3d4a54d4q",
+      cash_upper_bound: 200,
+      frequency_upper_bound: 3,
+      upper_bound_period: 5,
+      store_independent: false,
+      sharing_upper_bounds: [
+        "5f9a747p00c2abf3d4a54d4q"
+      ]
+    }
+  ],
+  reward_content_type: 2,
+  mincost_type: 17,
+  reward_contents: [
+    {
+      mincost_period_times: 1,
+      mincost_period: 5,
+      excluded_places: [],
+      mincost_value: 6000,
+      reward_name: "Line Points",
+      reward_value: 3.5,
+      coin_image: "https://image.png"
+    }
+  ]
+}
+axios.put('https://api.cardbo.info/api/v6/offer/formal/5f9a747p00c2abf3d4a54d4q', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "offer_id": "5f9a747p00c2abf3d4a54d4q",
+    "option_array": [
+      {
+        "option": "OPT-1",
+        "bindings": []
+      }
+    ],
+    "offer_bank": {
+      "bank": {
+        "bank_info": "...",
+      },
+      "options": [
+        {
+          "issuer": "VISA",
+          "level": 5
+        }
+      ]
+    },
+    "excluded_cards": [
+      {
+        "card_info": "..."
+      }
+    ],
+    "cards": [
+      {
+        "card_info": "..."
+      }
+    ],
+    "mobilepay_array": [
+      {
+        "mobilepay": {
+          "mobilepay_info": "...",
+        },
+        "payment_type": 0
+      }
+    ],
+    "mobilepay_option": 0,
+    "eticket_payment": [
+      {
+        "eticket_info": "..."
+      }
+    ],
+    "stores": [
+      {
+        "store": {
+          "{store_info}": "..."
+        },
+        "channel": 0
+      }
+    ],
+    "mpt_included_stores": [
+      {
+        "store": {
+          "{store_info}": "..."
+        },
+        "channel": 1
+      }
+    ],
+    "excluded_stores": [
+      {
+        "store": {
+          "{store_info}": "..."
+        },
+        "channel": 2
+      }
+    ],
+    "url": "https://url.com",
+    "start_date": 1617601542000,
+    "end_date": 1617601542000,
+    "general_tags": [
+      {
+        "tag_info": "..."
+      }
+    ],
+    "mobilepay_tags": [
+      {
+        "tag_info": "..."
+      }
+    ],
+    "excluded_tags": [
+      {
+        "tag_info": "..."
+      }
+    ],
+    "is_independent_reward": false,
+    "reward_type": 1,
+    "pre_conditions": [
+      "pre1"
+    ],
+    "post_conditions": [
+      "post1"
+    ],
+    "mobile_pay_binding": [
+      {
+        "mobilepay_info": "...",
+      }
+    ],
+    "weekday": [
+      1,
+      7
+    ],
+    "month_days": [
+      1,
+      2
+    ],
+    "time": "10:00-12:00",
+    "pay_methods": [
+      {
+        "mobilepay": {
+          "mobilepay_info": "..."
+        },
+        "payment_type": 0
+      }
+    ],
+    "register_url": "https://www.www.www",
+    "coupon_code": "coupon",
+    "discount_url": "https://www.www.www",
+    "account_binding_type": 0,
+    "account_name": "account",
+    "electronic_bill_type": 1,
+    "installment_required": false,
+    "installment_acceptable": false,
+    "installment_reward_type": "統一回饋",
+    "note": "",
+    "upper_bounds": [
+      {
+        "upperbound_id": "5f9a747p00c2abf3d4a54d4q",
+        "cash_upper_bound": 200,
+        "frequency_upper_bound": 3,
+        "upper_bound_period": 5,
+        "store_independent": false,
+        "sharing_upper_bounds": [
+          "5f9a747p00c2abf3d4a54d4q"
+        ]
+      }
+    ],
+    "reward_content_type": 2,
+    "mincost_type": 17,
+    "reward_contents": [
+      {
+        "mincost_period_times": 1,
+        "mincost_period": 5,
+        "excluded_places": [],
+        "mincost_value": 6000,
+        "reward_name": "Line Points",
+        "reward_value": 3.5,
+        "coin_image": "https://image.png"
+      }
+    ]
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Update formal offer
+
+<aside class="notice">
+You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
+</aside>
+
+### HTTP Request
+
+`PUT https://api.cardbo.info/api/v6/offer/formal/{offer_id}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter               | Required | Type              | Enums | Description
+----------------------- | -------- | ----------------- | ----- | -----------
+option_array            | false    | []OfferOption     |       | Offer options for user questionnaire
+offer_bank              | false    | []OfferBank       |       | All bank of card can get the offer
+excluded_cards          | false    | []OfferCard       |       | Cards excluded from bank offer
+cards                   | false    | []OfferCard       |       | Array of OfferCard
+mobilepay_array         | false    | []OfferMobilePay  |       | mobile pays can get the offer
+mobilepay_option        | false    | int               | `1`: 不限制 </br> `2`: 限定帳戶綁定 </br> `3`: 限定綁定信用卡 | Option of the mobile pays to get the offer
+eticket_payments        | false    | []ETicket         |       | E-ticket of the card to use to get the offer
+stores                  | false    | []OfferStore      |       | Stores to get the offer
+mpt_included_stores     | false    | []OfferStore      |       | Stores that can included for mobile pay
+excluded_stores         | false    | []OfferStore      |       | Stores that are excluded from the tags
+url                     | true     | string            |       | Offer URL
+start_date              | true     | int               |       | Offer start date in timeStamp
+end_date                | true     | int               |       | Offer end date in timeStamp
+general_tags            | false    | []Tag             |       | Tags which the type is general
+mobilepay_tags          | false    | []Tag             |       | Tags which the type is mobilepay
+excluded_tags           | false    | []Tag             |       | Tags excluded from the places
+is_independent_reward   | true     | bool              |       | Is the offer is independent or not
+reward_type             | true     | int               | `1`: 現金回饋-趴數 </br> `2`: 現金回饋-固定值 | Reward type
+pre_conditions          | false    | []string          |       | 事前問卷
+post_conditions         | false    | []string          |       | 事後問卷
+mobile_pay_binding      | false    | []MobilePay       |       | Mobile pays which need to bind to get the offer
+weekday                 | false    | []int             | [`1`-`7`] | The day in a week that can get the offer
+month_days              | false    | []int             | [`1`-`31`] | The day in a month that can get the offer
+time                    | false    | string            |       | The time in a day that can get the offer
+pay_methods             | false    | []OfferMobilePay  |       | Mobile pays to use to get the offer
+register_url            | false    | string            |       | 登錄網址
+coupon_code             | false    | string            |       | 優惠代碼
+discount_url            | false    | string            |       | 專屬連結
+account_binding_type    | true     | int               | `0`: 不限制 </br> `1`: 必須是 </br> `2`: 必須否 | Need to bind account
+account_name            | false    | string            |       | Account name to bind
+electronic_bill_type    | true     | int               | `0`: 不限制 </br> `1`: 必須是 </br> `2`: 必須否 | Need to apply electronic biil
+installment_required    | true     | bool              |       | Need to intall
+installment_acceptable  | true     | bool              |       | Can installment get the offer
+installment_reward_type | false    | string            | [`依分期回饋`, `統一回饋`] | The type of the installemnt offer
+note                    | false    | string            |       | Note
+upper_bounds            | false    | []OfferUpperBound |       | Upper bounds
+reward_content_type     | true     | int               | `1`: 優惠獨立計算 </br> `2`: 優惠累積計算 </br> `3`: 優惠分段累積計算 | Reward content type
+mincost_type            | true     | int               | `1`: 沒有最低消費限制 </br> `2`: 當下消費單筆滿 </br> `3`: 當下消費每滿 </br> `4`: 單一通路總共滿 </br> `5`: 單一通路個別滿 </br> `6`: 單一通路每滿 </br> `7`: 全通路總共滿 </br> `8`: 全通路個別滿 </br> `9`: 全通路每滿 </br> `10`: 一般消費總共滿 </br> `11`: 一般消費個別滿 </br> `12`: 一般消費每滿 </br> `13`: 國內一般消費總共滿 </br> `14`: 國內一般消費個別滿 </br> `15`: 國內一般消費每滿 </br> `16`: 總消費總共滿 </br> `17`: 總消費個別滿 </br> `18`: 總消費每滿 | Minimum cost type
+reward_contents         | true     | []RewardContent   |       | Reward contents
+
+*OfferOption*
+
+Parameter | Required | Type   | Description
+--------- | -------- | ------ | -----------
+option    | true     | string | 方案 (事前問卷)
+
+*OfferBank*
+
+Parameter | Required | Type         | Description
+--------- | -------- | ------------ | -----------
+bank      | true     | Bank         | Bank info
+options   | false    | []CardOption | The options of the card in the bank which can get the offer
+
+*CardOption*
+
+Parameter  | Required | Type   | Enums | Description
+---------- | -------- | ------ | ----- | -----------
+issuer     | true     | string | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
+level      | true     | int    | [`1`-`8`] | level of the card
+
+*OfferCard*
+
+Parameter  | Required | Type   | Enums | Description
+---------- | -------- | ------ | ----- | -----------
+card_id    | true     | string |       | card id
+issuer     | true     | string | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
+level      | true     | int    | [`1`-`8`] | level of the card
+
+*OfferMobilePay*
+
+Parameter    | Required | Type      | Enums | Description
+------------ | -------- | --------- | ----- | -----------
+mobilepay    | true     | MobilePay |       | Mobile pay which can get the offer
+payment_type | true     | string    | `1`: 感應支付(NFC) </br> `2`: 掃碼支付 </br> `3`:條碼支付 | Payment tyoe to use to get the offer
+
+*OfferStore*
+
+Parameter | Required | Type  | Enums | Description
+--------- | -------- | ----- | ----- | -----------
+store     | true     | Store |       | Store object
+channel   | true     | int   | `0`: No restriction </br> `1`: Physical store </br> `2`: Web </br> `3`: App | The channel of the store
+
+*OfferUpperBound*
+
+Key                   | Required | Type     | Enums | Description
+--------------------- | -------- | -------- | ----- | -----------
+cash_upper_bound      | false    | int      |       | cashback upperbound value
+frequency_upper_bound | false    | int      |       | how many times can the offer got
+upper_bound_period    | true     | int      | `1`: TOTAL <br/> `2`: EVERY <br/> `3`: DAILY <br/> `4`: WEEKLY <br/> `5`: MONTHLY <br/> `6`: ANNUALLY | upper bound period
+store_independent     | true     | bool     |       | is the upper bound calculate independent from each store
+sharing_upper_bounds  | false    | []string |       | array of upperbound ID share same upper bound (`upper_bound_id`)
+
+*RewardContent*
+
+Key                  | Required | Type    | Enums  | Description
+-------------------- | -------- | ------- | ------ | -----------
+mincost_period_times | false    | int     |        | how many time for the min cost period
+mincost_period       | false    | int     | `1`: TOTAL <br/> `2`: EVERY <br/> `3`: DAILY <br/> `4`: WEEKLY <br/> `5`: MONTHLY <br/> `6`: ANNUALLY | min cost period
+excluded_places      | false    | []Store |        | Places that excluded from the min cost
+mincost_value        | false    | int     |        | min cost value
+reward_name          | true     | string  |        | reward name (現金, Line Points, 街口幣, Open Points, P幣, Hami Point, 代幣...)
+reward_value         | true     | float   |        | reward value
+
+### Response
+
+#### Success
+
+*Offer*
+
+Parameter               | Type              | Enums | Description
+----------------------- | ----------------- | ----- | -----------
+option_array            | []OfferOption     |       | Offer options for user questionnaire
+offer_bank              | []OfferBank       |       | All bank of card can get the offer
+excluded_cards          | []OfferCard       |       | Cards excluded from bank offer
+cards                   | []OfferCard       |       | Array of OfferCard
+mobilepay_array         | []OfferMobilePay  |       | mobile pays can get the offer
+mobilepay_option        | int               | `1`: 不限制 </br> `2`: 限定帳戶綁定 </br> `3`: 限定綁定信用卡 | Option of the mobile pays to get the offer
+eticket_payments        | []ETicket         |       | E-ticket of the card to use to get the offer
+stores                  | []OfferStore      |       | Stores to get the offer
+mpt_included_stores     | []OfferStore      |       | Stores that can included for mobile pay
+excluded_stores         | []OfferStore      |       | Stores that are excluded from the tags
+url                     | string            |       | Offer URL
+start_date              | int               |       | Offer start date in timeStamp
+end_date                | int               |       | Offer end date in timeStamp
+general_tags            | []Tag             |       | Tags which the type is general
+mobilepay_tags          | []Tag             |       | Tags which the type is mobilepay
+excluded_tags           | []Tag             |       | Tags excluded from the places
+is_independent_reward   | bool              |       | Is the offer is independent or not
+reward_type             | int               | `1`: 現金回饋-趴數 </br> `2`: 現金回饋-固定值 | Reward type
+pre_conditions          | []string          |       | 事前問卷
+post_conditions         | []string          |       | 事後問卷
+mobile_pay_binding      | []MobilePay       |       | Mobile pays which need to bind to get the offer
+weekday                 | []int             | [`1`-`7`] | The day in a week that can get the offer
+month_days              | []int             | [`1`-`31`] | The day in a month that can get the offer
+time                    | string            |       | The time in a day that can get the offer
+pay_methods             | []OfferMobilePay  |       | Mobile pays to use to get the offer
+register_url            | string            |       | 登錄網址
+coupon_code             | string            |       | 優惠代碼
+discount_url            | string            |       | 專屬連結
+account_binding_type    | int               | `0`: 不限制 </br> `1`: 必須是 </br> `2`: 必須否 | Need to bind account
+account_name            | string            |       | Account name to bind
+electronic_bill_type    | int               | `0`: 不限制 </br> `1`: 必須是 </br> `2`: 必須否 | Need to apply electronic biil
+installment_required    | bool              |       | Need to intall
+installment_acceptable  | bool              |       | Can installment get the offer
+installment_reward_type | string            | [`依分期回饋`, `統一回饋`] | The type of the installemnt offer
+note                    | string            |       | Note
+upper_bounds            | []OfferUpperBound |       | Upper bounds
+reward_content_type     | int               | `1`: 優惠獨立計算 </br> `2`: 優惠累積計算 </br> `3`: 優惠分段累積計算 | Reward content type
+mincost_type            | int               | `1`: 沒有最低消費限制 </br> `2`: 當下消費單筆滿 </br> `3`: 當下消費每滿 </br> `4`: 單一通路總共滿 </br> `5`: 單一通路個別滿 </br> `6`: 單一通路每滿 </br> `7`: 全通路總共滿 </br> `8`: 全通路個別滿 </br> `9`: 全通路每滿 </br> `10`: 一般消費總共滿 </br> `11`: 一般消費個別滿 </br> `12`: 一般消費每滿 </br> `13`: 國內一般消費總共滿 </br> `14`: 國內一般消費個別滿 </br> `15`: 國內一般消費每滿 </br> `16`: 總消費總共滿 </br> `17`: 總消費個別滿 </br> `18`: 總消費每滿 | Minimum cost type
+reward_contents         | []RewardContent   |       | Reward contents
+
+*OfferOption*
+
+Parameter | Required | Type   | Description
+--------- | -------- | ------ | -----------
+option    | true     | string | 方案 (事前問卷)
+
+*OfferBank*
+
+Parameter | Type         | Description
+--------- | ------------ | -----------
+bank      | Bank         | Bank info
+options   | []CardOption | The options of the card in the bank which can get the offer
+
+*CardOption*
+
+Parameter  | Type   | Enums | Description
+---------- | ------ | ----- | -----------
+issuer     | string | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
+level      | int    | [`1`-`8`] | level of the card
+level_name | string |       | level name of the card
+
+*OfferCard*
+
+Parameter  | Type   | Enums | Description
+---------- | ------ | ----- | -----------
+card_id    | string |       | card id
+name       | string |       | card name
+issuer     | string | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | issuer of the card
+level      | int    | [`1`-`8`] | level of the card
+level_name | string |       | level name of the card
+
+*OfferMobilePay*
+
+Parameter    | Type      | Enums | Description
+------------ | --------- | ----- | -----------
+mobilepay    | MobilePay |       | Mobile pay which can get the offer
+payment_type | string    | `1`: 感應支付(NFC) </br> `2`: 掃碼支付 </br> `3`:條碼支付 | Payment tyoe to use to get the offer
+
+*OfferStore*
+
+Parameter | Required | Type  | Enums | Description
+--------- | -------- | ----- | ----- | -----------
+store     | true     | Store |       | Store object
+channel   | true     | int   | `0`: No restriction </br> `1`: Physical store </br> `2`: Web </br> `3`: App | The channel of the store
+
+*OfferUpperBound*
+
+Key                   | Type     | Enums | Description
+--------------------- | -------- | ----- | -----------
+upperbound_id         | string   |       | upperbound ID
+cash_upper_bound      | int      |       | cashback upperbound value
+frequency_upper_bound | int      |       | how many times can the offer got
+upper_bound_period    | int      | `1`: TOTAL <br/> `2`: EVERY <br/> `3`: DAILY <br/> `4`: WEEKLY <br/> `5`: MONTHLY <br/> `6`: ANNUALLY | upper bound period
+store_independent     | bool     |       | is the upper bound calculate independent from each store
+sharing_upper_bounds  | []string |       | array of upperbound ID share same upper bound
+
+*RewardContent*
+
+Key                  | Type    | Enums  | Description
+-------------------- | ------- | ------ | -----------
+mincost_period_times | int     |        | how many time for the min cost period
+mincost_period       | int     | `1`: TOTAL <br/> `2`: EVERY <br/> `3`: DAILY <br/> `4`: WEEKLY <br/> `5`: MONTHLY <br/> `6`: ANNUALLY | min cost period
+excluded_places      | []Store |        | Places that excluded from the min cost
+mincost_value        | int     |        | min cost value
+reward_name          | string  |        | reward name (現金, Line Points, 街口幣, Open Points, P幣, Hami Point, 代幣...)
+reward_value         | float   |        | reward value
+coin_image           | string  |        | coin image URL
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
 
 ## • Remove formal offer
 
