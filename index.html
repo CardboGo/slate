@@ -19527,20 +19527,22 @@ Only one of <code>results</code> and <code>post_conditions</code> have value. If
 <tr>
 <td>amount</td>
 <td>int</td>
-<td>expense amount</td>
+<td>Expense amount</td>
 </tr>
 <tr>
 <td>results</td>
 <td>OfferSearchResultDetail</td>
-<td>array of OfferSearchResultDetail object</td>
+<td>Offer search result</td>
 </tr>
 <tr>
 <td>post_conditions</td>
 <td>[]string</td>
-<td>array of post conditions</td>
+<td>Post condition array if the search need further questions</td>
 </tr>
 </tbody></table>
-<h4 id='offersearchresultdetail'>OfferSearchResultDetail</h4>
+
+<p><em>OfferSearchResultDetail</em></p>
+
 <table><thead>
 <tr>
 <th>Key</th>
@@ -19599,12 +19601,14 @@ Only one of <code>results</code> and <code>post_conditions</code> have value. If
 </tr>
 <tr>
 <td>conditions</td>
-<td>float</td>
+<td>SearchResultCondition</td>
 <td></td>
 <td>Array of conditions</td>
 </tr>
 </tbody></table>
-<h4 id='cashbackvalue'>CashbackValue</h4>
+
+<p><em>CashbackValue</em></p>
+
 <table><thead>
 <tr>
 <th>Key</th>
@@ -19615,15 +19619,17 @@ Only one of <code>results</code> and <code>post_conditions</code> have value. If
 <tr>
 <td>cashback_value</td>
 <td>float</td>
-<td>reward value</td>
+<td>Reward value</td>
 </tr>
 <tr>
 <td>cashback_coins</td>
 <td>[]CashbackCoin</td>
-<td>array of cashback coins</td>
+<td>Coin info of the cashback</td>
 </tr>
 </tbody></table>
-<h4 id='rewarddetail'>RewardDetail</h4>
+
+<p><em>RewardDetail</em></p>
+
 <table><thead>
 <tr>
 <th>Key</th>
@@ -19634,22 +19640,52 @@ Only one of <code>results</code> and <code>post_conditions</code> have value. If
 <tr>
 <td>max_expense</td>
 <td>int</td>
-<td>max expense for the reward</td>
+<td>Max expense for the reward</td>
 </tr>
 <tr>
 <td>max_cashback</td>
 <td>float</td>
-<td>max cashback percentage/fixed value</td>
+<td>Max cashback percentage/fixed value</td>
 </tr>
 <tr>
 <td>cashback_coins</td>
 <td>[]CashbackCoin</td>
-<td>array of cashback coins</td>
+<td>Coin info of the cashback</td>
 </tr>
 <tr>
 <td>offers</td>
 <td>[]OfferResult</td>
-<td>array of OfferResult</td>
+<td>All offers match the result</td>
+</tr>
+</tbody></table>
+
+<p><em>SearchResultCondition</em></p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>condition_type</td>
+<td>int</td>
+<td><code>1</code>: 一般條件 </br> <code>2</code>: 登錄 </br> <code>3</code>: 優惠碼 </br> <code>4</code>: 專屬連結 </br> <code>5</code>: 最低消費條件(特殊)</td>
+<td>Conditiogn type</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>Condition description</td>
+</tr>
+<tr>
+<td>url</td>
+<td>string</td>
+<td></td>
+<td>Condition URL</td>
 </tr>
 </tbody></table>
 <h4 id='error-58'>Error</h4>
