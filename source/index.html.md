@@ -10437,39 +10437,47 @@ Only one of <code>results</code> and <code>post_conditions</code> have value. If
 Key             | Type                    | Description
 --------------- | ----------------------- | -----------
 store           | Store                   | Store object
-amount          | int                     | expense amount
-results         | OfferSearchResultDetail | array of OfferSearchResultDetail object
-post_conditions | []string                | array of post conditions
+amount          | int                     | Expense amount
+results         | OfferSearchResultDetail | Offer search result
+post_conditions | []string                | Post condition array if the search need further questions
 
-#### OfferSearchResultDetail
+*OfferSearchResultDetail*
 
-Key                 | Type          | Enums | Description
-------------------- | ------------- | ----- | -----------
-result_type         | int           | `1`: MobilePay Only </br> `2`: Card Only </br> `3`: Card with MobilePay | Result payment type
-special_condition   | bool          |       | Is special condition
-mobilepay           | MobilePay     |       | Mobeile pay for `result_type=1`
-card                | UserCard      |       | User card for `result_type=2` and `result_type=3`
-mobilepays          | []MobilePay   |       | Mobile pays array for `result_type=3`
-cashback_value      | CashbackValue |       | Cashback value for `user_type=3`
-cashback_percentage | RewardDetail  |       | Cashback percentage info
-cashback_fixed      | RewardDetail  |       | Cashback fixed info
-conditions          | float         |       | Array of conditions
+Key                 | Type                  | Enums | Description
+------------------- | --------------------- | ----- | -----------
+result_type         | int                   | `1`: MobilePay Only </br> `2`: Card Only </br> `3`: Card with MobilePay | Result payment type
+special_condition   | bool                  |       | Is special condition
+mobilepay           | MobilePay             |       | Mobeile pay for `result_type=1`
+card                | UserCard              |       | User card for `result_type=2` and `result_type=3`
+mobilepays          | []MobilePay           |       | Mobile pays array for `result_type=3`
+cashback_value      | CashbackValue         |       | Cashback value for `user_type=3`
+cashback_percentage | RewardDetail          |       | Cashback percentage info
+cashback_fixed      | RewardDetail          |       | Cashback fixed info
+conditions          | SearchResultCondition |       | Array of conditions
 
-#### CashbackValue
-
-Key            | Type           | Description
--------------- | -------------- | -----------
-cashback_value | float          | reward value
-cashback_coins | []CashbackCoin | array of cashback coins
-
-#### RewardDetail
+*CashbackValue*
 
 Key            | Type           | Description
 -------------- | -------------- | -----------
-max_expense    | int            | max expense for the reward
-max_cashback   | float          | max cashback percentage/fixed value
-cashback_coins | []CashbackCoin | array of cashback coins
-offers         | []OfferResult  | array of OfferResult
+cashback_value | float          | Reward value
+cashback_coins | []CashbackCoin | Coin info of the cashback
+
+*RewardDetail*
+
+Key            | Type           | Description
+-------------- | -------------- | -----------
+max_expense    | int            | Max expense for the reward
+max_cashback   | float          | Max cashback percentage/fixed value
+cashback_coins | []CashbackCoin | Coin info of the cashback
+offers         | []OfferResult  | All offers match the result
+
+*SearchResultCondition*
+
+Key            | Type   | Enums | Description
+-------------- |------- | ----- | -----------
+condition_type | int    | `1`: 一般條件 </br> `2`: 登錄 </br> `3`: 優惠碼 </br> `4`: 專屬連結 </br> `5`: 最低消費條件(特殊) | Conditiogn type
+name           | string |       | Condition description
+url            | string |       | Condition URL
 
 #### Error
 
