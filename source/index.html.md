@@ -10422,9 +10422,9 @@ Authorization | Bearer token | API access token
 
 Parameter       | Required | Type     | Description
 --------------- | -------- | -------- | -----------
-store           | true     | string   | store name
-amount          | false    | int      | expense amount
-post_conditions | false    | []string | post condition array
+store           | true     | string   | Store name
+amount          | false    | int      | Expense amount
+post_conditions | false    | []string | Post condition array
 
 ### Response
 
@@ -10434,26 +10434,26 @@ post_conditions | false    | []string | post condition array
 Only one of <code>results</code> and <code>post_conditions</code> have value. If API returns <code>post_conditions</code>, need to provide <code>post_conditions</code> which meet user's condtion and call API again.
 </aside>
 
-Key             | Type                    | Description
---------------- | ----------------------- | -----------
-store           | Store                   | Store object
-amount          | int                     | Expense amount
-results         | OfferSearchResultDetail | Offer search result
-post_conditions | []string                | Post condition array if the search need further questions
+Key             | Type                      | Description
+--------------- | ------------------------- | -----------
+store           | Store                     | Store object
+amount          | int                       | Expense amount
+results         | []OfferSearchResultDetail | Offer search result
+post_conditions | []string                  | Post condition array if the search need further questions
 
 *OfferSearchResultDetail*
 
-Key                 | Type                  | Enums | Description
-------------------- | --------------------- | ----- | -----------
-result_type         | int                   | `1`: MobilePay Only </br> `2`: Card Only </br> `3`: Card with MobilePay | Result payment type
-special_condition   | bool                  |       | Is special condition
-mobilepay           | MobilePay             |       | Mobeile pay for `result_type=1`
-card                | UserCard              |       | User card for `result_type=2` and `result_type=3`
-mobilepays          | []MobilePay           |       | Mobile pays array for `result_type=3`
-cashback_value      | CashbackValue         |       | Cashback value for `user_type=3`
-cashback_percentage | RewardDetail          |       | Cashback percentage info
-cashback_fixed      | RewardDetail          |       | Cashback fixed info
-conditions          | SearchResultCondition |       | Array of conditions
+Key                 | Type                    | Enums | Description
+------------------- | ----------------------- | ----- | -----------
+result_type         | int                     | `1`: MobilePay Only </br> `2`: Card Only </br> `3`: Card with MobilePay | Result payment type
+special_condition   | bool                    |       | Is special condition
+mobilepay           | MobilePay               |       | Mobeile pay for `result_type=1`
+card                | UserCard                |       | User card for `result_type=2` and `result_type=3`
+mobilepays          | []MobilePay             |       | Mobile pays array for `result_type=3`
+cashback_value      | CashbackValue           |       | Cashback value for `user_type=3`
+cashback_percentage | RewardDetail            |       | Cashback percentage info
+cashback_fixed      | RewardDetail            |       | Cashback fixed info
+conditions          | []SearchResultCondition |       | Array of conditions
 
 *CashbackValue*
 
