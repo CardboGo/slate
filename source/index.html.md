@@ -10420,11 +10420,12 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter       | Required | Type     | Description
---------------- | -------- | -------- | -----------
-store           | true     | string   | Store name
-amount          | false    | int      | Expense amount
-post_conditions | false    | []string | Post condition array
+Parameter           | Required | Type     | Description
+------------------- | -------- | -------- | -----------
+store               | true     | string   | Store name
+amount              | false    | int      | Expense amount
+has_post_conditions | true     | bool     | Does request contain post condition info
+post_conditions     | false    | []string | Post condition array
 
 ### Response
 
@@ -10434,12 +10435,14 @@ post_conditions | false    | []string | Post condition array
 Only one of <code>results</code> and <code>post_conditions</code> have value. If API returns <code>post_conditions</code>, need to provide <code>post_conditions</code> which meet user's condtion and call API again.
 </aside>
 
-Key             | Type                      | Description
---------------- | ------------------------- | -----------
-store           | Store                     | Store object
-amount          | int                       | Expense amount
-results         | []OfferSearchResultDetail | Offer search result
-post_conditions | []string                  | Post condition array if the search need further questions
+Key                | Type                      | Enums | Description
+------------------ | ------------------------- | ----- | -----------
+store              | Store                     |       | Store object
+amount             | int                       |       | Expense amount
+search_result_type | int                       | `1`: Has result </br> `2`: Need post conditions </br> `3`: No results    | The search result type
+results            | []OfferSearchResultDetail |       | Offer search result when `search_result_type=1`
+post_conditions    | []string                  |       | Post condition array when `search_result_type=2`
+categories         | []string                  |       | Category array when `search_result_type=3`
 
 *OfferSearchResultDetail*
 
