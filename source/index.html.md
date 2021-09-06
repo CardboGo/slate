@@ -10432,7 +10432,7 @@ post_conditions     | false    | []string | Post condition array
 #### Success
 
 <aside class="notice">
-When <code>search_result_type=1</code>, <code>results</code> has value; when <code>search_result_type=2</code>, <code>post_conditions</code> has value; when <code>search_result_type=3</code>, <code>categories</code> has value. If API returns <code>post_conditions</code>, need to provide <code>post_conditions</code> which meet user's condtion and call API again.
+When <code>search_result_type=1</code>, <code>results</code> has value; when <code>search_result_type=2</code>, <code>post_conditions</code> has value; when <code>search_result_type=3</code>, <code>categories</code> has value. If API returns <code>search_result_type=2</code>, need to provide <code>post_conditions</code> which meet user's condtion and call API again.
 </aside>
 
 Key                | Type                      | Enums | Description
