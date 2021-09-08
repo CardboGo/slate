@@ -10233,7 +10233,13 @@ curl --request POST \
   --data '{
     "store": "711",
     "amount": 100,
-    "post_conditions": ["上網登錄"]
+    "has_post_condition": true,
+    "post_condition": {
+      "post_conditions": ["上網登錄"],
+      "channel": 0,
+      "register_url": true,
+      "coupon_code": false
+    }
   }'
 ```
 
@@ -10245,7 +10251,13 @@ headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   "store": "711",
   "amount": 100,
-  "post_conditions": ["上網登錄"]
+  "has_post_condition": true,
+  "post_condition": {
+    "post_conditions": ["上網登錄"],
+    "channel": 0,
+    "register_url": true,
+    "coupon_code": false
+  }
 }
 response = requests.post(url, headers=headers, json=data)
 ```
@@ -10257,7 +10269,13 @@ headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
   store: "711",
   amount: 100,
-  post_conditions: ["上網登錄"]
+  has_post_condition: true,
+  post_condition: {
+    post_conditions: ["上網登錄"],
+    channel: 0,
+    register_url: true,
+    coupon_code: false
+  }
 }
 axios.post('https://api.cardbo.info/api/v6/offers/formal/search', data, {
     headers: headers
@@ -10282,6 +10300,7 @@ axios.post('https://api.cardbo.info/api/v6/offers/formal/search', data, {
       "store": "...",
     },
     "amount": 100,
+    "search_result_type": 1,
     "results": [
       {
         "result_type": 1,
@@ -10392,9 +10411,13 @@ axios.post('https://api.cardbo.info/api/v6/offers/formal/search', data, {
         ]
       }
     ],
-    "post_conditions": [
-      "上網登錄"
-    ]
+    "post_condition": {
+      "post_conditions": ["使用APP"],
+      "channels": [0, 1, 2],
+      "register_url": true,
+      "coupon_code": false
+    },
+    "categories": ["國內一般消費", "國外一般消費", "網購", "Apple Pay"]
   },
   "timestamp": 1617601542000
 }
@@ -10420,12 +10443,21 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter           | Required | Type     | Description
-------------------- | -------- | -------- | -----------
-store               | true     | string   | Store name
-amount              | false    | int      | Expense amount
-has_post_conditions | true     | bool     | Does request contain post condition info
-post_conditions     | false    | []string | Post condition array
+Parameter          | Required | Type                 | Description
+------------------ | -------- | -------------------- | -----------
+store              | true     | string               | Store name
+amount             | false    | int                  | Expense amount
+has_post_condition | true     | bool                 | Does request contain post condition info
+post_condition     | false    | PostConditionRequest | Post condition info
+
+*PostConditionRequest*
+
+Parameter       | Required | Type     | Enums | Description
+--------------- | -------- | -------- | ----- | -----------
+post_conditions | false    | []string |       | Post conditions provided from response
+channel         | false    | int      | `0`: 不限制通路 </br> `1`: 實體店 </br> `2`: 官網(線上通路) </br> `3`: APP | The channel from user's answer
+register_url    | false    | bool     |       | Would user register or not
+coupon_code     | false    | bool     |       | Would user user coupon code or not
 
 ### Response
 
@@ -10441,7 +10473,7 @@ store              | Store                     |       | Store object
 amount             | int                       |       | Expense amount
 search_result_type | int                       | `1`: Has result </br> `2`: Need post conditions </br> `3`: No results    | The search result type
 results            | []OfferSearchResultDetail |       | Offer search result when `search_result_type=1`
-post_conditions    | []string                  |       | Post condition array when `search_result_type=2`
+post_condition     | PostCondition             |       | Post condition array when `search_result_type=2`
 categories         | []string                  |       | Category array when `search_result_type=3`
 
 *OfferSearchResultDetail*
@@ -10473,6 +10505,15 @@ max_expense    | int            | Max expense for the reward
 max_cashback   | float          | Max cashback percentage/fixed value
 cashback_coins | []CashbackCoin | Coin info of the cashback
 offers         | []OfferResult  | All offers match the result
+
+*PostCondition*
+
+Key             | Type     | Enums | Description
+--------------- |--------- | ----- | -----------
+post_conditions | []string |       | Post condition question
+channels        | []int    |`0`: 不限制通路 </br> `1`: 實體店 </br> `2`: 官網(線上通路) </br> `3`: APP | Channels to get offers
+register_url    | bool     |       | Does the offers need register from ULR
+coupon_code     | bool     |       | Does the offers need coupon code
 
 *SearchResultCondition*
 
