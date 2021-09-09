@@ -1967,7 +1967,7 @@
 </tr>
 <tr>
 <td>mobilepay_tags</td>
-<td>[]Tag</td>
+<td>[]MobilePayTag</td>
 <td></td>
 <td>Tags which the type is mobilepay</td>
 </tr>
@@ -12790,7 +12790,11 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
     ],
     "mobilepay_tags": [
       {
-        "tag_id": "5f9a747p00c2abf3d4a54d4q",
+        "tag": {
+          "tag_id": "5f9a747p00c2abf3d4a54d4q",
+        },
+        "scope": 1,
+        "payment_type": 0
       }
     ],
     "excluded_tags": [
@@ -12943,7 +12947,11 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   <span class="p">],</span>
   <span class="s">"mobilepay_tags"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s">"tag_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
+      <span class="s">"tag"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"tag_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="s">"scope"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s">"payment_type"</span><span class="p">:</span> <span class="mi">0</span>
     <span class="p">}</span>
   <span class="p">],</span>
   <span class="s">"excluded_tags"</span><span class="p">:</span> <span class="p">[</span>
@@ -13096,7 +13104,11 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   <span class="p">],</span>
   <span class="na">mobilepay_tags</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="na">tag_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">tag</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">tag_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="na">scope</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="na">payment_type</span><span class="p">:</span> <span class="mi">0</span>
     <span class="p">}</span>
   <span class="p">],</span>
   <span class="na">excluded_tags</span><span class="p">:</span> <span class="p">[</span>
@@ -13263,7 +13275,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"mobilepay_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"tag_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+        </span><span class="nl">"{mobilepay_tag_info}"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"excluded_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -13472,7 +13484,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <td>mobilepay_tags</td>
 <td>false</td>
-<td>[]Tag</td>
+<td>[]MobilePayTag</td>
 <td></td>
 <td>Tags which the type is mobilepay</td>
 </tr>
@@ -13803,6 +13815,40 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </tr>
 </tbody></table>
 
+<p><em>MobilePayTag</em></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tag</td>
+<td>true</td>
+<td>Tag</td>
+<td></td>
+<td>Tag info</td>
+</tr>
+<tr>
+<td>scope</td>
+<td>true</td>
+<td>int</td>
+<td><code>1</code>: 所有消費 </br> <code>2</code>: 一般消費 </br> <code>3</code>: 國內一般消費</td>
+<td>The scope of the expense</td>
+</tr>
+<tr>
+<td>payment_type</td>
+<td>false</td>
+<td>int</td>
+<td><code>1</code>: 感應(NFC) </br> <code>2</code>: 掃碼 </br> <code>3</code>: 條碼</td>
+<td>Payment type</td>
+</tr>
+</tbody></table>
+
 <p><em>OfferUpperBound</em></p>
 
 <table><thead>
@@ -14002,7 +14048,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </tr>
 <tr>
 <td>mobilepay_tags</td>
-<td>[]Tag</td>
+<td>[]MobilePayTag</td>
 <td></td>
 <td>Tags which the type is mobilepay</td>
 </tr>
@@ -14311,6 +14357,40 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>int</td>
 <td><code>0</code>: No restriction </br> <code>1</code>: Physical store </br> <code>2</code>: Web </br> <code>3</code>: App</td>
 <td>The channel of the store</td>
+</tr>
+</tbody></table>
+
+<p><em>MobilePayTag</em></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tag</td>
+<td>true</td>
+<td>Tag</td>
+<td></td>
+<td>Tag info</td>
+</tr>
+<tr>
+<td>scope</td>
+<td>true</td>
+<td>int</td>
+<td><code>1</code>: 所有消費 </br> <code>2</code>: 一般消費 </br> <code>3</code>: 國內一般消費</td>
+<td>The scope of the expense</td>
+</tr>
+<tr>
+<td>payment_type</td>
+<td>false</td>
+<td>int</td>
+<td><code>1</code>: 感應(NFC) </br> <code>2</code>: 掃碼 </br> <code>3</code>: 條碼</td>
+<td>Payment type</td>
 </tr>
 </tbody></table>
 
@@ -14761,7 +14841,7 @@ There are 20 data each page.
 </tr>
 <tr>
 <td>mobilepay_tags</td>
-<td>[]Tag</td>
+<td>[]MobilePayTag</td>
 <td></td>
 <td>Tags which the type is mobilepay</td>
 </tr>
@@ -15025,6 +15105,40 @@ There are 20 data each page.
 <td>string</td>
 <td><code>1</code>: 感應支付(NFC) </br> <code>2</code>: 掃碼支付 </br> <code>3</code>:條碼支付</td>
 <td>Payment tyoe to use to get the offer</td>
+</tr>
+</tbody></table>
+
+<p><em>MobilePayTag</em></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tag</td>
+<td>true</td>
+<td>Tag</td>
+<td></td>
+<td>Tag info</td>
+</tr>
+<tr>
+<td>scope</td>
+<td>true</td>
+<td>int</td>
+<td><code>1</code>: 所有消費 </br> <code>2</code>: 一般消費 </br> <code>3</code>: 國內一般消費</td>
+<td>The scope of the expense</td>
+</tr>
+<tr>
+<td>payment_type</td>
+<td>false</td>
+<td>int</td>
+<td><code>1</code>: 感應(NFC) </br> <code>2</code>: 掃碼 </br> <code>3</code>: 條碼</td>
+<td>Payment type</td>
 </tr>
 </tbody></table>
 
@@ -15465,7 +15579,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </tr>
 <tr>
 <td>mobilepay_tags</td>
-<td>[]Tag</td>
+<td>[]MobilePayTag</td>
 <td></td>
 <td>Tags which the type is mobilepay</td>
 </tr>
@@ -15732,6 +15846,40 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </tr>
 </tbody></table>
 
+<p><em>MobilePayTag</em></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tag</td>
+<td>true</td>
+<td>Tag</td>
+<td></td>
+<td>Tag info</td>
+</tr>
+<tr>
+<td>scope</td>
+<td>true</td>
+<td>int</td>
+<td><code>1</code>: 所有消費 </br> <code>2</code>: 一般消費 </br> <code>3</code>: 國內一般消費</td>
+<td>The scope of the expense</td>
+</tr>
+<tr>
+<td>payment_type</td>
+<td>false</td>
+<td>int</td>
+<td><code>1</code>: 感應(NFC) </br> <code>2</code>: 掃碼 </br> <code>3</code>: 條碼</td>
+<td>Payment type</td>
+</tr>
+</tbody></table>
+
 <p><em>OfferUpperBound</em></p>
 
 <table><thead>
@@ -15930,7 +16078,11 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
     ],
     "mobilepay_tags": [
       {
-        "tag_id": "5f9a747p00c2abf3d4a54d4q",
+        "tag": {
+          "tag_id": "5f9a747p00c2abf3d4a54d4q",
+        },
+        "scope": 1,
+        "payment_type": 0
       }
     ],
     "excluded_tags": [
@@ -16083,7 +16235,11 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   <span class="p">],</span>
   <span class="s">"mobilepay_tags"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s">"tag_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
+      <span class="s">"tag"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"tag_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="s">"scope"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s">"payment_type"</span><span class="p">:</span> <span class="mi">0</span>
     <span class="p">}</span>
   <span class="p">],</span>
   <span class="s">"excluded_tags"</span><span class="p">:</span> <span class="p">[</span>
@@ -16236,7 +16392,11 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   <span class="p">],</span>
   <span class="na">mobilepay_tags</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="na">tag_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">tag</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">tag_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="na">scope</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="na">payment_type</span><span class="p">:</span> <span class="mi">0</span>
     <span class="p">}</span>
   <span class="p">],</span>
   <span class="na">excluded_tags</span><span class="p">:</span> <span class="p">[</span>
@@ -16612,7 +16772,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <td>mobilepay_tags</td>
 <td>false</td>
-<td>[]Tag</td>
+<td>[]MobilePayTag</td>
 <td></td>
 <td>Tags which the type is mobilepay</td>
 </tr>
@@ -16943,6 +17103,40 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </tr>
 </tbody></table>
 
+<p><em>MobilePayTag</em></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tag</td>
+<td>true</td>
+<td>Tag</td>
+<td></td>
+<td>Tag info</td>
+</tr>
+<tr>
+<td>scope</td>
+<td>true</td>
+<td>int</td>
+<td><code>1</code>: 所有消費 </br> <code>2</code>: 一般消費 </br> <code>3</code>: 國內一般消費</td>
+<td>The scope of the expense</td>
+</tr>
+<tr>
+<td>payment_type</td>
+<td>false</td>
+<td>int</td>
+<td><code>1</code>: 感應(NFC) </br> <code>2</code>: 掃碼 </br> <code>3</code>: 條碼</td>
+<td>Payment type</td>
+</tr>
+</tbody></table>
+
 <p><em>OfferUpperBound</em></p>
 
 <table><thead>
@@ -17142,7 +17336,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </tr>
 <tr>
 <td>mobilepay_tags</td>
-<td>[]Tag</td>
+<td>[]MobilePayTag</td>
 <td></td>
 <td>Tags which the type is mobilepay</td>
 </tr>
@@ -17451,6 +17645,40 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>int</td>
 <td><code>0</code>: No restriction </br> <code>1</code>: Physical store </br> <code>2</code>: Web </br> <code>3</code>: App</td>
 <td>The channel of the store</td>
+</tr>
+</tbody></table>
+
+<p><em>MobilePayTag</em></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tag</td>
+<td>true</td>
+<td>Tag</td>
+<td></td>
+<td>Tag info</td>
+</tr>
+<tr>
+<td>scope</td>
+<td>true</td>
+<td>int</td>
+<td><code>1</code>: 所有消費 </br> <code>2</code>: 一般消費 </br> <code>3</code>: 國內一般消費</td>
+<td>The scope of the expense</td>
+</tr>
+<tr>
+<td>payment_type</td>
+<td>false</td>
+<td>int</td>
+<td><code>1</code>: 感應(NFC) </br> <code>2</code>: 掃碼 </br> <code>3</code>: 條碼</td>
+<td>Payment type</td>
 </tr>
 </tbody></table>
 
@@ -17909,7 +18137,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </tr>
 <tr>
 <td>mobilepay_tags</td>
-<td>[]Tag</td>
+<td>[]MobilePayTag</td>
 <td></td>
 <td>Tags which the type is mobilepay</td>
 </tr>
@@ -18412,7 +18640,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </tr>
 <tr>
 <td>mobilepay_tags</td>
-<td>[]Tag</td>
+<td>[]MobilePayTag</td>
 <td></td>
 <td>Tags which the type is mobilepay</td>
 </tr>
@@ -18658,7 +18886,11 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
     ],
     "mobilepay_tags": [
       {
-        "tag_id": "5f9a747p00c2abf3d4a54d4q",
+        "tag": {
+          "tag_id": "5f9a747p00c2abf3d4a54d4q",
+        },
+        "scope": 1,
+        "payment_type": 0
       }
     ],
     "excluded_tags": [
@@ -18811,7 +19043,11 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   <span class="p">],</span>
   <span class="s">"mobilepay_tags"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s">"tag_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
+      <span class="s">"tag"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"tag_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="s">"scope"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s">"payment_type"</span><span class="p">:</span> <span class="mi">0</span>
     <span class="p">}</span>
   <span class="p">],</span>
   <span class="s">"excluded_tags"</span><span class="p">:</span> <span class="p">[</span>
@@ -18964,7 +19200,11 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
   <span class="p">],</span>
   <span class="na">mobilepay_tags</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="na">tag_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">tag</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">tag_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="na">scope</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="na">payment_type</span><span class="p">:</span> <span class="mi">0</span>
     <span class="p">}</span>
   <span class="p">],</span>
   <span class="na">excluded_tags</span><span class="p">:</span> <span class="p">[</span>
@@ -19340,7 +19580,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <tr>
 <td>mobilepay_tags</td>
 <td>false</td>
-<td>[]Tag</td>
+<td>[]MobilePayTag</td>
 <td></td>
 <td>Tags which the type is mobilepay</td>
 </tr>
@@ -19671,6 +19911,40 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </tr>
 </tbody></table>
 
+<p><em>MobilePayTag</em></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tag</td>
+<td>true</td>
+<td>Tag</td>
+<td></td>
+<td>Tag info</td>
+</tr>
+<tr>
+<td>scope</td>
+<td>true</td>
+<td>int</td>
+<td><code>1</code>: 所有消費 </br> <code>2</code>: 一般消費 </br> <code>3</code>: 國內一般消費</td>
+<td>The scope of the expense</td>
+</tr>
+<tr>
+<td>payment_type</td>
+<td>false</td>
+<td>int</td>
+<td><code>1</code>: 感應(NFC) </br> <code>2</code>: 掃碼 </br> <code>3</code>: 條碼</td>
+<td>Payment type</td>
+</tr>
+</tbody></table>
+
 <p><em>OfferUpperBound</em></p>
 
 <table><thead>
@@ -19870,7 +20144,7 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 </tr>
 <tr>
 <td>mobilepay_tags</td>
-<td>[]Tag</td>
+<td>[]MobilePayTag</td>
 <td></td>
 <td>Tags which the type is mobilepay</td>
 </tr>
@@ -20179,6 +20453,40 @@ You must replace <code>meowmeowmeowaccess</code> with your personal API access t
 <td>int</td>
 <td><code>0</code>: No restriction </br> <code>1</code>: Physical store </br> <code>2</code>: Web </br> <code>3</code>: App</td>
 <td>The channel of the store</td>
+</tr>
+</tbody></table>
+
+<p><em>MobilePayTag</em></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tag</td>
+<td>true</td>
+<td>Tag</td>
+<td></td>
+<td>Tag info</td>
+</tr>
+<tr>
+<td>scope</td>
+<td>true</td>
+<td>int</td>
+<td><code>1</code>: 所有消費 </br> <code>2</code>: 一般消費 </br> <code>3</code>: 國內一般消費</td>
+<td>The scope of the expense</td>
+</tr>
+<tr>
+<td>payment_type</td>
+<td>false</td>
+<td>int</td>
+<td><code>1</code>: 感應(NFC) </br> <code>2</code>: 掃碼 </br> <code>3</code>: 條碼</td>
+<td>Payment type</td>
 </tr>
 </tbody></table>
 
