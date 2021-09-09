@@ -294,7 +294,7 @@ url                     | string            |       | Offer URL
 start_date              | int               |       | Offer start date in timeStamp
 end_date                | int               |       | Offer end date in timeStamp
 general_tags            | []Tag             |       | Tags which the type is general
-mobilepay_tags          | []Tag             |       | Tags which the type is mobilepay
+mobilepay_tags          | []MobilePayTag    |       | Tags which the type is mobilepay
 excluded_tags           | []Tag             |       | Tags excluded from the places
 is_independent_reward   | bool              |       | Is the offer is independent or not
 reward_type             | int               | `1`: 現金回饋-趴數 </br> `2`: 現金回饋-固定值 | Reward type
@@ -6950,7 +6950,11 @@ curl --request POST \
     ],
     "mobilepay_tags": [
       {
-        "tag_id": "5f9a747p00c2abf3d4a54d4q",
+        "tag": {
+          "tag_id": "5f9a747p00c2abf3d4a54d4q",
+        },
+        "scope": 1,
+        "payment_type": 0
       }
     ],
     "excluded_tags": [
@@ -7106,7 +7110,11 @@ data = {
   ],
   "mobilepay_tags": [
     {
-      "tag_id": "5f9a747p00c2abf3d4a54d4q",
+      "tag": {
+        "tag_id": "5f9a747p00c2abf3d4a54d4q",
+      },
+      "scope": 1,
+      "payment_type": 0
     }
   ],
   "excluded_tags": [
@@ -7262,7 +7270,11 @@ data = {
   ],
   mobilepay_tags: [
     {
-      tag_id: "5f9a747p00c2abf3d4a54d4q",
+      tag: {
+        tag_id: "5f9a747p00c2abf3d4a54d4q",
+      },
+      scope: 1,
+      payment_type: 0
     }
   ],
   excluded_tags: [
@@ -7430,7 +7442,7 @@ axios.post('https://api.cardbo.info/api/v6/offer/pending', data, {
     ],
     "mobilepay_tags": [
       {
-        "tag_info": "..."
+        "{mobilepay_tag_info}": "..."
       }
     ],
     "excluded_tags": [
@@ -7544,7 +7556,7 @@ url                     | true     | string            |       | Offer URL
 start_date              | true     | int               |       | Offer start date in timeStamp
 end_date                | true     | int               |       | Offer end date in timeStamp
 general_tags            | false    | []Tag             |       | Tags which the type is general
-mobilepay_tags          | false    | []Tag             |       | Tags which the type is mobilepay
+mobilepay_tags          | false    | []MobilePayTag    |       | Tags which the type is mobilepay
 excluded_tags           | false    | []Tag             |       | Tags excluded from the places
 is_independent_reward   | true     | bool              |       | Is the offer is independent or not
 reward_type             | true     | int               | `1`: 現金回饋-趴數 </br> `2`: 現金回饋-固定值 | Reward type
@@ -7612,6 +7624,14 @@ Parameter | Required | Type  | Enums | Description
 store     | true     | Store |       | Store object
 channel   | true     | int   | `0`: No restriction </br> `1`: Physical store </br> `2`: Web </br> `3`: App | The channel of the store
 
+*MobilePayTag*
+
+Parameter    | Required | Type | Enums | Description
+------------ | -------- | ---- | ----- | -----------
+tag          | true     | Tag  |       | Tag info
+scope        | true     | int  | `1`: 所有消費 </br> `2`: 一般消費 </br> `3`: 國內一般消費 | The scope of the expense
+payment_type | false    | int  | `1`: 感應(NFC) </br> `2`: 掃碼 </br> `3`: 條碼 | Payment type
+
 *OfferUpperBound*
 
 Key                   | Required | Type     | Enums | Description
@@ -7655,7 +7675,7 @@ url                     | string            |       | Offer URL
 start_date              | int               |       | Offer start date in timeStamp
 end_date                | int               |       | Offer end date in timeStamp
 general_tags            | []Tag             |       | Tags which the type is general
-mobilepay_tags          | []Tag             |       | Tags which the type is mobilepay
+mobilepay_tags          | []MobilePayTag    |       | Tags which the type is mobilepay
 excluded_tags           | []Tag             |       | Tags excluded from the places
 is_independent_reward   | bool              |       | Is the offer is independent or not
 reward_type             | int               | `1`: 現金回饋-趴數 </br> `2`: 現金回饋-固定值 | Reward type
@@ -7725,6 +7745,14 @@ Parameter | Required | Type  | Enums | Description
 --------- | -------- | ----- | ----- | -----------
 store     | true     | Store |       | Store object
 channel   | true     | int   | `0`: No restriction </br> `1`: Physical store </br> `2`: Web </br> `3`: App | The channel of the store
+
+*MobilePayTag*
+
+Parameter    | Required | Type | Enums | Description
+------------ | -------- | ---- | ----- | -----------
+tag          | true     | Tag  |       | Tag info
+scope        | true     | int  | `1`: 所有消費 </br> `2`: 一般消費 </br> `3`: 國內一般消費 | The scope of the expense
+payment_type | false    | int  | `1`: 感應(NFC) </br> `2`: 掃碼 </br> `3`: 條碼 | Payment type
 
 *OfferUpperBound*
 
@@ -8003,7 +8031,7 @@ url                     | string            |       | Offer URL
 start_date              | int               |       | Offer start date in timeStamp
 end_date                | int               |       | Offer end date in timeStamp
 general_tags            | []Tag             |       | Tags which the type is general
-mobilepay_tags          | []Tag             |       | Tags which the type is mobilepay
+mobilepay_tags          | []MobilePayTag    |       | Tags which the type is mobilepay
 excluded_tags           | []Tag             |       | Tags excluded from the places
 is_independent_reward   | bool              |       | Is the offer is independent or not
 reward_type             | int               | `1`: 現金回饋-趴數 </br> `2`: 現金回饋-固定值 | Reward type
@@ -8060,6 +8088,14 @@ Parameter    | Type      | Enums | Description
 ------------ | --------- | ----- | -----------
 mobilepay    | MobilePay |       | Mobile pay which can get the offer
 payment_type | string    | `1`: 感應支付(NFC) </br> `2`: 掃碼支付 </br> `3`:條碼支付 | Payment tyoe to use to get the offer
+
+*MobilePayTag*
+
+Parameter    | Required | Type | Enums | Description
+------------ | -------- | ---- | ----- | -----------
+tag          | true     | Tag  |       | Tag info
+scope        | true     | int  | `1`: 所有消費 </br> `2`: 一般消費 </br> `3`: 國內一般消費 | The scope of the expense
+payment_type | false    | int  | `1`: 感應(NFC) </br> `2`: 掃碼 </br> `3`: 條碼 | Payment type
 
 *OfferUpperBound*
 
@@ -8332,7 +8368,7 @@ url                     | string            |       | Offer URL
 start_date              | int               |       | Offer start date in timeStamp
 end_date                | int               |       | Offer end date in timeStamp
 general_tags            | []Tag             |       | Tags which the type is general
-mobilepay_tags          | []Tag             |       | Tags which the type is mobilepay
+mobilepay_tags          | []MobilePayTag    |       | Tags which the type is mobilepay
 excluded_tags           | []Tag             |       | Tags excluded from the places
 is_independent_reward   | bool              |       | Is the offer is independent or not
 reward_type             | int               | `1`: 現金回饋-趴數 </br> `2`: 現金回饋-固定值 | Reward type
@@ -8389,6 +8425,14 @@ Parameter    | Type      | Enums | Description
 ------------ | --------- | ----- | -----------
 mobilepay    | MobilePay |       | Mobile pay which can get the offer
 payment_type | string    | `1`: 感應支付(NFC) </br> `2`: 掃碼支付 </br> `3`:條碼支付 | Payment tyoe to use to get the offer
+
+*MobilePayTag*
+
+Parameter    | Required | Type | Enums | Description
+------------ | -------- | ---- | ----- | -----------
+tag          | true     | Tag  |       | Tag info
+scope        | true     | int  | `1`: 所有消費 </br> `2`: 一般消費 </br> `3`: 國內一般消費 | The scope of the expense
+payment_type | false    | int  | `1`: 感應(NFC) </br> `2`: 掃碼 </br> `3`: 條碼 | Payment type
 
 *OfferUpperBound*
 
@@ -8503,7 +8547,11 @@ curl --request PUT \
     ],
     "mobilepay_tags": [
       {
-        "tag_id": "5f9a747p00c2abf3d4a54d4q",
+        "tag": {
+          "tag_id": "5f9a747p00c2abf3d4a54d4q",
+        },
+        "scope": 1,
+        "payment_type": 0
       }
     ],
     "excluded_tags": [
@@ -8659,7 +8707,11 @@ data = {
   ],
   "mobilepay_tags": [
     {
-      "tag_id": "5f9a747p00c2abf3d4a54d4q",
+      "tag": {
+        "tag_id": "5f9a747p00c2abf3d4a54d4q",
+      },
+      "scope": 1,
+      "payment_type": 0
     }
   ],
   "excluded_tags": [
@@ -8815,7 +8867,11 @@ data = {
   ],
   mobilepay_tags: [
     {
-      tag_id: "5f9a747p00c2abf3d4a54d4q",
+      tag: {
+        tag_id: "5f9a747p00c2abf3d4a54d4q",
+      },
+      scope: 1,
+      payment_type: 0
     }
   ],
   excluded_tags: [
@@ -9097,7 +9153,7 @@ url                     | true     | string            |       | Offer URL
 start_date              | true     | int               |       | Offer start date in timeStamp
 end_date                | true     | int               |       | Offer end date in timeStamp
 general_tags            | false    | []Tag             |       | Tags which the type is general
-mobilepay_tags          | false    | []Tag             |       | Tags which the type is mobilepay
+mobilepay_tags          | false    | []MobilePayTag    |       | Tags which the type is mobilepay
 excluded_tags           | false    | []Tag             |       | Tags excluded from the places
 is_independent_reward   | true     | bool              |       | Is the offer is independent or not
 reward_type             | true     | int               | `1`: 現金回饋-趴數 </br> `2`: 現金回饋-固定值 | Reward type
@@ -9165,6 +9221,14 @@ Parameter | Required | Type  | Enums | Description
 store     | true     | Store |       | Store object
 channel   | true     | int   | `0`: No restriction </br> `1`: Physical store </br> `2`: Web </br> `3`: App | The channel of the store
 
+*MobilePayTag*
+
+Parameter    | Required | Type | Enums | Description
+------------ | -------- | ---- | ----- | -----------
+tag          | true     | Tag  |       | Tag info
+scope        | true     | int  | `1`: 所有消費 </br> `2`: 一般消費 </br> `3`: 國內一般消費 | The scope of the expense
+payment_type | false    | int  | `1`: 感應(NFC) </br> `2`: 掃碼 </br> `3`: 條碼 | Payment type
+
 *OfferUpperBound*
 
 Key                   | Required | Type     | Enums | Description
@@ -9208,7 +9272,7 @@ url                     | string            |       | Offer URL
 start_date              | int               |       | Offer start date in timeStamp
 end_date                | int               |       | Offer end date in timeStamp
 general_tags            | []Tag             |       | Tags which the type is general
-mobilepay_tags          | []Tag             |       | Tags which the type is mobilepay
+mobilepay_tags          | []MobilePayTag    |       | Tags which the type is mobilepay
 excluded_tags           | []Tag             |       | Tags excluded from the places
 is_independent_reward   | bool              |       | Is the offer is independent or not
 reward_type             | int               | `1`: 現金回饋-趴數 </br> `2`: 現金回饋-固定值 | Reward type
@@ -9278,6 +9342,14 @@ Parameter | Required | Type  | Enums | Description
 --------- | -------- | ----- | ----- | -----------
 store     | true     | Store |       | Store object
 channel   | true     | int   | `0`: No restriction </br> `1`: Physical store </br> `2`: Web </br> `3`: App | The channel of the store
+
+*MobilePayTag*
+
+Parameter    | Required | Type | Enums | Description
+------------ | -------- | ---- | ----- | -----------
+tag          | true     | Tag  |       | Tag info
+scope        | true     | int  | `1`: 所有消費 </br> `2`: 一般消費 </br> `3`: 國內一般消費 | The scope of the expense
+payment_type | false    | int  | `1`: 感應(NFC) </br> `2`: 掃碼 </br> `3`: 條碼 | Payment type
 
 *OfferUpperBound*
 
@@ -9577,7 +9649,7 @@ url                     | string            |       | Offer URL
 start_date              | int               |       | Offer start date in timeStamp
 end_date                | int               |       | Offer end date in timeStamp
 general_tags            | []Tag             |       | Tags which the type is general
-mobilepay_tags          | []Tag             |       | Tags which the type is mobilepay
+mobilepay_tags          | []MobilePayTag    |       | Tags which the type is mobilepay
 excluded_tags           | []Tag             |       | Tags excluded from the places
 is_independent_reward   | bool              |       | Is the offer is independent or not
 reward_type             | int               | `1`: 現金回饋-趴數 </br> `2`: 現金回饋-固定值 | Reward type
@@ -9870,7 +9942,7 @@ url                     | string            |       | Offer URL
 start_date              | int               |       | Offer start date in timeStamp
 end_date                | int               |       | Offer end date in timeStamp
 general_tags            | []Tag             |       | Tags which the type is general
-mobilepay_tags          | []Tag             |       | Tags which the type is mobilepay
+mobilepay_tags          | []MobilePayTag    |       | Tags which the type is mobilepay
 excluded_tags           | []Tag             |       | Tags excluded from the places
 is_independent_reward   | bool              |       | Is the offer is independent or not
 reward_type             | int               | `1`: 現金回饋-趴數 </br> `2`: 現金回饋-固定值 | Reward type
@@ -9994,7 +10066,11 @@ curl --request PUT \
     ],
     "mobilepay_tags": [
       {
-        "tag_id": "5f9a747p00c2abf3d4a54d4q",
+        "tag": {
+          "tag_id": "5f9a747p00c2abf3d4a54d4q",
+        },
+        "scope": 1,
+        "payment_type": 0
       }
     ],
     "excluded_tags": [
@@ -10150,7 +10226,11 @@ data = {
   ],
   "mobilepay_tags": [
     {
-      "tag_id": "5f9a747p00c2abf3d4a54d4q",
+      "tag": {
+        "tag_id": "5f9a747p00c2abf3d4a54d4q",
+      },
+      "scope": 1,
+      "payment_type": 0
     }
   ],
   "excluded_tags": [
@@ -10306,7 +10386,11 @@ data = {
   ],
   mobilepay_tags: [
     {
-      tag_id: "5f9a747p00c2abf3d4a54d4q",
+      tag: {
+        tag_id: "5f9a747p00c2abf3d4a54d4q",
+      },
+      scope: 1,
+      payment_type: 0
     }
   ],
   excluded_tags: [
@@ -10588,7 +10672,7 @@ url                     | true     | string            |       | Offer URL
 start_date              | true     | int               |       | Offer start date in timeStamp
 end_date                | true     | int               |       | Offer end date in timeStamp
 general_tags            | false    | []Tag             |       | Tags which the type is general
-mobilepay_tags          | false    | []Tag             |       | Tags which the type is mobilepay
+mobilepay_tags          | false    | []MobilePayTag    |       | Tags which the type is mobilepay
 excluded_tags           | false    | []Tag             |       | Tags excluded from the places
 is_independent_reward   | true     | bool              |       | Is the offer is independent or not
 reward_type             | true     | int               | `1`: 現金回饋-趴數 </br> `2`: 現金回饋-固定值 | Reward type
@@ -10656,6 +10740,14 @@ Parameter | Required | Type  | Enums | Description
 store     | true     | Store |       | Store object
 channel   | true     | int   | `0`: No restriction </br> `1`: Physical store </br> `2`: Web </br> `3`: App | The channel of the store
 
+*MobilePayTag*
+
+Parameter    | Required | Type | Enums | Description
+------------ | -------- | ---- | ----- | -----------
+tag          | true     | Tag  |       | Tag info
+scope        | true     | int  | `1`: 所有消費 </br> `2`: 一般消費 </br> `3`: 國內一般消費 | The scope of the expense
+payment_type | false    | int  | `1`: 感應(NFC) </br> `2`: 掃碼 </br> `3`: 條碼 | Payment type
+
 *OfferUpperBound*
 
 Key                   | Required | Type     | Enums | Description
@@ -10699,7 +10791,7 @@ url                     | string            |       | Offer URL
 start_date              | int               |       | Offer start date in timeStamp
 end_date                | int               |       | Offer end date in timeStamp
 general_tags            | []Tag             |       | Tags which the type is general
-mobilepay_tags          | []Tag             |       | Tags which the type is mobilepay
+mobilepay_tags          | []MobilePayTag    |       | Tags which the type is mobilepay
 excluded_tags           | []Tag             |       | Tags excluded from the places
 is_independent_reward   | bool              |       | Is the offer is independent or not
 reward_type             | int               | `1`: 現金回饋-趴數 </br> `2`: 現金回饋-固定值 | Reward type
@@ -10769,6 +10861,14 @@ Parameter | Required | Type  | Enums | Description
 --------- | -------- | ----- | ----- | -----------
 store     | true     | Store |       | Store object
 channel   | true     | int   | `0`: No restriction </br> `1`: Physical store </br> `2`: Web </br> `3`: App | The channel of the store
+
+*MobilePayTag*
+
+Parameter    | Required | Type | Enums | Description
+------------ | -------- | ---- | ----- | -----------
+tag          | true     | Tag  |       | Tag info
+scope        | true     | int  | `1`: 所有消費 </br> `2`: 一般消費 </br> `3`: 國內一般消費 | The scope of the expense
+payment_type | false    | int  | `1`: 感應(NFC) </br> `2`: 掃碼 </br> `3`: 條碼 | Payment type
 
 *OfferUpperBound*
 
