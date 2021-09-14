@@ -1847,7 +1847,7 @@
 <tr>
 <td>tag_type</td>
 <td>int</td>
-<td><code>1</code>: General </br> <code>2</code>: MobilePay</td>
+<td><code>1</code>: MobilePay </br> <code>2</code>: General</td>
 <td>Tag type</td>
 </tr>
 </tbody></table>
@@ -2194,6 +2194,12 @@
 <td>[]RewardContent</td>
 <td></td>
 <td>array of all reward contents</td>
+</tr>
+<tr>
+<td>cashback_value</td>
+<td>float</td>
+<td></td>
+<td>The cashback value can get from the offer</td>
 </tr>
 <tr>
 <td>selected</td>
@@ -20713,7 +20719,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <tr>
 <td>result_type</td>
 <td>int</td>
-<td><code>1</code>: MobilePay Only </br> <code>2</code>: Card Only </br> <code>3</code>: Card with MobilePay</td>
+<td><code>1</code>: MobilePay Only </br> <code>2</code>: Card Only </br> <code>3</code>: Card with MobilePay/ETicket</td>
 <td>Result payment type</td>
 </tr>
 <tr>
@@ -20738,7 +20744,13 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>mobilepays</td>
 <td>[]MobilePay</td>
 <td></td>
-<td>Mobile pays array for <code>result_type=3</code></td>
+<td>Mobile pays used with card for <code>result_type=3</code></td>
+</tr>
+<tr>
+<td>eticket</td>
+<td>ETicket</td>
+<td></td>
+<td>The eticket used with the card for  <code>result_type=3</code></td>
 </tr>
 <tr>
 <td>cashback_value</td>
@@ -21149,7 +21161,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <tr>
 <td>result_type</td>
 <td>int</td>
-<td><code>1</code>: MobilePay Only </br> <code>2</code>: Card Only </br> <code>3</code>: Card with MobilePay</td>
+<td><code>1</code>: MobilePay Only </br> <code>2</code>: Card Only </br> <code>3</code>: Card with MobilePay/ETicket</td>
 <td>Result payment type</td>
 </tr>
 <tr>
@@ -21174,7 +21186,13 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>mobilepays</td>
 <td>[]MobilePay</td>
 <td></td>
-<td>Mobile pays array for <code>result_type=3</code></td>
+<td>Mobile pays used with card for <code>result_type=3</code></td>
+</tr>
+<tr>
+<td>eticket</td>
+<td>ETicket</td>
+<td></td>
+<td>The eticket used with the card for  <code>result_type=3</code></td>
 </tr>
 <tr>
 <td>cashback_value</td>
@@ -21769,7 +21787,7 @@ At least one of <b>card_id</b> and <b>mobilepay_id</b> is required.
 <tr>
 <td>tag_type</td>
 <td>int</td>
-<td><code>1</code>: General </br> <code>2</code>: MobilePay</td>
+<td><code>1</code>: MobilePay </br> <code>2</code>: General</td>
 <td>Tag type</td>
 </tr>
 </tbody></table>
