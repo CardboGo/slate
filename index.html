@@ -1055,18 +1055,6 @@
 <td>Email</td>
 </tr>
 <tr>
-<td>phone_number</td>
-<td>string</td>
-<td></td>
-<td>Phone number</td>
-</tr>
-<tr>
-<td>cardbo_point</td>
-<td>int</td>
-<td></td>
-<td>Cardbo point (useless)</td>
-</tr>
-<tr>
 <td>cards</td>
 <td>[]Card</td>
 <td></td>
@@ -1079,10 +1067,10 @@
 <td>User own mobile pay array</td>
 </tr>
 <tr>
-<td>user_level</td>
+<td>user_type</td>
 <td>int</td>
-<td>GENERAL: <code>1</code> <br/> VIP: <code>2</code> <br/> DEVELOPER: <code>3</code></td>
-<td>User level</td>
+<td><code>1</code>: User type 1 <br/><code>2</code>: User type 2 <br/><code>3</code>: User type 3</td>
+<td>User type</td>
 </tr>
 <tr>
 <td>invoice</td>
@@ -1093,32 +1081,32 @@
 <tr>
 <td>subscription</td>
 <td>int</td>
-<td>UNSUBSCRIBED: <code>1</code> <br/> SUBSCRIBED: <code>2</code></td>
-<td>is user subscribe the user reward</td>
+<td><code>1</code>: UNSUBSCRIBED <br/> <code>2</code>: SUBSCRIBED</td>
+<td>Is user subscribe our service</td>
 </tr>
 <tr>
 <td>update_message</td>
 <td>bool</td>
 <td></td>
-<td>does the user need to get the update message</td>
+<td>Does the user need to get the update message</td>
 </tr>
 <tr>
 <td>interested_categories</td>
 <td>[]InterestedCategory</td>
 <td></td>
-<td>user interest categories data</td>
+<td>User interest categories data</td>
 </tr>
 <tr>
 <td>created_at</td>
 <td>int</td>
 <td></td>
-<td>create time in timestamp</td>
+<td>Create time in timestamp</td>
 </tr>
 <tr>
 <td>updated_at</td>
 <td>int</td>
 <td></td>
-<td>update time in timestamp</td>
+<td>Update time in timestamp</td>
 </tr>
 <tr>
 <td>last_login</td>
@@ -1127,7 +1115,50 @@
 <td>User last login time in timestamp</td>
 </tr>
 </tbody></table>
-<h2 id='usermobilepay'>UserMobilepay</h2>
+
+<blockquote>
+<p>User:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"line_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"U3f3a741a55362b595bab1dc31aadf268"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://image.png"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"user_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"subscription"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"cards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"card_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"bank"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"bank_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bank"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://image.png"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://image.png"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"052"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://image.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"issuer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VISA"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"card_last_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"reward_day"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"has_questionnaire"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"questionnaire_completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"enable_reward"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"carrier"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"update_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last_login"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='usermobilepay'>UserMobilepay</h2>
 <table><thead>
 <tr>
 <th>Key</th>
