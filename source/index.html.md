@@ -76,18 +76,60 @@ line_id               | string               |       | LINE id
 username              | string               |       | Username
 image                 | string               |       | User image
 email                 | string               |       | Email
-phone_number          | string               |       | Phone number
-cardbo_point          | int                  |       | Cardbo point (useless)
 cards                 | []Card               |       | User own card array
 user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
-user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+user_type             | int                  | `1`: User type 1 <br/>`2`: User type 2 <br/>`3`: User type 3 | User type
 invoice               | UserInvoice          |       | user invcoie info
-subscription          | int                  | UNSUBSCRIBED: `1` <br/> SUBSCRIBED: `2` | is user subscribe the user reward
-update_message        | bool                 |       | does the user need to get the update message
-interested_categories | []InterestedCategory |       | user interest categories data
-created_at            | int                  |       | create time in timestamp
-updated_at            | int                  |       | update time in timestamp
+subscription          | int                  | `1`: UNSUBSCRIBED <br/> `2`: SUBSCRIBED | Is user subscribe our service
+update_message        | bool                 |       | Does the user need to get the update message
+interested_categories | []InterestedCategory |       | User interest categories data
+created_at            | int                  |       | Create time in timestamp
+updated_at            | int                  |       | Update time in timestamp
 last_login            | int                  |       | User last login time in timestamp
+
+> User:
+
+```json
+{
+  "user_id": "5f9a747p00c2abf3d4a54d4q",
+  "line_id": "U3f3a741a55362b595bab1dc31aadf268",
+  "username": "User",
+  "image": "https://image.png",
+  "email": "",
+  "user_type": 3,
+  "subscription": 2,
+  "cards": [
+    {
+      "card_id": "5f9a747p00c2abf3d4a54d4q",
+      "name": "card",
+      "bank": {
+        "bank_id": "5f9a747p00c2abf3d4a54d4q",
+        "name": "bank",
+        "logo": "https://image.png",
+        "image": "https://image.png",
+        "code": "052"
+      },
+      "level": 4,
+      "image": "https://image.png",
+      "issuer": "VISA",
+      "payment_date": 20,
+      "card_last_no": "1234",
+      "reward_day": 1,
+      "has_questionnaire": true,
+      "questionnaire_completed": true,
+      "enable_reward": true
+    }
+  ],
+  "invoice": {
+    "carrier": "",
+    "status": false
+  },
+  "update_message": false,
+  "created_at": 1617601542000,
+  "updated_at": 1617601542000,
+  "last_login": 1617601542000
+}
+```
 
 ## UserMobilepay
 
