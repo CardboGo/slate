@@ -551,7 +551,7 @@ image      | string | image URL
 
 # 1. Authentication
 
-## 1-1. Administrator
+## • Administrator
 
 > Login administrator:
 
@@ -641,7 +641,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 1-2. LineBot
+## • LineBot
 
 > Login linebot:
 
@@ -725,7 +725,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 1-3. Line Login
+## • Line Login
 
 > Login from LINE:
 
@@ -809,7 +809,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 1-4. Auth Refresh
+## • Auth Refresh
 
 > Refresh auth token:
 
@@ -892,7 +892,7 @@ error | string | error message
 
 # 2. User
 
-## 2-1. Get user profile
+## • Get user profile
 
 > Get user profile:
 
@@ -993,10 +993,6 @@ axios.get('https://api.cardbo.info/api/v5/user', {
 
 Get user profile by user's API auth token
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v5/user`
@@ -1039,7 +1035,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 2-2. Update user information
+## • Update user information
 
 > Update user information:
 
@@ -1155,10 +1151,6 @@ axios.put('https://api.cardbo.info/api/v5/user', data, {
 
 Update user information
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/user`
@@ -1209,7 +1201,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 2-3. Add user card
+## • Add user card
 
 > Add card:
 
@@ -1274,10 +1266,6 @@ axios.put('https://api.cardbo.info/api/v5/user/add_card', data, {
 
 Add a card to user's pocket
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/user/add_card`
@@ -1313,7 +1301,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 2-4. Remove user card
+## • Remove user card
 
 > Remove card:
 
@@ -1369,10 +1357,6 @@ axios.put('https://api.cardbo.info/api/v5/user/remove_card', data, {
 
 Remove a card from user's pocket
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/user/remove_card`
@@ -1405,7 +1389,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 2-5. Update user mobile pays
+## • Update user mobile pays
 
 > Update mobile pays:
 
@@ -1467,10 +1451,6 @@ axios.put('https://api.cardbo.info/api/v5/user/mobilepays', data, {
 
 Update user's mobile pays
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/user/mobilepays`
@@ -1503,7 +1483,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 2-6. Add user mobile pay
+## • Add user mobile pay
 
 > Add mobile pay:
 
@@ -1580,10 +1560,6 @@ axios.put('https://api.cardbo.info/api/v5/user/add_mobilepay', data, {
 
 Add user's mobile pay
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/user/add_mobilepay`
@@ -1629,7 +1605,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 2-7. Remove user mobile pay
+## • Remove user mobile pay
 
 > Remove mobile pay:
 
@@ -1685,10 +1661,6 @@ axios.put('https://api.cardbo.info/api/v5/user/remove_mobilepay', data, {
 
 Remove user's mobile pay
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/user/remove_mobilepay`
@@ -1721,7 +1693,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 2-8. Add card to user mobile pay
+## • Add card to user mobile pay
 
 > Add card to mobile pay:
 
@@ -1792,10 +1764,6 @@ axios.put('https://api.cardbo.info/api/v5/user/mobilepay/add_card', data, {
 
 Add card to user's mobile pay
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/user/mobilepay/add_card`
@@ -1841,7 +1809,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 2-9. Remove card from user mobile pay
+## • Remove card from user mobile pay
 
 > Remove card from mobile pay:
 
@@ -1912,10 +1880,6 @@ axios.put('https://api.cardbo.info/api/v5/user/mobilepay/remove_card', data, {
 
 Remove card from user's mobile pay
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/user/mobilepay/remove_card`
@@ -1961,7 +1925,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 2-10. Update user level
+## • Update user level
 
 > Update user level:
 
@@ -2026,10 +1990,6 @@ axios.put('https://api.cardbo.info/api/v5/user/user_level', data, {
 
 Update user's mobile pays
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/user/user_level`
@@ -2063,7 +2023,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 2-11. Get user accounting summary
+## • Get user accounting summary
 
 > Get user accounting summary:
 
@@ -2146,10 +2106,6 @@ axios.get('https://api.cardbo.info/api/v5/user/accounting', {
 
 Get user accounting summary
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v5/user/accounting`
@@ -2181,7 +2137,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 2-12. Set user carrier invoice
+## • Set user carrier invoice
 
 > Set user carrier invoice:
 
@@ -2242,10 +2198,6 @@ axios.put('https://api.cardbo.info/api/v6/user/invoice', data, {
 
 Set user carrier invoice
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v6/user/invoice`
@@ -2279,7 +2231,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 2-13. Set user card payment date
+## • Set user card payment date
 
 > Set user card payment date:
 
@@ -2392,10 +2344,6 @@ axios.put('https://api.cardbo.info/api/v6/user/card_payment_date', data, {
 
 Set user card payment date
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v6/user/card_payment_date`
@@ -2445,7 +2393,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 2-14. Unset user card payment date
+## • Unset user card payment date
 
 > Unset user card payment date:
 
@@ -2555,10 +2503,6 @@ axios.put('https://api.cardbo.info/api/v6/user/card_payment_date/unset', data, {
 
 Unset user card payment date
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v6/user/card_payment_date/unset`
@@ -2608,7 +2552,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 2-15. Set user mobile pay no card binding
+## • Set user mobile pay no card binding
 
 > Set user mobile pay no card binding:
 
@@ -2685,10 +2629,6 @@ axios.put('https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/set_no_c
 
 Set user mobile pay no card binding
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/set_no_card`
@@ -2731,7 +2671,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 2-16. Unset user mobile pay no card binding
+## • Unset user mobile pay no card binding
 
 > Unset user mobile pay no card binding:
 
@@ -2808,10 +2748,6 @@ axios.put('https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/unset_no
 
 Unset user mobile pay no card binding
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/unset_no_card`
@@ -2854,7 +2790,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 2-17. Get user pocket
+## • Get user pocket
 
 > Get user pocket:
 
@@ -2927,10 +2863,6 @@ axios.get('https://api.cardbo.info/api/v5/user/pocket', {
 
 Get user pocket
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v5/user/pocket`
@@ -2962,7 +2894,7 @@ error | string | error message
 
 # 3. Administrator
 
-## 3-1. Create administrator
+## • Create administrator
 
 > Create administrator:
 
@@ -3037,10 +2969,6 @@ axios.post('https://api.cardbo.info/api/v5/administrator', data, {
 
 Create a new administrator
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `POST https://api.cardbo.info/api/v5/administrator`
@@ -3084,7 +3012,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 3-2. Get administrator
+## • Get administrator
 
 > Get administrator:
 
@@ -3141,10 +3069,6 @@ axios.post('https://api.cardbo.info/api/v5/administrator', {
 
 Get administrator by administrator's API auth token
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v5/administrator`
@@ -3179,7 +3103,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 3-3. Delete administrator
+## • Delete administrator
 
 > Delete administrator:
 
@@ -3236,10 +3160,6 @@ axios.delete('https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54
 
 Delete a administrator
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `DELETE https://api.cardbo.info/api/v5/administrator/{administrator_id}`
@@ -3280,7 +3200,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 3-4. Get employee list
+## • Get employee list
 
 > Get employee list:
 
@@ -3333,10 +3253,6 @@ axios.delete('https://api.cardbo.info/api/v5/administrator/employees?options=acc
 
 Delete a administrator
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v5/administrator/employees`
@@ -3377,7 +3293,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 3-5. Update administrator level
+## • Update administrator level
 
 > Update administrator level:
 
@@ -3442,10 +3358,6 @@ axios.delete('https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54
 ```
 
 Update administrator level
-
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
 
 ### HTTP Request
 
@@ -3552,10 +3464,6 @@ axios.put('https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54d4q
 
 Update administrator password
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/administrator/{administrator_id}/password`
@@ -3595,7 +3503,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 3-6. Update administrator profile
+## • Update administrator profile
 
 > Update administrator profile:
 
@@ -3662,10 +3570,6 @@ axios.put('https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54d4q
 
 Update administrator profile
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/administrator/{administrator_id}/profile`
@@ -3714,7 +3618,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 3-7. Reset employee password
+## • Reset employee password
 
 > Update administrator password:
 
@@ -3771,10 +3675,6 @@ axios.put('https://api.cardbo.info/api/v5/administrator/5f9a747p00c2abf3d4a54d4q
 
 Update administrator password
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/administrator/{administrator_id}/reset_password`
@@ -3817,7 +3717,7 @@ error | string | error message
 
 # 4. Bank
 
-## 4-1. Get banks
+## • Get banks
 
 > Get banks data:
 
@@ -3872,10 +3772,6 @@ axios.get('https://api.cardbo.info/api/v5/banks?options=name&options=logo', {
 
 Get banks data
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v5/banks`
@@ -3914,7 +3810,7 @@ error | string | error message
 
 # 5. Card
 
-## 5-1. Get formal cards
+## • Get formal cards
 
 > Get formal cards data:
 
@@ -4000,10 +3896,6 @@ axios.get('https://api.cardbo.info/api/v5/cards/formal?size=10&page=1&options=na
 
 Get formal cards data
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v5/cards/formal`
@@ -4053,7 +3945,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 5-2. Get formal cards by bank id
+## • Get formal cards by bank id
 
 > Get formal cards data by bank id:
 
@@ -4139,10 +4031,6 @@ axios.get('https://api.cardbo.info/api/v5/cards/formal/bank/5f756d85c2349d913964
 
 Get formal cards data by bank id
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v5/cards/formal/bank/{bank_id}`
@@ -4194,7 +4082,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 5-3. Get promoted formal cards
+## • Get promoted formal cards
 
 > Get promoted formal cards data:
 
@@ -4280,10 +4168,6 @@ axios.get('https://api.cardbo.info/api/v5/cards/formal/promote?options=name&opti
 
 Get promoted formal cards data
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v5/cards/formal/promote`
@@ -4329,7 +4213,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 5-4. Get formal cards with user has property
+## • Get formal cards with user has property
 
 > Get formal cards data with user has property:
 
@@ -4415,10 +4299,6 @@ axios.get('https://api.cardbo.info/api/v5/cards/formal/user_has?options=name&opt
 
 Get promoted formal cards data
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v5/cards/formal/user_has`
@@ -4464,7 +4344,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 5-5. Get formal card by card id
+## • Get formal card by card id
 
 > Get single formal card data by card id:
 
@@ -4547,10 +4427,6 @@ axios.get('https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q',
 
 Get single formal card data by card id
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v5/card/formal/{card_id}`
@@ -4595,7 +4471,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 5-6. Update formal card
+## • Update formal card
 
 > Update formal card information:
 
@@ -4693,10 +4569,6 @@ axios.put('https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q',
 
 Update formal card information
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/card/formal/{card_id}`
@@ -4753,7 +4625,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 5-7. Delete formal card
+## • Delete formal card
 
 > Delete formal card:
 
@@ -4835,10 +4707,6 @@ axios.delete('https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4
 
 Delete formal card
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `DELETE https://api.cardbo.info/api/v5/card/formal/{card_id}`
@@ -4883,7 +4751,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 5-8. Add formal card to promote
+## • Add formal card to promote
 
 > Add formal card to promote:
 
@@ -4965,10 +4833,6 @@ axios.put('https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q/a
 
 Add formal card to promote
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/card/formal/{card_id}/add_promote`
@@ -5013,7 +4877,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 5-9. Remove formal card from promote
+## • Remove formal card from promote
 
 > Remove formal card from promote:
 
@@ -5095,10 +4959,6 @@ axios.put('https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q/r
 
 Add formal card to promote
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/card/formal/{card_id}/remove_promote`
@@ -5143,7 +5003,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 5-10. Upload formal card image
+## • Upload formal card image
 
 > Upload formal card image:
 
@@ -5204,10 +5064,6 @@ axios.post('https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q/
 
 Upload formal card image
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/card/formal/{card_id}/image`
@@ -5248,7 +5104,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 5-11. Get pending cards
+## • Get pending cards
 
 > Get pending cards data:
 
@@ -5334,10 +5190,6 @@ axios.get('https://api.cardbo.info/api/v5/cards/pending?size=10&page=1&options=n
 
 Get pending cards data
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v5/cards/pending`
@@ -5387,7 +5239,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 5-12. Insert pending card
+## • Insert pending card
 
 > Insert pending card:
 
@@ -5518,10 +5370,6 @@ axios.post('https://api.cardbo.info/api/v5/card/pending', data, {
 
 Insert a new card to pending card
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `POST https://api.cardbo.info/api/v5/card/pending`
@@ -5572,7 +5420,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 5-13. Get pending card by card id
+## • Get pending card by card id
 
 > Get single pending card data by card id:
 
@@ -5655,10 +5503,6 @@ axios.get('https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q'
 
 Get single pending card data by card id
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v5/card/pending/{card_id}`
@@ -5703,7 +5547,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 5-14. Update pending card
+## • Update pending card
 
 > Update pending card information:
 
@@ -5801,10 +5645,6 @@ axios.put('https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q'
 
 Update pending card information
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/card/pending/{card_id}`
@@ -5861,7 +5701,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 5-15. Delete pending card
+## • Delete pending card
 
 > Delete pending card:
 
@@ -5943,10 +5783,6 @@ axios.delete('https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d
 
 Delete pending card
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `DELETE https://api.cardbo.info/api/v5/card/pending/{card_id}`
@@ -5991,7 +5827,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 5-16. Pass pending card to formal card
+## • Pass pending card to formal card
 
 > Pass pending card to formal card:
 
@@ -6073,10 +5909,6 @@ axios.put('https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q/
 
 Pass pending card to formal card
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/card/pending/{card_id}/passed`
@@ -6121,7 +5953,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 5-17. Fail pending card
+## • Fail pending card
 
 > Fail pending card:
 
@@ -6203,10 +6035,6 @@ axios.put('https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q/
 
 Fail pending card
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/card/pending/{card_id}/failed`
@@ -6251,7 +6079,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 5-18. Upload pending card image
+## • Upload pending card image
 
 > Upload pending card image:
 
@@ -6312,10 +6140,6 @@ axios.post('https://api.cardbo.info/api/v5/card/pending/5f9a747p00c2abf3d4a54d4q
 
 Upload pending card image
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/card/pending/{card_id}/image`
@@ -6356,7 +6180,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 5-19. Set formal card promotion
+## • Set formal card promotion
 
 > Set formal card promotion:
 
@@ -6494,10 +6318,6 @@ axios.post('https://api.cardbo.info/api/v5/card/formal/5f9a747p00c2abf3d4a54d4q/
 
 Set formal card promotion
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v5/card/formal/{card_id}/promotion`
@@ -6559,7 +6379,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 5-20. Get card reward infomation
+## • Get card reward infomation
 
 > Get card reward infomation:
 
@@ -6634,10 +6454,6 @@ axios.get('https://api.cardbo.info/api/v5/cards/formal/reward_info', {
 
 Get card reward infomation
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v5/cards/formal/reward_info`
@@ -6669,7 +6485,7 @@ error | string | error message
 
 # 6. MobilePay
 
-## 6-1. Insert mobile pay
+## • Insert mobile pay
 
 > Insert mobile pay:
 
@@ -6732,10 +6548,6 @@ axios.post('https://api.cardbo.info/api/v5/mobilepay', data, {
 
 Insert a new mobile pay
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `POST https://api.cardbo.info/api/v5/mobilepay`
@@ -6771,7 +6583,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 6-2. Get mobile pays
+## • Get mobile pays
 
 > Get mobile pays data:
 
@@ -6824,10 +6636,6 @@ axios.get('https://api.cardbo.info/api/v5/mobilepays?options=name&options=image'
 ```
 
 Get mobile pays data
-
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
 
 ### HTTP Request
 
@@ -7522,10 +7330,6 @@ axios.post('https://api.cardbo.info/api/v6/offer/pending', data, {
 
 Insert pending offer
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `POST https://api.cardbo.info/api/v6/offer/pending`
@@ -7982,10 +7786,6 @@ axios.get('https://api.cardbo.info/api/v6/offers/pending?page=1', {
 
 Get pending offers
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v6/offers/pending`
@@ -8322,10 +8122,6 @@ axios.get('https://api.cardbo.info/api/v6/offer/pending/5f9a747p00c2abf3d4a54d4q
 ```
 
 Get pending offers
-
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
 
 ### HTTP Request
 
@@ -9119,10 +8915,6 @@ axios.put('https://api.cardbo.info/api/v6/offer/pending', data, {
 
 Update pending offer
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v6/offer/pending/{offer_id}`
@@ -9380,13 +9172,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## • Remove pending offer
+## • Remove pending offer (TODO)
 
-## • Pass pending offer to formal offer
+## • Pass pending offer to formal offer (TODO)
 
-## • Fail pending offer
+## • Fail pending offer (TODO)
 
-## • Get pending offers
+## • Get pending offers (TODO)
 
 ## • Bind pending offers sharing upper bound
 
@@ -9604,10 +9396,6 @@ axios.put('https://api.cardbo.info/api/v6/offer/pending/upperbound', data, {
 ```
 
 Bind pending offers sharing upper bound
-
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
 
 ### HTTP Request
 
@@ -9898,10 +9686,6 @@ axios.put('https://api.cardbo.info/api/v6/offer/formal/upperbound', data, {
 
 Bind formal offers sharing upper bound
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v6/offer/formal/upperbound`
@@ -9974,13 +9758,13 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## • Remove pending offer sharing upper bound
+## • Remove pending offer sharing upper bound (TODO)
 
-## • Link pending offers options bindong
+## • Link pending offers options bindong (TODO)
 
-## • Remove pending offer options binding
+## • Remove pending offer options binding (TODO)
 
-## • Get formal offer by offer id
+## • Get formal offer by offer id (TODO)
 
 ## • Update formal offer
 
@@ -10638,10 +10422,6 @@ axios.put('https://api.cardbo.info/api/v6/offer/formal/5f9a747p00c2abf3d4a54d4q'
 
 Update formal offer
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v6/offer/formal/{offer_id}`
@@ -10899,13 +10679,11 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## • Remove formal offer
+## • Remove formal offer (TODO)
 
-## • Get formal offers
+## • Get formal offers (TODO)
 
-## • Get formal offers by offer id list
-
-## • Search offers from user's cards
+## • Search offers By store
 
 > search offers from user's card
 
@@ -11109,10 +10887,6 @@ axios.post('https://api.cardbo.info/api/v6/offers/formal/search', data, {
 
 Search offers by store
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `POST https://api.cardbo.info/api/v6/offers/formal/search`
@@ -11213,9 +10987,255 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## • Search offers of all cards
+## • Search offers By category
 
-## • Get recommended offers
+> Search offers By category
+
+```shell
+curl --request POST \
+  --url https://api.cardbo.info/api/v6/offers/formal/search/category \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "category": "國內一般消費",
+    "amount": 100,
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/offers/formal/search/category'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "category": "國內一般消費",
+  "amount": 100,
+}
+response = requests.post(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  category: "國內一般消費",
+  amount: 100,
+}
+axios.post('https://api.cardbo.info/api/v6/offers/formal/search/category', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "user_type": 3,
+    "tag": {
+      "{tag_info}": "..."
+    },
+    "amount": 100,
+    "search_result_type": 1,
+    "results": [
+      {
+        "result_type": 1,
+        "special_condition": false,
+        "card": {
+          "card_id": "5f9a747p00c2abf3d4a54d4q",
+          "name": "信用卡",
+          "bank": {
+            "{bank_info}": "...",
+          },
+          "level": 1,
+          "image": "https://image.png",
+          "issuer": "VISA",
+          "payment_date": 0,
+          "card_last_no": "",
+          "reward_day": 0,
+          "has_questionnaire": true,
+          "questionnaire_completed": false,
+          "enable_reward": false
+        },
+        "mobilepay": {
+          "{mobilepay_info}": "..."
+        },
+        "mobilepays": [
+          {
+            "{mobilepay_info}": "..."
+          }
+        ],
+        "cashback_value": {
+          "cashback_value": 500,
+          "cashback_coins": [
+            {
+              "reward_name": "Line Points",
+              "image": "https://image.png"
+            }
+          ]
+        },
+        "cashback_percentage": {
+          "max_expense": 200,
+          "max_cashback": 18,
+          "cashback_coins": [
+            {
+              "reward_name": "Line Points",
+              "image": "https://image.png"
+            }
+          ],
+          "offers": [
+            {
+              "offer_id": "5f9a747p00c2abf3d4a54d4q",
+              "options": [],
+              "end_date": 1617601542000,
+              "pre_conditions": [
+                "綁定 Line 帳號"
+              ],
+              "post_conditions": null,
+              "register_url": "",
+              "coupon_code": "",
+              "discount_url": "",
+              "upper_bounds": [
+                {
+                  "upperbound_id": "5f9a747p00c2abf3d4a54d4q",
+                  "cash_upper_bound": 200,
+                  "frequency_upper_bound": 3,
+                  "upper_bound_period": 5,
+                  "store_independent": false,
+                  "sharing_upper_bounds": [
+                    "5f9a747p00c2abf3d4a54d4q"
+                  ]
+                }
+              ],
+              "reward_type": 1,
+              "max_reward_content": {
+                "mincost_period_times": 0,
+                "mincost_period": 0,
+                "excluded_places": [],
+                "mincost_value": 0,
+                "reward_name": "Line Points",
+                "reward_value": 15,
+                "coin_image": "https://image.png"
+              },
+              "reward_contents": [
+                {
+                  "mincost_period_times": 0,
+                  "mincost_period": 0,
+                  "excluded_places": [],
+                  "mincost_value": 0,
+                  "reward_name": "Line Points",
+                  "reward_value": 15,
+                  "coin_image": "https://image.png"
+                }
+              ],
+              "selected": true
+            }
+          ]
+        },
+        "cashback_fixed": {
+          "max_expense": 0,
+          "max_cashback": 0,
+          "cashback_coins": [],
+          "offers": []
+        },
+        "conditions": [
+          {
+            "condition_type": 1,
+            "name": "綁定 Line 帳號",
+            "url": ""
+          }
+        ]
+      }
+    ]
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Search offers by category
+
+### HTTP Request
+
+`POST https://api.cardbo.info/api/v6/offers/formal/search/category`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter | Required | Type                 | Description
+--------- | -------- | -------------------- | -----------
+category  | true     | string               | Category name
+amount    | true     | int                  | Expense amount
+
+### Response
+
+#### Success
+
+Key                | Type                      | Enums | Description
+------------------ | ------------------------- | ----- | -----------
+category           | Store                     |       | Store object
+amount             | int                       |       | Expense amount
+search_result_type | int                       | `1`: Has result </br> `3`: No results    | The search result type
+results            | []OfferSearchResultDetail |       | Offer search result when `search_result_type=1`
+
+*OfferSearchResultDetail*
+
+Key                 | Type                    | Enums | Description
+------------------- | ----------------------- | ----- | -----------
+result_type         | int                     | `1`: MobilePay Only </br> `2`: Card Only </br> `3`: Card with MobilePay | Result payment type
+special_condition   | bool                    |       | Is special condition
+mobilepay           | MobilePay               |       | Mobeile pay for `result_type=1`
+card                | UserCard                |       | User card for `result_type=2` and `result_type=3`
+mobilepays          | []MobilePay             |       | Mobile pays array for `result_type=3`
+cashback_value      | CashbackValue           |       | Cashback value for `user_type=3`
+cashback_percentage | RewardDetail            |       | Cashback percentage info
+cashback_fixed      | RewardDetail            |       | Cashback fixed info
+conditions          | []SearchResultCondition |       | Array of conditions
+
+*CashbackValue*
+
+Key            | Type           | Description
+-------------- | -------------- | -----------
+cashback_value | float          | Reward value
+cashback_coins | []CashbackCoin | Coin info of the cashback
+
+*RewardDetail*
+
+Key            | Type           | Description
+-------------- | -------------- | -----------
+max_expense    | int            | Max expense for the reward
+max_cashback   | float          | Max cashback percentage/fixed value
+cashback_coins | []CashbackCoin | Coin info of the cashback
+offers         | []OfferResult  | All offers match the result
+
+*SearchResultCondition*
+
+Key            | Type   | Enums | Description
+-------------- |------- | ----- | -----------
+condition_type | int    | `1`: 一般條件 </br> `2`: 登錄 </br> `3`: 優惠碼 </br> `4`: 專屬連結 </br> `5`: 最低消費條件(特殊) | Conditiogn type
+name           | string |       | Condition description
+url            | string |       | Condition URL
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
 
 ## • Get card offers
 
@@ -11278,10 +11298,6 @@ axios.delete('https://api.cardbo.info/api/v5.5/offers/formal/card/5f9a747p00c2ab
 
 Get all offers and new user offers of a card
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v5.5/offers/formal/card/{card_id}`
@@ -11312,8 +11328,6 @@ new_user_offers | []NewUserOffer    | Array of  NewUserOffer object
 Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
-
-## • Get expired offers
 
 ## • Search offers for accounting record
 
@@ -11370,10 +11384,6 @@ axios.delete('https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5
 
 Search offers for accounting record
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v6/offers/formal/accounting`
@@ -11418,43 +11428,35 @@ error | string | error message
 
 # 8. Store
 
-## 8-1. Insert pending store
+## • Insert pending store (TODO)
 
-## 8-2. Get pending store by store_id
+## • Get pending store by store_id (TODO)
 
-## 8-3. Update pending store
+## • Update pending store (TODO)
 
-## 8-4. Upload pending store image
+## • Pass pending store to formal (TODO)
 
-## 8-5. Pass pending store to formal
+## • Fail pending store (TODO)
 
-## 8-6. Fail pending store
+## • Add pending store combo options (TODO)
 
-## 8-7. Add pending store combo options
+## • Remove pending store combo options (TODO)
 
-## 8-8. Remove pending store combo options
+## • Delete pending store (TODO)
 
-## 8-9. Delete pending store
+## • Get pending stores (TODO)
 
-## 8-10. Get pending stores
+## • Get formal store by store_id (TODO)
 
-## 8-11. Get formal store by store_id
+## • Update formal store (TODO)
 
-## 8-12. Update formal store
+## • Add formal store combo options (TODO)
 
-## 8-13. Upload formal store image
+## • Remove formal store combo options (TODO)
 
-## 8-14. Add formal store combo options
+## • Get formal stores (TODO)
 
-## 8-15. Remove formal store combo options
-
-## 8-16. Get formal stores
-
-## 8-17. Get popular stores
-
-## 8-18. Find similar stores
-
-## 8-19. Search stores by keyword
+## • Search stores by keyword
 
 > Search stores by keyword:
 
@@ -11508,10 +11510,6 @@ axios.delete('https://api.cardbo.info/api/v6/stores/formal/search?keyword=pc', {
 ```
 
 Search stores by keyword
-
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
 
 ### HTTP Request
 
@@ -11603,10 +11601,6 @@ axios.get('https://api.cardbo.info/api/v6/tags?type=2', {
 
 Get pending offers
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v6/tags`
@@ -11650,7 +11644,7 @@ error | string | error message
 
 # 12. ErrorReport
 
-## 12-1. Insert error report
+## • Insert error report
 
 > Insert an error report:
 
@@ -11750,10 +11744,6 @@ axios.post('https://api.cardbo.info/api/v6/error_report', data, {
 
 Insert an error report
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `POST https://api.cardbo.info/api/v6/error_report`
@@ -11817,7 +11807,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 12-2. Get error reports
+## • Get error reports
 
 > Get error reports:
 
@@ -11895,10 +11885,6 @@ axios.get('https://api.cardbo.info/api/v6/error_reports?report_type=1', {
 
 Get error reports
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v6/error_reports?report_type=1`
@@ -11948,7 +11934,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 12-3. Get error report by report_id
+## • Get error report by report_id
 
 > Get error report by report_id:
 
@@ -12024,10 +12010,6 @@ axios.get('https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q'
 
 Get error report by report_id
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q`
@@ -12077,7 +12059,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 12-4. Make report status to FIXED
+## • Make report status to FIXED
 
 > Make report status to FIXED:
 
@@ -12162,10 +12144,6 @@ axios.put('https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/
 
 Make report status to FIXED
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed`
@@ -12215,7 +12193,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 12-5. Make report status to NOTIFIED
+## • Make report status to NOTIFIED
 
 > Make report status to NOTIFIED:
 
@@ -12291,10 +12269,6 @@ axios.put('https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/
 
 Make report status to NOTIFIED
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified`
@@ -12346,7 +12320,7 @@ error | string | error message
 
 # 16. AccountingRecord
 
-## 16-1. Get pending accounting records
+## • Get pending accounting records
 
 > Get pending accounting records:
 
@@ -12421,10 +12395,6 @@ axios.get('https://api.cardbo.info/api/v6/accountings/pending', {
 
 Get pending accounting records
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v6/accountings/pending`
@@ -12465,7 +12435,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 16-2. Get card Accounting info
+## • Get card Accounting info
 
 > Get accounting records and user rewards of a card:
 
@@ -12529,10 +12499,6 @@ axios.get('https://api.cardbo.info/api/v6/accountings/5f9a747p00c2abf3d4a54d4q/2
 
 Get accounting records and user rewards of a card
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v6/accountings/{card_id}/{year}`
@@ -12560,7 +12526,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 16-3. Insert an accounting record without invoice
+## • Insert an accounting record without invoice
 
 > Insert an accounting record without invoice:
 
@@ -12669,10 +12635,6 @@ axios.post('https://api.cardbo.info/api/v6/accounting', data, {
 
 Insert an accounting record without invoice
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `POST https://api.cardbo.info/api/v6/accounting`
@@ -12729,7 +12691,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 16-4. Insert an accounting record with QR code invoice
+## • Insert an accounting record with QR code invoice
 
 > Insert an accounting record with QR code invoice:
 
@@ -12844,10 +12806,6 @@ axios.post('https://api.cardbo.info/api/v6/accounting/qr_code', data, {
 
 Insert an accounting record with QR code invoice
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `POST https://api.cardbo.info/api/v6/accounting/qr_code`
@@ -12906,7 +12864,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 16-5. Insert an accounting record with carrier invoice
+## • Insert an accounting record with carrier invoice
 
 > Insert an accounting record with carrier invoice:
 
@@ -13018,10 +12976,6 @@ axios.post('https://api.cardbo.info/api/v6/accounting/qr_code', data, {
 
 Insert an accounting record with carrier invoice
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `POST https://api.cardbo.info/api/v6/accounting/qr_code`
@@ -13079,7 +13033,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 16-6 Update accounting record
+## • Update accounting record
 
 > Update administrator profile:
 
@@ -13186,10 +13140,6 @@ axios.put('https://api.cardbo.info/api/v6/accounting/5f9a747p00c2abf3d4a54d4q', 
 
 Update administrator profile
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v6/accounting/{accounting_id}`
@@ -13256,7 +13206,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 16-7 Get accounting record by accounting_id
+## • Get accounting record by accounting_id
 
 > Get accounting record by accounting_id:
 
@@ -13329,10 +13279,6 @@ axios.get('https://api.cardbo.info/api/v6/accounting/{accounting_id}', {
 
 Get accounting record by accounting_id
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v6/accounting/{accounting_id}`
@@ -13379,7 +13325,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 16-8 Delete an accounting record
+## • Delete an accounting record
 
 > Delete an accounting record:
 
@@ -13452,10 +13398,6 @@ axios.delete('https://api.cardbo.info/api/v6/accounting/{accounting_id}', {
 
 Delete an accounting record
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `DELETE https://api.cardbo.info/api/v6/accounting/{accounting_id}`
@@ -13502,7 +13444,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 16-9 Get monthly accounting records
+## • Get monthly accounting records
 
 > Get monthly accounting records:
 
@@ -13583,10 +13525,6 @@ axios.get('https://api.cardbo.info/api/v6/accountings/year/{year}', {
 
 Get monthly accounting records
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v6/accountings/year/{year}`
@@ -13623,7 +13561,7 @@ error | string | error message
 
 # 17. Invoice
 
-## 17-1. Get unrecorded invoices
+## • Get unrecorded invoices
 
 > Get unrecorded invoices:
 
@@ -13688,10 +13626,6 @@ axios.get('https://api.cardbo.info/api/v6/invoices/unrecorded', {
 
 Get unrecorded invoices
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v6/invoices/unrecorded`
@@ -13736,7 +13670,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 17-2. Archive invoices
+## • Archive invoices
 
 > Archive invoices:
 
@@ -13797,10 +13731,6 @@ axios.put('https://api.cardbo.info/api/v6/invoices/archive', data, {
 
 Archive invoices
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v6/invoices/archive`
@@ -13827,7 +13757,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 17-3. Get QR Code invoice data
+## • Get QR Code invoice data
 
 > Get QR Code invoice data:
 
@@ -13891,10 +13821,6 @@ axios.get('https://api.cardbo.info/api/v6/invoice/qrcode?qr_code_left={INVOICE_L
 
 Get QR Code invoice data
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v6/invoice/qrcode`
@@ -13941,7 +13867,7 @@ error | string | error message
 
 # 18. UserReward
 
-## 18-1. Set user reward order
+## • Set user reward order
 
 > Set user reward order:
 
@@ -14006,10 +13932,6 @@ axios.put('https://api.cardbo.info/api/v6/reward/order', data, {
 
 Update user information
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v6/reward/order`
@@ -14045,7 +13967,7 @@ error | string | error message
 
 # 19. Card Questionnaire
 
-## 19-1. Insert card questionnaire
+## • Insert card questionnaire
 
 > Insert card questionnaire:
 
@@ -14262,10 +14184,6 @@ axios.post('https://api.cardbo.info/api/v6/questionnaire', data, {
 
 Insert card questionnaire
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `POST https://api.cardbo.info/api/v6/questionnaire`
@@ -14312,7 +14230,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 19-2. Update card questionnaire
+## • Update card questionnaire
 
 > Update card questionnaire:
 
@@ -14529,10 +14447,6 @@ axios.put('https://api.cardbo.info/api/v6/questionnaire/{questionnaire_id}', dat
 
 Update card questionnaire
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `PUT https://api.cardbo.info/api/v6/questionnaire/{questionnaire_id}`
@@ -14585,7 +14499,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 19-3. Get questionnaire by questionnaire_id
+## • Get questionnaire by questionnaire_id
 
 > Get questionnaire by questionnaire_id:
 
@@ -14702,10 +14616,6 @@ axios.get('https://api.cardbo.info/api/v6/questionnaire/id/{questionnaire_id}', 
 
 Get questionnaire by questionnaire_id
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v6/questionnaire/id/{questionnaire_id}`
@@ -14742,7 +14652,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 19-4. Get user card questionnaire
+## • Get user card questionnaire
 
 > Get user card questionnaire:
 
@@ -14907,10 +14817,6 @@ axios.get('https://api.cardbo.info/api/v6/questionnaire/card/{card_id}', {
 
 Get questionnaire and user's answer of a card
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v6/questionnaire/card/{card_id}`
@@ -14944,7 +14850,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 19-5. Get questionnaires
+## • Get questionnaires
 
 > Get questionnaires:
 
@@ -15063,10 +14969,6 @@ axios.get('https://api.cardbo.info/api/v6/questionnaires', {
 
 Get questionnaires
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v6/questionnaires`
@@ -15097,7 +14999,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 19-6. Submit questionnaire
+## • Submit questionnaire
 
 > Submit questionnaire:
 
@@ -15238,10 +15140,6 @@ axios.post('https://api.cardbo.info/api/v6/questionnaire/submit/{card_id}', data
 ```
 
 User submit questionaaire
-
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
 
 ### HTTP Request
 
@@ -15441,10 +15339,6 @@ axios.get('https://api.cardbo.info/api/v6/eticket/{eticket_id}', {
 
 Get eticket by eticket_id
 
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
-
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v6/eticket/{eticket_id}`
@@ -15531,10 +15425,6 @@ axios.get('https://api.cardbo.info/api/v6/etickets', {
 ```
 
 Get etickets
-
-<aside class="notice">
-You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
-</aside>
 
 ### HTTP Request
 
