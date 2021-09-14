@@ -69,24 +69,6 @@ Code    | Description
 
 ## User
 
-Key                   | Type                 | Enums | Description
---------------------- | -------------------- | ----- | -----------
-user_id               | string               |       | User id
-line_id               | string               |       | LINE id
-username              | string               |       | Username
-image                 | string               |       | User image
-email                 | string               |       | Email
-cards                 | []Card               |       | User own card array
-user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
-user_type             | int                  | `1`: User type 1 <br/>`2`: User type 2 <br/>`3`: User type 3 | User type
-invoice               | UserInvoice          |       | user invcoie info
-subscription          | int                  | `1`: UNSUBSCRIBED <br/> `2`: SUBSCRIBED | Is user subscribe our service
-update_message        | bool                 |       | Does the user need to get the update message
-interested_categories | []InterestedCategory |       | User interest categories data
-created_at            | int                  |       | Create time in timestamp
-updated_at            | int                  |       | Update time in timestamp
-last_login            | int                  |       | User last login time in timestamp
-
 > User:
 
 ```json
@@ -130,6 +112,24 @@ last_login            | int                  |       | User last login time in t
   "last_login": 1617601542000
 }
 ```
+
+Key                   | Type                 | Enums | Description
+--------------------- | -------------------- | ----- | -----------
+user_id               | string               |       | User id
+line_id               | string               |       | LINE id
+username              | string               |       | Username
+image                 | string               |       | User image
+email                 | string               |       | Email
+cards                 | []Card               |       | User own card array
+user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
+user_type             | int                  | `1`: User type 1 <br/>`2`: User type 2 <br/>`3`: User type 3 | User type
+invoice               | UserInvoice          |       | user invcoie info
+subscription          | int                  | `1`: UNSUBSCRIBED <br/> `2`: SUBSCRIBED | Is user subscribe our service
+update_message        | bool                 |       | Does the user need to get the update message
+interested_categories | []InterestedCategory |       | User interest categories data
+created_at            | int                  |       | Create time in timestamp
+updated_at            | int                  |       | Update time in timestamp
+last_login            | int                  |       | User last login time in timestamp
 
 ## UserMobilepay
 
