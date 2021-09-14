@@ -274,7 +274,7 @@ Parameter   | Type   | Enums | Description
 tag_id      | string |       | Tag ID
 name        | string |       | Tag name
 description | string |       | Tag description
-tag_type    | int    | `1`: General </br> `2`: MobilePay | Tag type
+tag_type    | int    | `1`: MobilePay </br> `2`: General | Tag type
 
 ## Offer
 
@@ -343,6 +343,7 @@ upper_bounds       | []OfferUpperBound |       | array of offer upper bound
 reward_type        | int               | CASHBACK_PERCENTAGE: `1` <br/> CASHBACK_FIXED: `2` | reward type
 max_reward_content | RewardContent     |       | best reward can get from reward contents
 reward_contents    | []RewardContent   |       | array of all reward contents
+cashback_value     | float             |       | The cashback value can get from the offer
 selected           | bool              |       | is the reward selected
 
 ## OfferUpperBound
@@ -10938,11 +10939,12 @@ categories         | []string                  |       | Category array when `se
 
 Key                 | Type                    | Enums | Description
 ------------------- | ----------------------- | ----- | -----------
-result_type         | int                     | `1`: MobilePay Only </br> `2`: Card Only </br> `3`: Card with MobilePay | Result payment type
+result_type         | int                     | `1`: MobilePay Only </br> `2`: Card Only </br> `3`: Card with MobilePay/ETicket | Result payment type
 special_condition   | bool                    |       | Is special condition
 mobilepay           | MobilePay               |       | Mobeile pay for `result_type=1`
 card                | UserCard                |       | User card for `result_type=2` and `result_type=3`
-mobilepays          | []MobilePay             |       | Mobile pays array for `result_type=3`
+mobilepays          | []MobilePay             |       | Mobile pays used with card for `result_type=3`
+eticket             | ETicket                 |       | The eticket used with the card for  `result_type=3`
 cashback_value      | CashbackValue           |       | Cashback value for `user_type=3`
 cashback_percentage | RewardDetail            |       | Cashback percentage info
 cashback_fixed      | RewardDetail            |       | Cashback fixed info
@@ -11197,11 +11199,12 @@ results            | []OfferSearchResultDetail |       | Offer search result whe
 
 Key                 | Type                    | Enums | Description
 ------------------- | ----------------------- | ----- | -----------
-result_type         | int                     | `1`: MobilePay Only </br> `2`: Card Only </br> `3`: Card with MobilePay | Result payment type
+result_type         | int                     | `1`: MobilePay Only </br> `2`: Card Only </br> `3`: Card with MobilePay/ETicket | Result payment type
 special_condition   | bool                    |       | Is special condition
 mobilepay           | MobilePay               |       | Mobeile pay for `result_type=1`
 card                | UserCard                |       | User card for `result_type=2` and `result_type=3`
-mobilepays          | []MobilePay             |       | Mobile pays array for `result_type=3`
+mobilepays          | []MobilePay             |       | Mobile pays used with card for `result_type=3`
+eticket             | ETicket                 |       | The eticket used with the card for  `result_type=3`
 cashback_value      | CashbackValue           |       | Cashback value for `user_type=3`
 cashback_percentage | RewardDetail            |       | Cashback percentage info
 cashback_fixed      | RewardDetail            |       | Cashback fixed info
@@ -11630,7 +11633,7 @@ Parameter   | Type   | Enums | Description
 tag_id      | string |       | Tag ID
 name        | string |       | Tag name
 description | string |       | Tag description
-tag_type    | int    | `1`: General </br> `2`: MobilePay | Tag type
+tag_type    | int    | `1`: MobilePay </br> `2`: General | Tag type
 
 #### Error
 
