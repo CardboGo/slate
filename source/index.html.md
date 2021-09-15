@@ -2935,6 +2935,87 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
+## • Get user status
+
+> Get status of user type:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/user/status \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/user/status'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/user/status', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "card": true,
+    "mobilepay": true,
+    "payment_date": false,
+    "card_questionnaire": false
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get status of user type
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/user/status`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+### Response
+
+#### Success
+
+Key                | Type | Description
+------------------ | ---- | -----------
+card               | bool | Does user have at least one card
+mobilepay          | bool | Does all user's mobile pays combine with cards
+payment_date       | bool | Does user finish payment date of all cards
+card_questionnaire | bool | Does user finish questionnaire of all cards
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
 # 3. Administrator
 
 ## • Create administrator
