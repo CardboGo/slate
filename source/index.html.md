@@ -7717,7 +7717,7 @@ error | string | error message
 
 ```shell
 curl --request GET \
-  --url https://api.cardbo.info/api/v6/offers/pending?page=1 \
+  --url https://api.cardbo.info/api/v6/offers/pending?page=1&creator=5f9a747p00c2abf3d4a54d4q \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json'
 ```
@@ -7725,7 +7725,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v6/offers/pending?page=1'
+url = 'https://api.cardbo.info/api/v6/offers/pending?page=1&creator=5f9a747p00c2abf3d4a54d4q'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.get(url, headers=headers)
 ```
@@ -7734,7 +7734,7 @@ response = requests.get(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.get('https://api.cardbo.info/api/v6/offers/pending?page=1', {
+axios.get('https://api.cardbo.info/api/v6/offers/pending?page=1&creator=5f9a747p00c2abf3d4a54d4q', {
     headers: headers
   })
   .then(function (response) {
@@ -7924,9 +7924,10 @@ Authorization | Bearer token | API access token
 
 #### Queries
 
-Query | Required | Muti-values | Description
------ | -------- | ----------- | -----------
-page  | true     | false       | page of the data
+Query   | Required | Muti-values | Description
+------- | -------- | ----------- | -----------
+page    | true     | false       | Page of the data
+creator | false    | false       | Filter the creator
 
 <aside class="notice">
 There are 20 data each page.
@@ -10807,6 +10808,98 @@ error | string | error message
 
 ## • Get formal offers (TODO)
 
+## • Get card offers
+
+> Get all offers and new user offers of a card
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v5.5/offers/formal/card/5f9a747p00c2abf3d4a54d4q \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v5.5/offers/formal/card/5f9a747p00c2abf3d4a54d4q'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.delete(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.delete('https://api.cardbo.info/api/v5.5/offers/formal/card/5f9a747p00c2abf3d4a54d4q', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "offers": [
+      {
+        "offer": {
+          "offer_info": "...",
+        },
+        "recently_updated": false
+      }
+    ],
+    "new_user_offers": [
+      {
+        "new_user_offer_info": "..."
+      }
+    ]
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get all offers and new user offers of a card
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v5.5/offers/formal/card/{card_id}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+<aside class="notice">
+At least one of <b>card_id</b> and <b>mobilepay_id</b> is required.
+</aside>
+
+### Response
+
+#### Success
+
+Key             | Type              | Description
+--------------- | ----------------- | -----------
+offers          | []OfferUpdateInfo | Array of OfferUpdateInfo object
+new_user_offers | []NewUserOffer    | Array of  NewUserOffer object
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
 ## • Search offers By store
 
 > search offers from user's card
@@ -11363,30 +11456,51 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## • Get card offers
+## • Search accounting offers
 
-> Get all offers and new user offers of a card
+> Search accounting offers
 
 ```shell
-curl --request GET \
-  --url https://api.cardbo.info/api/v5.5/offers/formal/card/5f9a747p00c2abf3d4a54d4q \
+curl --request POST \
+  --url https://api.cardbo.info/api/v6/offers/formal/search/accounting \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
+  --data '{
+    "store": "711",
+    "amount": 100,
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
+    "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+    "date": 1617601542000
+  }'
 ```
 
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5.5/offers/formal/card/5f9a747p00c2abf3d4a54d4q'
+url = 'https://api.cardbo.info/api/v6/offers/formal/search/accounting'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
-response = requests.delete(url, headers=headers)
+data = {
+    "store": "711",
+    "amount": 100,
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
+    "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+    "date": 1617601542000
+  }
+response = requests.post(url, headers=headers, json=data)
 ```
 
 ```javascript
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.delete('https://api.cardbo.info/api/v5.5/offers/formal/card/5f9a747p00c2abf3d4a54d4q', {
+data = {
+    store: "711",
+    amount: 100,
+    card_id: "5f9a747p00c2abf3d4a54d4q",
+    mobilepay_id: "5f9a747p00c2abf3d4a54d4q",
+    date: 1617601542000
+  }
+axios.post('https://api.cardbo.info/api/v6/offers/formal/search/accounting', data, {
     headers: headers
   })
   .then(function (response) {
@@ -11404,29 +11518,132 @@ axios.delete('https://api.cardbo.info/api/v5.5/offers/formal/card/5f9a747p00c2ab
   "code": 200,
   "message": "Ok",
   "result": {
-    "offers": [
+    "user_type": 3,
+    "store": {
+      "store": "...",
+    },
+    "amount": 100,
+    "search_result_type": 1,
+    "results": [
       {
-        "offer": {
-          "offer_info": "...",
+        "result_type": 1,
+        "special_condition": false,
+        "card": {
+          "card_id": "5f9a747p00c2abf3d4a54d4q",
+          "name": "信用卡",
+          "bank": {
+            "{bank_info}": "...",
+          },
+          "level": 1,
+          "image": "https://image.png",
+          "issuer": "VISA",
+          "payment_date": 0,
+          "card_last_no": "",
+          "reward_day": 0,
+          "has_questionnaire": true,
+          "questionnaire_completed": false,
+          "enable_reward": false
         },
-        "recently_updated": false
+        "mobilepay": {
+          "{mobilepay_info}": "..."
+        },
+        "mobilepays": [
+          {
+            "{mobilepay_info}": "..."
+          }
+        ],
+        "cashback_value": {
+          "cashback_value": 500,
+          "cashback_coins": [
+            {
+              "reward_name": "Line Points",
+              "image": "https://image.png"
+            }
+          ]
+        },
+        "cashback_percentage": {
+          "max_expense": 200,
+          "max_cashback": 18,
+          "cashback_coins": [
+            {
+              "reward_name": "Line Points",
+              "image": "https://image.png"
+            }
+          ],
+          "offers": [
+            {
+              "offer_id": "5f9a747p00c2abf3d4a54d4q",
+              "options": [],
+              "end_date": 1617601542000,
+              "pre_conditions": [
+                "綁定 Line 帳號"
+              ],
+              "post_conditions": null,
+              "register_url": "",
+              "coupon_code": "",
+              "discount_url": "",
+              "upper_bounds": [
+                {
+                  "upperbound_id": "5f9a747p00c2abf3d4a54d4q",
+                  "cash_upper_bound": 200,
+                  "frequency_upper_bound": 3,
+                  "upper_bound_period": 5,
+                  "store_independent": false,
+                  "sharing_upper_bounds": [
+                    "5f9a747p00c2abf3d4a54d4q"
+                  ]
+                }
+              ],
+              "reward_type": 1,
+              "max_reward_content": {
+                "mincost_period_times": 0,
+                "mincost_period": 0,
+                "excluded_places": [],
+                "mincost_value": 0,
+                "reward_name": "Line Points",
+                "reward_value": 15,
+                "coin_image": "https://image.png"
+              },
+              "reward_contents": [
+                {
+                  "mincost_period_times": 0,
+                  "mincost_period": 0,
+                  "excluded_places": [],
+                  "mincost_value": 0,
+                  "reward_name": "Line Points",
+                  "reward_value": 15,
+                  "coin_image": "https://image.png"
+                }
+              ],
+              "selected": true
+            }
+          ]
+        },
+        "cashback_fixed": {
+          "max_expense": 0,
+          "max_cashback": 0,
+          "cashback_coins": [],
+          "offers": []
+        },
+        "conditions": [
+          {
+            "condition_type": 1,
+            "name": "綁定 Line 帳號",
+            "url": ""
+          }
+        ]
       }
     ],
-    "new_user_offers": [
-      {
-        "new_user_offer_info": "..."
-      }
-    ]
   },
   "timestamp": 1617601542000
 }
 ```
 
-Get all offers and new user offers of a card
+Search accounting offers
 
 ### HTTP Request
 
-`GET https://api.cardbo.info/api/v5.5/offers/formal/card/{card_id}`
+`POST https://api.cardbo.info/api/v6/offers/formal/search/accounting`
 
 ### Request
 
@@ -11436,115 +11653,69 @@ Key           | Value        | Description
 ------------- | ------------ | -----------
 Authorization | Bearer token | API access token
 
-<aside class="notice">
-At least one of <b>card_id</b> and <b>mobilepay_id</b> is required.
-</aside>
+#### Parameters
+
+Parameter    | Required | Type   | Description
+------------ | -------- | ------ | -----------
+store        | true     | string | Store name
+amount       | true     | int    | Expense amount
+card_id      | true     | string | Card ID to use
+mobilepay_id | false    | string | Mobile pay ID to use
+date         | true     | int    | Date of the record in timestamp
 
 ### Response
 
 #### Success
 
-Key             | Type              | Description
---------------- | ----------------- | -----------
-offers          | []OfferUpdateInfo | Array of OfferUpdateInfo object
-new_user_offers | []NewUserOffer    | Array of  NewUserOffer object
-
-#### Error
-
-Key   | Type   | Description
------ | ------ | -----------
-error | string | error message
-
-## • Search offers for accounting record
-
-> Search offers for accounting record:
-
-```shell
-curl --request GET \
-  --url https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5f9a747p00c2abf3d4a54d4q&card_id=5f9a747p00c2abf3d4a54d4q&mobilepay_id=5f9a747p00c2abf3d4a54d4q&expense=100&date=1617601542000 \
-  -H 'Authorization: Bearer meowmeowmeowaccess' \
-  -H 'Content-Type: application/json' \
-```
-
-```python
-import requests
-
-url = 'https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5f9a747p00c2abf3d4a54d4q&card_id=5f9a747p00c2abf3d4a54d4q&mobilepay_id=5f9a747p00c2abf3d4a54d4q&expense=100&date=1617601542000'
-headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
-response = requests.delete(url, headers=headers)
-```
-
-```javascript
-const axios = require('axios');
-
-headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.delete('https://api.cardbo.info/api/v6/offers/formal/accounting?store_id=5f9a747p00c2abf3d4a54d4q&card_id=5f9a747p00c2abf3d4a54d4q&mobilepay_id=5f9a747p00c2abf3d4a54d4q&expense=100&date=1617601542000', {
-    headers: headers
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-```
-
-> Response example:
-
-```json
-{
-  "code": 200,
-  "message": "Ok",
-  "result": [
-    {
-      "offer": {
-        "offer_info": "..."
-      },
-      "selected": true,
-      "reward_value": 0.5
-    }
-  ],
-  "timestamp": 1617601542000
-}
-```
-
-Search offers for accounting record
-
-### HTTP Request
-
-`GET https://api.cardbo.info/api/v6/offers/formal/accounting`
-
-### Request
-
-#### Headers
-
-Key           | Value        | Description
-------------- | ------------ | -----------
-Authorization | Bearer token | API access token
-
-#### Queries
-
-Query        | Required | Muti-values | Description
------------- | -------- | ----------- | -----------
-store_id     | false    | false       | store id
-card_id      | false    | false       | card id
-mobilepay_id | false    | false       | mobilepay id
-expense      | true     | false       | the amount of the expense
-date         | true     | false       | the date of expense in timestamp
-
 <aside class="notice">
-At least one of <b>card_id</b> and <b>mobilepay_id</b> is required.
+When <code>search_result_type=1</code>, <code>results</code> has value; when <code>search_result_type=2</code>, <code>post_condition</code> has value; when <code>search_result_type=3</code>, <code>categories</code> has value. If API returns <code>search_result_type=2</code>, need to provide <code>post_condition</code> which meet user's condtion and call API again.
 </aside>
 
-### Response
+Key                | Type                      | Enums | Description
+------------------ | ------------------------- | ----- | -----------
+store              | Store                     |       | Store object
+amount             | int                       |       | Expense amount
+search_result_type | int                       | `1`: Has result </br> `3`: No results    | The search result type
+results            | []OfferSearchResultDetail |       | Offer search result when `search_result_type=1`
 
-#### Success
+*OfferSearchResultDetail*
 
-Key          | Type  | Description
------------- | ----- | -----------
-offer        | Offer | Offer object
-selected     | bool  | is the offer selected for max cashback
-reward_value | float | the reward value get from the offer
+Key                 | Type                    | Enums | Description
+------------------- | ----------------------- | ----- | -----------
+result_type         | int                     | `1`: MobilePay Only </br> `2`: Card Only </br> `3`: Card with MobilePay/ETicket | Result payment type
+special_condition   | bool                    |       | Is special condition
+mobilepay           | MobilePay               |       | Mobeile pay for `result_type=1`
+card                | UserCard                |       | User card for `result_type=2` and `result_type=3`
+mobilepays          | []MobilePay             |       | Mobile pays used with card for `result_type=3`
+eticket             | ETicket                 |       | The eticket used with the card for  `result_type=3`
+cashback_value      | CashbackValue           |       | Cashback value for `user_type=3`
+cashback_percentage | RewardDetail            |       | Cashback percentage info
+cashback_fixed      | RewardDetail            |       | Cashback fixed info
+conditions          | []SearchResultCondition |       | Array of conditions
+
+*CashbackValue*
+
+Key            | Type           | Description
+-------------- | -------------- | -----------
+cashback_value | float          | Reward value
+cashback_coins | []CashbackCoin | Coin info of the cashback
+
+*RewardDetail*
+
+Key            | Type           | Description
+-------------- | -------------- | -----------
+max_expense    | int            | Max expense for the reward
+max_cashback   | float          | Max cashback percentage/fixed value
+cashback_coins | []CashbackCoin | Coin info of the cashback
+offers         | []OfferResult  | All offers match the result
+
+*SearchResultCondition*
+
+Key            | Type   | Enums | Description
+-------------- |------- | ----- | -----------
+condition_type | int    | `1`: 一般條件 </br> `2`: 登錄 </br> `3`: 優惠碼 </br> `4`: 專屬連結 </br> `5`: 最低消費條件(特殊) | Conditiogn type
+name           | string |       | Condition description
+url            | string |       | Condition URL
 
 #### Error
 
