@@ -2066,7 +2066,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## • Get user accounting summary
+## • Get user accounting summary (OLD)
 
 > Get user accounting summary:
 
@@ -12955,212 +12955,6 @@ error | string | error message
 
 # 16. AccountingRecord
 
-## • Get pending accounting records
-
-> Get pending accounting records:
-
-```shell
-curl --request GET \
-  --url https://api.cardbo.info/api/v6/accountings/pending \
-  -H 'Authorization: Bearer meowmeowmeowaccess' \
-  -H 'Content-Type: application/json' \
-```
-
-```python
-import requests
-
-url = 'https://api.cardbo.info/api/v6/accountings/pending'
-headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
-response = requests.get(url, headers=headers)
-```
-
-```javascript
-const axios = require('axios');
-
-headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.get('https://api.cardbo.info/api/v6/accountings/pending', {
-    headers: headers
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-```
-
-> Response example:
-
-```json
-{
-  "code": 200,
-  "message": "Ok",
-  "result": [
-    {
-      "_id": "5f9a747p00c2abf3d4a54d4q",
-      "user": {
-        "user_info": "..."
-      },
-      "card": {
-        "card_info": "...",
-      },
-      "mobilepay": {
-        "mobilepay_info": "...",
-      },
-      "amount": 1000,
-      "name": "午餐",
-      "store": {
-        "store_info": "...",
-      },
-      "store_name": "",
-      "invoice": "AB99999999",
-      "date": 1617601542000,
-      "rewards": [
-        {
-          "offer_id": "5f9a747p00c2abf3d4a54d4q",
-          "reward_name": "現金",
-          "reward_value": 28.83
-        }
-      ]
-    }
-  ],
-  "timestamp": 1617601542000
-}
-```
-
-Get pending accounting records
-
-### HTTP Request
-
-`GET https://api.cardbo.info/api/v6/accountings/pending`
-
-### Request
-
-#### Headers
-
-Key           | Value        | Description
-------------- | ------------ | -----------
-Authorization | Bearer token | API access token
-
-### Response
-
-#### Success
-
-Key           | Type               | Enums | Description
-------------- | ------------------ | ----- | -----------
-accounting_id | string             |       | accotungin id
-user          | User               |       | User object
-card          | Card               |       | Card object
-mobilepay     | MobilePay          |       | MobilePay object
-invoice       | Invoice            |       | Invoice object
-amount        | int                |       | how much money of the record
-name          | string             |       | description of the record
-store         | Store              |       | Store object
-store_name    | string             |       | store name when the store is not in our database
-date          | int                |       | date of the expese in timestamp
-rewards       | []AccountingReward |       | array of AccountingReward object
-invoice_type  | int                | QRCode: `1` <br/> Carrier: `2` <br/> NoInvoice: `3` | invoice tpye of the record
-pending       | string             |       | is the record in pending or not
-created_at    | int                |       | create time in timestamp
-updated_at    | int                |       | update time in timestamp
-
-#### Error
-
-Key   | Type   | Description
------ | ------ | -----------
-error | string | error message
-
-## • Get card Accounting info
-
-> Get accounting records and user rewards of a card:
-
-```shell
-curl --request GET \
-  --url https://api.cardbo.info/api/v6/accountings/5f9a747p00c2abf3d4a54d4q/2021 \
-  -H 'Authorization: Bearer meowmeowmeowaccess' \
-  -H 'Content-Type: application/json' \
-```
-
-```python
-import requests
-
-url = 'https://api.cardbo.info/api/v6/accountings/5f9a747p00c2abf3d4a54d4q/2021'
-headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
-response = requests.get(url, headers=headers)
-```
-
-```javascript
-const axios = require('axios');
-
-headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.get('https://api.cardbo.info/api/v6/accountings/5f9a747p00c2abf3d4a54d4q/2021', {
-    headers: headers
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-```
-
-> Response example:
-
-```json
-{
-  "code": 200,
-  "message": "Ok",
-  "result": {
-    "card": {
-      "card_info": "..."
-    },
-    "month_accountings_records": [
-      {
-        "expense": 0,
-        "cashback": 0,
-        "start_date": 1617601542000,
-        "end_date": 1617601542000,
-        "accounting_records": [],
-        "user_rewards": [
-          {
-            "reward_info": "..."
-          }
-        ]
-      }
-    ],
-  "timestamp": 1617601542000
-}
-```
-
-Get accounting records and user rewards of a card
-
-### HTTP Request
-
-`GET https://api.cardbo.info/api/v6/accountings/{card_id}/{year}`
-
-### Request
-
-#### Headers
-
-Key           | Value        | Description
-------------- | ------------ | -----------
-Authorization | Bearer token | API access token
-
-### Response
-
-#### Success
-
-Key                       | Type                    | Description
-------------------------- | ----------------------- | -----------
-card                      | CardDisplay             | CardDisplay object
-month_accountings_records | []MonthAccountingRecord | monthly accounting record info
-
-#### Error
-
-Key   | Type   | Description
------ | ------ | -----------
-error | string | error message
-
 ## • Insert an accounting record without invoice
 
 > Insert an accounting record without invoice:
@@ -13773,7 +13567,7 @@ axios.put('https://api.cardbo.info/api/v6/accounting/5f9a747p00c2abf3d4a54d4q', 
 }
 ```
 
-Update administrator profile
+Update a accounting record
 
 ### HTTP Request
 
@@ -13812,6 +13606,121 @@ completed     | false     | bool     | is the record completed
 *1: Must set at least one of `card_id` and `mobilepay_id`
 *2: Must set one of `store_id` and `store_name`
 *3: if `card_id` is set, `rewards` is required
+
+### Response
+
+#### Success
+
+Key           | Type               | Enums | Description
+------------- | ------------------ | ----- | -----------
+accounting_id | string             |       | accotungin id
+user          | User               |       | User object
+card          | Card               |       | Card object
+mobilepay     | MobilePay          |       | MobilePay object
+invoice       | Invoice            |       | Invoice object
+amount        | int                |       | how much money of the record
+name          | string             |       | description of the record
+store         | Store              |       | Store object
+store_name    | string             |       | store name when the store is not in our database
+date          | int                |       | date of the expese in timestamp
+rewards       | []AccountingReward |       | array of AccountingReward object
+invoice_type  | int                | QRCode: `1` <br/> Carrier: `2` <br/> NoInvoice: `3` | invoice tpye of the record
+pending       | string             |       | is the record in pending or not
+created_at    | int                |       | create time in timestamp
+updated_at    | int                |       | update time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## • Get pending accounting records
+
+> Get pending accounting records:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/accountings/pending \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/accountings/pending'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/accountings/pending', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": [
+    {
+      "_id": "5f9a747p00c2abf3d4a54d4q",
+      "user": {
+        "user_info": "..."
+      },
+      "card": {
+        "card_info": "...",
+      },
+      "mobilepay": {
+        "mobilepay_info": "...",
+      },
+      "amount": 1000,
+      "name": "午餐",
+      "store": {
+        "store_info": "...",
+      },
+      "store_name": "",
+      "invoice": "AB99999999",
+      "date": 1617601542000,
+      "rewards": [
+        {
+          "offer_id": "5f9a747p00c2abf3d4a54d4q",
+          "reward_name": "現金",
+          "reward_value": 28.83
+        }
+      ]
+    }
+  ],
+  "timestamp": 1617601542000
+}
+```
+
+Get pending accounting records
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/accountings/pending`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
 
 ### Response
 
@@ -14072,6 +13981,373 @@ invoice_type  | int                | QRCode: `1` <br/> Carrier: `2` <br/> NoInvo
 pending       | string             |       | is the record in pending or not
 created_at    | int                |       | create time in timestamp
 updated_at    | int                |       | update time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## • Get card Accounting info (OLD)
+
+> Get accounting records and user rewards of a card:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/accountings/5f9a747p00c2abf3d4a54d4q/2021 \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/accountings/5f9a747p00c2abf3d4a54d4q/2021'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/accountings/5f9a747p00c2abf3d4a54d4q/2021', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "card": {
+      "card_info": "..."
+    },
+    "month_accountings_records": [
+      {
+        "expense": 0,
+        "cashback": 0,
+        "start_date": 1617601542000,
+        "end_date": 1617601542000,
+        "accounting_records": [],
+        "user_rewards": [
+          {
+            "reward_info": "..."
+          }
+        ]
+      }
+    ],
+  "timestamp": 1617601542000
+}
+```
+
+Get accounting records and user rewards of a card
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/accountings/{card_id}/{year}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+### Response
+
+#### Success
+
+Key                       | Type                    | Description
+------------------------- | ----------------------- | -----------
+card                      | CardDisplay             | CardDisplay object
+month_accountings_records | []MonthAccountingRecord | monthly accounting record info
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## • Get user's accounting summary
+
+> Get user's accounting summary:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/accountings/summary \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/accountings/summary'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/accountings/summary', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "user": {
+      "user_info": "..."
+    },
+    "total_expense": 0,
+    "total_reward": 0,
+    "card_user_rewards": [
+      {
+        "card": {
+          "card_info": "..."
+        },
+        "user_reward": {
+          "reward_id": "5f9a747p00c2abf3d4a54d4q",
+          "offer": {
+            "offer_id": "5f9a747p00c2abf3d4a54d4q"
+          },
+          "reward_unit_value": 1.5,
+          "reward_name": "現金",
+          "reward_upper_bound": 500,
+          "year": 2021,
+          "month": 1,
+          "expense": 1000,
+          "reward_value": 15.0,
+          "created_at": 1617601542000,
+          "updated_at": 1617601542000
+        }
+      }
+    ],
+    "mobilepay_expenses": [
+      {
+        "mobilepay": {
+          "mobilepay_info": "..."
+        },
+        "expense": 1000
+      }
+    ]
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get user's accounting summary
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/accountings/summary`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+### Response
+
+#### Success
+
+Key                | Type             | Description
+------------------ | ---------------- | -----------
+user               | User             | User info
+month              | int              | The month of the records
+total_expense      | int              | monthly total expense
+total_reward       | int              | monthly total reward
+card_rewards       | CardReward       | The pinned reward info of all user's card
+mobilepay_expenses | MobilePayExpense | The expense of all user's moblile pay
+
+*CardReward*
+
+Key    | Type     | Description
+------ | -------- | -----------
+card   | UserCard | User's card info
+reward | Reward   | The pinned reward of the card
+
+*Reward*
+
+Key                | Type        | Description
+------------------ | ----------- | -----------
+reward_name        | string      | Reward name (e.g. 現金, Line Points, 街口幣, Open Points, P幣, Hami Point, 代幣...)
+multiple_reward    | bool        | Does the offer have multiple reward contents
+cion_image         | string      | Coin image URL
+reward_value       | float       | Reward value from the offer
+reward_upperbound  | int         | Reward upper bound
+expense_upperbound | int         | Expense upper bound
+expense            | int         | Expense of the reward
+left_expense       | int         | Left expense to get the max reward
+cahsback           | float       | Cashbck user get fro m th reward
+offer              | OfferResult | Offer info
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## • Get card accounting records and rewards
+
+> Get accounting records and rewards of a card:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/accountings/reward/5f9a747p00c2abf3d4a54d4q/2021 \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/accountings/reward/5f9a747p00c2abf3d4a54d4q/2021'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/accountings/reward/5f9a747p00c2abf3d4a54d4q/2021', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result":  {
+    "card": {
+      "{user_card}": "..."
+    },
+    "rewards": [
+      {
+        "expense": 100,
+        "cashback": 10,
+        "start_date": 1617601542000,
+        "end_date": 1617601542000,
+        "accounting_records": [
+          {
+            "{accounting_record}": "..." 
+          }
+        ],
+        "rewards": [
+          {
+            "reward_name": "代幣",
+            "multiple_reward": true,
+            "coin_image": "",
+            "reward_value": 3,
+            "reward_upperbound": 0,
+            "expense_upperbound": 0,
+            "expense": 0,
+            "left_expense": 0,
+            "cashback": 0,
+            "offer": {
+              "{offer_result}": "..."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get accounting records and rewards of a card
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/accountings/reward/{card_id}/{year}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter | Description
+--------- | -----------
+card_id   | Card ID
+year      | Year
+
+### Response
+
+#### Success
+
+Key     | Type              | Description
+------- | ----------------- | -----------
+card    | UserCard          | Card info
+rewards | []CardMonthReward | Monthly reward info (sorted value from Jan to Dec)
+
+*CardMonthReward*
+
+Key                | Type               | Description
+------------------ | ------------------ | -----------
+expense            | int                | Expense from the card of a month
+cahsback           | int                | Cashback from the card of a month
+start_date         | int                | Month start date
+end_date           | int                | Month end date
+accounting_records | []AccountingRecord | All records from the card of a month (sorted by date)
+rewards            | []Reward           | All rewards of the card (sorted by user's order)
+
+*Reward*
+
+Key                | Type        | Description
+------------------ | ----------- | -----------
+reward_name        | string      | Reward name (e.g. 現金, Line Points, 街口幣, Open Points, P幣, Hami Point, 代幣...)
+multiple_reward    | bool        | Does the offer have multiple reward contents
+cion_image         | string      | Coin image URL
+reward_value       | float       | Reward value from the offer
+reward_upperbound  | int         | Reward upper bound
+expense_upperbound | int         | Expense upper bound
+expense            | int         | Expense of the reward
+left_expense       | int         | Left expense to get the max reward
+cahsback           | float       | Cashbck user get fro m th reward
+offer              | OfferResult | Offer info
 
 #### Error
 
