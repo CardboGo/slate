@@ -14121,38 +14121,39 @@ axios.get('https://api.cardbo.info/api/v6/accountings/summary', {
   "message": "Ok",
   "result": {
     "user": {
-      "user_info": "..."
+      "{user}": "..."
     },
-    "total_expense": 0,
-    "total_reward": 0,
-    "card_user_rewards": [
+    "month": 1,
+    "total_expense": 1000,
+    "total_reward": 100,
+    "unrecorded_invoices": 10,
+    "card_rewards": [
       {
         "card": {
-          "card_info": "..."
+          "{user_card}": "..."
         },
-        "user_reward": {
-          "reward_id": "5f9a747p00c2abf3d4a54d4q",
-          "offer": {
-            "offer_id": "5f9a747p00c2abf3d4a54d4q"
-          },
-          "reward_unit_value": 1.5,
-          "reward_name": "現金",
-          "reward_upper_bound": 500,
-          "year": 2021,
-          "month": 1,
+        "reward": {
+          "reward_name": "Line Points",
+          "multiple_reward": true,
+          "coin_image": "https://image.png",
+          "reward_value": 1,
+          "reward_upper_bound": 100,
+          "expense_upper_bound": 10000,
           "expense": 1000,
-          "reward_value": 15.0,
-          "created_at": 1617601542000,
-          "updated_at": 1617601542000
+          "left_expense": 9000,
+          "cashback": 10,
+          "offer": {
+            "{offer_reward}": "..."
+          }
         }
       }
     ],
     "mobilepay_expenses": [
       {
         "mobilepay": {
-          "mobilepay_info": "..."
+          "{mobilepay}": "..."
         },
-        "expense": 1000
+        "expense": 100
       }
     ]
   },
