@@ -11346,6 +11346,9 @@ axios.post('https://api.cardbo.info/api/v6/offers/formal/search', data, {
             "{mobilepay_info}": "..."
           }
         ],
+        "eticket": {
+          "{eticket_info}": "..."
+        },
         "cashback_value": {
           "cashback_value": 500,
           "cashback_coins": [
@@ -11484,7 +11487,7 @@ Key                | Type                      | Enums | Description
 ------------------ | ------------------------- | ----- | -----------
 store              | Store                     |       | Store object
 amount             | int                       |       | Expense amount
-search_result_type | int                       | `1`: Has result </br> `2`: Need post conditions </br> `3`: No results    | The search result type
+search_result_type | int                       | `1`: Has result </br> `2`: Need post conditions </br> `3`: No results </br> `4`: Unsupported store type `5`: No store data | The search result type
 results            | []OfferSearchResultDetail |       | Offer search result when `search_result_type=1`
 post_condition     | PostCondition             |       | Post condition array when `search_result_type=2`
 categories         | []string                  |       | Category array when `search_result_type=3`
@@ -11493,7 +11496,7 @@ categories         | []string                  |       | Category array when `se
 
 Key                 | Type                    | Enums | Description
 ------------------- | ----------------------- | ----- | -----------
-result_type         | int                     | `1`: MobilePay Only </br> `2`: Card Only </br> `3`: Card with MobilePay/ETicket | Result payment type
+result_type         | int                     | `1`: MobilePay Only </br> `2`: Card Only </br> `3`: Card with MobilePay </br> `4`: Card with ETicket | Result payment type
 special_condition   | bool                    |       | Is special condition
 mobilepay           | MobilePay               |       | Mobeile pay for `result_type=1`
 card                | UserCard                |       | User card for `result_type=2` and `result_type=3`
@@ -14356,6 +14359,137 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
+## • Get card month accounting records and rewards
+
+> Get month accounting records and rewards of a card:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/accountings/reward/5f9a747p00c2abf3d4a54d4q/2021/9 \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/accountings/reward/5f9a747p00c2abf3d4a54d4q/2021/9'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/accountings/reward/5f9a747p00c2abf3d4a54d4q/2021/9', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result":  {
+    "card": {
+      "{user_card}": "..."
+    },
+    "expense": 100,
+    "cashback": 10,
+    "start_date": 1617601542000,
+    "end_date": 1617601542000,
+    "accounting_records": [
+      {
+        "{accounting_record}": "..." 
+      }
+    ],
+    "rewards": [
+      {
+        "reward_name": "代幣",
+        "multiple_reward": true,
+        "coin_image": "",
+        "reward_value": 3,
+        "reward_upperbound": 0,
+        "expense_upperbound": 0,
+        "expense": 0,
+        "left_expense": 0,
+        "cashback": 0,
+        "offer": {
+          "{offer_result}": "..."
+        }
+      }
+    ]
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get month accounting records and rewards of a card
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/accountings/reward/{card_id}/{year}/{month}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter | Description
+--------- | -----------
+card_id   | Card ID
+year      | Year
+month     | Month
+
+### Response
+
+#### Success
+
+Key                | Type              | Description
+------------------ | ----------------- | -----------
+card               | UserCard          | Card info
+expense            | int                | Expense from the card of a month
+cahsback           | int                | Cashback from the card of a month
+start_date         | int                | Month start date
+end_date           | int                | Month end date
+accounting_records | []AccountingRecord | All records from the card of a month (sorted by date)
+rewards            | []Reward           | All rewards of the card (sorted by user's order)
+
+*Reward*
+
+Key                | Type        | Description
+------------------ | ----------- | -----------
+reward_name        | string      | Reward name (e.g. 現金, Line Points, 街口幣, Open Points, P幣, Hami Point, 代幣...)
+multiple_reward    | bool        | Does the offer have multiple reward contents
+cion_image         | string      | Coin image URL
+reward_value       | float       | Reward value from the offer
+reward_upperbound  | int         | Reward upper bound
+expense_upperbound | int         | Expense upper bound
+expense            | int         | Expense of the reward
+left_expense       | int         | Left expense to get the max reward
+cahsback           | float       | Cashbck user get fro m th reward
+offer              | OfferResult | Offer info
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
 ## • Get monthly accounting records
 
 > Get monthly accounting records:
@@ -14440,6 +14574,119 @@ Get monthly accounting records
 ### HTTP Request
 
 `GET https://api.cardbo.info/api/v6/accountings/year/{year}`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Path Parameters
+
+Parameter | Description
+--------- | -----------
+year      | year
+
+### Response
+
+#### Success
+
+Key                | Type               | Enums      | Description
+------------------ | ------------------ | ---------- | -----------
+year               | int                |            | year
+month              | int                | [`1`-`12`] | month
+accounting_records | []AccountingRecord |            | array of AccountingRecord
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## • Get month accounting records
+
+> Get month accounting records:
+
+```shell
+curl --request GET \
+  --url https://api.cardbo.info/api/v6/accountings/records/{year}/{months} \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/accountings/records/{year}/{months}'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+response = requests.get(url, headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+axios.get('https://api.cardbo.info/api/v6/accountings/records/{year}/{months}', {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "year": 2021,
+    "month": 1,
+    "accounting_records": [
+      {
+        "accounting_id": "5f9a747p00c2abf3d4a54d4q",
+        "card": {
+          "card_id": "5f9a747p00c2abf3d4a54d4q",
+          "name": "台新@GoGo卡",
+          "bank": {
+            "bank_id": "5f9a747p00c2abf3d4a54d4q",
+            "name": "台新銀行",
+            "logo": "https://aishin-bank.png",
+            "image": "https://aishin-bank.png",
+            "code": "812"
+          },
+          "level": 4,
+          "image": "https://card/5f9a747p00c2abf3d4a54d4q-1.png",
+          "issuer": "VISA",
+          "payment_date": 15
+        },
+        "mobilepay": {
+          "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+          "name": "Line Pay",
+          "image": "https://line-pay.png",
+          "user_has": false
+        },
+        "amount": 100,
+        "name": "便利商店",
+        "date": 1617601542000
+      }
+    ]
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Get month accounting records
+
+### HTTP Request
+
+`GET https://api.cardbo.info/api/v6/accountings/records/{year}/{month}`
 
 ### Request
 
