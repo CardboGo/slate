@@ -3016,6 +3016,120 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
+## • Set user card reward order
+
+> Set user card reward order:
+
+```shell
+curl --request PUT \
+  --url https://api.cardbo.info/api/v6/user/card/reward_order \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
+    "offers": [
+      "5f9a747p00c2abf3d4a54d4q"
+    ]
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/user/card/reward_order'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  'card_id': '5f9a747p00c2abf3d4a54d4q',
+  'offers': [
+    '5f9a747p00c2abf3d4a54d4q'
+  ]
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  card_id: "5f9a747p00c2abf3d4a54d4q",
+  offers: [
+    "5f9a747p00c2abf3d4a54d4q"
+  ]
+}
+axios.put('https://api.cardbo.info/api/v6/user/card/reward_order', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": "",
+  "timestamp": 1617601542000
+}
+```
+
+Set user card reward order
+
+### HTTP Request
+
+`PUT https://api.cardbo.info/api/v6/user/card/reward_order`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter | Required | Type     | Description
+--------- | -------- | -------- | -----------
+card_id   | true     | string   | card id
+offers    | true     | []string | order array of offer id
+
+### Response
+
+#### Success
+
+Key                   | Type                 | Enums | Description
+--------------------- | -------------------- | ----- | -----------
+user_id               | string               |       | User id
+line_id               | string               |       | LINE id
+username              | string               |       | Username
+image                 | string               |       | User image
+email                 | string               |       | Email
+phone_number          | string               |       | Phone number
+cardbo_point          | int                  |       | Cardbo point (useless)
+cards                 | []Card               |       | User own card array
+user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
+user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+invoice               | UserInvoice          |       | user invcoie info
+subscription          | int                  | UNSUBSCRIBED: `1` <br/> SUBSCRIBED: `2` | is user subscribe the user reward
+update_message        | bool                 |       | does the user need to get the update message
+interested_categories | []InterestedCategory |       | user interest categories data
+created_at            | int                  |       | create time in timestamp
+updated_at            | int                  |       | update time in timestamp
+last_login            | int                  |       | User last login time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
 # 3. Administrator
 
 ## • Create administrator
@@ -14453,7 +14567,7 @@ Parameter | Description
 --------- | -----------
 card_id   | Card ID
 year      | Year
-month     | Month
+month     | Month (If mont is `current`, respnse will depend on the card reward day)
 
 ### Response
 
@@ -15024,107 +15138,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-# 18. UserReward
-
-## • Set user reward order
-
-> Set user reward order:
-
-```shell
-curl --request PUT \
-  --url https://api.cardbo.info/api/v6/reward/order \
-  -H 'Authorization: Bearer meowmeowmeowaccess' \
-  -H 'Content-Type: application/json' \
-  --data '{
-    "card_id": "5f9a747p00c2abf3d4a54d4q",
-    "offers": [
-      "5f9a747p00c2abf3d4a54d4q"
-    ]
-  }'
-```
-
-```python
-import requests
-
-url = 'https://api.cardbo.info/api/v6/reward/order'
-headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
-data = {
-  'card_id': '5f9a747p00c2abf3d4a54d4q',
-  'offers': [
-    '5f9a747p00c2abf3d4a54d4q'
-  ]
-}
-response = requests.put(url, headers=headers, json=data)
-```
-
-```javascript
-const axios = require('axios');
-
-headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-data = {
-  card_id: "5f9a747p00c2abf3d4a54d4q",
-  offers: [
-    "5f9a747p00c2abf3d4a54d4q"
-  ]
-}
-axios.put('https://api.cardbo.info/api/v6/reward/order', data, {
-    headers: headers
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-```
-
-> Response example:
-
-```json
-{
-  "code": 200,
-  "message": "Ok",
-  "result": "",
-  "timestamp": 1617601542000
-}
-```
-
-Update user information
-
-### HTTP Request
-
-`PUT https://api.cardbo.info/api/v6/reward/order`
-
-### Request
-
-#### Headers
-
-Key           | Value        | Description
-------------- | ------------ | -----------
-Authorization | Bearer token | API access token
-
-#### Parameters
-
-Parameter | Required | Type     | Description
---------- | -------- | -------- | -----------
-card_id   | true     | string   | card id
-offers    | true     | []string | order array of offer id
-
-### Response
-
-#### Success
-
-Key | Type | Description
---- | ---- | -----------
-NA  | NA   | NA
-
-#### Error
-
-Key   | Type   | Description
------ | ------ | -----------
-error | string | error message
-
-# 19. Card Questionnaire
+# 18. Card Questionnaire
 
 ## • Insert card questionnaire
 
@@ -16343,9 +16357,9 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-# 20. ETicket
+# 19. ETicket
 
-## 20-1. Insert eticket
+## • Insert eticket
 
 > Insert eticket:
 
@@ -16447,7 +16461,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 20-2. Get eticket by eticket_id
+## • Get eticket by eticket_id
 
 > Get eticket by eticket_id:
 
@@ -16532,7 +16546,7 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
-## 20-3. Get etickets
+## • Get etickets
 
 > Get etickets:
 
