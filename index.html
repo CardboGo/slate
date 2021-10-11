@@ -4400,13 +4400,14 @@ You must replace <code>meowmeowmeowrefresh</code> with your personal API refresh
 <p>Add mobile pay:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v5/user/add_mobilepay <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/user/add_mobilepay <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   <span class="nt">--data</span> <span class="s1">'{
     "mobilepay": {
       "mobilepay_id": "5f9a747p00c2abf3d4a54d4q"
     },
+    "no_binding_card": false,
     "cards": [
       {
         "card_id": "5f9a747p00c2abf3d4a54d4q"
@@ -4415,15 +4416,16 @@ You must replace <code>meowmeowmeowrefresh</code> with your personal API refresh
   }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v5/user/add_mobilepay'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/user/add_mobilepay'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'mobilepay'</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s">'mobilepay_id'</span><span class="p">:</span> <span class="s">'5f9a747p00c2abf3d4a54d4q'</span>
+  <span class="s">"mobilepay"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">"mobilepay_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span>
   <span class="p">},</span>
-  <span class="s">'cards'</span><span class="p">:</span> <span class="p">[</span>
+  <span class="s">"no_binding_card"</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+  <span class="s">"cards"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s">'card_id'</span><span class="p">:</span> <span class="s">'5f9a747p00c2abf3d4a54d4q'</span>
+      <span class="s">"card_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
@@ -4435,13 +4437,14 @@ You must replace <code>meowmeowmeowrefresh</code> with your personal API refresh
   <span class="na">mobilepay</span><span class="p">:</span> <span class="p">{</span>
     <span class="na">mobilepay_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span>
   <span class="p">},</span>
+  <span class="na">no_binding_card</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="na">cards</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="na">card_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v5/user/add_mobilepay</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/user/add_mobilepay</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
@@ -4457,13 +4460,15 @@ You must replace <code>meowmeowmeowrefresh</code> with your personal API refresh
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"{user_info}"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Add user&#39;s mobile pay</p>
 <h3 id='http-request-10'>HTTP Request</h3>
-<p><code>PUT https://api.cardbo.info/api/v5/user/add_mobilepay</code></p>
+<p><code>PUT https://api.cardbo.info/api/v6/user/add_mobilepay</code></p>
 <h3 id='request-10'>Request</h3><h4 id='headers-7'>Headers</h4>
 <table><thead>
 <tr>
@@ -4494,14 +4499,20 @@ You must replace <code>meowmeowmeowrefresh</code> with your personal API refresh
 <td>mobile pay object</td>
 </tr>
 <tr>
-<td>cards</td>
+<td>no_binding_card</td>
 <td>true</td>
+<td>bool</td>
+<td>mobilepay does not bind any card</td>
+</tr>
+<tr>
+<td>cards</td>
+<td>false</td>
 <td>[]Card</td>
-<td>array of card object</td>
+<td>cards binding to the mobile pay (when <code>no_binding_card=false</code>)</td>
 </tr>
 </tbody></table>
 
-<p>MobilePay</p>
+<p><em>MobilePay</em></p>
 
 <table><thead>
 <tr>
@@ -4514,12 +4525,12 @@ You must replace <code>meowmeowmeowrefresh</code> with your personal API refresh
 <tr>
 <td>mobilepay_id</td>
 <td>true</td>
-<td></td>
+<td>string</td>
 <td>mobile pay id</td>
 </tr>
 </tbody></table>
 
-<p>Card</p>
+<p><em>Card</em></p>
 
 <table><thead>
 <tr>
@@ -4532,7 +4543,7 @@ You must replace <code>meowmeowmeowrefresh</code> with your personal API refresh
 <tr>
 <td>card_id</td>
 <td>true</td>
-<td></td>
+<td>string</td>
 <td>card id</td>
 </tr>
 </tbody></table>
@@ -4541,13 +4552,111 @@ You must replace <code>meowmeowmeowrefresh</code> with your personal API refresh
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>result</td>
+<td>user_id</td>
 <td>string</td>
-<td>result message</td>
+<td></td>
+<td>User id</td>
+</tr>
+<tr>
+<td>line_id</td>
+<td>string</td>
+<td></td>
+<td>LINE id</td>
+</tr>
+<tr>
+<td>username</td>
+<td>string</td>
+<td></td>
+<td>Username</td>
+</tr>
+<tr>
+<td>image</td>
+<td>string</td>
+<td></td>
+<td>User image</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td></td>
+<td>Email</td>
+</tr>
+<tr>
+<td>phone_number</td>
+<td>string</td>
+<td></td>
+<td>Phone number</td>
+</tr>
+<tr>
+<td>cardbo_point</td>
+<td>int</td>
+<td></td>
+<td>Cardbo point (useless)</td>
+</tr>
+<tr>
+<td>cards</td>
+<td>[]Card</td>
+<td></td>
+<td>User own card array</td>
+</tr>
+<tr>
+<td>user_mobilepays</td>
+<td>[]UserMobilepay</td>
+<td></td>
+<td>User own mobile pay array</td>
+</tr>
+<tr>
+<td>user_level</td>
+<td>int</td>
+<td>GENERAL: <code>1</code> <br/> VIP: <code>2</code> <br/> DEVELOPER: <code>3</code></td>
+<td>User level</td>
+</tr>
+<tr>
+<td>invoice</td>
+<td>UserInvoice</td>
+<td></td>
+<td>user invcoie info</td>
+</tr>
+<tr>
+<td>subscription</td>
+<td>int</td>
+<td>UNSUBSCRIBED: <code>1</code> <br/> SUBSCRIBED: <code>2</code></td>
+<td>is user subscribe the user reward</td>
+</tr>
+<tr>
+<td>update_message</td>
+<td>bool</td>
+<td></td>
+<td>does the user need to get the update message</td>
+</tr>
+<tr>
+<td>interested_categories</td>
+<td>[]InterestedCategory</td>
+<td></td>
+<td>user interest categories data</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>int</td>
+<td></td>
+<td>create time in timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>int</td>
+<td></td>
+<td>update time in timestamp</td>
+</tr>
+<tr>
+<td>last_login</td>
+<td>int</td>
+<td></td>
+<td>User last login time in timestamp</td>
 </tr>
 </tbody></table>
 <h4 id='error-10'>Error</h4>
@@ -6333,18 +6442,18 @@ response = requests.put(url, headers=headers, json=data)
 <p>Get user pocket:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v5/user/pocket <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/user/pocket <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v5/user/pocket'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/user/pocket'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v5/user/pocket</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/user/pocket</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
@@ -6362,28 +6471,34 @@ response = requests.put(url, headers=headers, json=data)
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+      </span><span class="nl">"{user_info}"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"mobilepays"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"user_has"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"{mobilepay_info}"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+        </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"bank_cards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nl">"bank"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nl">"bank_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"{bank_info}"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="nl">"cards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"user_has"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"{card_info}"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+            </span><span class="p">}</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"popular_cards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"{card_info}"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">},</span><span class="w">
@@ -6392,7 +6507,7 @@ response = requests.put(url, headers=headers, json=data)
 </span></code></pre></div>
 <p>Get user pocket</p>
 <h3 id='http-request-21'>HTTP Request</h3>
-<p><code>GET https://api.cardbo.info/api/v5/user/pocket</code></p>
+<p><code>GET https://api.cardbo.info/api/v6/user/pocket</code></p>
 <h3 id='request-21'>Request</h3><h4 id='headers-18'>Headers</h4>
 <table><thead>
 <tr>
@@ -6418,12 +6533,12 @@ response = requests.put(url, headers=headers, json=data)
 <tr>
 <td>user</td>
 <td>User</td>
-<td>User object</td>
+<td>User info</td>
 </tr>
 <tr>
 <td>mobilepays</td>
-<td>[]Mobilepay</td>
-<td>Array of Mobilepay object</td>
+<td>[]PocketMobilePay</td>
+<td>Mobile pays info included user has the pay or not</td>
 </tr>
 <tr>
 <td>bank_cards</td>
@@ -6434,6 +6549,69 @@ response = requests.put(url, headers=headers, json=data)
 <td>popular_cards</td>
 <td>[]Card</td>
 <td>Array of popular cards</td>
+</tr>
+</tbody></table>
+
+<p><em>PocketMobilePay</em></p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_has</td>
+<td>bool</td>
+<td>Does user has the mobile pay</td>
+</tr>
+<tr>
+<td>mobilepay</td>
+<td>MobilePay</td>
+<td>Mobile pay info</td>
+</tr>
+</tbody></table>
+
+<p><em>BankCard</em></p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bank</td>
+<td>Bank</td>
+<td>Bank info</td>
+</tr>
+<tr>
+<td>cards</td>
+<td>PocketCard</td>
+<td>Card info included user has the card or not</td>
+</tr>
+</tbody></table>
+
+<p><em>PocketCard</em></p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_has</td>
+<td>bool</td>
+<td>Does user has the card</td>
+</tr>
+<tr>
+<td>card</td>
+<td>Card</td>
+<td>Card info</td>
 </tr>
 </tbody></table>
 <h4 id='error-21'>Error</h4>
