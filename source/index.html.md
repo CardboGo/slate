@@ -1532,13 +1532,14 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://api.cardbo.info/api/v5/user/add_mobilepay \
+  --url https://api.cardbo.info/api/v6/user/add_mobilepay \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
     "mobilepay": {
       "mobilepay_id": "5f9a747p00c2abf3d4a54d4q"
     },
+    "no_binding_card": false,
     "cards": [
       {
         "card_id": "5f9a747p00c2abf3d4a54d4q"
@@ -1550,15 +1551,16 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/user/add_mobilepay'
+url = 'https://api.cardbo.info/api/v6/user/add_mobilepay'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
-  'mobilepay': {
-    'mobilepay_id': '5f9a747p00c2abf3d4a54d4q'
+  "mobilepay": {
+    "mobilepay_id": "5f9a747p00c2abf3d4a54d4q"
   },
-  'cards': [
+  "no_binding_card": false,
+  "cards": [
     {
-      'card_id': '5f9a747p00c2abf3d4a54d4q'
+      "card_id": "5f9a747p00c2abf3d4a54d4q"
     }
   ]
 }
@@ -1573,13 +1575,14 @@ data = {
   mobilepay: {
     mobilepay_id: "5f9a747p00c2abf3d4a54d4q"
   },
+  no_binding_card: false,
   cards: [
     {
       card_id: "5f9a747p00c2abf3d4a54d4q"
     }
   ]
 }
-axios.put('https://api.cardbo.info/api/v5/user/add_mobilepay', data, {
+axios.put('https://api.cardbo.info/api/v6/user/add_mobilepay', data, {
     headers: headers
   })
   .then(function (response) {
@@ -1596,7 +1599,9 @@ axios.put('https://api.cardbo.info/api/v5/user/add_mobilepay', data, {
 {
   "code": 200,
   "message": "Ok",
-  "result": "",
+  "result": {
+    "{user_info}": "..."
+  },
   "timestamp": 1617601542000
 }
 ```
@@ -1605,7 +1610,7 @@ Add user's mobile pay
 
 ### HTTP Request
 
-`PUT https://api.cardbo.info/api/v5/user/add_mobilepay`
+`PUT https://api.cardbo.info/api/v6/user/add_mobilepay`
 
 ### Request
 
@@ -1617,30 +1622,47 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter | Required | Type      | Description
---------- | -------- | --------- | -----------
-mobilepay | true     | MobilePay | mobile pay object
-cards     | true     | []Card    | array of card object
+Parameter       | Required | Type      | Description
+--------------- | -------- | --------- | -----------
+mobilepay       | true     | MobilePay | mobile pay object
+no_binding_card | true     | bool      | mobilepay does not bind any card
+cards           | false    | []Card    | cards binding to the mobile pay (when `no_binding_card=false`)
 
-MobilePay
+*MobilePay*
 
-Parameter    | Required | Type | Description
------------- | -------- | ------------- | -----------
-mobilepay_id | true     |               | mobile pay id
+Parameter    | Required | Type   | Description
+------------ | -------- | ------ | -----------
+mobilepay_id | true     | string | mobile pay id
 
-Card
+*Card*
 
-Parameter | Required | Type | Description
---------- | -------- | ------------- | -----------
-card_id   | true     |               | card id
+Parameter | Required | Type   | Description
+--------- | -------- | ------ | -----------
+card_id   | true     | string | card id
 
 ### Response
 
 #### Success
 
-Key    | Type   | Description
------- | ------ | -----------
-result | string | result message
+Key                   | Type                 | Enums | Description
+--------------------- | -------------------- | ----- | -----------
+user_id               | string               |       | User id
+line_id               | string               |       | LINE id
+username              | string               |       | Username
+image                 | string               |       | User image
+email                 | string               |       | Email
+phone_number          | string               |       | Phone number
+cardbo_point          | int                  |       | Cardbo point (useless)
+cards                 | []Card               |       | User own card array
+user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
+user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+invoice               | UserInvoice          |       | user invcoie info
+subscription          | int                  | UNSUBSCRIBED: `1` <br/> SUBSCRIBED: `2` | is user subscribe the user reward
+update_message        | bool                 |       | does the user need to get the update message
+interested_categories | []InterestedCategory |       | user interest categories data
+created_at            | int                  |       | create time in timestamp
+updated_at            | int                  |       | update time in timestamp
+last_login            | int                  |       | User last login time in timestamp
 
 #### Error
 
@@ -2839,7 +2861,7 @@ error | string | error message
 
 ```shell
 curl --request GET \
-  --url https://api.cardbo.info/api/v5/user/pocket \
+  --url https://api.cardbo.info/api/v6/user/pocket \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
 ```
@@ -2847,7 +2869,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/user/pocket'
+url = 'https://api.cardbo.info/api/v6/user/pocket'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.get(url, headers=headers)
 ```
@@ -2856,7 +2878,7 @@ response = requests.get(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.get('https://api.cardbo.info/api/v5/user/pocket', {
+axios.get('https://api.cardbo.info/api/v6/user/pocket', {
     headers: headers
   })
   .then(function (response) {
@@ -2875,28 +2897,34 @@ axios.get('https://api.cardbo.info/api/v5/user/pocket', {
   "message": "Ok",
   "result": {
     "user": {
-      "user_info": "..."
+      "{user_info}": "..."
     },
     "mobilepays": [
       {
-        "mobilepay_info": "...",
+        "user_has": true,
+        "mobilepay": {
+          "{mobilepay_info}": "..."
+        }
       }
     ],
     "bank_cards": [
       {
         "bank": {
-          "bank_info": "...",
+          "{bank_info}": "...",
         },
         "cards": [
           {
-            "card_info": "...",
+            "user_has": true,
+            "card": {
+              "{card_info}": "..."
+            }
           }
         ]
       }
     ],
     "popular_cards": [
       {
-        "card_info": "...",
+        "{card_info}": "...",
       }
     ]
   },
@@ -2908,7 +2936,7 @@ Get user pocket
 
 ### HTTP Request
 
-`GET https://api.cardbo.info/api/v5/user/pocket`
+`GET https://api.cardbo.info/api/v6/user/pocket`
 
 ### Request
 
@@ -2922,12 +2950,33 @@ Authorization | Bearer token | API access token
 
 #### Success
 
-Key           | Type        | Description
-------------- | ----------- | -----------
-user          | User        | User object
-mobilepays    | []Mobilepay | Array of Mobilepay object
-bank_cards    | []BankCard  | All bank cards info
-popular_cards | []Card      | Array of popular cards
+Key           | Type              | Description
+------------- | ----------------- | -----------
+user          | User              | User info
+mobilepays    | []PocketMobilePay | Mobile pays info included user has the pay or not
+bank_cards    | []BankCard        | All bank cards info
+popular_cards | []Card            | Array of popular cards
+
+*PocketMobilePay*
+
+Key       | Type      | Description
+--------- | --------- | -----------
+user_has  | bool      | Does user has the mobile pay
+mobilepay | MobilePay | Mobile pay info
+
+*BankCard*
+
+Key   | Type       | Description
+----- | ---------- | -----------
+bank  | Bank       | Bank info
+cards | PocketCard | Card info included user has the card or not
+
+*PocketCard*
+
+Key      | Type | Description
+-------- | ---- | -----------
+user_has | bool | Does user has the card
+card     | Card | Card info
 
 #### Error
 
