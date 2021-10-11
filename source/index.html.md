@@ -11585,6 +11585,54 @@ axios.post('https://api.cardbo.info/api/v6/offers/formal/search', data, {
           "cashback_coins": [],
           "offers": []
         },
+        "offers": [
+          {
+            "offer_id": "5f9a747p00c2abf3d4a54d4q",
+            "options": [],
+            "end_date": 1617601542000,
+            "pre_conditions": [
+              "綁定 Line 帳號"
+            ],
+            "post_conditions": null,
+            "register_url": "",
+            "coupon_code": "",
+            "discount_url": "",
+            "upper_bounds": [
+              {
+                "upperbound_id": "5f9a747p00c2abf3d4a54d4q",
+                "cash_upper_bound": 200,
+                "frequency_upper_bound": 3,
+                "upper_bound_period": 5,
+                "store_independent": false,
+                "sharing_upper_bounds": [
+                  "5f9a747p00c2abf3d4a54d4q"
+                ]
+              }
+            ],
+            "reward_type": 1,
+            "max_reward_content": {
+              "mincost_period_times": 0,
+              "mincost_period": 0,
+              "excluded_places": [],
+              "mincost_value": 0,
+              "reward_name": "Line Points",
+              "reward_value": 15,
+              "coin_image": "https://image.png"
+            },
+            "reward_contents": [
+              {
+                "mincost_period_times": 0,
+                "mincost_period": 0,
+                "excluded_places": [],
+                "mincost_value": 0,
+                "reward_name": "Line Points",
+                "reward_value": 15,
+                "coin_image": "https://image.png"
+              }
+            ],
+            "selected": true
+          }
+        ],
         "conditions": [
           {
             "condition_type": 1,
@@ -11668,6 +11716,7 @@ eticket             | ETicket                 |       | The eticket used with th
 cashback_value      | CashbackValue           |       | Cashback value for `user_type=3`
 cashback_percentage | RewardDetail            |       | Cashback percentage info
 cashback_fixed      | RewardDetail            |       | Cashback fixed info
+offers              | []OfferResult           |       | All offers
 conditions          | []SearchResultCondition |       | Array of conditions
 
 *CashbackValue*
@@ -11869,6 +11918,54 @@ axios.post('https://api.cardbo.info/api/v6/offers/formal/search/category', data,
           "cashback_coins": [],
           "offers": []
         },
+        "offers": [
+          {
+            "offer_id": "5f9a747p00c2abf3d4a54d4q",
+            "options": [],
+            "end_date": 1617601542000,
+            "pre_conditions": [
+              "綁定 Line 帳號"
+            ],
+            "post_conditions": null,
+            "register_url": "",
+            "coupon_code": "",
+            "discount_url": "",
+            "upper_bounds": [
+              {
+                "upperbound_id": "5f9a747p00c2abf3d4a54d4q",
+                "cash_upper_bound": 200,
+                "frequency_upper_bound": 3,
+                "upper_bound_period": 5,
+                "store_independent": false,
+                "sharing_upper_bounds": [
+                  "5f9a747p00c2abf3d4a54d4q"
+                ]
+              }
+            ],
+            "reward_type": 1,
+            "max_reward_content": {
+              "mincost_period_times": 0,
+              "mincost_period": 0,
+              "excluded_places": [],
+              "mincost_value": 0,
+              "reward_name": "Line Points",
+              "reward_value": 15,
+              "coin_image": "https://image.png"
+            },
+            "reward_contents": [
+              {
+                "mincost_period_times": 0,
+                "mincost_period": 0,
+                "excluded_places": [],
+                "mincost_value": 0,
+                "reward_name": "Line Points",
+                "reward_value": 15,
+                "coin_image": "https://image.png"
+              }
+            ],
+            "selected": true
+          }
+        ],
         "conditions": [
           {
             "condition_type": 1,
@@ -11928,6 +12025,7 @@ eticket             | ETicket                 |       | The eticket used with th
 cashback_value      | CashbackValue           |       | Cashback value for `user_type=3`
 cashback_percentage | RewardDetail            |       | Cashback percentage info
 cashback_fixed      | RewardDetail            |       | Cashback fixed info
+offers              | []OfferResult           |       | All offers
 conditions          | []SearchResultCondition |       | Array of conditions
 
 *CashbackValue*
@@ -12129,6 +12227,54 @@ axios.post('https://api.cardbo.info/api/v6/offers/formal/search/accounting', dat
           "cashback_coins": [],
           "offers": []
         },
+        "offers": [
+          {
+            "offer_id": "5f9a747p00c2abf3d4a54d4q",
+            "options": [],
+            "end_date": 1617601542000,
+            "pre_conditions": [
+              "綁定 Line 帳號"
+            ],
+            "post_conditions": null,
+            "register_url": "",
+            "coupon_code": "",
+            "discount_url": "",
+            "upper_bounds": [
+              {
+                "upperbound_id": "5f9a747p00c2abf3d4a54d4q",
+                "cash_upper_bound": 200,
+                "frequency_upper_bound": 3,
+                "upper_bound_period": 5,
+                "store_independent": false,
+                "sharing_upper_bounds": [
+                  "5f9a747p00c2abf3d4a54d4q"
+                ]
+              }
+            ],
+            "reward_type": 1,
+            "max_reward_content": {
+              "mincost_period_times": 0,
+              "mincost_period": 0,
+              "excluded_places": [],
+              "mincost_value": 0,
+              "reward_name": "Line Points",
+              "reward_value": 15,
+              "coin_image": "https://image.png"
+            },
+            "reward_contents": [
+              {
+                "mincost_period_times": 0,
+                "mincost_period": 0,
+                "excluded_places": [],
+                "mincost_value": 0,
+                "reward_name": "Line Points",
+                "reward_value": 15,
+                "coin_image": "https://image.png"
+              }
+            ],
+            "selected": true
+          }
+        ],
         "conditions": [
           {
             "condition_type": 1,
@@ -12195,6 +12341,7 @@ eticket             | ETicket                 |       | The eticket used with th
 cashback_value      | CashbackValue           |       | Cashback value for `user_type=3`
 cashback_percentage | RewardDetail            |       | Cashback percentage info
 cashback_fixed      | RewardDetail            |       | Cashback fixed info
+offers              | []OfferResult           |       | All offers
 conditions          | []SearchResultCondition |       | Array of conditions
 
 *CashbackValue*
