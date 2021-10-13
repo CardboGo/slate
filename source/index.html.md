@@ -127,6 +127,7 @@ invoice               | UserInvoice          |       | user invcoie info
 subscription          | int                  | `1`: UNSUBSCRIBED <br/> `2`: SUBSCRIBED | Is user subscribe our service
 update_message        | bool                 |       | Does the user need to get the update message
 interested_categories | []InterestedCategory |       | User interest categories data
+payment_willing       | int                  | `1`: YES <br/> `2`: NO | The willing of paid subscription
 created_at            | int                  |       | Create time in timestamp
 updated_at            | int                  |       | Update time in timestamp
 last_login            | int                  |       | User last login time in timestamp
@@ -1060,11 +1061,12 @@ email                 | string               |       | Email
 phone_number          | string               |       | Phone number
 cards                 | []Card               |       | User own card array
 user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
-user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+user_type             | int                  | `1`: User type 1 <br/>`2`: User type 2 <br/>`3`: User type 3 | User type
 invoice               | UserInvoice          |       | user invcoie info
-subscription          | int                  | UNSUBSCRIBED: `1` <br/> SUBSCRIBED: `2` | is user subscribe the user reward
+subscription          | int                  | `1`: UNSUBSCRIBED <br/> `2`: SUBSCRIBED | Is user subscribe our service
 update_message        | bool                 |       | does the user need to get the update message
 interested_categories | []InterestedCategory |       | user interest categories data
+payment_willing       | int                  | `1`: YES <br/> `2`: NO | The willing of paid subscription
 created_at            | int                  |       | create time in timestamp
 updated_at            | int                  |       | update time in timestamp
 last_login            | int                  |       | User last login time in timestamp
@@ -1485,11 +1487,12 @@ email                 | string               |       | Email
 phone_number          | string               |       | Phone number
 cards                 | []Card               |       | User own card array
 user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
-user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+user_type             | int                  | `1`: User type 1 <br/>`2`: User type 2 <br/>`3`: User type 3 | User type
 invoice               | UserInvoice          |       | user invcoie info
-subscription          | int                  | UNSUBSCRIBED: `1` <br/> SUBSCRIBED: `2` | is user subscribe the user reward
+subscription          | int                  | `1`: UNSUBSCRIBED <br/> `2`: SUBSCRIBED | Is user subscribe our service
 update_message        | bool                 |       | does the user need to get the update message
 interested_categories | []InterestedCategory |       | user interest categories data
+payment_willing       | int                  | `1`: YES <br/> `2`: NO | The willing of paid subscription
 created_at            | int                  |       | create time in timestamp
 updated_at            | int                  |       | update time in timestamp
 last_login            | int                  |       | User last login time in timestamp
@@ -2156,11 +2159,12 @@ email                 | string               |       | Email
 phone_number          | string               |       | Phone number
 cards                 | []Card               |       | User own card array
 user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
-user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+user_type             | int                  | `1`: User type 1 <br/>`2`: User type 2 <br/>`3`: User type 3 | User type
 invoice               | UserInvoice          |       | user invcoie info
-subscription          | int                  | UNSUBSCRIBED: `1` <br/> SUBSCRIBED: `2` | is user subscribe the user reward
+subscription          | int                  | `1`: UNSUBSCRIBED <br/> `2`: SUBSCRIBED | Is user subscribe our service
 update_message        | bool                 |       | does the user need to get the update message
 interested_categories | []InterestedCategory |       | user interest categories data
+payment_willing       | int                  | `1`: YES <br/> `2`: NO | The willing of paid subscription
 created_at            | int                  |       | create time in timestamp
 updated_at            | int                  |       | update time in timestamp
 last_login            | int                  |       | User last login time in timestamp
@@ -2312,11 +2316,12 @@ email                 | string               |       | Email
 phone_number          | string               |       | Phone number
 cards                 | []Card               |       | User own card array
 user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
-user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+user_type             | int                  | `1`: User type 1 <br/>`2`: User type 2 <br/>`3`: User type 3 | User type
 invoice               | UserInvoice          |       | user invcoie info
-subscription          | int                  | UNSUBSCRIBED: `1` <br/> SUBSCRIBED: `2` | is user subscribe the user reward
+subscription          | int                  | `1`: UNSUBSCRIBED <br/> `2`: SUBSCRIBED | Is user subscribe our service
 update_message        | bool                 |       | does the user need to get the update message
 interested_categories | []InterestedCategory |       | user interest categories data
+payment_willing       | int                  | `1`: YES <br/> `2`: NO | The willing of paid subscription
 created_at            | int                  |       | create time in timestamp
 updated_at            | int                  |       | update time in timestamp
 last_login            | int                  |       | User last login time in timestamp
@@ -2428,11 +2433,12 @@ email                 | string               |       | Email
 phone_number          | string               |       | Phone number
 cards                 | []Card               |       | User own card array
 user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
-user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+user_type             | int                  | `1`: User type 1 <br/>`2`: User type 2 <br/>`3`: User type 3 | User type
 invoice               | UserInvoice          |       | user invcoie info
-subscription          | int                  | UNSUBSCRIBED: `1` <br/> SUBSCRIBED: `2` | is user subscribe the user reward
+subscription          | int                  | `1`: UNSUBSCRIBED <br/> `2`: SUBSCRIBED | Is user subscribe our service
 update_message        | bool                 |       | does the user need to get the update message
 interested_categories | []InterestedCategory |       | user interest categories data
+payment_willing       | int                  | `1`: YES <br/> `2`: NO | The willing of paid subscription
 created_at            | int                  |       | create time in timestamp
 updated_at            | int                  |       | update time in timestamp
 last_login            | int                  |       | User last login time in timestamp
@@ -2544,11 +2550,12 @@ email                 | string               |       | Email
 phone_number          | string               |       | Phone number
 cards                 | []Card               |       | User own card array
 user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
-user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+user_type             | int                  | `1`: User type 1 <br/>`2`: User type 2 <br/>`3`: User type 3 | User type
 invoice               | UserInvoice          |       | user invcoie info
-subscription          | int                  | UNSUBSCRIBED: `1` <br/> SUBSCRIBED: `2` | is user subscribe the user reward
+subscription          | int                  | `1`: UNSUBSCRIBED <br/> `2`: SUBSCRIBED | Is user subscribe our service
 update_message        | bool                 |       | does the user need to get the update message
 interested_categories | []InterestedCategory |       | user interest categories data
+payment_willing       | int                  | `1`: YES <br/> `2`: NO | The willing of paid subscription
 created_at            | int                  |       | create time in timestamp
 updated_at            | int                  |       | update time in timestamp
 last_login            | int                  |       | User last login time in timestamp
@@ -2895,11 +2902,12 @@ email                 | string               |       | Email
 phone_number          | string               |       | Phone number
 cards                 | []Card               |       | User own card array
 user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
-user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+user_type             | int                  | `1`: User type 1 <br/>`2`: User type 2 <br/>`3`: User type 3 | User type
 invoice               | UserInvoice          |       | user invcoie info
-subscription          | int                  | UNSUBSCRIBED: `1` <br/> SUBSCRIBED: `2` | is user subscribe the user reward
+subscription          | int                  | `1`: UNSUBSCRIBED <br/> `2`: SUBSCRIBED | Is user subscribe our service
 update_message        | bool                 |       | does the user need to get the update message
 interested_categories | []InterestedCategory |       | user interest categories data
+payment_willing       | int                  | `1`: YES <br/> `2`: NO | The willing of paid subscription
 created_at            | int                  |       | create time in timestamp
 updated_at            | int                  |       | update time in timestamp
 last_login            | int                  |       | User last login time in timestamp
@@ -3026,11 +3034,12 @@ email                 | string               |       | Email
 phone_number          | string               |       | Phone number
 cards                 | []Card               |       | User own card array
 user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
-user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+user_type             | int                  | `1`: User type 1 <br/>`2`: User type 2 <br/>`3`: User type 3 | User type
 invoice               | UserInvoice          |       | user invcoie info
-subscription          | int                  | UNSUBSCRIBED: `1` <br/> SUBSCRIBED: `2` | is user subscribe the user reward
+subscription          | int                  | `1`: UNSUBSCRIBED <br/> `2`: SUBSCRIBED | Is user subscribe our service
 update_message        | bool                 |       | does the user need to get the update message
 interested_categories | []InterestedCategory |       | user interest categories data
+payment_willing       | int                  | `1`: YES <br/> `2`: NO | The willing of paid subscription
 created_at            | int                  |       | create time in timestamp
 updated_at            | int                  |       | update time in timestamp
 last_login            | int                  |       | User last login time in timestamp
