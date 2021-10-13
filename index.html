@@ -1120,6 +1120,12 @@
 <td>User interest categories data</td>
 </tr>
 <tr>
+<td>payment_willing</td>
+<td>int</td>
+<td><code>1</code>: YES <br/> <code>2</code>: NO</td>
+<td>The willing of paid subscription</td>
+</tr>
+<tr>
 <td>created_at</td>
 <td>int</td>
 <td></td>
@@ -3663,10 +3669,10 @@ You must replace <code>meowmeowmeowrefresh</code> with your personal API refresh
 <td>User own mobile pay array</td>
 </tr>
 <tr>
-<td>user_level</td>
+<td>user_type</td>
 <td>int</td>
-<td>GENERAL: <code>1</code> <br/> VIP: <code>2</code> <br/> DEVELOPER: <code>3</code></td>
-<td>User level</td>
+<td><code>1</code>: User type 1 <br/><code>2</code>: User type 2 <br/><code>3</code>: User type 3</td>
+<td>User type</td>
 </tr>
 <tr>
 <td>invoice</td>
@@ -3677,8 +3683,8 @@ You must replace <code>meowmeowmeowrefresh</code> with your personal API refresh
 <tr>
 <td>subscription</td>
 <td>int</td>
-<td>UNSUBSCRIBED: <code>1</code> <br/> SUBSCRIBED: <code>2</code></td>
-<td>is user subscribe the user reward</td>
+<td><code>1</code>: UNSUBSCRIBED <br/> <code>2</code>: SUBSCRIBED</td>
+<td>Is user subscribe our service</td>
 </tr>
 <tr>
 <td>update_message</td>
@@ -3691,6 +3697,12 @@ You must replace <code>meowmeowmeowrefresh</code> with your personal API refresh
 <td>[]InterestedCategory</td>
 <td></td>
 <td>user interest categories data</td>
+</tr>
+<tr>
+<td>payment_willing</td>
+<td>int</td>
+<td><code>1</code>: YES <br/> <code>2</code>: NO</td>
+<td>The willing of paid subscription</td>
 </tr>
 <tr>
 <td>created_at</td>
@@ -4291,10 +4303,10 @@ You must replace <code>meowmeowmeowrefresh</code> with your personal API refresh
 <td>User own mobile pay array</td>
 </tr>
 <tr>
-<td>user_level</td>
+<td>user_type</td>
 <td>int</td>
-<td>GENERAL: <code>1</code> <br/> VIP: <code>2</code> <br/> DEVELOPER: <code>3</code></td>
-<td>User level</td>
+<td><code>1</code>: User type 1 <br/><code>2</code>: User type 2 <br/><code>3</code>: User type 3</td>
+<td>User type</td>
 </tr>
 <tr>
 <td>invoice</td>
@@ -4305,8 +4317,8 @@ You must replace <code>meowmeowmeowrefresh</code> with your personal API refresh
 <tr>
 <td>subscription</td>
 <td>int</td>
-<td>UNSUBSCRIBED: <code>1</code> <br/> SUBSCRIBED: <code>2</code></td>
-<td>is user subscribe the user reward</td>
+<td><code>1</code>: UNSUBSCRIBED <br/> <code>2</code>: SUBSCRIBED</td>
+<td>Is user subscribe our service</td>
 </tr>
 <tr>
 <td>update_message</td>
@@ -4319,6 +4331,12 @@ You must replace <code>meowmeowmeowrefresh</code> with your personal API refresh
 <td>[]InterestedCategory</td>
 <td></td>
 <td>user interest categories data</td>
+</tr>
+<tr>
+<td>payment_willing</td>
+<td>int</td>
+<td><code>1</code>: YES <br/> <code>2</code>: NO</td>
+<td>The willing of paid subscription</td>
 </tr>
 <tr>
 <td>created_at</td>
@@ -5223,10 +5241,10 @@ response = requests.put(url, headers=headers, json=data)
 <td>User own mobile pay array</td>
 </tr>
 <tr>
-<td>user_level</td>
+<td>user_type</td>
 <td>int</td>
-<td>GENERAL: <code>1</code> <br/> VIP: <code>2</code> <br/> DEVELOPER: <code>3</code></td>
-<td>User level</td>
+<td><code>1</code>: User type 1 <br/><code>2</code>: User type 2 <br/><code>3</code>: User type 3</td>
+<td>User type</td>
 </tr>
 <tr>
 <td>invoice</td>
@@ -5237,8 +5255,8 @@ response = requests.put(url, headers=headers, json=data)
 <tr>
 <td>subscription</td>
 <td>int</td>
-<td>UNSUBSCRIBED: <code>1</code> <br/> SUBSCRIBED: <code>2</code></td>
-<td>is user subscribe the user reward</td>
+<td><code>1</code>: UNSUBSCRIBED <br/> <code>2</code>: SUBSCRIBED</td>
+<td>Is user subscribe our service</td>
 </tr>
 <tr>
 <td>update_message</td>
@@ -5251,6 +5269,12 @@ response = requests.put(url, headers=headers, json=data)
 <td>[]InterestedCategory</td>
 <td></td>
 <td>user interest categories data</td>
+</tr>
+<tr>
+<td>payment_willing</td>
+<td>int</td>
+<td><code>1</code>: YES <br/> <code>2</code>: NO</td>
+<td>The willing of paid subscription</td>
 </tr>
 <tr>
 <td>created_at</td>
@@ -5479,10 +5503,10 @@ response = requests.put(url, headers=headers, json=data)
 <td>User own mobile pay array</td>
 </tr>
 <tr>
-<td>user_level</td>
+<td>user_type</td>
 <td>int</td>
-<td>GENERAL: <code>1</code> <br/> VIP: <code>2</code> <br/> DEVELOPER: <code>3</code></td>
-<td>User level</td>
+<td><code>1</code>: User type 1 <br/><code>2</code>: User type 2 <br/><code>3</code>: User type 3</td>
+<td>User type</td>
 </tr>
 <tr>
 <td>invoice</td>
@@ -5493,8 +5517,8 @@ response = requests.put(url, headers=headers, json=data)
 <tr>
 <td>subscription</td>
 <td>int</td>
-<td>UNSUBSCRIBED: <code>1</code> <br/> SUBSCRIBED: <code>2</code></td>
-<td>is user subscribe the user reward</td>
+<td><code>1</code>: UNSUBSCRIBED <br/> <code>2</code>: SUBSCRIBED</td>
+<td>Is user subscribe our service</td>
 </tr>
 <tr>
 <td>update_message</td>
@@ -5507,6 +5531,12 @@ response = requests.put(url, headers=headers, json=data)
 <td>[]InterestedCategory</td>
 <td></td>
 <td>user interest categories data</td>
+</tr>
+<tr>
+<td>payment_willing</td>
+<td>int</td>
+<td><code>1</code>: YES <br/> <code>2</code>: NO</td>
+<td>The willing of paid subscription</td>
 </tr>
 <tr>
 <td>created_at</td>
@@ -5680,10 +5710,10 @@ response = requests.put(url, headers=headers, json=data)
 <td>User own mobile pay array</td>
 </tr>
 <tr>
-<td>user_level</td>
+<td>user_type</td>
 <td>int</td>
-<td>GENERAL: <code>1</code> <br/> VIP: <code>2</code> <br/> DEVELOPER: <code>3</code></td>
-<td>User level</td>
+<td><code>1</code>: User type 1 <br/><code>2</code>: User type 2 <br/><code>3</code>: User type 3</td>
+<td>User type</td>
 </tr>
 <tr>
 <td>invoice</td>
@@ -5694,8 +5724,8 @@ response = requests.put(url, headers=headers, json=data)
 <tr>
 <td>subscription</td>
 <td>int</td>
-<td>UNSUBSCRIBED: <code>1</code> <br/> SUBSCRIBED: <code>2</code></td>
-<td>is user subscribe the user reward</td>
+<td><code>1</code>: UNSUBSCRIBED <br/> <code>2</code>: SUBSCRIBED</td>
+<td>Is user subscribe our service</td>
 </tr>
 <tr>
 <td>update_message</td>
@@ -5708,6 +5738,12 @@ response = requests.put(url, headers=headers, json=data)
 <td>[]InterestedCategory</td>
 <td></td>
 <td>user interest categories data</td>
+</tr>
+<tr>
+<td>payment_willing</td>
+<td>int</td>
+<td><code>1</code>: YES <br/> <code>2</code>: NO</td>
+<td>The willing of paid subscription</td>
 </tr>
 <tr>
 <td>created_at</td>
@@ -5881,10 +5917,10 @@ response = requests.put(url, headers=headers, json=data)
 <td>User own mobile pay array</td>
 </tr>
 <tr>
-<td>user_level</td>
+<td>user_type</td>
 <td>int</td>
-<td>GENERAL: <code>1</code> <br/> VIP: <code>2</code> <br/> DEVELOPER: <code>3</code></td>
-<td>User level</td>
+<td><code>1</code>: User type 1 <br/><code>2</code>: User type 2 <br/><code>3</code>: User type 3</td>
+<td>User type</td>
 </tr>
 <tr>
 <td>invoice</td>
@@ -5895,8 +5931,8 @@ response = requests.put(url, headers=headers, json=data)
 <tr>
 <td>subscription</td>
 <td>int</td>
-<td>UNSUBSCRIBED: <code>1</code> <br/> SUBSCRIBED: <code>2</code></td>
-<td>is user subscribe the user reward</td>
+<td><code>1</code>: UNSUBSCRIBED <br/> <code>2</code>: SUBSCRIBED</td>
+<td>Is user subscribe our service</td>
 </tr>
 <tr>
 <td>update_message</td>
@@ -5909,6 +5945,12 @@ response = requests.put(url, headers=headers, json=data)
 <td>[]InterestedCategory</td>
 <td></td>
 <td>user interest categories data</td>
+</tr>
+<tr>
+<td>payment_willing</td>
+<td>int</td>
+<td><code>1</code>: YES <br/> <code>2</code>: NO</td>
+<td>The willing of paid subscription</td>
 </tr>
 <tr>
 <td>created_at</td>
@@ -6414,10 +6456,10 @@ response = requests.put(url, headers=headers, json=data)
 <td>User own mobile pay array</td>
 </tr>
 <tr>
-<td>user_level</td>
+<td>user_type</td>
 <td>int</td>
-<td>GENERAL: <code>1</code> <br/> VIP: <code>2</code> <br/> DEVELOPER: <code>3</code></td>
-<td>User level</td>
+<td><code>1</code>: User type 1 <br/><code>2</code>: User type 2 <br/><code>3</code>: User type 3</td>
+<td>User type</td>
 </tr>
 <tr>
 <td>invoice</td>
@@ -6428,8 +6470,8 @@ response = requests.put(url, headers=headers, json=data)
 <tr>
 <td>subscription</td>
 <td>int</td>
-<td>UNSUBSCRIBED: <code>1</code> <br/> SUBSCRIBED: <code>2</code></td>
-<td>is user subscribe the user reward</td>
+<td><code>1</code>: UNSUBSCRIBED <br/> <code>2</code>: SUBSCRIBED</td>
+<td>Is user subscribe our service</td>
 </tr>
 <tr>
 <td>update_message</td>
@@ -6442,6 +6484,12 @@ response = requests.put(url, headers=headers, json=data)
 <td>[]InterestedCategory</td>
 <td></td>
 <td>user interest categories data</td>
+</tr>
+<tr>
+<td>payment_willing</td>
+<td>int</td>
+<td><code>1</code>: YES <br/> <code>2</code>: NO</td>
+<td>The willing of paid subscription</td>
 </tr>
 <tr>
 <td>created_at</td>
@@ -6640,10 +6688,10 @@ response = requests.put(url, headers=headers, json=data)
 <td>User own mobile pay array</td>
 </tr>
 <tr>
-<td>user_level</td>
+<td>user_type</td>
 <td>int</td>
-<td>GENERAL: <code>1</code> <br/> VIP: <code>2</code> <br/> DEVELOPER: <code>3</code></td>
-<td>User level</td>
+<td><code>1</code>: User type 1 <br/><code>2</code>: User type 2 <br/><code>3</code>: User type 3</td>
+<td>User type</td>
 </tr>
 <tr>
 <td>invoice</td>
@@ -6654,8 +6702,8 @@ response = requests.put(url, headers=headers, json=data)
 <tr>
 <td>subscription</td>
 <td>int</td>
-<td>UNSUBSCRIBED: <code>1</code> <br/> SUBSCRIBED: <code>2</code></td>
-<td>is user subscribe the user reward</td>
+<td><code>1</code>: UNSUBSCRIBED <br/> <code>2</code>: SUBSCRIBED</td>
+<td>Is user subscribe our service</td>
 </tr>
 <tr>
 <td>update_message</td>
@@ -6668,6 +6716,12 @@ response = requests.put(url, headers=headers, json=data)
 <td>[]InterestedCategory</td>
 <td></td>
 <td>user interest categories data</td>
+</tr>
+<tr>
+<td>payment_willing</td>
+<td>int</td>
+<td><code>1</code>: YES <br/> <code>2</code>: NO</td>
+<td>The willing of paid subscription</td>
 </tr>
 <tr>
 <td>created_at</td>
