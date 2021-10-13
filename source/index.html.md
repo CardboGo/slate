@@ -3010,7 +3010,7 @@ Authorization | Bearer token | API access token
 
 Parameter       | Required | Type | Description
 --------------- | -------- | ---- | -----------
-payment_willing | true     | true | Does the user have willing to pay
+payment_willing | true     | bool | Does the user have willing to pay
 
 ### Response
 
