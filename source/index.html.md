@@ -12527,7 +12527,7 @@ error | string | error message
 
 ```shell
 curl --request GET \
-  --url https://api.cardbo.info/api/v6/error_reports?report_type=1 \
+  --url https://api.cardbo.info/api/v6/error_reports?report_type=1&status=1&page=1 \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json'
 ```
@@ -12535,7 +12535,7 @@ curl --request GET \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v6/error_reports?report_type=1'
+url = 'https://api.cardbo.info/api/v6/error_reports?report_type=1&status=1&page=1'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 response = requests.get(url, headers=headers)
 ```
@@ -12544,7 +12544,7 @@ response = requests.get(url, headers=headers)
 const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.get('https://api.cardbo.info/api/v6/error_reports?report_type=1', {
+axios.get('https://api.cardbo.info/api/v6/error_reports?report_type=1&status=1&page=1', {
     headers: headers
   })
   .then(function (response) {
@@ -12601,7 +12601,7 @@ Get error reports
 
 ### HTTP Request
 
-`GET https://api.cardbo.info/api/v6/error_reports?report_type=1`
+`GET https://api.cardbo.info/api/v6/error_reports`
 
 ### Request
 
@@ -12615,7 +12615,9 @@ Authorization | Bearer token | API access token
 
 Query       | Required | Muti-values | Enums | Description
 ----------- | -------- | ----------- | ----- | -----------
-report_type | true     | false       | OFFER_DETAIL: `1` <br/> CARD_REWARD: `2` <br/> ACCOUNTING: `3` | report type
+report_type | true     | false       | `0`: ALL <br/> `1`: OFFER_DETAIL <br/> `2`: CARD_REWARD <br/> `3`: ACCOUNTING | report type
+status      | true     | false       | `0`: ALL <br/> `1`: PENDING <br/> `2`: WAITING_NOTIFY <br/> `3`: FINISHED | status
+page        | true     | false       |       | page of the result (each page has 20 data)
 
 ### Response
 
