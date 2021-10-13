@@ -980,9 +980,6 @@ axios.get('https://api.cardbo.info/api/v5/user', {
     "line_id": "Udchd7f131dvvhdbe166692206a12335c",
     "username": "Harrison Peng",
     "image": "https://image.com/image.png",
-    "email": "harrison@cardbo.info",
-    "phone_number": "0987654321",
-    "cardbo_point": 0,
     "cards": [
       {
         "card_id": "5f9a747p00c2abf3d4a54d4q",
@@ -1026,6 +1023,7 @@ axios.get('https://api.cardbo.info/api/v5/user', {
       }
     ],
     "user_level": 1,
+    "payment_willing": 1,
     "created_at": 1617601542000,
     "updated_at": 1617601542000,
     "last_login": 1617601542000
@@ -1060,7 +1058,6 @@ username              | string               |       | Username
 image                 | string               |       | User image
 email                 | string               |       | Email
 phone_number          | string               |       | Phone number
-cardbo_point          | int                  |       | Cardbo point (useless)
 cards                 | []Card               |       | User own card array
 user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
 user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
@@ -1486,7 +1483,6 @@ username              | string               |       | Username
 image                 | string               |       | User image
 email                 | string               |       | Email
 phone_number          | string               |       | Phone number
-cardbo_point          | int                  |       | Cardbo point (useless)
 cards                 | []Card               |       | User own card array
 user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
 user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
@@ -2073,9 +2069,6 @@ axios.put('https://api.cardbo.info/api/v6/user/card_payment_date', data, {
     "line_id": "Udchd7f131dvvhdbe166692206a12335c",
     "username": "Harrison Peng",
     "image": "https://image.com/image.png",
-    "email": "harrison@cardbo.info",
-    "phone_number": "0987654321",
-    "cardbo_point": 0,
     "cards": [
       {
         "card_id": "5f9a747p00c2abf3d4a54d4q",
@@ -2119,6 +2112,7 @@ axios.put('https://api.cardbo.info/api/v6/user/card_payment_date', data, {
       }
     ],
     "user_level": 1,
+    "payment_willing": 1,
     "created_at": 1617601542000,
     "updated_at": 1617601542000,
     "last_login": 1617601542000
@@ -2160,7 +2154,6 @@ username              | string               |       | Username
 image                 | string               |       | User image
 email                 | string               |       | Email
 phone_number          | string               |       | Phone number
-cardbo_point          | int                  |       | Cardbo point (useless)
 cards                 | []Card               |       | User own card array
 user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
 user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
@@ -2232,9 +2225,6 @@ axios.put('https://api.cardbo.info/api/v6/user/card_payment_date/unset', data, {
     "line_id": "Udchd7f131dvvhdbe166692206a12335c",
     "username": "Harrison Peng",
     "image": "https://image.com/image.png",
-    "email": "harrison@cardbo.info",
-    "phone_number": "0987654321",
-    "cardbo_point": 0,
     "cards": [
       {
         "card_id": "5f9a747p00c2abf3d4a54d4q",
@@ -2278,6 +2268,7 @@ axios.put('https://api.cardbo.info/api/v6/user/card_payment_date/unset', data, {
       }
     ],
     "user_level": 1,
+    "payment_willing": 1,
     "created_at": 1617601542000,
     "updated_at": 1617601542000,
     "last_login": 1617601542000
@@ -2319,7 +2310,6 @@ username              | string               |       | Username
 image                 | string               |       | User image
 email                 | string               |       | Email
 phone_number          | string               |       | Phone number
-cardbo_point          | int                  |       | Cardbo point (useless)
 cards                 | []Card               |       | User own card array
 user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
 user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
@@ -2382,9 +2372,6 @@ axios.put('https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/set_no_c
     "line_id": "Udchd7f131dvvhdbe166692206a12335c",
     "username": "Harrison Peng",
     "image": "https://image.com/image.png",
-    "email": "harrison@cardbo.info",
-    "phone_number": "0987654321",
-    "cardbo_point": 0,
     "cards": [
       {
         "card_info": "...",
@@ -2404,6 +2391,7 @@ axios.put('https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/set_no_c
       }
     ],
     "user_level": 1,
+    "payment_willing": 1,
     "created_at": 1617601542000,
     "updated_at": 1617601542000,
     "last_login": 1617601542000
@@ -2438,7 +2426,6 @@ username              | string               |       | Username
 image                 | string               |       | User image
 email                 | string               |       | Email
 phone_number          | string               |       | Phone number
-cardbo_point          | int                  |       | Cardbo point (useless)
 cards                 | []Card               |       | User own card array
 user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
 user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
@@ -2501,9 +2488,6 @@ axios.put('https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/unset_no
     "line_id": "Udchd7f131dvvhdbe166692206a12335c",
     "username": "Harrison Peng",
     "image": "https://image.com/image.png",
-    "email": "harrison@cardbo.info",
-    "phone_number": "0987654321",
-    "cardbo_point": 0,
     "cards": [
       {
         "card_info": "...",
@@ -2523,6 +2507,7 @@ axios.put('https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/unset_no
       }
     ],
     "user_level": 1,
+    "payment_willing": 1,
     "created_at": 1617601542000,
     "updated_at": 1617601542000,
     "last_login": 1617601542000
@@ -2557,7 +2542,6 @@ username              | string               |       | Username
 image                 | string               |       | User image
 email                 | string               |       | Email
 phone_number          | string               |       | Phone number
-cardbo_point          | int                  |       | Cardbo point (useless)
 cards                 | []Card               |       | User own card array
 user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
 user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
@@ -2843,7 +2827,35 @@ axios.put('https://api.cardbo.info/api/v6/user/card/reward_order', data, {
 {
   "code": 200,
   "message": "Ok",
-  "result": "",
+  "result": {
+    "user_id": "5f9a747p00c2abf3d4a54d4q",
+    "line_id": "Udchd7f131dvvhdbe166692206a12335c",
+    "username": "Harrison Peng",
+    "image": "https://image.com/image.png",
+    "cards": [
+      {
+        "card_info": "...",
+      }
+    ],
+    "user_mobilepays": [
+      {
+        "mobilepay": {
+          "mobilepay_info": "...",
+        },
+        "no_card_binding": false,
+        "cards": [
+          {
+            "card_info": "...",
+          }
+        ]
+      }
+    ],
+    "payment_willing": 1,
+    "user_level": 1,
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "last_login": 1617601542000
+  },
   "timestamp": 1617601542000
 }
 ```
@@ -2881,7 +2893,137 @@ username              | string               |       | Username
 image                 | string               |       | User image
 email                 | string               |       | Email
 phone_number          | string               |       | Phone number
-cardbo_point          | int                  |       | Cardbo point (useless)
+cards                 | []Card               |       | User own card array
+user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
+user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
+invoice               | UserInvoice          |       | user invcoie info
+subscription          | int                  | UNSUBSCRIBED: `1` <br/> SUBSCRIBED: `2` | is user subscribe the user reward
+update_message        | bool                 |       | does the user need to get the update message
+interested_categories | []InterestedCategory |       | user interest categories data
+created_at            | int                  |       | create time in timestamp
+updated_at            | int                  |       | update time in timestamp
+last_login            | int                  |       | User last login time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## • Set user payment willing
+
+> Set user payment willing:
+
+```shell
+curl --request PUT \
+  --url https://api.cardbo.info/api/v6/user/subscription/willing \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "payment_willing": true
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/user/subscription/willing'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "payment_willing": true
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  payment_willing: true
+}
+axios.put('https://api.cardbo.info/api/v6/user/subscription/willing', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "user_id": "5f9a747p00c2abf3d4a54d4q",
+    "line_id": "Udchd7f131dvvhdbe166692206a12335c",
+    "username": "Harrison Peng",
+    "image": "https://image.com/image.png",
+    "cards": [
+      {
+        "card_info": "...",
+      }
+    ],
+    "user_mobilepays": [
+      {
+        "mobilepay": {
+          "mobilepay_info": "...",
+        },
+        "no_card_binding": false,
+        "cards": [
+          {
+            "card_info": "...",
+          }
+        ]
+      }
+    ],
+    "payment_willing": 1,
+    "user_level": 1,
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "last_login": 1617601542000
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Set user payment willing
+
+### HTTP Request
+
+`PUT https://api.cardbo.info/api/v6/user/subscription/willing`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter       | Required | Type | Description
+--------------- | -------- | ---- | -----------
+payment_willing | true     | true | Does the user have willing to pay
+
+### Response
+
+#### Success
+
+Key                   | Type                 | Enums | Description
+--------------------- | -------------------- | ----- | -----------
+user_id               | string               |       | User id
+line_id               | string               |       | LINE id
+username              | string               |       | Username
+image                 | string               |       | User image
+email                 | string               |       | Email
+phone_number          | string               |       | Phone number
 cards                 | []Card               |       | User own card array
 user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
 user_level            | int                  | GENERAL: `1` <br/> VIP: `2` <br/> DEVELOPER: `3` | User level
@@ -13986,7 +14128,8 @@ axios.get('https://api.cardbo.info/api/v6/accountings/summary', {
         },
         "expense": 100
       }
-    ]
+    ],
+    "total_records": 10
   },
   "timestamp": 1617601542000
 }
@@ -14018,6 +14161,7 @@ total_expense      | int              | monthly total expense
 total_reward       | int              | monthly total reward
 card_rewards       | CardReward       | The pinned reward info of all user's card
 mobilepay_expenses | MobilePayExpense | The expense of all user's moblile pay
+total_records      | int              | Total records of the user
 
 *CardReward*
 
