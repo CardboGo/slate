@@ -2991,6 +2991,11 @@
 <td>the last 4 number of user&#39;s credit card</td>
 </tr>
 <tr>
+<td>payemet_day</td>
+<td>int</td>
+<td>payment day of the card</td>
+</tr>
+<tr>
 <td>reward_day</td>
 <td>int</td>
 <td>the end day of a month of the reward</td>
@@ -28298,6 +28303,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
         </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">        
       </span><span class="p">},</span><span class="w">
       </span><span class="nl">"card_last_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"payment_day"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
       </span><span class="nl">"reward_day"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
       </span><span class="nl">"questionnaires"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
@@ -28385,6 +28391,157 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>answer</td>
 <td>CardQuestionnaireAnswer</td>
 <td>CardQuestionnaireAnswer object</td>
+</tr>
+</tbody></table>
+
+<p><em>CardQuestionnaire</em></p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>questionnaire_id</td>
+<td>string</td>
+<td>questionnaire id</td>
+</tr>
+<tr>
+<td>card</td>
+<td>Card</td>
+<td>the card of the questionnaires</td>
+</tr>
+<tr>
+<td>questionnaires</td>
+<td>[]Questionnaire</td>
+<td>array of questionnaire</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>int</td>
+<td>create time in timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>int</td>
+<td>update time in timestamp</td>
+</tr>
+</tbody></table>
+
+<p><em>Questionnaire</em></p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>question_no</td>
+<td>int</td>
+<td></td>
+<td>the number of the question (unique in each card)</td>
+</tr>
+<tr>
+<td>question_type</td>
+<td>int</td>
+<td>TAG: <code>1</code> <br/> OPTIONS: <code>2</code> <br/> ACCOUNT_BINDING: <code>3</code> <br/> ELETRONIC_BILL: <code>4</code> <br/> ETICKET: <code>5</code></td>
+<td>the type of the question</td>
+</tr>
+<tr>
+<td>question</td>
+<td>string</td>
+<td></td>
+<td>question content</td>
+</tr>
+<tr>
+<td>options</td>
+<td>[]string</td>
+<td></td>
+<td>array of options</td>
+</tr>
+<tr>
+<td>tag</td>
+<td>string</td>
+<td></td>
+<td>self defined tag when the question type is TAG</td>
+</tr>
+<tr>
+<td>etickets</td>
+<td>[]ETicket</td>
+<td></td>
+<td>array of ETicket when the question type is ETICKET</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td></td>
+<td>the description of the question</td>
+</tr>
+</tbody></table>
+
+<p><em>CardQuestionnaireAnswer</em></p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>questionnaire_id</td>
+<td>string</td>
+<td>questionnaire id</td>
+</tr>
+<tr>
+<td>User</td>
+<td>User</td>
+<td>User object</td>
+</tr>
+<tr>
+<td>card</td>
+<td>Card</td>
+<td>the card of the questionnaires</td>
+</tr>
+<tr>
+<td>card_last_no</td>
+<td>string</td>
+<td>the last 4 number of user&#39;s credit card</td>
+</tr>
+<tr>
+<td>payemet_day</td>
+<td>int</td>
+<td>payment day of the card</td>
+</tr>
+<tr>
+<td>reward_day</td>
+<td>int</td>
+<td>the end day of a month of the reward</td>
+</tr>
+<tr>
+<td>questionnaires</td>
+<td>[]QuestionnaireAnswer</td>
+<td>array of questionnaire</td>
+</tr>
+<tr>
+<td>completed</td>
+<td>bool</td>
+<td>is the questionnaire completed or not</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>int</td>
+<td>create time in timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>int</td>
+<td>update time in timestamp</td>
 </tr>
 </tbody></table>
 <h4 id='error-88'>Error</h4>
@@ -28584,6 +28741,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   <span class="nt">--data</span> <span class="s1">'{
     "card_last_no": "0134",
+    "payment_day": 30,
     "reward_day": 30,
     "questionnaires": [
       {
@@ -28620,6 +28778,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">"card_last_no"</span><span class="p">:</span> <span class="s">"0134"</span><span class="p">,</span>
+  <span class="s">"payment_day"</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
   <span class="s">"reward_day"</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
   <span class="s">"questionnaires"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
@@ -28656,6 +28815,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
 <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">card_last_no</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0134</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">payment_day</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
   <span class="na">reward_day</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
   <span class="na">questionnaires</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
@@ -28744,6 +28904,12 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>the end day of a month of the reward</td>
 </tr>
 <tr>
+<td>payment_day</td>
+<td>true</td>
+<td>int</td>
+<td>payment day of the card</td>
+</tr>
+<tr>
 <td>questionnaires</td>
 <td>true</td>
 <td>[]QuestionnaireAnswer</td>
@@ -28768,9 +28934,54 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </tr>
 </thead><tbody>
 <tr>
-<td>result</td>
-<td>None</td>
-<td>no success response</td>
+<td>questionnaire_id</td>
+<td>string</td>
+<td>questionnaire id</td>
+</tr>
+<tr>
+<td>User</td>
+<td>User</td>
+<td>User object</td>
+</tr>
+<tr>
+<td>card</td>
+<td>Card</td>
+<td>the card of the questionnaires</td>
+</tr>
+<tr>
+<td>card_last_no</td>
+<td>string</td>
+<td>the last 4 number of user&#39;s credit card</td>
+</tr>
+<tr>
+<td>payemet_day</td>
+<td>int</td>
+<td>payment day of the card</td>
+</tr>
+<tr>
+<td>reward_day</td>
+<td>int</td>
+<td>the end day of a month of the reward</td>
+</tr>
+<tr>
+<td>questionnaires</td>
+<td>[]QuestionnaireAnswer</td>
+<td>array of questionnaire</td>
+</tr>
+<tr>
+<td>completed</td>
+<td>bool</td>
+<td>is the questionnaire completed or not</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>int</td>
+<td>create time in timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>int</td>
+<td>update time in timestamp</td>
 </tr>
 </tbody></table>
 <h4 id='error-90'>Error</h4>
