@@ -570,6 +570,7 @@ questionnaire_id | string                | questionnaire id
 User             | User                  | User object
 card             | Card                  | the card of the questionnaires
 card_last_no     | string                | the last 4 number of user's credit card
+payemet_day      | int                   | payment day of the card
 reward_day       | int                   | the end day of a month of the reward
 questionnaires   | []QuestionnaireAnswer | array of questionnaire
 completed        | bool                  | is the questionnaire completed or not
@@ -15560,6 +15561,7 @@ axios.get('https://api.cardbo.info/api/v6/questionnaire/card/{card_id}', {
         "card_info": "..."        
       },
       "card_last_no": "1234",
+      "payment_day": 30,
       "reward_day": 30,
       "questionnaires": [
         {
@@ -15630,6 +15632,43 @@ Key           | Type                    | Description
 ------------- | ----------------------- | -----------
 questionnaire | CardQuestionnaire       | CardQuestionnaire object
 answer        | CardQuestionnaireAnswer | CardQuestionnaireAnswer object
+
+*CardQuestionnaire*
+
+Key              | Type            | Description
+---------------- | --------------- | -----------
+questionnaire_id | string          | questionnaire id
+card             | Card            | the card of the questionnaires
+questionnaires   | []Questionnaire | array of questionnaire
+created_at       | int             | create time in timestamp
+updated_at       | int             | update time in timestamp
+
+*Questionnaire*
+
+Key           | Type      | Enums | Description
+------------- | --------- | ----- | -----------
+question_no   | int       |       | the number of the question (unique in each card)
+question_type | int       | TAG: `1` <br/> OPTIONS: `2` <br/> ACCOUNT_BINDING: `3` <br/> ELETRONIC_BILL: `4` <br/> ETICKET: `5` | the type of the question
+question      | string    |       | question content
+options       | []string  |       | array of options
+tag           | string    |       | self defined tag when the question type is TAG
+etickets      | []ETicket |       | array of ETicket when the question type is ETICKET
+description   | string    |       | the description of the question
+
+*CardQuestionnaireAnswer*
+
+Key              | Type                  | Description
+---------------- | --------------------- | -----------
+questionnaire_id | string                | questionnaire id
+User             | User                  | User object
+card             | Card                  | the card of the questionnaires
+card_last_no     | string                | the last 4 number of user's credit card
+payemet_day      | int                   | payment day of the card
+reward_day       | int                   | the end day of a month of the reward
+questionnaires   | []QuestionnaireAnswer | array of questionnaire
+completed        | bool                  | is the questionnaire completed or not
+created_at       | int                   | create time in timestamp
+updated_at       | int                   | update time in timestamp
 
 #### Error
 
@@ -15797,6 +15836,7 @@ curl --request POST \
   -H 'Content-Type: application/json' \
   --data '{
     "card_last_no": "0134",
+    "payment_day": 30,
     "reward_day": 30,
     "questionnaires": [
       {
@@ -15836,6 +15876,7 @@ url = 'https://api.cardbo.info/api/v6/questionnaire/submit/{card_id}'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   "card_last_no": "0134",
+  "payment_day": 30,
   "reward_day": 30,
   "questionnaires": [
     {
@@ -15875,6 +15916,7 @@ const axios = require('axios');
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
   card_last_no: "0134",
+  payment_day: 30,
   reward_day: 30,
   questionnaires: [
     {
@@ -15946,6 +15988,7 @@ Parameter      | Required | Type                  | Description
 -------------- | -------- | --------------------- | -----------
 card_last_no   | false    | string                | the last 4 number of user's credit card
 reward_day     | false    | int                   | the end day of a month of the reward
+payment_day    | true     | int                   | payment day of the card
 questionnaires | true     | []QuestionnaireAnswer | array of QuestionnaireAnswer object
 
 <aside class="notice">
@@ -15961,9 +16004,18 @@ questionnaires | true     | []QuestionnaireAnswer | array of QuestionnaireAnswer
 
 #### Success
 
-Key    | Type | Description
------- | ---- | -----------
-result | None | no success response
+Key              | Type                  | Description
+---------------- | --------------------- | -----------
+questionnaire_id | string                | questionnaire id
+User             | User                  | User object
+card             | Card                  | the card of the questionnaires
+card_last_no     | string                | the last 4 number of user's credit card
+payemet_day      | int                   | payment day of the card
+reward_day       | int                   | the end day of a month of the reward
+questionnaires   | []QuestionnaireAnswer | array of questionnaire
+completed        | bool                  | is the questionnaire completed or not
+created_at       | int                   | create time in timestamp
+updated_at       | int                   | update time in timestamp
 
 #### Error
 
