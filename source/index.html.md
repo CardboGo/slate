@@ -1184,7 +1184,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://api.cardbo.info/api/v5/user/remove_card \
+  --url https://api.cardbo.info/api/v6/user/card/remove \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -1195,7 +1195,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/user/remove_card'
+url = 'https://api.cardbo.info/api/v6/user/card/remove'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'card_id': '5f9a747p00c2abf3d4a54d4q'
@@ -1210,7 +1210,7 @@ headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
   card_id: '5f9a747p00c2abf3d4a54d4q'
 }
-axios.put('https://api.cardbo.info/api/v5/user/remove_card', data, {
+axios.put('https://api.cardbo.info/api/v6/user/card/remove', data, {
     headers: headers
   })
   .then(function (response) {
@@ -1236,7 +1236,7 @@ Remove a card from user's pocket
 
 ### HTTP Request
 
-`PUT https://api.cardbo.info/api/v5/user/remove_card`
+`PUT https://api.cardbo.info/api/v6/user/card/remove`
 
 ### Request
 
@@ -1256,103 +1256,25 @@ card_id   | true     | string | card id
 
 #### Success
 
-Key    | Type   | Description
------- | ------ | -----------
-result | string | result message
-
-#### Error
-
-Key   | Type   | Description
------ | ------ | -----------
-error | string | error message
-
-## • Update user mobile pays
-
-> Update mobile pays:
-
-```shell
-curl --request PUT \
-  --url https://api.cardbo.info/api/v5/user/mobilepays \
-  -H 'Authorization: Bearer meowmeowmeowaccess' \
-  -H 'Content-Type: application/json' \
-  --data '[
-    {
-      "mobilepay_id": "5f9a747p00c2abf3d4a54d4q"
-    }
-  ]'
-```
-
-```python
-import requests
-
-url = 'https://api.cardbo.info/api/v5/user/mobilepays'
-headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
-data = [
-  {
-    'mobilepay_id': '5f9a747p00c2abf3d4a54d4q'
-  }
-]
-response = requests.put(url, headers=headers, json=data)
-```
-
-```javascript
-const axios = require('axios');
-
-headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-data = [
-  {
-    mobilepay_id: "5f9a747p00c2abf3d4a54d4q"
-  }
-]
-axios.put('https://api.cardbo.info/api/v5/user/mobilepays', data, {
-    headers: headers
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-```
-
-> Response example:
-
-```json
-{
-  "code": 200,
-  "message": "Ok",
-  "result": "",
-  "timestamp": 1617601542000
-}
-```
-
-Update user's mobile pays
-
-### HTTP Request
-
-`PUT https://api.cardbo.info/api/v5/user/mobilepays`
-
-### Request
-
-#### Headers
-
-Key           | Value        | Description
-------------- | ------------ | -----------
-Authorization | Bearer token | API access token
-
-#### Parameters
-
-Parameter    | Required | Type   | Description
------------- | -------- | ------ | -----------
-mobilepay_id | true     | string | mobile pay id
-
-### Response
-
-#### Success
-
-Key    | Type   | Description
------- | ------ | -----------
-result | string | result message
+Key                   | Type                 | Enums | Description
+--------------------- | -------------------- | ----- | -----------
+user_id               | string               |       | User id
+line_id               | string               |       | LINE id
+username              | string               |       | Username
+image                 | string               |       | User image
+email                 | string               |       | Email
+phone_number          | string               |       | Phone number
+cards                 | []Card               |       | User own card array
+user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
+user_type             | int                  | `1`: User type 1 <br/>`2`: User type 2 <br/>`3`: User type 3 | User type
+invoice               | UserInvoice          |       | user invcoie info
+subscription          | int                  | `1`: UNSUBSCRIBED <br/> `2`: SUBSCRIBED | Is user subscribe our service
+update_message        | bool                 |       | does the user need to get the update message
+interested_categories | []InterestedCategory |       | user interest categories data
+payment_willing       | int                  | `1`: YES <br/> `2`: NO | The willing of paid subscription
+created_at            | int                  |       | create time in timestamp
+updated_at            | int                  |       | update time in timestamp
+last_login            | int                  |       | User last login time in timestamp
 
 #### Error
 
@@ -1504,6 +1426,150 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
+## • Update user mobile pay
+
+> Update mobile pay:
+
+```shell
+curl --request PUT \
+  --url https://api.cardbo.info/api/v6/user/update_mobilepay \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "mobilepay": {
+      "mobilepay_id": "5f9a747p00c2abf3d4a54d4q"
+    },
+    "no_binding_card": false,
+    "cards": [
+      {
+        "card_id": "5f9a747p00c2abf3d4a54d4q"
+      }
+    ]
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/user/update_mobilepay'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "mobilepay": {
+    "mobilepay_id": "5f9a747p00c2abf3d4a54d4q"
+  },
+  "no_binding_card": false,
+  "cards": [
+    {
+      "card_id": "5f9a747p00c2abf3d4a54d4q"
+    }
+  ]
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  mobilepay: {
+    mobilepay_id: "5f9a747p00c2abf3d4a54d4q"
+  },
+  no_binding_card: false,
+  cards: [
+    {
+      card_id: "5f9a747p00c2abf3d4a54d4q"
+    }
+  ]
+}
+axios.put('https://api.cardbo.info/api/v6/user/update_mobilepay', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "{user_info}": "..."
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Update user's mobile pay
+
+### HTTP Request
+
+`PUT https://api.cardbo.info/api/v6/user/update_mobilepay`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter       | Required | Type      | Description
+--------------- | -------- | --------- | -----------
+mobilepay       | true     | MobilePay | mobile pay object
+no_binding_card | true     | bool      | mobilepay does not bind any card
+cards           | false    | []Card    | cards binding to the mobile pay (when `no_binding_card=false`)
+
+*MobilePay*
+
+Parameter    | Required | Type   | Description
+------------ | -------- | ------ | -----------
+mobilepay_id | true     | string | mobile pay id
+
+*Card*
+
+Parameter | Required | Type   | Description
+--------- | -------- | ------ | -----------
+card_id   | true     | string | card id
+
+### Response
+
+#### Success
+
+Key                   | Type                 | Enums | Description
+--------------------- | -------------------- | ----- | -----------
+user_id               | string               |       | User id
+line_id               | string               |       | LINE id
+username              | string               |       | Username
+image                 | string               |       | User image
+email                 | string               |       | Email
+phone_number          | string               |       | Phone number
+cards                 | []Card               |       | User own card array
+user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
+user_type             | int                  | `1`: User type 1 <br/>`2`: User type 2 <br/>`3`: User type 3 | User type
+invoice               | UserInvoice          |       | user invcoie info
+subscription          | int                  | `1`: UNSUBSCRIBED <br/> `2`: SUBSCRIBED | Is user subscribe our service
+update_message        | bool                 |       | does the user need to get the update message
+interested_categories | []InterestedCategory |       | user interest categories data
+payment_willing       | int                  | `1`: YES <br/> `2`: NO | The willing of paid subscription
+created_at            | int                  |       | create time in timestamp
+updated_at            | int                  |       | update time in timestamp
+last_login            | int                  |       | User last login time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
 ## • Remove user mobile pay
 
 > Remove mobile pay:
@@ -1577,238 +1643,6 @@ Authorization | Bearer token | API access token
 Parameter    | Required | Type   | Description
 ------------ | -------- | ------ | -----------
 mobilepay_id | true     | string | mobile pay id
-
-### Response
-
-#### Success
-
-Key    | Type   | Description
------- | ------ | -----------
-result | string | result message
-
-#### Error
-
-Key   | Type   | Description
------ | ------ | -----------
-error | string | error message
-
-## • Add card to user mobile pay
-
-> Add card to mobile pay:
-
-```shell
-curl --request PUT \
-  --url https://api.cardbo.info/api/v5/user/mobilepay/add_card \
-  -H 'Authorization: Bearer meowmeowmeowaccess' \
-  -H 'Content-Type: application/json' \
-  --data '{
-    "mobilepay": {
-      "mobilepay_id": "5f9a747p00c2abf3d4a54d4q"
-    },
-    "card": {
-      "card_id": "5f9a747p00c2abf3d4a54d4q"
-    }
-  }'
-```
-
-```python
-import requests
-
-url = 'https://api.cardbo.info/api/v5/user/mobilepay/add_card'
-headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
-data = {
-  'mobilepay': {
-    'mobilepay_id': '5f9a747p00c2abf3d4a54d4q'
-  },
-  'cards': {
-    'card_id': '5f9a747p00c2abf3d4a54d4q'
-  }
-}
-response = requests.put(url, headers=headers, json=data)
-```
-
-```javascript
-const axios = require('axios');
-
-headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-data = {
-  mobilepay: {
-    mobilepay_id: "5f9a747p00c2abf3d4a54d4q"
-  },
-  cards: {
-    card_id: "5f9a747p00c2abf3d4a54d4q"
-  }
-}
-axios.put('https://api.cardbo.info/api/v5/user/mobilepay/add_card', data, {
-    headers: headers
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-```
-
-> Response example:
-
-```json
-{
-  "code": 200,
-  "message": "Ok",
-  "result": "",
-  "timestamp": 1617601542000
-}
-```
-
-Add card to user's mobile pay
-
-### HTTP Request
-
-`PUT https://api.cardbo.info/api/v5/user/mobilepay/add_card`
-
-### Request
-
-#### Headers
-
-Key           | Value        | Description
-------------- | ------------ | -----------
-Authorization | Bearer token | API access token
-
-#### Parameters
-
-Parameter | Required | Type      | Description
---------- | -------- | --------- | -----------
-mobilepay | true     | MobilePay | mobile pay object
-card      | true     | Card      | array of card object
-
-MobilePay
-
-Parameter    | Required | Type | Description
------------- | -------- | ------------- | -----------
-mobilepay_id | true     |               | mobile pay id
-
-Card
-
-Parameter | Required | Type | Description
---------- | -------- | ------------- | -----------
-card_id   | true     |               | card id
-
-### Response
-
-#### Success
-
-Key    | Type   | Description
------- | ------ | -----------
-result | string | result message
-
-#### Error
-
-Key   | Type   | Description
------ | ------ | -----------
-error | string | error message
-
-## • Remove card from user mobile pay
-
-> Remove card from mobile pay:
-
-```shell
-curl --request PUT \
-  --url https://api.cardbo.info/api/v5/user/mobilepay/remove_card \
-  -H 'Authorization: Bearer meowmeowmeowaccess' \
-  -H 'Content-Type: application/json' \
-  --data '{
-    "mobilepay": {
-      "mobilepay_id": "5f9a747p00c2abf3d4a54d4q"
-    },
-    "card": {
-      "card_id": "5f9a747p00c2abf3d4a54d4q"
-    }
-  }'
-```
-
-```python
-import requests
-
-url = 'https://api.cardbo.info/api/v5/user/mobilepay/remove_card'
-headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
-data = {
-  'mobilepay': {
-    'mobilepay_id': '5f9a747p00c2abf3d4a54d4q'
-  },
-  'cards': {
-    'card_id': '5f9a747p00c2abf3d4a54d4q'
-  }
-}
-response = requests.put(url, headers=headers, json=data)
-```
-
-```javascript
-const axios = require('axios');
-
-headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-data = {
-  mobilepay: {
-    mobilepay_id: "5f9a747p00c2abf3d4a54d4q"
-  },
-  cards: {
-    card_id: "5f9a747p00c2abf3d4a54d4q"
-  }
-}
-axios.put('https://api.cardbo.info/api/v5/user/mobilepay/remove_card', data, {
-    headers: headers
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-```
-
-> Response example:
-
-```json
-{
-  "code": 200,
-  "message": "Ok",
-  "result": "",
-  "timestamp": 1617601542000
-}
-```
-
-Remove card from user's mobile pay
-
-### HTTP Request
-
-`PUT https://api.cardbo.info/api/v5/user/mobilepay/remove_card`
-
-### Request
-
-#### Headers
-
-Key           | Value        | Description
-------------- | ------------ | -----------
-Authorization | Bearer token | API access token
-
-#### Parameters
-
-Parameter | Required | Type      | Description
---------- | -------- | --------- | -----------
-mobilepay | true     | MobilePay | mobile pay object
-card      | true     | Card      | array of card object
-
-MobilePay
-
-Parameter    | Required | Type | Description
------------- | -------- | ------------- | -----------
-mobilepay_id | true     |               | mobile pay id
-
-Card
-
-Parameter | Required | Type | Description
---------- | -------- | ------------- | -----------
-card_id   | true     |               | card id
 
 ### Response
 
@@ -2302,240 +2136,6 @@ Parameter    | Required | Type   | Description
 ------------ | -------- | ------ | -----------
 card_id      | true     | string | card id
 payment_date | true     | int    | payment date
-
-### Response
-
-#### Success
-
-Key                   | Type                 | Enums | Description
---------------------- | -------------------- | ----- | -----------
-user_id               | string               |       | User id
-line_id               | string               |       | LINE id
-username              | string               |       | Username
-image                 | string               |       | User image
-email                 | string               |       | Email
-phone_number          | string               |       | Phone number
-cards                 | []Card               |       | User own card array
-user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
-user_type             | int                  | `1`: User type 1 <br/>`2`: User type 2 <br/>`3`: User type 3 | User type
-invoice               | UserInvoice          |       | user invcoie info
-subscription          | int                  | `1`: UNSUBSCRIBED <br/> `2`: SUBSCRIBED | Is user subscribe our service
-update_message        | bool                 |       | does the user need to get the update message
-interested_categories | []InterestedCategory |       | user interest categories data
-payment_willing       | int                  | `1`: YES <br/> `2`: NO | The willing of paid subscription
-created_at            | int                  |       | create time in timestamp
-updated_at            | int                  |       | update time in timestamp
-last_login            | int                  |       | User last login time in timestamp
-
-#### Error
-
-Key   | Type   | Description
------ | ------ | -----------
-error | string | error message
-
-## • Set user mobile pay no card binding
-
-> Set user mobile pay no card binding:
-
-```shell
-curl --request PUT \
-  --url https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/set_no_card \
-  -H 'Authorization: Bearer meowmeowmeowaccess' \
-  -H 'Content-Type: application/json' \
-```
-
-```python
-import requests
-
-url = 'https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/set_no_card'
-headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
-response = requests.put(url, headers=headers)
-```
-
-```javascript
-const axios = require('axios');
-
-headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.put('https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/set_no_card', data, {
-    headers: headers
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-```
-
-> Response example:
-
-```json
-{
-  "code": 200,
-  "message": "Ok",
-  "result": {
-    "user_id": "5f9a747p00c2abf3d4a54d4q",
-    "line_id": "Udchd7f131dvvhdbe166692206a12335c",
-    "username": "Harrison Peng",
-    "image": "https://image.com/image.png",
-    "cards": [
-      {
-        "card_info": "...",
-      }
-    ],
-    "user_mobilepays": [
-      {
-        "mobilepay": {
-          "mobilepay_info": "...",
-        },
-        "no_card_binding": false,
-        "cards": [
-          {
-            "card_info": "...",
-          }
-        ]
-      }
-    ],
-    "user_level": 1,
-    "payment_willing": 1,
-    "created_at": 1617601542000,
-    "updated_at": 1617601542000,
-    "last_login": 1617601542000
-  },
-  "timestamp": 1617601542000
-}
-```
-
-Set user mobile pay no card binding
-
-### HTTP Request
-
-`PUT https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/set_no_card`
-
-### Request
-
-#### Headers
-
-Key           | Value        | Description
-------------- | ------------ | -----------
-Authorization | Bearer token | API access token
-
-### Response
-
-#### Success
-
-Key                   | Type                 | Enums | Description
---------------------- | -------------------- | ----- | -----------
-user_id               | string               |       | User id
-line_id               | string               |       | LINE id
-username              | string               |       | Username
-image                 | string               |       | User image
-email                 | string               |       | Email
-phone_number          | string               |       | Phone number
-cards                 | []Card               |       | User own card array
-user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
-user_type             | int                  | `1`: User type 1 <br/>`2`: User type 2 <br/>`3`: User type 3 | User type
-invoice               | UserInvoice          |       | user invcoie info
-subscription          | int                  | `1`: UNSUBSCRIBED <br/> `2`: SUBSCRIBED | Is user subscribe our service
-update_message        | bool                 |       | does the user need to get the update message
-interested_categories | []InterestedCategory |       | user interest categories data
-payment_willing       | int                  | `1`: YES <br/> `2`: NO | The willing of paid subscription
-created_at            | int                  |       | create time in timestamp
-updated_at            | int                  |       | update time in timestamp
-last_login            | int                  |       | User last login time in timestamp
-
-#### Error
-
-Key   | Type   | Description
------ | ------ | -----------
-error | string | error message
-
-## • Unset user mobile pay no card binding
-
-> Unset user mobile pay no card binding:
-
-```shell
-curl --request PUT \
-  --url https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/unset_no_card \
-  -H 'Authorization: Bearer meowmeowmeowaccess' \
-  -H 'Content-Type: application/json' \
-```
-
-```python
-import requests
-
-url = 'https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/unset_no_card'
-headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
-response = requests.put(url, headers=headers)
-```
-
-```javascript
-const axios = require('axios');
-
-headers = {Authorization: 'Bearer meowmeowmeowaccess'}
-axios.put('https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/unset_no_card', data, {
-    headers: headers
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-```
-
-> Response example:
-
-```json
-{
-  "code": 200,
-  "message": "Ok",
-  "result": {
-    "user_id": "5f9a747p00c2abf3d4a54d4q",
-    "line_id": "Udchd7f131dvvhdbe166692206a12335c",
-    "username": "Harrison Peng",
-    "image": "https://image.com/image.png",
-    "cards": [
-      {
-        "card_info": "...",
-      }
-    ],
-    "user_mobilepays": [
-      {
-        "mobilepay": {
-          "mobilepay_info": "...",
-        },
-        "no_card_binding": false,
-        "cards": [
-          {
-            "card_info": "...",
-          }
-        ]
-      }
-    ],
-    "user_level": 1,
-    "payment_willing": 1,
-    "created_at": 1617601542000,
-    "updated_at": 1617601542000,
-    "last_login": 1617601542000
-  },
-  "timestamp": 1617601542000
-}
-```
-
-Unset user mobile pay no card binding
-
-### HTTP Request
-
-`PUT https://api.cardbo.info/api/v6/user/mobilepay/{mobilepay_id}/unset_no_card`
-
-### Request
-
-#### Headers
-
-Key           | Value        | Description
-------------- | ------------ | -----------
-Authorization | Bearer token | API access token
 
 ### Response
 
