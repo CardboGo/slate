@@ -1227,7 +1227,59 @@ axios.put('https://api.cardbo.info/api/v6/user/card/remove', data, {
 {
   "code": 200,
   "message": "Ok",
-  "result": "Card removed",
+  "result": {
+    "user_id": "5f9a747p00c2abf3d4a54d4q",
+    "line_id": "Udchd7f131dvvhdbe166692206a12335c",
+    "username": "Harrison Peng",
+    "image": "https://image.com/image.png",
+    "cards": [
+      {
+        "card_id": "5f9a747p00c2abf3d4a54d4q",
+        "name": "永豐幣倍卡",
+        "bank": {
+          "bank_id": "5f756d85c2349d9139648a7d",
+          "name": "永豐銀行",
+          "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/sinopac-bank.png",
+          "image": "https://i.imgur.com/1g5nYEN.png",
+          "code": "807"
+        },
+        "level": 5,
+        "image": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+        "issuer": "MASTERCARD"
+      }
+    ],
+    "user_mobilepays": [
+      {
+        "mobilepay": {
+          "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+          "name": "Apple Pay",
+          "image": "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png",
+          "user_has": false
+        },
+        "cards": [
+          {
+            "card_id": "5f9a747p00c2abf3d4a54d4q",
+            "name": "永豐幣倍卡",
+            "bank": {
+              "bank_id": "5f756d85c2349d9139648a7d",
+              "name": "永豐銀行",
+              "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/sinopac-bank.png",
+              "image": "https://i.imgur.com/1g5nYEN.png",
+              "code": "807"
+            },
+            "level": 5,
+            "image": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+            "issuer": "MASTERCARD"
+          }
+        ]
+      }
+    ],
+    "user_level": 1,
+    "payment_willing": 1,
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "last_login": 1617601542000
+  },
   "timestamp": 1617601542000
 }
 ```
@@ -1356,7 +1408,57 @@ axios.put('https://api.cardbo.info/api/v6/user/add_mobilepay', data, {
   "code": 200,
   "message": "Ok",
   "result": {
-    "{user_info}": "..."
+    "user_id": "5f9a747p00c2abf3d4a54d4q",
+    "line_id": "Udchd7f131dvvhdbe166692206a12335c",
+    "username": "Harrison Peng",
+    "image": "https://image.com/image.png",
+    "cards": [
+      {
+        "card_id": "5f9a747p00c2abf3d4a54d4q",
+        "name": "永豐幣倍卡",
+        "bank": {
+          "bank_id": "5f756d85c2349d9139648a7d",
+          "name": "永豐銀行",
+          "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/sinopac-bank.png",
+          "image": "https://i.imgur.com/1g5nYEN.png",
+          "code": "807"
+        },
+        "level": 5,
+        "image": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+        "issuer": "MASTERCARD"
+      }
+    ],
+    "user_mobilepays": [
+      {
+        "mobilepay": {
+          "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+          "name": "Apple Pay",
+          "image": "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png",
+          "user_has": false
+        },
+        "cards": [
+          {
+            "card_id": "5f9a747p00c2abf3d4a54d4q",
+            "name": "永豐幣倍卡",
+            "bank": {
+              "bank_id": "5f756d85c2349d9139648a7d",
+              "name": "永豐銀行",
+              "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/sinopac-bank.png",
+              "image": "https://i.imgur.com/1g5nYEN.png",
+              "code": "807"
+            },
+            "level": 5,
+            "image": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+            "issuer": "MASTERCARD"
+          }
+        ]
+      }
+    ],
+    "user_level": 1,
+    "payment_willing": 1,
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "last_login": 1617601542000
   },
   "timestamp": 1617601542000
 }
@@ -1500,7 +1602,57 @@ axios.put('https://api.cardbo.info/api/v6/user/update_mobilepay', data, {
   "code": 200,
   "message": "Ok",
   "result": {
-    "{user_info}": "..."
+    "user_id": "5f9a747p00c2abf3d4a54d4q",
+    "line_id": "Udchd7f131dvvhdbe166692206a12335c",
+    "username": "Harrison Peng",
+    "image": "https://image.com/image.png",
+    "cards": [
+      {
+        "card_id": "5f9a747p00c2abf3d4a54d4q",
+        "name": "永豐幣倍卡",
+        "bank": {
+          "bank_id": "5f756d85c2349d9139648a7d",
+          "name": "永豐銀行",
+          "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/sinopac-bank.png",
+          "image": "https://i.imgur.com/1g5nYEN.png",
+          "code": "807"
+        },
+        "level": 5,
+        "image": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+        "issuer": "MASTERCARD"
+      }
+    ],
+    "user_mobilepays": [
+      {
+        "mobilepay": {
+          "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+          "name": "Apple Pay",
+          "image": "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png",
+          "user_has": false
+        },
+        "cards": [
+          {
+            "card_id": "5f9a747p00c2abf3d4a54d4q",
+            "name": "永豐幣倍卡",
+            "bank": {
+              "bank_id": "5f756d85c2349d9139648a7d",
+              "name": "永豐銀行",
+              "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/sinopac-bank.png",
+              "image": "https://i.imgur.com/1g5nYEN.png",
+              "code": "807"
+            },
+            "level": 5,
+            "image": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+            "issuer": "MASTERCARD"
+          }
+        ]
+      }
+    ],
+    "user_level": 1,
+    "payment_willing": 1,
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "last_login": 1617601542000
   },
   "timestamp": 1617601542000
 }
