@@ -1961,7 +1961,8 @@ axios.put('https://api.cardbo.info/api/v6/user/invoice', data, {
   "code": 200,
   "message": "Ok",
   "result": {
-    "status": true
+    "status": true,
+    "carrier_status": 1
   },
   "timestamp": 1617601542000
 }
@@ -1985,16 +1986,17 @@ Authorization | Bearer token | API access token
 
 Parameter         | Required | Type  | Description
 ----------------- | -------- | ----- | -----------
-carrier           | true    | string | mobile pay carrier code
-verification_code | true    | string | verification code
+carrier           | true    | string | Mobile pay carrier code
+verification_code | true    | string | Verification code
 
 ### Response
 
 #### Success
 
-Key    | Type | Description
------- | ---- | -----------
-status | bool | mobile pay carrier status
+Key            | Type | Enums | Description
+-------------- | ---- | ----- | -----------
+status         | bool |       | The status of carrier invoice (OLD)
+carrier_status | int  | `1`: SUCCESS </br> `2`: FAILED </br> `3`: E-INVOICE ERROR | The status of carrier invoice
 
 #### Error
 
