@@ -1084,7 +1084,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://api.cardbo.info/api/v5/user/add_card \
+  --url https://api.cardbo.info/api/v6/user/card/add 
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -1098,7 +1098,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v5/user/add_card'
+url = 'https://api.cardbo.info/api/v6/user/card/add'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   'card_id': '5f9a747p00c2abf3d4a54d4q',
@@ -1119,7 +1119,7 @@ data = {
   level: 4,
   issuer: 'JCB'
 }
-axios.put('https://api.cardbo.info/api/v5/user/add_card', data, {
+axios.put('https://api.cardbo.info/api/v6/user/card/add', data, {
     headers: headers
   })
   .then(function (response) {
@@ -1136,7 +1136,59 @@ axios.put('https://api.cardbo.info/api/v5/user/add_card', data, {
 {
   "code": 200,
   "message": "Ok",
-  "result": "Cards added",
+  "result": {
+    "user_id": "5f9a747p00c2abf3d4a54d4q",
+    "line_id": "Udchd7f131dvvhdbe166692206a12335c",
+    "username": "Harrison Peng",
+    "image": "https://image.com/image.png",
+    "cards": [
+      {
+        "card_id": "5f9a747p00c2abf3d4a54d4q",
+        "name": "永豐幣倍卡",
+        "bank": {
+          "bank_id": "5f756d85c2349d9139648a7d",
+          "name": "永豐銀行",
+          "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/sinopac-bank.png",
+          "image": "https://i.imgur.com/1g5nYEN.png",
+          "code": "807"
+        },
+        "level": 5,
+        "image": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+        "issuer": "MASTERCARD"
+      }
+    ],
+    "user_mobilepays": [
+      {
+        "mobilepay": {
+          "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+          "name": "Apple Pay",
+          "image": "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png",
+          "user_has": false
+        },
+        "cards": [
+          {
+            "card_id": "5f9a747p00c2abf3d4a54d4q",
+            "name": "永豐幣倍卡",
+            "bank": {
+              "bank_id": "5f756d85c2349d9139648a7d",
+              "name": "永豐銀行",
+              "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/sinopac-bank.png",
+              "image": "https://i.imgur.com/1g5nYEN.png",
+              "code": "807"
+            },
+            "level": 5,
+            "image": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+            "issuer": "MASTERCARD"
+          }
+        ]
+      }
+    ],
+    "user_level": 1,
+    "payment_willing": 1,
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "last_login": 1617601542000
+  },
   "timestamp": 1617601542000
 }
 ```
@@ -1145,7 +1197,7 @@ Add a card to user's pocket
 
 ### HTTP Request
 
-`PUT https://api.cardbo.info/api/v5/user/add_card`
+`PUT https://api.cardbo.info/api/v6/user/card/add`
 
 ### Request
 
@@ -1168,9 +1220,193 @@ issuer    | true     | string | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`,
 
 #### Success
 
-Key    | Type   | Description
------- | ------ | -----------
-result | string | result message
+Key                   | Type                 | Enums | Description
+--------------------- | -------------------- | ----- | -----------
+user_id               | string               |       | User id
+line_id               | string               |       | LINE id
+username              | string               |       | Username
+image                 | string               |       | User image
+email                 | string               |       | Email
+phone_number          | string               |       | Phone number
+cards                 | []Card               |       | User own card array
+user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
+user_type             | int                  | `1`: User type 1 <br/>`2`: User type 2 <br/>`3`: User type 3 | User type
+invoice               | UserInvoice          |       | user invcoie info
+subscription          | int                  | `1`: UNSUBSCRIBED <br/> `2`: SUBSCRIBED | Is user subscribe our service
+update_message        | bool                 |       | does the user need to get the update message
+interested_categories | []InterestedCategory |       | user interest categories data
+payment_willing       | int                  | `1`: YES <br/> `2`: NO | The willing of paid subscription
+created_at            | int                  |       | create time in timestamp
+updated_at            | int                  |       | update time in timestamp
+last_login            | int                  |       | User last login time in timestamp
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## • Update user card
+
+> Update card:
+
+```shell
+curl --request PUT \
+  --url https://api.cardbo.info/api/v6/user/card/update 
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
+    "image": "image_1",
+    "level": 4,
+    "issuer": "JCB"
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/user/card/update'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  'card_id': '5f9a747p00c2abf3d4a54d4q',
+  'image': 'image_1',
+  'level': 4,
+  'issuer': 'JCB'
+}
+response = requests.put(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  card_id: '5f9a747p00c2abf3d4a54d4q',
+  image: 'image_1',
+  level: 4,
+  issuer: 'JCB'
+}
+axios.put('https://api.cardbo.info/api/v6/user/card/update', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "user_id": "5f9a747p00c2abf3d4a54d4q",
+    "line_id": "Udchd7f131dvvhdbe166692206a12335c",
+    "username": "Harrison Peng",
+    "image": "https://image.com/image.png",
+    "cards": [
+      {
+        "card_id": "5f9a747p00c2abf3d4a54d4q",
+        "name": "永豐幣倍卡",
+        "bank": {
+          "bank_id": "5f756d85c2349d9139648a7d",
+          "name": "永豐銀行",
+          "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/sinopac-bank.png",
+          "image": "https://i.imgur.com/1g5nYEN.png",
+          "code": "807"
+        },
+        "level": 5,
+        "image": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+        "issuer": "MASTERCARD"
+      }
+    ],
+    "user_mobilepays": [
+      {
+        "mobilepay": {
+          "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+          "name": "Apple Pay",
+          "image": "https://storage.googleapis.com/cardbo-images/mobile-pay/apple-pay.png",
+          "user_has": false
+        },
+        "cards": [
+          {
+            "card_id": "5f9a747p00c2abf3d4a54d4q",
+            "name": "永豐幣倍卡",
+            "bank": {
+              "bank_id": "5f756d85c2349d9139648a7d",
+              "name": "永豐銀行",
+              "logo": "https://storage.googleapis.com/cardbo-images/bank/logo/sinopac-bank.png",
+              "image": "https://i.imgur.com/1g5nYEN.png",
+              "code": "807"
+            },
+            "level": 5,
+            "image": "https://storage.googleapis.com/cardbo-images/card/5f9a747p00c2abf3d4a54d4q-1.png",
+            "issuer": "MASTERCARD"
+          }
+        ]
+      }
+    ],
+    "user_level": 1,
+    "payment_willing": 1,
+    "created_at": 1617601542000,
+    "updated_at": 1617601542000,
+    "last_login": 1617601542000
+  },
+  "timestamp": 1617601542000
+}
+```
+
+Update info of user's card
+
+### HTTP Request
+
+`PUT https://api.cardbo.info/api/v6/user/card/update`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter | Required | Type   | Enums                                                        | Description
+--------- | -------- | ------ | ------------------------------------------------------------ | -----------
+card_id   | true     | string |                                                              | card id
+image     | true     | string | `image_1`, `image_2`, `image_3`, `image_4`, `image_5`, `image_6`, `image_7`, `image_8`, `image_9`, `image_10`                                                  | card image key
+level     | true     | int    | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`                       | card level
+issuer    | true     | string | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | card issuer
+
+### Response
+
+#### Success
+
+Key                   | Type                 | Enums | Description
+--------------------- | -------------------- | ----- | -----------
+user_id               | string               |       | User id
+line_id               | string               |       | LINE id
+username              | string               |       | Username
+image                 | string               |       | User image
+email                 | string               |       | Email
+phone_number          | string               |       | Phone number
+cards                 | []Card               |       | User own card array
+user_mobilepays       | []UserMobilepay      |       | User own mobile pay array
+user_type             | int                  | `1`: User type 1 <br/>`2`: User type 2 <br/>`3`: User type 3 | User type
+invoice               | UserInvoice          |       | user invcoie info
+subscription          | int                  | `1`: UNSUBSCRIBED <br/> `2`: SUBSCRIBED | Is user subscribe our service
+update_message        | bool                 |       | does the user need to get the update message
+interested_categories | []InterestedCategory |       | user interest categories data
+payment_willing       | int                  | `1`: YES <br/> `2`: NO | The willing of paid subscription
+created_at            | int                  |       | create time in timestamp
+updated_at            | int                  |       | update time in timestamp
+last_login            | int                  |       | User last login time in timestamp
 
 #### Error
 
