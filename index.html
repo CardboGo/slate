@@ -336,6 +336,9 @@
                     <a href="#usermobilepay" class="toc-h2 toc-link" data-title="UserMobilepay">UserMobilepay</a>
                   </li>
                   <li>
+                    <a href="#usercard" class="toc-h2 toc-link" data-title="UserCard">UserCard</a>
+                  </li>
+                  <li>
                     <a href="#userinvoice" class="toc-h2 toc-link" data-title="UserInvoice">UserInvoice</a>
                   </li>
                   <li>
@@ -1157,6 +1160,88 @@
 <td>cards</td>
 <td>[]CardDisplay</td>
 <td>array of CardDisplay object</td>
+</tr>
+</tbody></table>
+<h2 id='usercard'>UserCard</h2>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>string</td>
+<td></td>
+<td>Card ID</td>
+</tr>
+<tr>
+<td>card_type</td>
+<td>int</td>
+<td><code>1</code>: CREDIT CARD </br> <code>2</code>: DEBIT CARD</td>
+<td>Cardit card/debit card</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>Card name</td>
+</tr>
+<tr>
+<td>bank</td>
+<td>Bank</td>
+<td></td>
+<td>Bank of the card</td>
+</tr>
+<tr>
+<td>level</td>
+<td>int</td>
+<td><code>1</code>-<code>8</code></td>
+<td>Card level</td>
+</tr>
+<tr>
+<td>image</td>
+<td>string</td>
+<td></td>
+<td>Card image URL</td>
+</tr>
+<tr>
+<td>issuer</td>
+<td>string</td>
+<td><code>VISA</code>, <code>MASTERCARD</code>, <code>JCB</code>, <code>AMERICAN EXPRESS</code>, <code>UNION PAY</code></td>
+<td>Card issuer</td>
+</tr>
+<tr>
+<td>payment_date</td>
+<td>int</td>
+<td><code>1</code>-<code>31</code></td>
+<td>Payment day of the card</td>
+</tr>
+<tr>
+<td>reward_day</td>
+<td>int</td>
+<td><code>1</code>-<code>31</code></td>
+<td>Reward day of the card (default is same as payment day)</td>
+</tr>
+<tr>
+<td>card_last_no</td>
+<td>string</td>
+<td></td>
+<td>Last 4 number of the card</td>
+</tr>
+<tr>
+<td>has_questionnaire</td>
+<td>bool</td>
+<td></td>
+<td>Does the card have the questionnaire</td>
+</tr>
+<tr>
+<td>questionnaire_completed</td>
+<td>bool</td>
+<td></td>
+<td>Does the card questionnaire completed</td>
 </tr>
 </tbody></table>
 <h2 id='userinvoice'>UserInvoice</h2>
@@ -18413,7 +18498,7 @@ There are 20 data each page.
 <p>Bind formal offers sharing upper bound:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v6/offer/formal/upperbound <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/offers/formal/upperbound <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   <span class="nt">--data</span> <span class="s1">'{
@@ -18424,7 +18509,7 @@ There are 20 data each page.
 }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/offer/formal/upperbound'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/offers/formal/upperbound'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">"upperbound_ids"</span><span class="p">:</span> <span class="p">[</span>
@@ -18442,7 +18527,7 @@ There are 20 data each page.
     <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span>
   <span class="p">]</span>
 <span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/offer/formal/upperbound</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/offers/formal/upperbound</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
@@ -18616,7 +18701,7 @@ There are 20 data each page.
 </span></code></pre></div>
 <p>Bind formal offers sharing upper bound</p>
 <h3 id='http-request-55'>HTTP Request</h3>
-<p><code>PUT https://api.cardbo.info/api/v6/offer/formal/upperbound</code></p>
+<p><code>PUT https://api.cardbo.info/api/v6/offers/formal/upperbound</code></p>
 <h3 id='request-55'>Request</h3><h4 id='headers-52'>Headers</h4>
 <table><thead>
 <tr>
@@ -26811,6 +26896,90 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>rewards</td>
 <td>[]Reward</td>
 <td>All rewards of the card (sorted by user&#39;s order)</td>
+</tr>
+</tbody></table>
+
+<p><em>UserCard</em></p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>string</td>
+<td></td>
+<td>Card ID</td>
+</tr>
+<tr>
+<td>card_type</td>
+<td>int</td>
+<td><code>1</code>: CREDIT CARD </br> <code>2</code>: DEBIT CARD</td>
+<td>Cardit card/debit card</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>Card name</td>
+</tr>
+<tr>
+<td>bank</td>
+<td>Bank</td>
+<td></td>
+<td>Bank of the card</td>
+</tr>
+<tr>
+<td>level</td>
+<td>int</td>
+<td><code>1</code>-<code>8</code></td>
+<td>Card level</td>
+</tr>
+<tr>
+<td>image</td>
+<td>string</td>
+<td></td>
+<td>Card image URL</td>
+</tr>
+<tr>
+<td>issuer</td>
+<td>string</td>
+<td><code>VISA</code>, <code>MASTERCARD</code>, <code>JCB</code>, <code>AMERICAN EXPRESS</code>, <code>UNION PAY</code></td>
+<td>Card issuer</td>
+</tr>
+<tr>
+<td>payment_date</td>
+<td>int</td>
+<td><code>1</code>-<code>31</code></td>
+<td>Payment day of the card</td>
+</tr>
+<tr>
+<td>reward_day</td>
+<td>int</td>
+<td><code>1</code>-<code>31</code></td>
+<td>Reward day of the card (default is same as payment day)</td>
+</tr>
+<tr>
+<td>card_last_no</td>
+<td>string</td>
+<td></td>
+<td>Last 4 number of the card</td>
+</tr>
+<tr>
+<td>has_questionnaire</td>
+<td>bool</td>
+<td></td>
+<td>Does the card have the questionnaire</td>
+</tr>
+<tr>
+<td>questionnaire_completed</td>
+<td>bool</td>
+<td></td>
+<td>Does the card questionnaire completed</td>
 </tr>
 </tbody></table>
 
