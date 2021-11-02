@@ -140,6 +140,23 @@ mobilepay       | MobilePay     | MobilePay object
 no_card_binding | bool          | mobilepay does not bind any card
 cards           | []CardDisplay | array of CardDisplay object
 
+## UserCard
+
+Key                     | Type   | Enums | Description
+----------------------- | ------ | ----- | -----------
+card_id                 | string |       | Card ID
+card_type               | int    | `1`: CREDIT CARD </br> `2`: DEBIT CARD | Cardit card/debit card
+name                    | string |       | Card name
+bank                    | Bank   |       | Bank of the card
+level                   | int    | `1`-`8` | Card level
+image                   | string |       | Card image URL
+issuer                  | string | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | Card issuer
+payment_date            | int    | `1`-`31` | Payment day of the card
+reward_day              | int    | `1`-`31` | Reward day of the card (default is same as payment day)
+card_last_no            | string |       | Last 4 number of the card
+has_questionnaire       | bool   |       | Does the card have the questionnaire
+questionnaire_completed | bool   |       | Does the card questionnaire completed
+
 ## UserInvoice
 
 Key               | Type   | Description
@@ -9524,7 +9541,7 @@ error | string | error message
 
 ```shell
 curl --request PUT \
-  --url https://api.cardbo.info/api/v6/offer/formal/upperbound \
+  --url https://api.cardbo.info/api/v6/offers/formal/upperbound \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
@@ -9538,7 +9555,7 @@ curl --request PUT \
 ```python
 import requests
 
-url = 'https://api.cardbo.info/api/v6/offer/formal/upperbound'
+url = 'https://api.cardbo.info/api/v6/offers/formal/upperbound'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
   "upperbound_ids": [
@@ -9559,7 +9576,7 @@ data = {
     "5f9a747p00c2abf3d4a54d4q"
   ]
 }
-axios.put('https://api.cardbo.info/api/v6/offer/formal/upperbound', data, {
+axios.put('https://api.cardbo.info/api/v6/offers/formal/upperbound', data, {
     headers: headers
   })
   .then(function (response) {
@@ -9737,7 +9754,7 @@ Bind formal offers sharing upper bound
 
 ### HTTP Request
 
-`PUT https://api.cardbo.info/api/v6/offer/formal/upperbound`
+`PUT https://api.cardbo.info/api/v6/offers/formal/upperbound`
 
 ### Request
 
@@ -14302,6 +14319,23 @@ start_date         | int                | Month start date
 end_date           | int                | Month end date
 accounting_records | []AccountingRecord | All records from the card of a month (sorted by date)
 rewards            | []Reward           | All rewards of the card (sorted by user's order)
+
+*UserCard*
+
+Key                     | Type   | Enums | Description
+----------------------- | ------ | ----- | -----------
+card_id                 | string |       | Card ID
+card_type               | int    | `1`: CREDIT CARD </br> `2`: DEBIT CARD | Cardit card/debit card
+name                    | string |       | Card name
+bank                    | Bank   |       | Bank of the card
+level                   | int    | `1`-`8` | Card level
+image                   | string |       | Card image URL
+issuer                  | string | `VISA`, `MASTERCARD`, `JCB`, `AMERICAN EXPRESS`, `UNION PAY` | Card issuer
+payment_date            | int    | `1`-`31` | Payment day of the card
+reward_day              | int    | `1`-`31` | Reward day of the card (default is same as payment day)
+card_last_no            | string |       | Last 4 number of the card
+has_questionnaire       | bool   |       | Does the card have the questionnaire
+questionnaire_completed | bool   |       | Does the card questionnaire completed
 
 *Reward*
 
