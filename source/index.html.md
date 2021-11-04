@@ -404,7 +404,8 @@ reward_type        | int               | CASHBACK_PERCENTAGE: `1` <br/> CASHBACK
 max_reward_content | RewardContent     |       | best reward can get from reward contents
 reward_contents    | []RewardContent   |       | array of all reward contents
 cashback_value     | float             |       | The cashback value can get from the offer
-selected           | bool              |       | is the reward selected
+selected           | bool              |       | Is the reward selected
+reach_max_cashback | bool              |       | Deos the cashback reach the max value
 
 ## OfferUpperBound
 
