@@ -11189,6 +11189,7 @@ curl --request POST \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
+    "search_mode": 1,
     "store": "711",
     "amount": 100,
     "has_post_condition": true,
@@ -11207,6 +11208,7 @@ import requests
 url = 'https://api.cardbo.info/api/v6/offers/formal/search'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
+  "search_mode": 1,
   "store": "711",
   "amount": 100,
   "has_post_condition": true,
@@ -11225,6 +11227,7 @@ const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
+  search_mode: 1,
   store: "711",
   amount: 100,
   has_post_condition: true,
@@ -11253,6 +11256,7 @@ axios.post('https://api.cardbo.info/api/v6/offers/formal/search', data, {
   "code": 200,
   "message": "Ok",
   "result": {
+    "search_mode": 1,
     "user_type": 3,
     "store": {
       "store": "...",
@@ -11448,12 +11452,13 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter          | Required | Type                 | Description
------------------- | -------- | -------------------- | -----------
-store              | true     | string               | Store name
-amount             | false    | int                  | Expense amount
-has_post_condition | true     | bool                 | Does request contain post condition info
-post_condition     | false    | PostConditionRequest | Post condition info
+Parameter          | Required | Type                 | Enums | Description
+------------------ | -------- | -------------------- | ----- | -----------
+search_mode        | true     | int                  | `1`: HAS AMOUNT </br> `2`: NO AMOUNT | Search mode (has amount/no amount)
+store              | true     | string               |       | Store name
+amount             | false    | int                  |       | Expense amount (requried for `search_mode=1`)
+has_post_condition | true     | bool                 |       | Does request contain post condition info
+post_condition     | false    | PostConditionRequest |       | Post condition info
 
 *PostConditionRequest*
 
@@ -11474,6 +11479,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 
 Key                | Type                      | Enums | Description
 ------------------ | ------------------------- | ----- | -----------
+search_mode        | int                       | `1`: HAS AMOUNT </br> `2`: NO AMOUNT | Search mode (has amount/no amount)
 store              | Store                     |       | Store object
 amount             | int                       |       | Expense amount
 search_result_type | int                       | `1`: Has result </br> `2`: Need post conditions </br> `3`: No results </br> `4`: Unsupported store type `5`: No store data | The search result type
@@ -11546,6 +11552,7 @@ curl --request POST \
   -H 'Authorization: Bearer meowmeowmeowaccess' \
   -H 'Content-Type: application/json' \
   --data '{
+    "search_mode": 1,
     "category": "國內一般消費",
     "amount": 100,
   }'
@@ -11557,6 +11564,7 @@ import requests
 url = 'https://api.cardbo.info/api/v6/offers/formal/search/category'
 headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
 data = {
+  "search_mode": 1,
   "category": "國內一般消費",
   "amount": 100,
 }
@@ -11568,6 +11576,7 @@ const axios = require('axios');
 
 headers = {Authorization: 'Bearer meowmeowmeowaccess'}
 data = {
+  search_mode: 1,
   category: "國內一般消費",
   amount: 100,
 }
@@ -11589,6 +11598,7 @@ axios.post('https://api.cardbo.info/api/v6/offers/formal/search/category', data,
   "code": 200,
   "message": "Ok",
   "result": {
+    "search_mode": 1,
     "user_type": 3,
     "tag": {
       "{tag_info}": "..."
@@ -11774,10 +11784,11 @@ Authorization | Bearer token | API access token
 
 #### Parameters
 
-Parameter | Required | Type                 | Description
---------- | -------- | -------------------- | -----------
-category  | true     | string               | Category name
-amount    | true     | int                  | Expense amount
+Parameter   | Required | Type                 | Enums | Description
+----------- | -------- | -------------------- | ----- | -----------
+search_mode | true     | int                  | `1`: HAS AMOUNT </br> `2`: NO AMOUNT | Search mode (has amount/no amount)
+category    | true     | string               |       | Category name
+amount      | false    | int                  |       | Expense amount (required for `search_mode=1`)
 
 ### Response
 
@@ -11785,6 +11796,7 @@ amount    | true     | int                  | Expense amount
 
 Key                | Type                      | Enums | Description
 ------------------ | ------------------------- | ----- | -----------
+search_mode        | int                       | `1`: HAS AMOUNT </br> `2`: NO AMOUNT | Search mode (has amount/no amount)
 category           | Store                     |       | Store object
 amount             | int                       |       | Expense amount
 search_result_type | int                       | `1`: Has result </br> `3`: No results    | The search result type
