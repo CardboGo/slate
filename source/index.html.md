@@ -11180,6 +11180,8 @@ Key   | Type   | Description
 ----- | ------ | -----------
 error | string | error message
 
+# ◉ Search
+
 ## • Search offers By store
 
 > search offers from user's card
@@ -12158,6 +12160,146 @@ Key            | Type   | Enums | Description
 condition_type | int    | `1`: 一般條件 </br> `2`: 登錄 </br> `3`: 優惠碼 </br> `4`: 專屬連結 </br> `5`: 最低消費條件(特殊) | Conditiogn type
 name           | string |       | Condition description
 url            | string |       | Condition URL
+
+#### Error
+
+Key   | Type   | Description
+----- | ------ | -----------
+error | string | error message
+
+## • Calculate offer search cashback
+
+> calculate cashback for offer search no amount mserch mode
+
+```shell
+curl --request POST \
+  --url https://api.cardbo.info/api/v6/offers/formal/search/cashback \
+  -H 'Authorization: Bearer meowmeowmeowaccess' \
+  -H 'Content-Type: application/json' \
+  --data '{
+    "amount": 1000,
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
+    "store_id": "5f9a747p00c2abf3d4a54d4q",
+    "rewards": [
+      "5f9a747p00c2abf3d4a54d4q"
+    ]
+  }'
+```
+
+```python
+import requests
+
+url = 'https://api.cardbo.info/api/v6/offers/formal/search/cashback'
+headers = {'Authorization': 'Bearer meowmeowmeowaccess'}
+data = {
+  "amount": 1000,
+  "card_id": "5f9a747p00c2abf3d4a54d4q",
+  "store_id": "5f9a747p00c2abf3d4a54d4q",
+  "rewards": [
+    "5f9a747p00c2abf3d4a54d4q"
+  ]
+}
+response = requests.post(url, headers=headers, json=data)
+```
+
+```javascript
+const axios = require('axios');
+
+headers = {Authorization: 'Bearer meowmeowmeowaccess'}
+data = {
+  amoun: 1000,
+  card_id: "5f9a747p00c2abf3d4a54d4q",
+  store_id: "5f9a747p00c2abf3d4a54d4q",
+  rewards: [
+    "5f9a747p00c2abf3d4a54d4q"
+  ]
+}
+axios.post('https://api.cardbo.info/api/v6/offers/formal/search/cashback', data, {
+    headers: headers
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+> Response example:
+
+```json
+{
+  "code": 200,
+  "message": "Ok",
+  "result": {
+    "cashback": 100,
+    "rewards": [
+      {
+        "offer_id": "5f9a747p00c2abf3d4a54d4q",
+        "reward_value": 3,
+        "cashback": 100,
+        "reach_max_cashback": false
+      }
+    ],
+    "cashback_coins": [
+      {
+        "reward_name": "現金",
+        "image": "https://image.url"
+      }
+    ]
+  },
+  "timestamp": 1617601542000
+}
+```
+
+calculate cashback for offer search no amount mserch mode
+
+### HTTP Request
+
+`POST https://api.cardbo.info/api/v6/offers/formal/search/cashback`
+
+### Request
+
+#### Headers
+
+Key           | Value        | Description
+------------- | ------------ | -----------
+Authorization | Bearer token | API access token
+
+#### Parameters
+
+Parameter | Required | Type     | Description
+--------- | -------- | -------- | -----------
+amount    | true     | int      | Expense amount
+card_id   | true     | string   | Card ID
+store_id  | false    | string   | Store ID
+rewards   | true     | []string | Array of offer ID
+
+### Response
+
+#### Success
+
+Key            | Type                | Description
+-------------- | ------------------- | -----------
+cashback       | float               | Cashback value
+rewards        | []OfferSearchReward | Reward details
+cashback_coins | []CashbackCoin      | Coin images
+
+*OfferSearchReward*
+
+Key                | Type   | Description
+------------------ | ------ | -----------
+offer_id           | string | Offer ID
+reward_value       | float  | Reward value of the offer
+cashback           | float  | Cashback user can get from the offer
+reach_max_cashback | bool   | Does the cashback reach the max cashback
+
+*CashbackCoin*
+
+Key          | Type   | Description
+------------ | ------ | -----------
+reward_name  | string | reward name (現金, Line Points, 街口幣, Open Points, P幣, Hami Point, 代幣...)
+image        | string | coin image URL
 
 #### Error
 
