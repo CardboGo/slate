@@ -679,6 +679,11 @@
                   <li>
                     <a href="#get-card-offers" class="toc-h2 toc-link" data-title="• Get card offers">• Get card offers</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#search" class="toc-h1 toc-link" data-title="◉ Search">◉ Search</a>
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#search-offers-by-store" class="toc-h2 toc-link" data-title="• Search offers By store">• Search offers By store</a>
                   </li>
@@ -687,6 +692,9 @@
                   </li>
                   <li>
                     <a href="#search-accounting-offers" class="toc-h2 toc-link" data-title="• Search accounting offers">• Search accounting offers</a>
+                  </li>
+                  <li>
+                    <a href="#calculate-offer-search-cashback" class="toc-h2 toc-link" data-title="• Calculate offer search cashback">• Calculate offer search cashback</a>
                   </li>
               </ul>
           </li>
@@ -21650,7 +21658,7 @@ At least one of <b>card_id</b> and <b>mobilepay_id</b> is required.
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='search-offers-by-store'>• Search offers By store</h2>
+<h1 id='search'>◉ Search</h1><h2 id='search-offers-by-store'>• Search offers By store</h2>
 <blockquote>
 <p>search offers from user&#39;s card</p>
 </blockquote>
@@ -23239,6 +23247,223 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>error message</td>
 </tr>
 </tbody></table>
+<h2 id='calculate-offer-search-cashback'>• Calculate offer search cashback</h2>
+<blockquote>
+<p>calculate cashback for offer search no amount mserch mode</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/offers/formal/search/cashback <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "amount": 1000,
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
+    "store_id": "5f9a747p00c2abf3d4a54d4q",
+    "rewards": [
+      "5f9a747p00c2abf3d4a54d4q"
+    ]
+  }'</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/offers/formal/search/cashback'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">"amount"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+  <span class="s">"card_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
+  <span class="s">"store_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
+  <span class="s">"rewards"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s">"5f9a747p00c2abf3d4a54d4q"</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">amoun</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+  <span class="na">card_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">store_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">rewards</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/offers/formal/search/cashback</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"cashback"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rewards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"reward_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"cashback"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"reach_max_cashback"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"cashback_coins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"reward_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"現金"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://image.url"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>calculate cashback for offer search no amount mserch mode</p>
+<h3 id='http-request-62'>HTTP Request</h3>
+<p><code>POST https://api.cardbo.info/api/v6/offers/formal/search/cashback</code></p>
+<h3 id='request-62'>Request</h3><h4 id='headers-59'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='parameters-34'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>int</td>
+<td>Expense amount</td>
+</tr>
+<tr>
+<td>card_id</td>
+<td>true</td>
+<td>string</td>
+<td>Card ID</td>
+</tr>
+<tr>
+<td>store_id</td>
+<td>false</td>
+<td>string</td>
+<td>Store ID</td>
+</tr>
+<tr>
+<td>rewards</td>
+<td>true</td>
+<td>[]string</td>
+<td>Array of offer ID</td>
+</tr>
+</tbody></table>
+<h3 id='response-62'>Response</h3><h4 id='success-62'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cashback</td>
+<td>float</td>
+<td>Cashback value</td>
+</tr>
+<tr>
+<td>rewards</td>
+<td>[]OfferSearchReward</td>
+<td>Reward details</td>
+</tr>
+<tr>
+<td>cashback_coins</td>
+<td>[]CashbackCoin</td>
+<td>Coin images</td>
+</tr>
+</tbody></table>
+
+<p><em>OfferSearchReward</em></p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>offer_id</td>
+<td>string</td>
+<td>Offer ID</td>
+</tr>
+<tr>
+<td>reward_value</td>
+<td>float</td>
+<td>Reward value of the offer</td>
+</tr>
+<tr>
+<td>cashback</td>
+<td>float</td>
+<td>Cashback user can get from the offer</td>
+</tr>
+<tr>
+<td>reach_max_cashback</td>
+<td>bool</td>
+<td>Does the cashback reach the max cashback</td>
+</tr>
+</tbody></table>
+
+<p><em>CashbackCoin</em></p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>reward_name</td>
+<td>string</td>
+<td>reward name (現金, Line Points, 街口幣, Open Points, P幣, Hami Point, 代幣...)</td>
+</tr>
+<tr>
+<td>image</td>
+<td>string</td>
+<td>coin image URL</td>
+</tr>
+</tbody></table>
+<h4 id='error-62'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
 <h1 id='store'>◉ Store</h1><h2 id='insert-pending-store-todo'>• Insert pending store (TODO)</h2><h2 id='get-pending-store-by-store_id-todo'>• Get pending store by store_id (TODO)</h2><h2 id='update-pending-store-todo'>• Update pending store (TODO)</h2><h2 id='pass-pending-store-to-formal-todo'>• Pass pending store to formal (TODO)</h2><h2 id='fail-pending-store-todo'>• Fail pending store (TODO)</h2><h2 id='add-pending-store-combo-options-todo'>• Add pending store combo options (TODO)</h2><h2 id='remove-pending-store-combo-options-todo'>• Remove pending store combo options (TODO)</h2><h2 id='delete-pending-store-todo'>• Delete pending store (TODO)</h2><h2 id='get-pending-stores-todo'>• Get pending stores (TODO)</h2><h2 id='get-formal-store-by-store_id-todo'>• Get formal store by store_id (TODO)</h2><h2 id='update-formal-store-todo'>• Update formal store (TODO)</h2><h2 id='add-formal-store-combo-options-todo'>• Add formal store combo options (TODO)</h2><h2 id='remove-formal-store-combo-options-todo'>• Remove formal store combo options (TODO)</h2><h2 id='get-formal-stores-todo'>• Get formal stores (TODO)</h2><h2 id='search-stores-by-keyword'>• Search stores by keyword</h2>
 <blockquote>
 <p>Search stores by keyword:</p>
@@ -23284,9 +23509,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Search stores by keyword</p>
-<h3 id='http-request-62'>HTTP Request</h3>
+<h3 id='http-request-63'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/stores/formal/search</code></p>
-<h3 id='request-62'>Request</h3><h4 id='headers-59'>Headers</h4>
+<h3 id='request-63'>Request</h3><h4 id='headers-60'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23316,7 +23541,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>keyword</td>
 </tr>
 </tbody></table>
-<h3 id='response-62'>Response</h3><h4 id='success-62'>Success</h4>
+<h3 id='response-63'>Response</h3><h4 id='success-63'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23340,7 +23565,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>store alias</td>
 </tr>
 </tbody></table>
-<h4 id='error-62'>Error</h4>
+<h4 id='error-63'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23398,9 +23623,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Get pending offers</p>
-<h3 id='http-request-63'>HTTP Request</h3>
+<h3 id='http-request-64'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/tags</code></p>
-<h3 id='request-63'>Request</h3><h4 id='headers-60'>Headers</h4>
+<h3 id='request-64'>Request</h3><h4 id='headers-61'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23432,7 +23657,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>The type of the tag</td>
 </tr>
 </tbody></table>
-<h3 id='response-63'>Response</h3><h4 id='success-63'>Success</h4>
+<h3 id='response-64'>Response</h3><h4 id='success-64'>Success</h4>
 <p><em>Tag</em></p>
 
 <table><thead>
@@ -23468,7 +23693,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>Tag type</td>
 </tr>
 </tbody></table>
-<h4 id='error-63'>Error</h4>
+<h4 id='error-64'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23572,9 +23797,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Insert an error report</p>
-<h3 id='http-request-64'>HTTP Request</h3>
+<h3 id='http-request-65'>HTTP Request</h3>
 <p><code>POST https://api.cardbo.info/api/v6/error_report</code></p>
-<h3 id='request-64'>Request</h3><h4 id='headers-61'>Headers</h4>
+<h3 id='request-65'>Request</h3><h4 id='headers-62'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -23588,7 +23813,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h4 id='parameters-34'>Parameters</h4>
+<h4 id='parameters-35'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -23674,254 +23899,6 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 *1: one of <code>card_id</code> and <code>mobilepay_id</code> is required when report_type is <code>1</code> <br/>
 *2: one of <code>store_id</code> and <code>store_name</code> is required when report_type is <code>1</code> and <code>3</code>
 </aside>
-<h3 id='response-64'>Response</h3><h4 id='success-64'>Success</h4>
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Enums</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>report_id</td>
-<td>string</td>
-<td></td>
-<td>report id</td>
-</tr>
-<tr>
-<td>report_type</td>
-<td>int</td>
-<td>OFFER_DETAIL: <code>1</code> <br/> CARD_REWARD: <code>2</code> <br/> ACCOUNTING: <code>3</code></td>
-<td>report type</td>
-</tr>
-<tr>
-<td>user</td>
-<td>User</td>
-<td></td>
-<td>User Object</td>
-</tr>
-<tr>
-<td>accounting_record</td>
-<td>AccountingRecord</td>
-<td></td>
-<td>AccountingRecord object</td>
-</tr>
-<tr>
-<td>card</td>
-<td>Card</td>
-<td></td>
-<td>Card object</td>
-</tr>
-<tr>
-<td>mobilepay</td>
-<td>MobilePay</td>
-<td></td>
-<td>MobilePay object</td>
-</tr>
-<tr>
-<td>store</td>
-<td>Store</td>
-<td></td>
-<td>Store object</td>
-</tr>
-<tr>
-<td>store_name</td>
-<td>string</td>
-<td></td>
-<td>store name when store is not in our DB</td>
-</tr>
-<tr>
-<td>offer_ids</td>
-<td>[]string</td>
-<td></td>
-<td>offer id array</td>
-</tr>
-<tr>
-<td>new_user_offer_ids</td>
-<td>[]string</td>
-<td></td>
-<td>new user offer id array</td>
-</tr>
-<tr>
-<td>url_error</td>
-<td>bool</td>
-<td></td>
-<td>is the offer URL error</td>
-</tr>
-<tr>
-<td>content</td>
-<td>string</td>
-<td></td>
-<td>report content</td>
-</tr>
-<tr>
-<td>note</td>
-<td>string</td>
-<td></td>
-<td>error handling note</td>
-</tr>
-<tr>
-<td>status</td>
-<td>int</td>
-<td>PENDING: <code>1</code> <br/> WAITING_NOTIFY: <code>2</code> <br/> FINISHED: <code>3</code></td>
-<td>the handling status of the report</td>
-</tr>
-<tr>
-<td>created_at</td>
-<td>int</td>
-<td></td>
-<td>create time in timestamp</td>
-</tr>
-<tr>
-<td>updated_at</td>
-<td>int</td>
-<td></td>
-<td>update time in timestamp</td>
-</tr>
-<tr>
-<td>fixed_at</td>
-<td>int</td>
-<td></td>
-<td>fixing time in timestamp</td>
-</tr>
-<tr>
-<td>notified_at</td>
-<td>int</td>
-<td></td>
-<td>notification time in timestamp</td>
-</tr>
-</tbody></table>
-<h4 id='error-64'>Error</h4>
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>error</td>
-<td>string</td>
-<td>error message</td>
-</tr>
-</tbody></table>
-<h2 id='get-error-reports'>• Get error reports</h2>
-<blockquote>
-<p>Get error reports:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v6/error_reports?report_type<span class="o">=</span>1&amp;status<span class="o">=</span>1&amp;page<span class="o">=</span>1 <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/error_reports?report_type=1&amp;status=1&amp;page=1'</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/error_reports?report_type=1&amp;status=1&amp;page=1</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
-    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-  <span class="p">});</span>
-</code></pre></div>
-<blockquote>
-<p>Response example:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"report_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nl">"accounting_record"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"accounting_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"offer_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nl">"url_error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"fixed_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"notified_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>Get error reports</p>
-<h3 id='http-request-65'>HTTP Request</h3>
-<p><code>GET https://api.cardbo.info/api/v6/error_reports</code></p>
-<h3 id='request-65'>Request</h3><h4 id='headers-62'>Headers</h4>
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Authorization</td>
-<td>Bearer token</td>
-<td>API access token</td>
-</tr>
-</tbody></table>
-<h4 id='queries-13'>Queries</h4>
-<table><thead>
-<tr>
-<th>Query</th>
-<th>Required</th>
-<th>Muti-values</th>
-<th>Enums</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>report_type</td>
-<td>true</td>
-<td>false</td>
-<td><code>0</code>: ALL <br/> <code>1</code>: OFFER_DETAIL <br/> <code>2</code>: CARD_REWARD <br/> <code>3</code>: ACCOUNTING</td>
-<td>report type</td>
-</tr>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>false</td>
-<td><code>0</code>: ALL <br/> <code>1</code>: PENDING <br/> <code>2</code>: WAITING_NOTIFY <br/> <code>3</code>: FINISHED</td>
-<td>status</td>
-</tr>
-<tr>
-<td>page</td>
-<td>true</td>
-<td>false</td>
-<td></td>
-<td>page of the result (each page has 20 data)</td>
-</tr>
-</tbody></table>
 <h3 id='response-65'>Response</h3><h4 id='success-65'>Success</h4>
 <table><thead>
 <tr>
@@ -24054,23 +24031,23 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='get-error-report-by-report_id'>• Get error report by report_id</h2>
+<h2 id='get-error-reports'>• Get error reports</h2>
 <blockquote>
-<p>Get error report by report_id:</p>
+<p>Get error reports:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/error_reports?report_type<span class="o">=</span>1&amp;status<span class="o">=</span>1&amp;page<span class="o">=</span>1 <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/error_reports?report_type=1&amp;status=1&amp;page=1'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/error_reports?report_type=1&amp;status=1&amp;page=1</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
@@ -24086,42 +24063,44 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"report_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"accounting_record"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"accounting_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"offer_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"url_error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fixed_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"notified_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"report_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"accounting_record"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"accounting_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offer_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"url_error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fixed_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"notified_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
   </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Get error report by report_id</p>
+<p>Get error reports</p>
 <h3 id='http-request-66'>HTTP Request</h3>
-<p><code>GET https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q</code></p>
+<p><code>GET https://api.cardbo.info/api/v6/error_reports</code></p>
 <h3 id='request-66'>Request</h3><h4 id='headers-63'>Headers</h4>
 <table><thead>
 <tr>
@@ -24136,16 +24115,36 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h4 id='path-parameters-20'>Path Parameters</h4>
+<h4 id='queries-13'>Queries</h4>
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Query</th>
+<th>Required</th>
+<th>Muti-values</th>
+<th>Enums</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>report_id</td>
-<td>report id</td>
+<td>report_type</td>
+<td>true</td>
+<td>false</td>
+<td><code>0</code>: ALL <br/> <code>1</code>: OFFER_DETAIL <br/> <code>2</code>: CARD_REWARD <br/> <code>3</code>: ACCOUNTING</td>
+<td>report type</td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>false</td>
+<td><code>0</code>: ALL <br/> <code>1</code>: PENDING <br/> <code>2</code>: WAITING_NOTIFY <br/> <code>3</code>: FINISHED</td>
+<td>status</td>
+</tr>
+<tr>
+<td>page</td>
+<td>true</td>
+<td>false</td>
+<td></td>
+<td>page of the result (each page has 20 data)</td>
 </tr>
 </tbody></table>
 <h3 id='response-66'>Response</h3><h4 id='success-66'>Success</h4>
@@ -24280,32 +24279,23 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='make-report-status-to-fixed'>• Make report status to FIXED</h2>
+<h2 id='get-error-report-by-report_id'>• Get error report by report_id</h2>
 <blockquote>
-<p>Make report status to FIXED:</p>
+<p>Get error report by report_id:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span>
-  <span class="nt">--data</span> <span class="s1">'{
-    "note": "the note content..."
-  }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">"note"</span><span class="p">:</span> <span class="s">"the note content..."</span>
-<span class="p">}</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
-<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">note</span><span class="p">:</span> <span class="dl">"</span><span class="s2">the note content...</span><span class="dl">"</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
@@ -24354,9 +24344,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
   </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Make report status to FIXED</p>
+<p>Get error report by report_id</p>
 <h3 id='http-request-67'>HTTP Request</h3>
-<p><code>PUT https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed</code></p>
+<p><code>GET https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q</code></p>
 <h3 id='request-67'>Request</h3><h4 id='headers-64'>Headers</h4>
 <table><thead>
 <tr>
@@ -24371,20 +24361,16 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h4 id='parameters-35'>Parameters</h4>
+<h4 id='path-parameters-20'>Path Parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Required</th>
-<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>note</td>
-<td>false</td>
-<td>string</td>
-<td>The note for the error report</td>
+<td>report_id</td>
+<td>report id</td>
 </tr>
 </tbody></table>
 <h3 id='response-67'>Response</h3><h4 id='success-67'>Success</h4>
@@ -24519,23 +24505,32 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='make-report-status-to-notified'>• Make report status to NOTIFIED</h2>
+<h2 id='make-report-status-to-fixed'>• Make report status to FIXED</h2>
 <blockquote>
-<p>Make report status to NOTIFIED:</p>
+<p>Make report status to FIXED:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "note": "the note content..."
+  }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">"note"</span><span class="p">:</span> <span class="s">"the note content..."</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">note</span><span class="p">:</span> <span class="dl">"</span><span class="s2">the note content...</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
@@ -24584,9 +24579,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
   </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Make report status to NOTIFIED</p>
+<p>Make report status to FIXED</p>
 <h3 id='http-request-68'>HTTP Request</h3>
-<p><code>PUT https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified</code></p>
+<p><code>PUT https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/fixed</code></p>
 <h3 id='request-68'>Request</h3><h4 id='headers-65'>Headers</h4>
 <table><thead>
 <tr>
@@ -24599,6 +24594,22 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>Authorization</td>
 <td>Bearer token</td>
 <td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='parameters-36'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>note</td>
+<td>false</td>
+<td>string</td>
+<td>The note for the error report</td>
 </tr>
 </tbody></table>
 <h3 id='response-68'>Response</h3><h4 id='success-68'>Success</h4>
@@ -24733,6 +24744,220 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>error message</td>
 </tr>
 </tbody></table>
+<h2 id='make-report-status-to-notified'>• Make report status to NOTIFIED</h2>
+<blockquote>
+<p>Make report status to NOTIFIED:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"report_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"accounting_record"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"accounting_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"offer_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"url_error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fixed_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"notified_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Make report status to NOTIFIED</p>
+<h3 id='http-request-69'>HTTP Request</h3>
+<p><code>PUT https://api.cardbo.info/api/v6/error_report/5f9a747p00c2abf3d4a54d4q/notified</code></p>
+<h3 id='request-69'>Request</h3><h4 id='headers-66'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h3 id='response-69'>Response</h3><h4 id='success-69'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>report_id</td>
+<td>string</td>
+<td></td>
+<td>report id</td>
+</tr>
+<tr>
+<td>report_type</td>
+<td>int</td>
+<td>OFFER_DETAIL: <code>1</code> <br/> CARD_REWARD: <code>2</code> <br/> ACCOUNTING: <code>3</code></td>
+<td>report type</td>
+</tr>
+<tr>
+<td>user</td>
+<td>User</td>
+<td></td>
+<td>User Object</td>
+</tr>
+<tr>
+<td>accounting_record</td>
+<td>AccountingRecord</td>
+<td></td>
+<td>AccountingRecord object</td>
+</tr>
+<tr>
+<td>card</td>
+<td>Card</td>
+<td></td>
+<td>Card object</td>
+</tr>
+<tr>
+<td>mobilepay</td>
+<td>MobilePay</td>
+<td></td>
+<td>MobilePay object</td>
+</tr>
+<tr>
+<td>store</td>
+<td>Store</td>
+<td></td>
+<td>Store object</td>
+</tr>
+<tr>
+<td>store_name</td>
+<td>string</td>
+<td></td>
+<td>store name when store is not in our DB</td>
+</tr>
+<tr>
+<td>offer_ids</td>
+<td>[]string</td>
+<td></td>
+<td>offer id array</td>
+</tr>
+<tr>
+<td>new_user_offer_ids</td>
+<td>[]string</td>
+<td></td>
+<td>new user offer id array</td>
+</tr>
+<tr>
+<td>url_error</td>
+<td>bool</td>
+<td></td>
+<td>is the offer URL error</td>
+</tr>
+<tr>
+<td>content</td>
+<td>string</td>
+<td></td>
+<td>report content</td>
+</tr>
+<tr>
+<td>note</td>
+<td>string</td>
+<td></td>
+<td>error handling note</td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>PENDING: <code>1</code> <br/> WAITING_NOTIFY: <code>2</code> <br/> FINISHED: <code>3</code></td>
+<td>the handling status of the report</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>int</td>
+<td></td>
+<td>create time in timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>int</td>
+<td></td>
+<td>update time in timestamp</td>
+</tr>
+<tr>
+<td>fixed_at</td>
+<td>int</td>
+<td></td>
+<td>fixing time in timestamp</td>
+</tr>
+<tr>
+<td>notified_at</td>
+<td>int</td>
+<td></td>
+<td>notification time in timestamp</td>
+</tr>
+</tbody></table>
+<h4 id='error-69'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
 <h1 id='accountingrecord-2'>◉ AccountingRecord</h1><h2 id='insert-an-accounting-record-without-invoice'>• Insert an accounting record without invoice</h2>
 <blockquote>
 <p>Insert an accounting record without invoice:</p>
@@ -24832,309 +25057,8 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Insert an accounting record without invoice</p>
-<h3 id='http-request-69'>HTTP Request</h3>
-<p><code>POST https://api.cardbo.info/api/v6/accounting</code></p>
-<h3 id='request-69'>Request</h3><h4 id='headers-66'>Headers</h4>
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Authorization</td>
-<td>Bearer token</td>
-<td>API access token</td>
-</tr>
-</tbody></table>
-<h4 id='parameters-36'>Parameters</h4>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>card_id</td>
-<td>true</td>
-<td>string</td>
-<td>card id</td>
-</tr>
-<tr>
-<td>mobilepay_id</td>
-<td>true</td>
-<td>string</td>
-<td>mobilepay id</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>true</td>
-<td>int</td>
-<td>the amount of the money</td>
-</tr>
-<tr>
-<td>name</td>
-<td>true</td>
-<td>string</td>
-<td>name of the record</td>
-</tr>
-<tr>
-<td>store_id</td>
-<td>false(*1)</td>
-<td>string</td>
-<td>store id</td>
-</tr>
-<tr>
-<td>store_name</td>
-<td>false(*1)</td>
-<td>string</td>
-<td>store name when the store not in our database</td>
-</tr>
-<tr>
-<td>date</td>
-<td>true</td>
-<td>int</td>
-<td>the datetime of the expense in timestamp</td>
-</tr>
-<tr>
-<td>rewards</td>
-<td>false</td>
-<td>[]string</td>
-<td>array of offer id that can get from the expense</td>
-</tr>
-<tr>
-<td>completed</td>
-<td>true</td>
-<td>bool</td>
-<td>is the record completed</td>
-</tr>
-</tbody></table>
-
-<p>*1: one of <code>store_id</code> and <code>store_name</code> is required</p>
-<h3 id='response-69'>Response</h3><h4 id='success-69'>Success</h4>
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Enums</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>accounting_id</td>
-<td>string</td>
-<td></td>
-<td>accotungin id</td>
-</tr>
-<tr>
-<td>user</td>
-<td>User</td>
-<td></td>
-<td>User object</td>
-</tr>
-<tr>
-<td>card</td>
-<td>Card</td>
-<td></td>
-<td>Card object</td>
-</tr>
-<tr>
-<td>mobilepay</td>
-<td>MobilePay</td>
-<td></td>
-<td>MobilePay object</td>
-</tr>
-<tr>
-<td>invoice</td>
-<td>Invoice</td>
-<td></td>
-<td>Invoice object</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>int</td>
-<td></td>
-<td>how much money of the record</td>
-</tr>
-<tr>
-<td>name</td>
-<td>string</td>
-<td></td>
-<td>description of the record</td>
-</tr>
-<tr>
-<td>store</td>
-<td>Store</td>
-<td></td>
-<td>Store object</td>
-</tr>
-<tr>
-<td>store_name</td>
-<td>string</td>
-<td></td>
-<td>store name when the store is not in our database</td>
-</tr>
-<tr>
-<td>date</td>
-<td>int</td>
-<td></td>
-<td>date of the expese in timestamp</td>
-</tr>
-<tr>
-<td>rewards</td>
-<td>[]AccountingReward</td>
-<td></td>
-<td>array of AccountingReward object</td>
-</tr>
-<tr>
-<td>invoice_type</td>
-<td>int</td>
-<td>QRCode: <code>1</code> <br/> Carrier: <code>2</code> <br/> NoInvoice: <code>3</code></td>
-<td>invoice tpye of the record</td>
-</tr>
-<tr>
-<td>pending</td>
-<td>string</td>
-<td></td>
-<td>is the record in pending or not</td>
-</tr>
-<tr>
-<td>created_at</td>
-<td>int</td>
-<td></td>
-<td>create time in timestamp</td>
-</tr>
-<tr>
-<td>updated_at</td>
-<td>int</td>
-<td></td>
-<td>update time in timestamp</td>
-</tr>
-</tbody></table>
-<h4 id='error-69'>Error</h4>
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>error</td>
-<td>string</td>
-<td>error message</td>
-</tr>
-</tbody></table>
-<h2 id='insert-an-accounting-record-with-qr-code-invoice'>• Insert an accounting record with QR code invoice</h2>
-<blockquote>
-<p>Insert an accounting record with QR code invoice:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v6/accounting/qr_code <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  <span class="nt">--data</span> <span class="s1">'{
-    "card_id": "5f9a747p00c2abf3d4a54d4q",
-    "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
-    "amount": 1000,
-    "name": "午餐",
-    "store_id": "5f9a747p00c2abf3d4a54d4q",
-    "qr_code_left": "INVOICE_QR_CODE_LEFT",
-    "qr_code_right": "INVOICE_QR_CODE_RIGHT",
-    "rewards": [
-      "offer_id": "5f9a747p00c2abf3d4a54d4q"
-    ],
-    "date": 1617601542000,
-    "completed": true
-  }'</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/accounting/qr_code'</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">"card_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
-  <span class="s">"mobilepay_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
-  <span class="s">"amount"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
-  <span class="s">"name"</span><span class="p">:</span> <span class="s">"午餐"</span><span class="p">,</span>
-  <span class="s">"store_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
-  <span class="s">"qr_code_left"</span><span class="p">:</span> <span class="s">"INVOICE_QR_CODE_LEFT"</span><span class="p">,</span>
-  <span class="s">"qr_code_right"</span><span class="p">:</span> <span class="s">"INVOICE_QR_CODE_RIGHT"</span><span class="p">,</span>
-  <span class="s">"rewards"</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s">"offer_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span>
-  <span class="p">],</span>
-  <span class="s">"date"</span><span class="p">:</span> <span class="mi">1617601542000</span><span class="p">,</span>
-  <span class="s">"completed"</span><span class="p">:</span> <span class="n">true</span>
-<span class="p">}</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
-<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">card_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">mobilepay_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">amount</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
-  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">午餐</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">store_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">qr_code_left</span><span class="p">:</span> <span class="dl">"</span><span class="s2">INVOICE_QR_CODE_LEFT</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">qr_code_right</span><span class="p">:</span> <span class="dl">"</span><span class="s2">INVOICE_QR_CODE_RIGHT</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">rewards</span><span class="p">:</span> <span class="p">[</span>
-    <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span>
-  <span class="p">],</span>
-  <span class="na">date</span><span class="p">:</span> <span class="mi">1617601542000</span><span class="p">,</span>
-  <span class="na">completed</span><span class="p">:</span> <span class="kc">true</span>
-<span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/accounting/qr_code</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
-    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-  <span class="p">});</span>
-</code></pre></div>
-<blockquote>
-<p>Response example:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">201</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"accounting_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"午餐"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AB99999999"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"rewards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"reward_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"現金"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"reward_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.83</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>Insert an accounting record with QR code invoice</p>
 <h3 id='http-request-70'>HTTP Request</h3>
-<p><code>POST https://api.cardbo.info/api/v6/accounting/qr_code</code></p>
+<p><code>POST https://api.cardbo.info/api/v6/accounting</code></p>
 <h3 id='request-70'>Request</h3><h4 id='headers-67'>Headers</h4>
 <table><thead>
 <tr>
@@ -25193,18 +25117,6 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>false(*1)</td>
 <td>string</td>
 <td>store name when the store not in our database</td>
-</tr>
-<tr>
-<td>qr_code_left</td>
-<td>true</td>
-<td>string</td>
-<td>the left QR code on the invcoie</td>
-</tr>
-<tr>
-<td>qr_code_right</td>
-<td>true</td>
-<td>string</td>
-<td>the right QR code on the invcoie</td>
 </tr>
 <tr>
 <td>date</td>
@@ -25341,9 +25253,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='insert-an-accounting-record-with-carrier-invoice'>• Insert an accounting record with carrier invoice</h2>
+<h2 id='insert-an-accounting-record-with-qr-code-invoice'>• Insert an accounting record with QR code invoice</h2>
 <blockquote>
-<p>Insert an accounting record with carrier invoice:</p>
+<p>Insert an accounting record with QR code invoice:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="se">\</span>
   <span class="nt">--url</span> https://api.cardbo.info/api/v6/accounting/qr_code <span class="se">\</span>
@@ -25355,7 +25267,8 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
     "amount": 1000,
     "name": "午餐",
     "store_id": "5f9a747p00c2abf3d4a54d4q",
-    "invoice_id": "5f9a747p00c2abf3d4a54d4q",
+    "qr_code_left": "INVOICE_QR_CODE_LEFT",
+    "qr_code_right": "INVOICE_QR_CODE_RIGHT",
     "rewards": [
       "offer_id": "5f9a747p00c2abf3d4a54d4q"
     ],
@@ -25372,7 +25285,8 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
   <span class="s">"amount"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
   <span class="s">"name"</span><span class="p">:</span> <span class="s">"午餐"</span><span class="p">,</span>
   <span class="s">"store_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
-  <span class="s">"invoice_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
+  <span class="s">"qr_code_left"</span><span class="p">:</span> <span class="s">"INVOICE_QR_CODE_LEFT"</span><span class="p">,</span>
+  <span class="s">"qr_code_right"</span><span class="p">:</span> <span class="s">"INVOICE_QR_CODE_RIGHT"</span><span class="p">,</span>
   <span class="s">"rewards"</span><span class="p">:</span> <span class="p">[</span>
     <span class="s">"offer_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span>
   <span class="p">],</span>
@@ -25389,7 +25303,8 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
   <span class="na">amount</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
   <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">午餐</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">store_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">invoice_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">qr_code_left</span><span class="p">:</span> <span class="dl">"</span><span class="s2">INVOICE_QR_CODE_LEFT</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">qr_code_right</span><span class="p">:</span> <span class="dl">"</span><span class="s2">INVOICE_QR_CODE_RIGHT</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">rewards</span><span class="p">:</span> <span class="p">[</span>
     <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span>
   <span class="p">],</span>
@@ -25442,7 +25357,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
   </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Insert an accounting record with carrier invoice</p>
+<p>Insert an accounting record with QR code invoice</p>
 <h3 id='http-request-71'>HTTP Request</h3>
 <p><code>POST https://api.cardbo.info/api/v6/accounting/qr_code</code></p>
 <h3 id='request-71'>Request</h3><h4 id='headers-68'>Headers</h4>
@@ -25505,10 +25420,16 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>store name when the store not in our database</td>
 </tr>
 <tr>
-<td>invoice_id</td>
+<td>qr_code_left</td>
 <td>true</td>
 <td>string</td>
-<td>invoice id</td>
+<td>the left QR code on the invcoie</td>
+</tr>
+<tr>
+<td>qr_code_right</td>
+<td>true</td>
+<td>string</td>
+<td>the right QR code on the invcoie</td>
 </tr>
 <tr>
 <td>date</td>
@@ -25645,62 +25566,62 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='update-accounting-record'>• Update accounting record</h2>
+<h2 id='insert-an-accounting-record-with-carrier-invoice'>• Insert an accounting record with carrier invoice</h2>
 <blockquote>
-<p>Update administrator profile:</p>
+<p>Insert an accounting record with carrier invoice:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v6/accounting/5f9a747p00c2abf3d4a54d4q <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/accounting/qr_code <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   <span class="nt">--data</span> <span class="s1">'{
     "card_id": "5f9a747p00c2abf3d4a54d4q",
     "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
-    "amount": 100,
-    "name": "sample_expense",
+    "amount": 1000,
+    "name": "午餐",
     "store_id": "5f9a747p00c2abf3d4a54d4q",
-    "date": 1617601542000,
-    "qr_code_right": "INVOICE_QR_CODE_RIGHT",
-    "qr_code_left": "INVOICE_QR_CODE_LEFT",
+    "invoice_id": "5f9a747p00c2abf3d4a54d4q",
     "rewards": [
-      "5f9a747p00c2abf3d4a54d4q"
-    ]
+      "offer_id": "5f9a747p00c2abf3d4a54d4q"
+    ],
+    "date": 1617601542000,
+    "completed": true
   }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/accounting/5f9a747p00c2abf3d4a54d4q'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/accounting/qr_code'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">"card_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
   <span class="s">"mobilepay_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
-  <span class="s">"amount"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-  <span class="s">"name"</span><span class="p">:</span> <span class="s">"sample_expense"</span><span class="p">,</span>
+  <span class="s">"amount"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+  <span class="s">"name"</span><span class="p">:</span> <span class="s">"午餐"</span><span class="p">,</span>
   <span class="s">"store_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
-  <span class="s">"date"</span><span class="p">:</span> <span class="mi">1617601542000</span><span class="p">,</span>
-  <span class="s">"qr_code_right"</span><span class="p">:</span> <span class="s">"INVOICE_QR_CODE_RIGHT"</span><span class="p">,</span>
-  <span class="s">"qr_code_left"</span><span class="p">:</span> <span class="s">"INVOICE_QR_CODE_LEFT"</span><span class="p">,</span>
+  <span class="s">"invoice_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
   <span class="s">"rewards"</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s">"5f9a747p00c2abf3d4a54d4q"</span>
-  <span class="p">]</span>
+    <span class="s">"offer_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span>
+  <span class="p">],</span>
+  <span class="s">"date"</span><span class="p">:</span> <span class="mi">1617601542000</span><span class="p">,</span>
+  <span class="s">"completed"</span><span class="p">:</span> <span class="n">true</span>
 <span class="p">}</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
 <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">card_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">mobilepay_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">amount</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">sample_expense</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">amount</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">午餐</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">store_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">date</span><span class="p">:</span> <span class="mi">1617601542000</span><span class="p">,</span>
-  <span class="na">qr_code_right</span><span class="p">:</span> <span class="dl">"</span><span class="s2">INVOICE_QR_CODE_RIGHT</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">qr_code_left</span><span class="p">:</span> <span class="dl">"</span><span class="s2">INVOICE_QR_CODE_LEFT</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">invoice_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">rewards</span><span class="p">:</span> <span class="p">[</span>
     <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span>
-  <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="na">date</span><span class="p">:</span> <span class="mi">1617601542000</span><span class="p">,</span>
+  <span class="na">completed</span><span class="p">:</span> <span class="kc">true</span>
 <span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/accounting/5f9a747p00c2abf3d4a54d4q</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/accounting/qr_code</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
@@ -25714,36 +25635,41 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <p>Response example:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">201</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"accounting_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"午餐"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AB99999999"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rewards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"reward_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"現金"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"reward_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.83</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample_expense"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AB99999999"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"rewards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"reward_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"現金"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"reward_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.83</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Update a accounting record</p>
+<p>Insert an accounting record with carrier invoice</p>
 <h3 id='http-request-72'>HTTP Request</h3>
-<p><code>PUT https://api.cardbo.info/api/v6/accounting/{accounting_id}</code></p>
+<p><code>POST https://api.cardbo.info/api/v6/accounting/qr_code</code></p>
 <h3 id='request-72'>Request</h3><h4 id='headers-69'>Headers</h4>
 <table><thead>
 <tr>
@@ -25758,18 +25684,6 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h4 id='path-parameters-21'>Path Parameters</h4>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>administrator_id</td>
-<td>administrator id</td>
-</tr>
-</tbody></table>
 <h4 id='parameters-39'>Parameters</h4>
 <table><thead>
 <tr>
@@ -25781,75 +25695,67 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </thead><tbody>
 <tr>
 <td>card_id</td>
-<td>false(*1)</td>
+<td>true</td>
 <td>string</td>
 <td>card id</td>
 </tr>
 <tr>
 <td>mobilepay_id</td>
-<td>false(*1)</td>
+<td>true</td>
 <td>string</td>
 <td>mobilepay id</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>true</td>
+<td>int</td>
+<td>the amount of the money</td>
+</tr>
+<tr>
+<td>name</td>
+<td>true</td>
 <td>string</td>
-<td>amount of the expense</td>
+<td>name of the record</td>
 </tr>
 <tr>
 <td>store_id</td>
-<td>false(*2)</td>
+<td>false(*1)</td>
 <td>string</td>
 <td>store id</td>
 </tr>
 <tr>
 <td>store_name</td>
-<td>false(*2)</td>
+<td>false(*1)</td>
 <td>string</td>
-<td>stroe name if the stroe is not in our database</td>
+<td>store name when the store not in our database</td>
+</tr>
+<tr>
+<td>invoice_id</td>
+<td>true</td>
+<td>string</td>
+<td>invoice id</td>
 </tr>
 <tr>
 <td>date</td>
 <td>true</td>
 <td>int</td>
-<td>date of the expense in timestamp</td>
-</tr>
-<tr>
-<td>qr_code_right</td>
-<td>false</td>
-<td>string</td>
-<td>right part of the invoice QR Code when updating QR Code invoice record</td>
-</tr>
-<tr>
-<td>qr_code_left</td>
-<td>false</td>
-<td>string</td>
-<td>left part of the invoice QR Code when updating QR Code invoice record</td>
-</tr>
-<tr>
-<td>invoice_id</td>
-<td>false</td>
-<td>string</td>
-<td>invoice id when updating carrier invoice record</td>
+<td>the datetime of the expense in timestamp</td>
 </tr>
 <tr>
 <td>rewards</td>
-<td>false(*3)</td>
+<td>false</td>
 <td>[]string</td>
 <td>array of offer id that can get from the expense</td>
 </tr>
 <tr>
 <td>completed</td>
-<td>false</td>
+<td>true</td>
 <td>bool</td>
 <td>is the record completed</td>
 </tr>
 </tbody></table>
 
-<p>*1: Must set at least one of <code>card_id</code> and <code>mobilepay_id</code>
-*2: Must set one of <code>store_id</code> and <code>store_name</code>
-*3: if <code>card_id</code> is set, <code>rewards</code> is required</p>
+<p>*1: one of <code>store_id</code> and <code>store_name</code> is required</p>
 <h3 id='response-72'>Response</h3><h4 id='success-72'>Success</h4>
 <table><thead>
 <tr>
@@ -25964,23 +25870,62 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='get-pending-accounting-records'>• Get pending accounting records</h2>
+<h2 id='update-accounting-record'>• Update accounting record</h2>
 <blockquote>
-<p>Get pending accounting records:</p>
+<p>Update administrator profile:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v6/accountings/pending <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/accounting/5f9a747p00c2abf3d4a54d4q <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">--data</span> <span class="s1">'{
+    "card_id": "5f9a747p00c2abf3d4a54d4q",
+    "mobilepay_id": "5f9a747p00c2abf3d4a54d4q",
+    "amount": 100,
+    "name": "sample_expense",
+    "store_id": "5f9a747p00c2abf3d4a54d4q",
+    "date": 1617601542000,
+    "qr_code_right": "INVOICE_QR_CODE_RIGHT",
+    "qr_code_left": "INVOICE_QR_CODE_LEFT",
+    "rewards": [
+      "5f9a747p00c2abf3d4a54d4q"
+    ]
+  }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/accountings/pending'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/accounting/5f9a747p00c2abf3d4a54d4q'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">"card_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
+  <span class="s">"mobilepay_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
+  <span class="s">"amount"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="s">"name"</span><span class="p">:</span> <span class="s">"sample_expense"</span><span class="p">,</span>
+  <span class="s">"store_id"</span><span class="p">:</span> <span class="s">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span>
+  <span class="s">"date"</span><span class="p">:</span> <span class="mi">1617601542000</span><span class="p">,</span>
+  <span class="s">"qr_code_right"</span><span class="p">:</span> <span class="s">"INVOICE_QR_CODE_RIGHT"</span><span class="p">,</span>
+  <span class="s">"qr_code_left"</span><span class="p">:</span> <span class="s">"INVOICE_QR_CODE_LEFT"</span><span class="p">,</span>
+  <span class="s">"rewards"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s">"5f9a747p00c2abf3d4a54d4q"</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/accountings/pending</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">card_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">mobilepay_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">amount</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">sample_expense</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">store_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">date</span><span class="p">:</span> <span class="mi">1617601542000</span><span class="p">,</span>
+  <span class="na">qr_code_right</span><span class="p">:</span> <span class="dl">"</span><span class="s2">INVOICE_QR_CODE_RIGHT</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">qr_code_left</span><span class="p">:</span> <span class="dl">"</span><span class="s2">INVOICE_QR_CODE_LEFT</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">rewards</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">5f9a747p00c2abf3d4a54d4q</span><span class="dl">"</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/accounting/5f9a747p00c2abf3d4a54d4q</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
@@ -25994,43 +25939,36 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <p>Response example:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample_expense"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AB99999999"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"rewards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"午餐"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AB99999999"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"rewards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nl">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"reward_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"現金"</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"reward_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.83</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">]</span><span class="w">
+      </span><span class="nl">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"reward_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"現金"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"reward_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.83</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Get pending accounting records</p>
+<p>Update a accounting record</p>
 <h3 id='http-request-73'>HTTP Request</h3>
-<p><code>GET https://api.cardbo.info/api/v6/accountings/pending</code></p>
+<p><code>PUT https://api.cardbo.info/api/v6/accounting/{accounting_id}</code></p>
 <h3 id='request-73'>Request</h3><h4 id='headers-70'>Headers</h4>
 <table><thead>
 <tr>
@@ -26045,6 +25983,98 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>API access token</td>
 </tr>
 </tbody></table>
+<h4 id='path-parameters-21'>Path Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>administrator_id</td>
+<td>administrator id</td>
+</tr>
+</tbody></table>
+<h4 id='parameters-40'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>false(*1)</td>
+<td>string</td>
+<td>card id</td>
+</tr>
+<tr>
+<td>mobilepay_id</td>
+<td>false(*1)</td>
+<td>string</td>
+<td>mobilepay id</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>string</td>
+<td>amount of the expense</td>
+</tr>
+<tr>
+<td>store_id</td>
+<td>false(*2)</td>
+<td>string</td>
+<td>store id</td>
+</tr>
+<tr>
+<td>store_name</td>
+<td>false(*2)</td>
+<td>string</td>
+<td>stroe name if the stroe is not in our database</td>
+</tr>
+<tr>
+<td>date</td>
+<td>true</td>
+<td>int</td>
+<td>date of the expense in timestamp</td>
+</tr>
+<tr>
+<td>qr_code_right</td>
+<td>false</td>
+<td>string</td>
+<td>right part of the invoice QR Code when updating QR Code invoice record</td>
+</tr>
+<tr>
+<td>qr_code_left</td>
+<td>false</td>
+<td>string</td>
+<td>left part of the invoice QR Code when updating QR Code invoice record</td>
+</tr>
+<tr>
+<td>invoice_id</td>
+<td>false</td>
+<td>string</td>
+<td>invoice id when updating carrier invoice record</td>
+</tr>
+<tr>
+<td>rewards</td>
+<td>false(*3)</td>
+<td>[]string</td>
+<td>array of offer id that can get from the expense</td>
+</tr>
+<tr>
+<td>completed</td>
+<td>false</td>
+<td>bool</td>
+<td>is the record completed</td>
+</tr>
+</tbody></table>
+
+<p>*1: Must set at least one of <code>card_id</code> and <code>mobilepay_id</code>
+*2: Must set one of <code>store_id</code> and <code>store_name</code>
+*3: if <code>card_id</code> is set, <code>rewards</code> is required</p>
 <h3 id='response-73'>Response</h3><h4 id='success-73'>Success</h4>
 <table><thead>
 <tr>
@@ -26159,23 +26189,23 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='get-accounting-record-by-accounting_id'>• Get accounting record by accounting_id</h2>
+<h2 id='get-pending-accounting-records'>• Get pending accounting records</h2>
 <blockquote>
-<p>Get accounting record by accounting_id:</p>
+<p>Get pending accounting records:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
-  <span class="nt">--url</span> https://api.cardbo.info/api/v6/accounting/<span class="o">{</span>accounting_id<span class="o">}</span> <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/accountings/pending <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/accounting/{accounting_id}'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/accountings/pending'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/accounting/{accounting_id}</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/accountings/pending</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
@@ -26191,39 +26221,41 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"午餐"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AB99999999"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"rewards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"reward_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"現金"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"reward_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.83</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"午餐"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AB99999999"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"rewards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"reward_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"現金"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"reward_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.83</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
   </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Get accounting record by accounting_id</p>
+<p>Get pending accounting records</p>
 <h3 id='http-request-74'>HTTP Request</h3>
-<p><code>GET https://api.cardbo.info/api/v6/accounting/{accounting_id}</code></p>
+<p><code>GET https://api.cardbo.info/api/v6/accountings/pending</code></p>
 <h3 id='request-74'>Request</h3><h4 id='headers-71'>Headers</h4>
 <table><thead>
 <tr>
@@ -26236,18 +26268,6 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>Authorization</td>
 <td>Bearer token</td>
 <td>API access token</td>
-</tr>
-</tbody></table>
-<h4 id='path-parameters-22'>Path Parameters</h4>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>accounting_id</td>
-<td>accounting id</td>
 </tr>
 </tbody></table>
 <h3 id='response-74'>Response</h3><h4 id='success-74'>Success</h4>
@@ -26364,11 +26384,11 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>error message</td>
 </tr>
 </tbody></table>
-<h2 id='delete-an-accounting-record'>• Delete an accounting record</h2>
+<h2 id='get-accounting-record-by-accounting_id'>• Get accounting record by accounting_id</h2>
 <blockquote>
-<p>Delete an accounting record:</p>
+<p>Get accounting record by accounting_id:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> DELETE <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
   <span class="nt">--url</span> https://api.cardbo.info/api/v6/accounting/<span class="o">{</span>accounting_id<span class="o">}</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
@@ -26376,11 +26396,11 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 
 <span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/accounting/{accounting_id}'</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
-<span class="nx">axios</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/accounting/{accounting_id}</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/accounting/{accounting_id}</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
   <span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
@@ -26426,9 +26446,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
   </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Delete an accounting record</p>
+<p>Get accounting record by accounting_id</p>
 <h3 id='http-request-75'>HTTP Request</h3>
-<p><code>DELETE https://api.cardbo.info/api/v6/accounting/{accounting_id}</code></p>
+<p><code>GET https://api.cardbo.info/api/v6/accounting/{accounting_id}</code></p>
 <h3 id='request-75'>Request</h3><h4 id='headers-72'>Headers</h4>
 <table><thead>
 <tr>
@@ -26443,7 +26463,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h4 id='path-parameters-23'>Path Parameters</h4>
+<h4 id='path-parameters-22'>Path Parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -26569,6 +26589,211 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>error message</td>
 </tr>
 </tbody></table>
+<h2 id='delete-an-accounting-record'>• Delete an accounting record</h2>
+<blockquote>
+<p>Delete an accounting record:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> DELETE <span class="se">\</span>
+  <span class="nt">--url</span> https://api.cardbo.info/api/v6/accounting/<span class="o">{</span>accounting_id<span class="o">}</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer meowmeowmeowaccess'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.cardbo.info/api/v6/accounting/{accounting_id}'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer meowmeowmeowaccess'</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="na">Authorization</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer meowmeowmeowaccess</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">axios</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.cardbo.info/api/v6/accounting/{accounting_id}</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"card_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"mobilepay_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"午餐"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"store_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AB99999999"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rewards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f9a747p00c2abf3d4a54d4q"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"reward_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"現金"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"reward_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.83</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617601542000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Delete an accounting record</p>
+<h3 id='http-request-76'>HTTP Request</h3>
+<p><code>DELETE https://api.cardbo.info/api/v6/accounting/{accounting_id}</code></p>
+<h3 id='request-76'>Request</h3><h4 id='headers-73'>Headers</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Bearer token</td>
+<td>API access token</td>
+</tr>
+</tbody></table>
+<h4 id='path-parameters-23'>Path Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accounting_id</td>
+<td>accounting id</td>
+</tr>
+</tbody></table>
+<h3 id='response-76'>Response</h3><h4 id='success-76'>Success</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Enums</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accounting_id</td>
+<td>string</td>
+<td></td>
+<td>accotungin id</td>
+</tr>
+<tr>
+<td>user</td>
+<td>User</td>
+<td></td>
+<td>User object</td>
+</tr>
+<tr>
+<td>card</td>
+<td>Card</td>
+<td></td>
+<td>Card object</td>
+</tr>
+<tr>
+<td>mobilepay</td>
+<td>MobilePay</td>
+<td></td>
+<td>MobilePay object</td>
+</tr>
+<tr>
+<td>invoice</td>
+<td>Invoice</td>
+<td></td>
+<td>Invoice object</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>int</td>
+<td></td>
+<td>how much money of the record</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>description of the record</td>
+</tr>
+<tr>
+<td>store</td>
+<td>Store</td>
+<td></td>
+<td>Store object</td>
+</tr>
+<tr>
+<td>store_name</td>
+<td>string</td>
+<td></td>
+<td>store name when the store is not in our database</td>
+</tr>
+<tr>
+<td>date</td>
+<td>int</td>
+<td></td>
+<td>date of the expese in timestamp</td>
+</tr>
+<tr>
+<td>rewards</td>
+<td>[]AccountingReward</td>
+<td></td>
+<td>array of AccountingReward object</td>
+</tr>
+<tr>
+<td>invoice_type</td>
+<td>int</td>
+<td>QRCode: <code>1</code> <br/> Carrier: <code>2</code> <br/> NoInvoice: <code>3</code></td>
+<td>invoice tpye of the record</td>
+</tr>
+<tr>
+<td>pending</td>
+<td>string</td>
+<td></td>
+<td>is the record in pending or not</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>int</td>
+<td></td>
+<td>create time in timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>int</td>
+<td></td>
+<td>update time in timestamp</td>
+</tr>
+</tbody></table>
+<h4 id='error-76'>Error</h4>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>error message</td>
+</tr>
+</tbody></table>
 <h2 id='get-user-39-s-accounting-summary'>• Get user&#39;s accounting summary</h2>
 <blockquote>
 <p>Get user&#39;s accounting summary:</p>
@@ -26644,9 +26869,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Get user&#39;s accounting summary</p>
-<h3 id='http-request-76'>HTTP Request</h3>
+<h3 id='http-request-77'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/accountings/summary</code></p>
-<h3 id='request-76'>Request</h3><h4 id='headers-73'>Headers</h4>
+<h3 id='request-77'>Request</h3><h4 id='headers-74'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -26660,7 +26885,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h3 id='response-76'>Response</h3><h4 id='success-76'>Success</h4>
+<h3 id='response-77'>Response</h3><h4 id='success-77'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -26786,7 +27011,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>Offer info</td>
 </tr>
 </tbody></table>
-<h4 id='error-76'>Error</h4>
+<h4 id='error-77'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -26866,9 +27091,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Get month accounting records and rewards of a card</p>
-<h3 id='http-request-77'>HTTP Request</h3>
+<h3 id='http-request-78'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/accountings/reward/{card_id}/{year}/{month}</code></p>
-<h3 id='request-77'>Request</h3><h4 id='headers-74'>Headers</h4>
+<h3 id='request-78'>Request</h3><h4 id='headers-75'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -26902,7 +27127,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>Month (If mont is <code>current</code>, respnse will depend on the card reward day)</td>
 </tr>
 </tbody></table>
-<h3 id='response-77'>Response</h3><h4 id='success-77'>Success</h4>
+<h3 id='response-78'>Response</h3><h4 id='success-78'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -27091,7 +27316,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>Offer info</td>
 </tr>
 </tbody></table>
-<h4 id='error-77'>Error</h4>
+<h4 id='error-78'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -27174,9 +27399,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Get month accounting records</p>
-<h3 id='http-request-78'>HTTP Request</h3>
+<h3 id='http-request-79'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/accountings/records/{year}/{month}</code></p>
-<h3 id='request-78'>Request</h3><h4 id='headers-75'>Headers</h4>
+<h3 id='request-79'>Request</h3><h4 id='headers-76'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -27202,7 +27427,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>year</td>
 </tr>
 </tbody></table>
-<h3 id='response-78'>Response</h3><h4 id='success-78'>Success</h4>
+<h3 id='response-79'>Response</h3><h4 id='success-79'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -27230,7 +27455,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>array of AccountingRecord</td>
 </tr>
 </tbody></table>
-<h4 id='error-78'>Error</h4>
+<h4 id='error-79'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -27299,9 +27524,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Get unrecorded invoices</p>
-<h3 id='http-request-79'>HTTP Request</h3>
+<h3 id='http-request-80'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/invoices/unrecorded</code></p>
-<h3 id='request-79'>Request</h3><h4 id='headers-76'>Headers</h4>
+<h3 id='request-80'>Request</h3><h4 id='headers-77'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -27315,7 +27540,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h3 id='response-79'>Response</h3><h4 id='success-79'>Success</h4>
+<h3 id='response-80'>Response</h3><h4 id='success-80'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -27439,7 +27664,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>update time in timestamp</td>
 </tr>
 </tbody></table>
-<h4 id='error-79'>Error</h4>
+<h4 id='error-80'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -27504,9 +27729,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Archive invoices</p>
-<h3 id='http-request-80'>HTTP Request</h3>
+<h3 id='http-request-81'>HTTP Request</h3>
 <p><code>PUT https://api.cardbo.info/api/v6/invoices/archive</code></p>
-<h3 id='request-80'>Request</h3><h4 id='headers-77'>Headers</h4>
+<h3 id='request-81'>Request</h3><h4 id='headers-78'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -27520,7 +27745,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h3 id='response-80'>Response</h3><h4 id='success-80'>Success</h4>
+<h3 id='response-81'>Response</h3><h4 id='success-81'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -27534,7 +27759,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>no result</td>
 </tr>
 </tbody></table>
-<h4 id='error-80'>Error</h4>
+<h4 id='error-81'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -27602,9 +27827,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Get QR Code invoice data</p>
-<h3 id='http-request-81'>HTTP Request</h3>
+<h3 id='http-request-82'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/invoice/qrcode</code></p>
-<h3 id='request-81'>Request</h3><h4 id='headers-78'>Headers</h4>
+<h3 id='request-82'>Request</h3><h4 id='headers-79'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -27634,7 +27859,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>the left part of the QR Code on invoice</td>
 </tr>
 </tbody></table>
-<h3 id='response-81'>Response</h3><h4 id='success-81'>Success</h4>
+<h3 id='response-82'>Response</h3><h4 id='success-82'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -27708,7 +27933,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>the store of the invoice</td>
 </tr>
 </tbody></table>
-<h4 id='error-81'>Error</h4>
+<h4 id='error-82'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -27929,9 +28154,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Insert card questionnaire</p>
-<h3 id='http-request-82'>HTTP Request</h3>
+<h3 id='http-request-83'>HTTP Request</h3>
 <p><code>POST https://api.cardbo.info/api/v6/questionnaire</code></p>
-<h3 id='request-82'>Request</h3><h4 id='headers-79'>Headers</h4>
+<h3 id='request-83'>Request</h3><h4 id='headers-80'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -27945,7 +28170,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h4 id='parameters-40'>Parameters</h4>
+<h4 id='parameters-41'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -27976,7 +28201,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 - ELECTRONIC BILL: <code>options</code> & <code>tag</code> cannot be set </br>
 - ETICKET: <code>etickets</code> is required
 </aside>
-<h3 id='response-82'>Response</h3><h4 id='success-82'>Success</h4>
+<h3 id='response-83'>Response</h3><h4 id='success-83'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -28010,7 +28235,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>update time in timestamp</td>
 </tr>
 </tbody></table>
-<h4 id='error-82'>Error</h4>
+<h4 id='error-83'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -28231,9 +28456,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Update card questionnaire</p>
-<h3 id='http-request-83'>HTTP Request</h3>
+<h3 id='http-request-84'>HTTP Request</h3>
 <p><code>PUT https://api.cardbo.info/api/v6/questionnaire/{questionnaire_id}</code></p>
-<h3 id='request-83'>Request</h3><h4 id='headers-80'>Headers</h4>
+<h3 id='request-84'>Request</h3><h4 id='headers-81'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -28259,7 +28484,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>questionnaire id</td>
 </tr>
 </tbody></table>
-<h4 id='parameters-41'>Parameters</h4>
+<h4 id='parameters-42'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -28290,7 +28515,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 - ELECTRONIC BILL: <code>options</code> & <code>tag</code> cannot be set </br>
 - ETICKET: <code>etickets</code> is required
 </aside>
-<h3 id='response-83'>Response</h3><h4 id='success-83'>Success</h4>
+<h3 id='response-84'>Response</h3><h4 id='success-84'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -28324,7 +28549,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>update time in timestamp</td>
 </tr>
 </tbody></table>
-<h4 id='error-83'>Error</h4>
+<h4 id='error-84'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -28445,9 +28670,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Get questionnaire by questionnaire_id</p>
-<h3 id='http-request-84'>HTTP Request</h3>
+<h3 id='http-request-85'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/questionnaire/id/{questionnaire_id}</code></p>
-<h3 id='request-84'>Request</h3><h4 id='headers-81'>Headers</h4>
+<h3 id='request-85'>Request</h3><h4 id='headers-82'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -28473,7 +28698,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>questionnaire id</td>
 </tr>
 </tbody></table>
-<h3 id='response-84'>Response</h3><h4 id='success-84'>Success</h4>
+<h3 id='response-85'>Response</h3><h4 id='success-85'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -28507,7 +28732,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>update time in timestamp</td>
 </tr>
 </tbody></table>
-<h4 id='error-84'>Error</h4>
+<h4 id='error-85'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -28677,9 +28902,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Get questionnaire and user&#39;s answer of a card</p>
-<h3 id='http-request-85'>HTTP Request</h3>
+<h3 id='http-request-86'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/questionnaire/card/{card_id}</code></p>
-<h3 id='request-85'>Request</h3><h4 id='headers-82'>Headers</h4>
+<h3 id='request-86'>Request</h3><h4 id='headers-83'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -28705,7 +28930,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>card id</td>
 </tr>
 </tbody></table>
-<h3 id='response-85'>Response</h3><h4 id='success-85'>Success</h4>
+<h3 id='response-86'>Response</h3><h4 id='success-86'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -28875,7 +29100,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>update time in timestamp</td>
 </tr>
 </tbody></table>
-<h4 id='error-85'>Error</h4>
+<h4 id='error-86'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -28998,9 +29223,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Get questionnaires</p>
-<h3 id='http-request-86'>HTTP Request</h3>
+<h3 id='http-request-87'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/questionnaires</code></p>
-<h3 id='request-86'>Request</h3><h4 id='headers-83'>Headers</h4>
+<h3 id='request-87'>Request</h3><h4 id='headers-84'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -29014,7 +29239,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h3 id='response-86'>Response</h3><h4 id='success-86'>Success</h4>
+<h3 id='response-87'>Response</h3><h4 id='success-87'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -29048,7 +29273,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>update time in timestamp</td>
 </tr>
 </tbody></table>
-<h4 id='error-86'>Error</h4>
+<h4 id='error-87'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -29197,9 +29422,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>User submit questionaaire</p>
-<h3 id='http-request-87'>HTTP Request</h3>
+<h3 id='http-request-88'>HTTP Request</h3>
 <p><code>POST https://api.cardbo.info/api/v6/questionnaire/submit/{card_id}</code></p>
-<h3 id='request-87'>Request</h3><h4 id='headers-84'>Headers</h4>
+<h3 id='request-88'>Request</h3><h4 id='headers-85'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -29213,7 +29438,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h4 id='parameters-42'>Parameters</h4>
+<h4 id='parameters-43'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -29256,7 +29481,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 - ELECTRONIC BILL: answer can only be <code>是</code> or <code>否</code> </br>
 - ETICKET: answer can only be the be <code>eticket_id<code>
 </aside>
-<h3 id='response-87'>Response</h3><h4 id='success-87'>Success</h4>
+<h3 id='response-88'>Response</h3><h4 id='success-88'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -29315,7 +29540,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>update time in timestamp</td>
 </tr>
 </tbody></table>
-<h4 id='error-87'>Error</h4>
+<h4 id='error-88'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -29387,9 +29612,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 
 <p>You must replace <code>meowmeowmeowaccess</code> with your personal API access token.
 </aside></p>
-<h3 id='http-request-88'>HTTP Request</h3>
+<h3 id='http-request-89'>HTTP Request</h3>
 <p><code>POST https://api.cardbo.info/api/v6/eticket</code></p>
-<h3 id='request-88'>Request</h3><h4 id='headers-85'>Headers</h4>
+<h3 id='request-89'>Request</h3><h4 id='headers-86'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -29403,7 +29628,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h4 id='parameters-43'>Parameters</h4>
+<h4 id='parameters-44'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -29425,7 +29650,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>image URL</td>
 </tr>
 </tbody></table>
-<h3 id='response-88'>Response</h3><h4 id='success-88'>Success</h4>
+<h3 id='response-89'>Response</h3><h4 id='success-89'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -29449,7 +29674,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>image URL</td>
 </tr>
 </tbody></table>
-<h4 id='error-88'>Error</h4>
+<h4 id='error-89'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -29504,9 +29729,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Get eticket by eticket_id</p>
-<h3 id='http-request-89'>HTTP Request</h3>
+<h3 id='http-request-90'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/eticket/{eticket_id}</code></p>
-<h3 id='request-89'>Request</h3><h4 id='headers-86'>Headers</h4>
+<h3 id='request-90'>Request</h3><h4 id='headers-87'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -29532,7 +29757,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>eticket id</td>
 </tr>
 </tbody></table>
-<h3 id='response-89'>Response</h3><h4 id='success-89'>Success</h4>
+<h3 id='response-90'>Response</h3><h4 id='success-90'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -29556,7 +29781,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>image URL</td>
 </tr>
 </tbody></table>
-<h4 id='error-89'>Error</h4>
+<h4 id='error-90'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -29613,9 +29838,9 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Get etickets</p>
-<h3 id='http-request-90'>HTTP Request</h3>
+<h3 id='http-request-91'>HTTP Request</h3>
 <p><code>GET https://api.cardbo.info/api/v6/etickets</code></p>
-<h3 id='request-90'>Request</h3><h4 id='headers-87'>Headers</h4>
+<h3 id='request-91'>Request</h3><h4 id='headers-88'>Headers</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -29629,7 +29854,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>API access token</td>
 </tr>
 </tbody></table>
-<h3 id='response-90'>Response</h3><h4 id='success-90'>Success</h4>
+<h3 id='response-91'>Response</h3><h4 id='success-91'>Success</h4>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -29653,7 +29878,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>image URL</td>
 </tr>
 </tbody></table>
-<h4 id='error-90'>Error</h4>
+<h4 id='error-91'>Error</h4>
 <table><thead>
 <tr>
 <th>Key</th>
