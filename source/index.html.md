@@ -14357,6 +14357,7 @@ expense_upperbound | int         | Expense upper bound
 expense            | int         | Expense of the reward
 left_expense       | int         | Left expense to get the max reward
 cahsback           | float       | Cashbck user get fro m th reward
+total_cashback     | float       | Total cashbck (including sharing upper bound reward) user get from the reward
 offer              | OfferResult | Offer info
 
 #### Error
@@ -14429,6 +14430,7 @@ axios.get('https://api.cardbo.info/api/v6/accountings/reward/5f9a747p00c2abf3d4a
         "expense": 0,
         "left_expense": 0,
         "cashback": 0,
+        "total_cashback:": 100,
         "offer": {
           "{offer_result}": "..."
         }
@@ -14504,7 +14506,8 @@ reward_upperbound  | int         | Reward upper bound
 expense_upperbound | int         | Expense upper bound
 expense            | int         | Expense of the reward
 left_expense       | int         | Left expense to get the max reward
-cahsback           | float       | Cashbck user get fro m th reward
+cahsback           | float       | Cashbck user get from the reward
+total_cashback     | float       | Total cashbck (including sharing upper bound reward) user get from the reward
 offer              | OfferResult | Offer info
 
 #### Error
