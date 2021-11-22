@@ -12078,7 +12078,6 @@ store              | Store                     |       | Store object
 amount             | int                       |       | Expense amount
 search_result_type | int                       | `1`: Has result </br> `2`: Need post conditions (removed) </br> `3`: No results </br> `4`: Unsupported store type `5`: No store data | The search result type
 results            | []OfferSearchResultDetail |       | Offer search result when `search_result_type=1`
-post_condition     | PostCondition             |       | Post condition array when `search_result_type=2`
 categories         | []string                  |       | Category array when `search_result_type=3`
 
 *OfferSearchResultDetail*
@@ -12113,15 +12112,6 @@ max_expense    | int            | Max expense for the reward
 max_cashback   | float          | Max cashback percentage/fixed value
 cashback_coins | []CashbackCoin | Coin info of the cashback
 offers         | []OfferResult  | All offers match the result
-
-*PostCondition*
-
-Key             | Type     | Enums | Description
---------------- |--------- | ----- | -----------
-post_conditions | []string |       | Post condition question
-channels        | []int    |`0`: 不限制通路 </br> `1`: 實體店 </br> `2`: 官網(線上通路) </br> `3`: APP | Channels to get offers
-register_url    | bool     |       | Does the offers need register from ULR
-coupon_code     | bool     |       | Does the offers need coupon code
 
 *SearchResultCondition*
 
