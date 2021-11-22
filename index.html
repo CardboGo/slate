@@ -22786,8 +22786,10 @@ At least one of <b>card_id</b> and <b>mobilepay_id</b> is required.
           </span><span class="nl">"reward_day"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
           </span><span class="nl">"has_questionnaire"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
           </span><span class="nl">"questionnaire_completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"enable_reward"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+          </span><span class="nl">"enable_reward"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"apply_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://url.com"</span><span class="w">
         </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"user_has_card"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nl">"{mobilepay_info}"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
         </span><span class="p">},</span><span class="w">
@@ -22971,7 +22973,7 @@ At least one of <b>card_id</b> and <b>mobilepay_id</b> is required.
 <td>search_mode</td>
 <td>true</td>
 <td>int</td>
-<td><code>1</code>: HAS AMOUNT </br> <code>2</code>: NO AMOUNT</td>
+<td><code>1</code>: HAS AMOUNT </br> <code>2</code>: NO AMOUNT </br> <code>3</code>: ALL CARD SEARCH</td>
 <td>Search mode (has amount/no amount)</td>
 </tr>
 <tr>
@@ -22987,61 +22989,6 @@ At least one of <b>card_id</b> and <b>mobilepay_id</b> is required.
 <td>int</td>
 <td></td>
 <td>Expense amount (requried for <code>search_mode=1</code>)</td>
-</tr>
-<tr>
-<td>has_post_condition</td>
-<td>true</td>
-<td>bool</td>
-<td></td>
-<td>Does request contain post condition info</td>
-</tr>
-<tr>
-<td>post_condition</td>
-<td>false</td>
-<td>PostConditionRequest</td>
-<td></td>
-<td>Post condition info</td>
-</tr>
-</tbody></table>
-
-<p><em>PostConditionRequest</em></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Type</th>
-<th>Enums</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>post_conditions</td>
-<td>false</td>
-<td>[]string</td>
-<td></td>
-<td>Post conditions provided from response</td>
-</tr>
-<tr>
-<td>channel</td>
-<td>false</td>
-<td>int</td>
-<td><code>0</code>: 不限制通路 </br> <code>1</code>: 實體店 </br> <code>2</code>: 官網(線上通路) </br> <code>3</code>: APP</td>
-<td>The channel from user&#39;s answer</td>
-</tr>
-<tr>
-<td>register_url</td>
-<td>false</td>
-<td>bool</td>
-<td></td>
-<td>Would user register or not</td>
-</tr>
-<tr>
-<td>coupon_code</td>
-<td>false</td>
-<td>bool</td>
-<td></td>
-<td>Would user user coupon code or not</td>
 </tr>
 </tbody></table>
 <h3 id='response-61'>Response</h3><h4 id='success-61'>Success</h4>
@@ -23078,7 +23025,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <tr>
 <td>search_result_type</td>
 <td>int</td>
-<td><code>1</code>: Has result </br> <code>2</code>: Need post conditions </br> <code>3</code>: No results </br> <code>4</code>: Unsupported store type <code>5</code>: No store data</td>
+<td><code>1</code>: Has result </br> <code>2</code>: Need post conditions (removed) </br> <code>3</code>: No results </br> <code>4</code>: Unsupported store type <code>5</code>: No store data</td>
 <td>The search result type</td>
 </tr>
 <tr>
@@ -23134,6 +23081,12 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>UserCard</td>
 <td></td>
 <td>User card for <code>result_type=2</code> and <code>result_type=3</code></td>
+</tr>
+<tr>
+<td>user_has_card</td>
+<td>bool</td>
+<td></td>
+<td>Does user has the card</td>
 </tr>
 <tr>
 <td>mobilepays</td>
@@ -23383,8 +23336,10 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
           </span><span class="nl">"reward_day"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
           </span><span class="nl">"has_questionnaire"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
           </span><span class="nl">"questionnaire_completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"enable_reward"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+          </span><span class="nl">"enable_reward"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"apply_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://url.com"</span><span class="w">
         </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"user_has_card"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nl">"mobilepay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nl">"{mobilepay_info}"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
         </span><span class="p">},</span><span class="w">
@@ -23558,7 +23513,7 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>search_mode</td>
 <td>true</td>
 <td>int</td>
-<td><code>1</code>: HAS AMOUNT </br> <code>2</code>: NO AMOUNT</td>
+<td><code>1</code>: HAS AMOUNT </br> <code>2</code>: NO AMOUNT </br> <code>3</code> ALL CARD SEARCH</td>
 <td>Search mode (has amount/no amount)</td>
 </tr>
 <tr>
@@ -23650,6 +23605,12 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>UserCard</td>
 <td></td>
 <td>User card for <code>result_type=2</code> and <code>result_type=3</code></td>
+</tr>
+<tr>
+<td>user_has_card</td>
+<td>bool</td>
+<td></td>
+<td>Does user has the card</td>
 </tr>
 <tr>
 <td>mobilepays</td>
@@ -28293,6 +28254,12 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>bool</td>
 <td></td>
 <td>Does the card questionnaire completed</td>
+</tr>
+<tr>
+<td>apply_url</td>
+<td>string</td>
+<td></td>
+<td>Card apply URL when user does not have the card</td>
 </tr>
 </tbody></table>
 
