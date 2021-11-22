@@ -11884,8 +11884,10 @@ axios.post('https://api.cardbo.info/api/v6/offers/formal/search', data, {
           "reward_day": 0,
           "has_questionnaire": true,
           "questionnaire_completed": false,
-          "enable_reward": false
+          "enable_reward": false,
+          "apply_url": "https://url.com"
         },
+        "user_has_card": true,
         "mobilepay": {
           "{mobilepay_info}": "..."
         },
@@ -12057,20 +12059,9 @@ Authorization | Bearer token | API access token
 
 Parameter          | Required | Type                 | Enums | Description
 ------------------ | -------- | -------------------- | ----- | -----------
-search_mode        | true     | int                  | `1`: HAS AMOUNT </br> `2`: NO AMOUNT | Search mode (has amount/no amount)
+search_mode        | true     | int                  | `1`: HAS AMOUNT </br> `2`: NO AMOUNT </br> `3`: ALL CARD SEARCH | Search mode (has amount/no amount)
 store              | true     | string               |       | Store name
 amount             | false    | int                  |       | Expense amount (requried for `search_mode=1`)
-has_post_condition | true     | bool                 |       | Does request contain post condition info
-post_condition     | false    | PostConditionRequest |       | Post condition info
-
-*PostConditionRequest*
-
-Parameter       | Required | Type     | Enums | Description
---------------- | -------- | -------- | ----- | -----------
-post_conditions | false    | []string |       | Post conditions provided from response
-channel         | false    | int      | `0`: 不限制通路 </br> `1`: 實體店 </br> `2`: 官網(線上通路) </br> `3`: APP | The channel from user's answer
-register_url    | false    | bool     |       | Would user register or not
-coupon_code     | false    | bool     |       | Would user user coupon code or not
 
 ### Response
 
@@ -12085,7 +12076,7 @@ Key                | Type                      | Enums | Description
 search_mode        | int                       | `1`: HAS AMOUNT </br> `2`: NO AMOUNT | Search mode (has amount/no amount)
 store              | Store                     |       | Store object
 amount             | int                       |       | Expense amount
-search_result_type | int                       | `1`: Has result </br> `2`: Need post conditions </br> `3`: No results </br> `4`: Unsupported store type `5`: No store data | The search result type
+search_result_type | int                       | `1`: Has result </br> `2`: Need post conditions (removed) </br> `3`: No results </br> `4`: Unsupported store type `5`: No store data | The search result type
 results            | []OfferSearchResultDetail |       | Offer search result when `search_result_type=1`
 post_condition     | PostCondition             |       | Post condition array when `search_result_type=2`
 categories         | []string                  |       | Category array when `search_result_type=3`
@@ -12098,6 +12089,7 @@ result_type         | int                     | `1`: MobilePay Only </br> `2`: C
 special_condition   | bool                    |       | Is special condition
 mobilepay           | MobilePay               |       | Mobeile pay for `result_type=1`
 card                | UserCard                |       | User card for `result_type=2` and `result_type=3`
+user_has_card       | bool                    |       | Does user has the card
 mobilepays          | []MobilePay             |       | Mobile pays used with card for `result_type=3`
 eticket             | ETicket                 |       | The eticket used with the card for  `result_type=3`
 cashback_value      | CashbackValue           |       | Cashback value for `user_type=3`
@@ -12226,8 +12218,10 @@ axios.post('https://api.cardbo.info/api/v6/offers/formal/search/category', data,
           "reward_day": 0,
           "has_questionnaire": true,
           "questionnaire_completed": false,
-          "enable_reward": false
+          "enable_reward": false,
+          "apply_url": "https://url.com"
         },
+        "user_has_card": true,
         "mobilepay": {
           "{mobilepay_info}": "..."
         },
@@ -12389,7 +12383,7 @@ Authorization | Bearer token | API access token
 
 Parameter   | Required | Type                 | Enums | Description
 ----------- | -------- | -------------------- | ----- | -----------
-search_mode | true     | int                  | `1`: HAS AMOUNT </br> `2`: NO AMOUNT | Search mode (has amount/no amount)
+search_mode | true     | int                  | `1`: HAS AMOUNT </br> `2`: NO AMOUNT </br> `3` ALL CARD SEARCH | Search mode (has amount/no amount)
 category    | true     | string               |       | Category name
 amount      | false    | int                  |       | Expense amount (required for `search_mode=1`)
 
@@ -12413,6 +12407,7 @@ result_type         | int                     | `1`: MobilePay Only </br> `2`: C
 special_condition   | bool                    |       | Is special condition
 mobilepay           | MobilePay               |       | Mobeile pay for `result_type=1`
 card                | UserCard                |       | User card for `result_type=2` and `result_type=3`
+user_has_card       | bool                    |       | Does user has the card
 mobilepays          | []MobilePay             |       | Mobile pays used with card for `result_type=3`
 eticket             | ETicket                 |       | The eticket used with the card for  `result_type=3`
 cashback_value      | CashbackValue           |       | Cashback value for `user_type=3`
@@ -15093,6 +15088,7 @@ reward_day              | int    | `1`-`31` | Reward day of the card (default is
 card_last_no            | string |       | Last 4 number of the card
 has_questionnaire       | bool   |       | Does the card have the questionnaire
 questionnaire_completed | bool   |       | Does the card questionnaire completed
+apply_url               | string |       | Card apply URL when user does not have the card
 
 *Reward*
 
