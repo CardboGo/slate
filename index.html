@@ -23035,12 +23035,6 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>Offer search result when <code>search_result_type=1</code></td>
 </tr>
 <tr>
-<td>post_condition</td>
-<td>PostCondition</td>
-<td></td>
-<td>Post condition array when <code>search_result_type=2</code></td>
-</tr>
-<tr>
 <td>categories</td>
 <td>[]string</td>
 <td></td>
@@ -23181,42 +23175,6 @@ When <code>search_result_type=1</code>, <code>results</code> has value; when <co
 <td>offers</td>
 <td>[]OfferResult</td>
 <td>All offers match the result</td>
-</tr>
-</tbody></table>
-
-<p><em>PostCondition</em></p>
-
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Enums</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>post_conditions</td>
-<td>[]string</td>
-<td></td>
-<td>Post condition question</td>
-</tr>
-<tr>
-<td>channels</td>
-<td>[]int</td>
-<td><code>0</code>: 不限制通路 </br> <code>1</code>: 實體店 </br> <code>2</code>: 官網(線上通路) </br> <code>3</code>: APP</td>
-<td>Channels to get offers</td>
-</tr>
-<tr>
-<td>register_url</td>
-<td>bool</td>
-<td></td>
-<td>Does the offers need register from ULR</td>
-</tr>
-<tr>
-<td>coupon_code</td>
-<td>bool</td>
-<td></td>
-<td>Does the offers need coupon code</td>
 </tr>
 </tbody></table>
 
